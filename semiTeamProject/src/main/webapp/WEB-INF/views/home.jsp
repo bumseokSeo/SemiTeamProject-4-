@@ -1,34 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<c:set var='url' value="<%=request.getContextPath() %>"/>
-<!DOCTYPE html>
-<html>
-	<!-- 박세윤 커밋 테스트! -->
-	<!-- 서범석 주석 추가14:53 -->
-	<!-- 서범석 주석 추가14:53 -->
-	<!-- 이정은 주석 테스트 -->
-	<!-- 김도현 주석 테스트 -->
-	<!-- 장현주 주석 테스트 -->
-	<!-- 정우준 주석 테스트 -->
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
-      integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <title>Document</title>
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap");
 
