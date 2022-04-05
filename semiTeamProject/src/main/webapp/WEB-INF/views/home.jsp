@@ -39,17 +39,19 @@
     </style>
 
       
-
-      <div id="weather" class="rotate-center">
-        <span></span>
-        <span></span>
-      </div>
+   <div id="weather" class="rotate-center">
+      <span></span>
+      <span></span>
+    </div>
+    <div>
+       <a href="${url}/cody/main_cody.jsp">코디추천</a>
+       <a href="${url}/food/main_food.jsp">음식추천</a>
     </div>
     <script>
       
 
       function onGeoOk(position) {
-    	const API_KEY = "f5c60c534d9d9d62379dd9a1123c1983";
+       const API_KEY = "f5c60c534d9d9d62379dd9a1123c1983";
         const lat = position.coords.latitude;
         const lon = position.coords.longitude;
 
