@@ -26,7 +26,7 @@
     <title>오늘 날씨 어때?</title>
     
     <style>
-          @import url("https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap");
+      @import url("https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap");
 
       * {
         box-sizing: border-box;
