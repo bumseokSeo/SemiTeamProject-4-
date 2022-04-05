@@ -2,12 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     <style>
-      @import url("https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap");
 
-      * {
-        box-sizing: border-box;
-        font-family: "Archivo Black", sans-serif;
-      }
 
       html {
         background: url(${url}/img/구름.gif) no-repeat center center fixed;
