@@ -68,17 +68,22 @@ html {
 	display: flex;
 	justify-content: space-around;
 	visibility: hidden;
+
 }
 
 .submenu a {
 	display: inline-block;
 	font-family: "GongGothicBold";
-	position: absolute;
-	bottom: 380px;
 	text-align: center;
 	font-size: 54px;
 	color: #333333;
 	text-shadow: 2px 2px 0px #ffffff, 5px 4px 0px rgba(0, 0, 0, 0.15);
+	position: absolute;
+}
+
+.submenu-a-cody {
+	bottom: 150px;
+	left:50px;
 }
 
 @
@@ -100,8 +105,8 @@ keyframes blink-effect { 50% {
 	<span></span> <span></span>
 </div>
 <div class="submenu">
-	<a href="${url}/cody/main_cody.jsp">코디추천</a> <a
-		href="${url}/food/main_food.jsp">음식추천</a>
+	<div class="submenu-a submenu-a-cody"><a href="${url}/cody/main_cody.jsp">코디추천</a></div> 
+	<div class="submenu-a submenu-a-food"><a href="${url}/food/main_food.jsp">음식추천</a></div> 
 </div>
 <script>
       
