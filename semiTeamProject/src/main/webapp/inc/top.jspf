@@ -109,7 +109,8 @@
 				<i class="fa-solid fa-bars"></i>
 			</button>
 			<div class="dropdown-content">
-				<a href="#">Link 1</a> <a href="#">Link 2</a> <a href="#">Link 3</a>
+				<a href="${url}/member/login.jsp">로그인</a> 
+				<a href="${url}/member/memberForm.jsp">회원가입</a> 
 			</div>
 		</div>
 	</div>
