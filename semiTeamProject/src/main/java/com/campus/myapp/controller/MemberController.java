@@ -17,7 +17,15 @@ public class MemberController {
 	@GetMapping("login")
 	public ModelAndView login() {
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("myapp/member/login");
+		mav.setViewName("member/login");
 		return mav;
+	}
+	//회원가입으로 이동
+	@GetMapping("memberForm")
+	public ModelAndView register() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("member/memberForm");
+		return mav;
+
 	}
 }
