@@ -10,7 +10,6 @@
   font-weight: normal;
   font-style: normal;
 }
-
 h1 {
   margin-bottom:20px;
   text-align: center;
@@ -18,12 +17,9 @@ h1 {
   font-size: 40px;
   text-shadow: #9c9c9c 4px 4px 0px, 2px 2px 2px rgba(206, 89, 55, 0);
 }
-
-
 * {
   box-sizing: border-box;
 }
-
 body {
   background: url(${url}/img/codyBackground.png) no-repeat center center fixed;
   -webkit-background-size: cover;
@@ -33,18 +29,14 @@ body {
   max-height: 100%;
   max-width: 100%;
 }
-
 ul {
   list-style-type: none;
   padding-left: 0;
 }
-
-
 .main-container {
   margin: auto;
   width: 1130px;
 }
-
 .cody-main {
   position: fixed;
   width: 60%;
@@ -52,15 +44,12 @@ ul {
   float: left;
   top: 170px;
   left: 170px;
-
 }
-
 .cody-sub {
   width: 40%;
   height: 600px;
   float: right;
 }
-
 .cody-sub-container {
   height: 180px;
   display: flex;
@@ -68,19 +57,14 @@ ul {
   align-items: center;
   text-align: center;
 }
-
-
-
 /* ===========버튼 CSS ============*/
 #workarea {
   position: absolute;
   width: 100%;
   height: 100%;
   background-color: #1e1a3e;
-
  
 }
-
 #personal {
   color: black;
   text-decoration:none;
@@ -88,7 +72,6 @@ ul {
   bottom:15px;
   right:2%;
 }
-
 .spot {
   position: absolute;
   width: 100%;
@@ -96,7 +79,6 @@ ul {
   top: 0;
   left: 0;
 }
-
 .svg-wrapper {
   margin-top: 0;
   position: relative;
@@ -107,7 +89,6 @@ ul {
   margin-left: 5px;
   margin-right: 5px
 }
-
 #shape {
   stroke-width: 6px;
   fill: transparent;
@@ -116,21 +97,17 @@ ul {
   stroke-dashoffset: -220;
   transition: 1s all ease;
 }
-
 #text {
   font-family: "ROKAFSansBold";
   margin-top: -35px;
   text-align: center;
 }
-
 #text a {
   color: #9c9c9c;
   text-decoration: none;
   font-weight: 100;
   font-size: 1.1em;
 }
-
-
 .svg-wrapper:hover #shape {
   stroke-dasharray: 50 0;
   stroke-width: 3px;
@@ -138,9 +115,7 @@ ul {
   stroke: coral;
 }
 /*================ 버튼 CSS 끝============== */
-
 /* ===============리스크 시작================= */
-
 .cody-sub-style-list {
   display: flex;
   flex-wrap: wrap;
@@ -148,14 +123,10 @@ ul {
   opacity: 1;
   transition: all var(--animation-duration) ease-out;
 }
-
 .cody-sub-style-list.anim-out {
   opacity: 0;
   transform: scale(0.9) translateY(40px);
 }
-
-
-
 .list {
   position: relative;
   display: flex;
@@ -171,16 +142,13 @@ ul {
   box-shadow: 13px 14px 46px 8px rgba(0,0,0,0.75);
   
 }
-
 .list-img {
   width: 100px;
   height: 100px;
 }
-
 .list.invisible{
   display: none;
 }
-
 .list-description {
   position: absolute;
   top: 0;
@@ -195,25 +163,20 @@ ul {
   transform: translate(10px);
   transition: all 500ms ease-in;
 }
-
 .list:hover .list-description {
   opacity: 0.8;
   transform: translate(0px);
   border-radius: 5px;
 }
-
 .list-description h3{
   color: bisque;
   text-align: center;
 }
-
 .list-description span {
   color: #9c9c9c;
   text-align: center;
   font-size: 14px;
 }
-
-
 .list-description h3:after {
   display: block;
   position: relative;
@@ -225,10 +188,7 @@ ul {
   margin-top: 8px;
   background-color: #9c9c9c;
 }
-
-
 /* ===============리스크 끝================= */
-
 /* =============메인 이미지 시작============== */
 .cody-main-img {
   position: absolute;
@@ -243,13 +203,10 @@ ul {
   box-shadow: 15px 15px #9c9c9c;
 }
 /* =============메인 이미지 끝============== */
-
 .animate__animated.animate__swing {
   --animate-duration: 1.2s;
 }
-
-</style>   
-<script src="${url}/js/main_cody.jsp"></script> 
+</style>    
     <h1 class="animate__animated animate__swing">오늘 코디 어때?</h1>
     <div class="main-container">
 

@@ -60,17 +60,19 @@ textarea {
 $(function() {
 	
 	$('#file').change(function() {//이미지 첨부되면 실행
-		console.log("실행");
 		setImage(this, '#preview');
 	});
 
 	$("#codyFrm").submit(function() {
-
+		event.preventDefault();
+		
 		if ($("#file").val() == '') {
 			alert("이미지를 첨부하세요.");
 			$("#file").focus();
 			return false;
 		}
+		$("#cname").val($("#file").val());
+		console.log($("#cname").val());
 
 		if ($("#temp").val() == '') {
 			alert("온도를 입력하세요.");
@@ -93,7 +95,24 @@ $(function() {
 			$("#style").focus();
 			return false;
 		}
-		return true;//임시로 설정
+		
+		var params = $('#codyFrm').serialize();
+		console.log(params);
+		/*
+		$.ajax({
+			url: '/codyInsert',
+			data: params,
+			method:"post",
+			success:function(result){
+				if(result>0){
+					alert("코디가 등록되었습니다.");
+					location.reload();
+				}
+			},
+			error:function(e){
+				console.log(e.responseText);
+			}
+		});*/
 	});
 });
 
@@ -115,7 +134,8 @@ function setImage(input, preview) {
 			<ul>
 				<li>이미지 추가</li>
 				<li>
-					<input type="file" name="cname" id ="file"/>
+					<input type="file" id ="file"/>
+					<input type="hidden" name="cname" value="" id="cname"/>
 					<a href="javascript:document.getElementById('file').click();"><img src="${url}/img/plus_icon.png"/ id="plus"></a>
 				</li>
 				<li>온도</li>
