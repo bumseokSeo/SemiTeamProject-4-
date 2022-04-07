@@ -46,14 +46,13 @@ ul {
 }
 
 .cody-main {
-  position: relative;
+  position: fixed;
   width: 60%;
   height: 600px;
   float: left;
-  opacity: 0.8;
-  border: 5px double #c1dfc4;
-  border-radius: 10% 10% / 100% 100%;
-  background-image: linear-gradient(to top, #c1dfc4 0%, #deecdd 100%);
+  top: 170px;
+  left: 170px;
+
 }
 
 .cody-sub {
@@ -241,7 +240,7 @@ ul {
  
   border: 10px solid #fafafa;
   outline: 3px solid #333;
-  box-shadow: 15px 15px #f50057;
+  box-shadow: 15px 15px #9c9c9c;
 }
 /* =============메인 이미지 끝============== */
 
@@ -319,6 +318,20 @@ ul {
                 </div>
               </a>
               <a href="#" class="list" target="blank">
+                <img src="${url}/img/codyimg/cody04.jpg"  class="list-img">
+                <div class="list-description">
+                  <h3>오피스룩</h3>
+                  <span>오피스룩 설명</span>
+                </div>
+              </a>
+              <a href="#" class="list" target="blank">
+                <img src="${url}/img/codyimg/cody04.jpg"  class="list-img">
+                <div class="list-description">
+                  <h3>오피스룩</h3>
+                  <span>오피스룩 설명</span>
+                </div>
+              </a>
+               <a href="#" class="list" target="blank">
                 <img src="${url}/img/codyimg/cody04.jpg"  class="list-img">
                 <div class="list-description">
                   <h3>오피스룩</h3>
