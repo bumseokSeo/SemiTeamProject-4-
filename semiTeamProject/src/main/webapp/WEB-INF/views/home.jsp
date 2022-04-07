@@ -113,7 +113,7 @@ body {
 	<span></span> <span></span>
 </div>
 <div class="submenu">
-	<div class="submenu-a submenu-a-cody"><a href="${url}/cody/main_cody.jsp">코디추천</a></div> 
+	<div class="submenu-a submenu-a-cody"><a href="${url}/cody/main_cody">코디추천</a></div> 
 	<div class="submenu-a submenu-a-food"><a href="/food/main_food">음식추천</a></div> 
 	<div class="submenu-a submenu-a-food"><a href="${url}/map/map.jsp">지도페이지</a></div> 
 </div>
