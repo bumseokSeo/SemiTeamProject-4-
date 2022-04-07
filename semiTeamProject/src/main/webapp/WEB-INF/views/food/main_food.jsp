@@ -50,7 +50,6 @@
 
 	
 	
-	
 	ul, li{
 		list-style-type: none;
 		margin: 0;
@@ -112,6 +111,7 @@
 	}
 </style>
 
+	<h1 class="animate__animated animate__swing">오늘 음식 어때?</h1>
 	<div id="weather">
 		<img class ="weatherIcon" src="" >
 		<div id="info"></div>
