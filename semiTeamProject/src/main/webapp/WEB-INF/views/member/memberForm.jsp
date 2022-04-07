@@ -65,11 +65,6 @@
 	}
 	
 	
-	
-	/*
-	#registerfrm>form>ul>li{width:800px;}
-	#registerfrm>form>ul>li>input{width:100%;}
-	*/
 	#resetbtn{
 		width:300px;
 		margin-left: 32.5px;
@@ -84,6 +79,46 @@
 	
 </style>
 <script>
+
+$(function(){
+	//아이디 중복검사
+	$("#userid").keyup(function(){
+		var reg = reg = /^[0-9a-zA-Z]{6,20}$/;
+		var userid=$("#userid").val();
+		if(userid != '' && reg.test(userid)){
+			var url = "${url}/member/memberIdCheck";
+			
+			$.ajax({
+				url : url,
+				data : "userid="+userid,
+				type : "POST",
+				success:function(result){
+					if(result>0){//중복된 아이디임
+						
+						$("#idcheck").css("display","inline");
+						$("#idcheck").html("사용불가능합니다.");
+						$("#idcheck").css("color","red");
+					}
+					else{//사용가능
+						$("#idcheck").css("display","inline");
+						$("#idcheck").html("사용가능합니다.");
+						$("#idcheck").css("color","blue");
+					}
+				},
+				error:function(error){
+					console.log(error.responseText);
+				}
+			});
+		}else{//id 최소 최대길이 조건으로 사용불가
+			$("#idcheck").css("display","inline");
+			$("#idcheck").html("아이디는 영문,숫자조합 6~20자리입니다.");
+			$("#idcheck").css("color","red");
+			
+		}
+		
+	});
+});
+
 	function formcheck(){
 		
 		
@@ -95,13 +130,13 @@
 			userid.focus();
 			return false;
 		}
-		/*
-		if (document.getElementById("idcheck").value == 'N') {
+		var idcheck = document.getElementById("idcheck").innerHTML
+		if (idcheck != '사용가능합니다.') {
 			alert("아이디를 확인해주세요");
 			userid.focus();
 			return false;
 		}
-		*/
+		
 		//비밀번호
 		var userpwd = document.getElementById("userpwd");
 		var reg = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,16}$/;
@@ -170,11 +205,7 @@
 			answer.focus();
 			return false;
 		}
-		
-		
-		
-		
-		
+
 		return true;
 	}
 </script>
@@ -184,8 +215,9 @@
 			<ul>
 				<li>아이디</li>
 					
-				<li><input class="form-control form-control-lg" type="text" placeholder="아이디" name="userid" id="userid">
-					<!-- <input type="text" id="idcheck" value='N' disabled/> -->
+				<li><input class="form-control form-control-lg" type="text" placeholder="아이디" name="userid" id="userid" maxlength="20">
+					<span id="idcheck" style="display: none"></span>
+					
 				</li>
 				<li>비밀번호</li>
 				<li><input class="form-control form-control-lg" type="password" placeholder="비밀번호" name="userpwd" id="userpwd"></li>
