@@ -81,7 +81,7 @@
 	</div>
 	<div>
 		<form class="searching" onsubmit="searchPlaces(); return false;">
-			<input type="text" name="query" value="이태원 맛집"
+			<input type="text" name="query" value=""
 				placeholder="키워드를 검색하세요" id="keyword" size="15">
 			<button class="search-btn">검색</button>
 		</form>
@@ -128,6 +128,42 @@
 
 		// 지도를 생성합니다    
 		var map = new kakao.maps.Map(mapContainer, mapOption);
+		
+		// GeoLocation을 이용해서 접속 위치를 얻어옵니다
+		navigator.geolocation.getCurrentPosition(function(position) {
+		         var lat = position.coords.latitude; // 위도
+		         var lon = position.coords.longitude; // 경도
+		        
+		         var locPosition = new kakao.maps.LatLng(lat, lon), // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
+		            message = '<div style="padding:5px;">현재위치</div>'; // 인포윈도우에 표시될 내용입니다
+		        
+		        // 마커와 인포윈도우를 표시합니다
+		        displayMarker(locPosition, message);
+		});
+		
+		function displayMarker(locPosition, message) {
+
+		    // 마커를 생성합니다
+		    var marker = new kakao.maps.Marker({  
+		        map: map, 
+		        position: locPosition
+		    }); 
+		    
+		    var iwContent = message, // 인포윈도우에 표시할 내용
+		        iwRemoveable = true;
+
+		    // 인포윈도우를 생성합니다
+		    var infowindow = new kakao.maps.InfoWindow({
+		        content : iwContent,
+		        removable : iwRemoveable
+		    });
+		    
+		    // 인포윈도우를 마커위에 표시합니다 
+		    infowindow.open(map, marker);
+		    
+		    // 지도 중심좌표를 접속위치로 변경합니다
+		    map.setCenter(locPosition);      
+		}  
 
 		// 장소 검색 객체를 생성합니다
 		var ps = new kakao.maps.services.Places();
@@ -142,16 +178,31 @@
 
 		// 키워드 검색을 요청하는 함수입니다
 		function searchPlaces() {
+			navigator.geolocation.getCurrentPosition(function(position) {
+		        var lat = position.coords.latitude; // 위도
+		        var lon = position.coords.longitude; // 경도
+		        
+		         var locPosition = new kakao.maps.LatLng(lat, lon);
+		                
+		        
+		        var locOption = {
+		     		location: locPosition,
+		      		radius : 5000,
+		    	   	size : 10
+		        };
+		           
+		        // 마커와 인포윈도우를 표시합니다        
+		        var keyword = document.getElementById('keyword').value;
 
-			var keyword = document.getElementById('keyword').value;
-
+		        // 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
+		        ps.keywordSearch('돈가스', placesSearchCB, locOption);
+		        displayMarker(locPosition, message);
+			});  
+			
 			if (!keyword.replace(/^\s+|\s+$/g, '')) {
 				alert('키워드를 입력해주세요!');
 				return false;
-			}
-
-			// 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
-			ps.keywordSearch(keyword, placesSearchCB);
+			}			
 		}
 
 		// 장소검색이 완료됐을 때 호출되는 콜백함수 입니다
