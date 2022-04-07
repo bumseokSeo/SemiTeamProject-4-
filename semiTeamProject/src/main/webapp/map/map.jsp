@@ -79,24 +79,22 @@
 			</div>
 		</nav>
 	</div>
-	<
+	<div>
+		<form class="searching" onsubmit="searchPlaces(); return false;">
+			<input type="text" name="query" value="이태원 맛집"
+				placeholder="키워드를 검색하세요" id="keyword" size="15">
+			<button class="search-btn">검색</button>
+		</form>
+	</div>
+
 	<div class="map_wrap">
 		<div id="map"
-			style="width: 1300px; height: 600px; position: relative; overflow: hidden;"></div>
+			style="width: 1300px; height: 600px; position: relative; "></div>
 		<div id="menu_wrap" class="bg_white">
-			<div class="option">
-				<div>
-					<form class="searching" onsubmit="searchPlaces(); return false;">
-						<input type="text" name="query" value="이태원 맛집"
-							placeholder="키워드를 검색하세요" id="keyword" size="15">
-						<button class="search-btn">검색</button>
-					</form>
-				</div>
-			</div>
-
+			<div class="option"></div>
+			<ul id="placesList"></ul>
+			<div id="pagination"></div>
 		</div>
-		<ul id="placesList"></ul>
-		<div id="pagination"></div>
 	</div>
 
 	<!-- 
