@@ -10,6 +10,6 @@
 	
 	<insert id="codyInsert">
 		insert into cody(cname,temp,weather,sex,style,info)
-		values(#{cname}, #{temp}, #{weather}, #{sex}, #{style}, #{info})
+		values(#{cname}, ${temp}, #{weather}, #{sex}, #{style}, #{info})
 	</insert>
 </mapper>

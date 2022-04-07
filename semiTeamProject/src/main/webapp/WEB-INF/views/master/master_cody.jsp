@@ -18,6 +18,7 @@ body,ul,li{
 	border: 1px solid gray;
 	padding: 50px;
 	margin-top: 30px;
+	margin-bottom:20px;
 }
 
 #codyFrm>input[type=text] {
@@ -66,13 +67,15 @@ $(function() {
 	$("#codyFrm").submit(function() {
 		event.preventDefault();
 		
-		if ($("#file").val() == '') {
+		var file = $("#file").val();
+		if (file == '') {
 			alert("이미지를 첨부하세요.");
 			$("#file").focus();
 			return false;
 		}
-		$("#cname").val($("#file").val());
-		console.log($("#cname").val());
+		var idx = file.lastIndexOf("\\")+1;
+		$("#cname").val(file.substring(idx));
+		console.log(idx,$("#cname").val());
 
 		if ($("#temp").val() == '') {
 			alert("온도를 입력하세요.");
@@ -98,7 +101,7 @@ $(function() {
 		
 		var params = $('#codyFrm').serialize();
 		console.log(params);
-		/*
+		
 		$.ajax({
 			url: '/codyInsert',
 			data: params,
@@ -112,7 +115,7 @@ $(function() {
 			error:function(e){
 				console.log(e.responseText);
 			}
-		});*/
+		});
 	});
 });
 
@@ -144,9 +147,9 @@ function setImage(input, preview) {
 				<li>
 					<select class="form-control" name="weather" id="weather">
 							<option>선택</option>
-					    	<option>clear</option>
-					    	<option>rain</option>
-					    	<option>snow</option>
+					    	<option value="clear">맑음</option>
+					    	<option value="rain">비</option>
+					    	<option value="snow">눈</option>
 					</select>
 				</li>
 				<li><label for="sex">성별</label></li>
