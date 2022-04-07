@@ -248,7 +248,8 @@ ul {
   --animate-duration: 1.2s;
 }
 
-</style>    
+</style>   
+<script src="${url}/js/main_cody.jsp"></script> 
     <h1 class="animate__animated animate__swing">오늘 코디 어때?</h1>
     <div class="main-container">
 
