@@ -103,10 +103,11 @@ body {
 	position: absolute;
 	top: 140px;
 	left: 50%;
+	transform: translate(-50%, 0);
 }
 </style>
 
-<p class="blink">Click ↓</p>
+<p class="blink">Click Me ↓</p>
 <div id="weather" class="rotate-center" onmouseenter="return mouseenter"
 	ondblclick="dbmouse()">
 	<span></span> <span></span>
