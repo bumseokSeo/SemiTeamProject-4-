@@ -55,6 +55,10 @@
 	font-family: "Archivo Black", sans-serif;
 }
 
+body{
+	font-family: 'NanumSquare',san-serif;
+}
+
 h1 {
 	text-align: center;
 	font-family: "ROKAFSansBold";
