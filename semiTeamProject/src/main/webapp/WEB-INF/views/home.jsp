@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<!-- ㅇㅇㅇㅇ -->
+
 <style>
 @font-face {
 	font-family: "GongGothicBold";
@@ -115,6 +115,7 @@ body {
 <div class="submenu">
 	<div class="submenu-a submenu-a-cody"><a href="${url}/cody/main_cody.jsp">코디추천</a></div> 
 	<div class="submenu-a submenu-a-food"><a href="${url}/food/main_food.jsp">음식추천</a></div> 
+	<div class="submenu-a submenu-a-food"><a href="${url}/map/map.jsp">지도페이지</a></div> 
 </div>
 
 <script>
