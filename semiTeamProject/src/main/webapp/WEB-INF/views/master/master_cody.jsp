@@ -1,15 +1,122 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<style>
+body,ul,li{
+	padding:0;
+	margin:0;
+	list-style-type: none;
+}
 
-	<h1>코디 관리자 페이지</h1>
+/*폼 css*/
+#d1 {
+	width: 800px;
+	margin: 0 auto;
+}
+
+#codyFrm {
+	width: 800px;
+	float: left;
+	border: 1px solid gray;
+	padding: 50px;
+	margin-top: 30px;
+}
+
+#codyFrm>input[type=text] {
+	width: 300px;
+}
+#codyFrm>ul>li{
+	float:left;
+	width:20%;
+	margin-bottom:30px;
+}
+#codyFrm>ul>li:nth-child(2n){
+	width:80%;
+}
+#file { /*input file*/
+	display: none
+}
+
+#preview {
+	width: 200px;
+	margin-bottom:20px;
+}
+
+#plus {
+	width: 30px;
+}
+
+textarea {
+	resize: none;
+}
+#resetbtn{
+	width:160px;
+	margin-left:85px;
+	margin-right:200px;
+}
+#submitbtn{
+	width:160px;
+}
+</style>
+<script>
+$(function() {
+	
+	$('#file').change(function() {//이미지 첨부되면 실행
+		console.log("실행");
+		setImage(this, '#preview');
+	});
+
+	$("#codyFrm").submit(function() {
+
+		if ($("#file").val() == '') {
+			alert("이미지를 첨부하세요.");
+			$("#file").focus();
+			return false;
+		}
+
+		if ($("#temp").val() == '') {
+			alert("온도를 입력하세요.");
+			$("#temp").focus();
+			return false;
+		}
+
+		if ($("#weather").val() == '선택') {
+			$("#weather").val('');
+		}
+
+		if ($("#sex").val() == '선택') {
+			alert("성별을 선택하세요.");
+			$("#sex").focus();
+			return false;
+		}
+
+		if ($("#style").val() == '선택') {
+			alert("스타일을 선택하세요.");
+			$("#style").focus();
+			return false;
+		}
+		return true;//임시로 설정
+	});
+});
+
+//이미지 미리보기
+function setImage(input, preview) {
+	if (input.files && input.files[0]) {
+		var reader = new FileReader();
+		reader.onload = function(e) {
+			$(preview).attr('src', e.target.result);
+		}
+		reader.readAsDataURL(input.files[0]);
+	}
+};
+</script>
 	<div id="d1">
-		<form method="get" action="/" id="codyFrm">
+		<h1>코디 관리자 페이지</h1>
+		<form method="post" action="/codyInsert" id="codyFrm">
 			<img src="" id="preview"/>
 			<ul>
 				<li>이미지 추가</li>
 				<li>
 					<input type="file" name="cname" id ="file"/>
-					<a href="javascript:document.getElementById('file').click();"><img src="image/plus_icon.png"/></a>
+					<a href="javascript:document.getElementById('file').click();"><img src="${url}/img/plus_icon.png"/ id="plus"></a>
 				</li>
 				<li>온도</li>
 				<li><input type="text" class="form-control" name="temp" id="temp"></li>
