@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="url" value="<%=request.getContextPath()%>"/>
-<h1>음식추천</h1>
+<h1>오늘 음식 어때?</h1>
 
 <script>
 
@@ -47,7 +47,16 @@
 </script>
 
 <style>
-	@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Manrope:wght@200;300;400&family=Nanum+Myeongjo&display=swap');
+
+	@import url('https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css');
+
+	@font-face {
+		font-family: 'ROKAFSansBold';
+		src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts2201-3@1.0/ROKAFSansBold.woff') format('woff');
+		font-weight: normal;
+		font-style: normal;
+	}
+	
 	
 	ul, li{
 		list-style-type: none;
@@ -55,7 +64,22 @@
 		padding: 0;
 	}
 	body{
-		background-color: rgb(242, 242, 238);
+		
+		background: url(${url}/img/foodBackground.png);
+		background-size: cover;
+		
+	}
+	h1{
+		font-family: 'ROKAFSansBold';
+		font-size: 40px;
+		text-align: center;
+		margin-top: 50px;
+		background: #BEB5CB;
+		background: -webkit-linear-gradient(to top left, #BEB5CB 0%, #4D4D4D 50%, #D19F9C 100%);
+		background: -moz-linear-gradient(to top left, #BEB5CB 0%, #4D4D4D 50%, #D19F9C 100%);
+		background: linear-gradient(to top left, #BEB5CB 0%, #4D4D4D 50%, #D19F9C 100%);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
 	}
     #weather{
         display: flex;
@@ -74,7 +98,7 @@
 		margin-top: 20px;
 		font-size: 20px;
 		line-height: 40px;
-		font-family: 'Manrope', sans-serif;
+		font-family: 'NanumSquare',san-serif;
 	}
 	#foods{
 		display: flex;
@@ -92,7 +116,7 @@
 	}
 	.foodInfo>div{
 		margin-bottom: 5px;	
-		font-family: 'Manrope', sans-serif;
+		font-family: 'NanumSquare',san-serif;
 	}
 	.foodPhoto{
 		width: 200px;

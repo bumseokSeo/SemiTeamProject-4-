@@ -12,13 +12,15 @@
 	font-style: normal;
 }
 
-html {
+body {
+	margin:0;
 	background: url(${url}/img/구름.gif) no-repeat center center fixed;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
 	background-size: cover;
 }
+
 
 #weather {
 	position: fixed;
@@ -69,38 +71,43 @@ html {
 	display: flex;
 	justify-content: space-around;
 	visibility: hidden;
-
+	transition: all 300ms ease-in;
 }
 
 .submenu a {
-	display: inline-block;
+
 	font-family: "GongGothicBold";
 	text-align: center;
 	font-size: 54px;
 	color: #333333;
 	text-shadow: 2px 2px 0px #ffffff, 5px 4px 0px rgba(0, 0, 0, 0.15);
-	position: absolute;
 }
 
 .submenu-a-cody {
-	bottom: 150px;
-	left:50px;
+	position: absolute;
+	bottom: 200px;
+	left:350px;
 }
 
-@
-keyframes blink-effect { 50% {
-	opacity: 0;
+.submenu-a-food {
+	position: absolute;
+	bottom: 200px;
+	right:350px;
 }
 
-}
+@keyframes blink-effect { 50% {opacity: 0;}}
 .blink {
 	animation: blink-effect 1s step-end infinite;
 	/* animation-name: blink-effect; animation-duration: 1s; animation-iteration-count:infinite; animation-timing-function:step-end; */
 	text-align: center;
+	position: absolute;
+	top: 140px;
+	left: 50%;
+	transform: translate(-50%, 0);
 }
 </style>
 
-<p class="blink">Click ↓</p>
+<p class="blink">Click Me ↓</p>
 <div id="weather" class="rotate-center" onmouseenter="return mouseenter"
 	ondblclick="dbmouse()">
 	<span></span> <span></span>
@@ -110,46 +117,44 @@ keyframes blink-effect { 50% {
 	<div class="submenu-a submenu-a-food"><a href="${url}/food/main_food.jsp">음식추천</a></div> 
 	<div class="submenu-a submenu-a-food"><a href="${url}/map/map.jsp">지도페이지</a></div> 
 </div>
+
 <script>
-      
-
-      function onGeoOk(position) {
-       const API_KEY = "f5c60c534d9d9d62379dd9a1123c1983";
-        const lat = position.coords.latitude;
-        const lon = position.coords.longitude;
-        
-        const url = "https://api.openweathermap.org/data/2.5/weather?lat="+lat+"&lon="+lon+"&lang=kr&appid="+API_KEY+"&units=metric";
-        fetch(url)
-          .then((response) => response.json())
-          .then((data) => {
-            const weather = document.querySelector("#weather span:first-child");
-            const city = document.querySelector("#weather span:last-child");
-            city.innerText = data.name;
-            weather.innerHTML = data.weather[0].main +'/'+ data.main.temp;
-          });
-      }
-      
-      function onGeoError() {
-        alert("위치를 찾을 수 없습니다. ");
-      }
-
-      navigator.geolocation.getCurrentPosition(onGeoOk, onGeoError);
-      
-      const weather = document.querySelector('#weather');
-      const submenu = document.querySelector('.submenu');
-
-      function mouseenter(e) {
-        submenu.style.visibility = "visible"
-
-      }
-      
-     function dbmouse(e) {
-       submenu.style.visibility = "hidden"
+     function onGeoOk(position) {
+      const API_KEY = "f5c60c534d9d9d62379dd9a1123c1983";
+       const lat = position.coords.latitude;
+       const lon = position.coords.longitude;
+       
+       const url = "https://api.openweathermap.org/data/2.5/weather?lat="+lat+"&lon="+lon+"&lang=kr&appid="+API_KEY+"&units=metric";
+       fetch(url)
+         .then((response) => response.json())
+         .then((data) => {
+           const weather = document.querySelector("#weather span:first-child");
+           const city = document.querySelector("#weather span:last-child");
+           city.innerText = data.name;
+           weather.innerHTML = data.weather[0].main +'/'+ data.main.temp;
+         });
+     }
+     
+     function onGeoError() {
+       alert("위치를 찾을 수 없습니다. ");
      }
 
-      weather.addEventListener("click",mouseenter)
-      weather.addEventListener("dblclick",dbmouse)
-      
-    </script>
+     navigator.geolocation.getCurrentPosition(onGeoOk, onGeoError);
+     
+     const weather = document.querySelector('#weather');
+     const submenu = document.querySelector('.submenu');
+
+     function mouseenter(e) {
+       submenu.style.visibility = "visible"
+
+     }
+     
+    function dbmouse(e) {
+      submenu.style.visibility = "hidden"
+    }
+
+    weather.addEventListener("click",mouseenter)
+    weather.addEventListener("dblclick",dbmouse)
+</script>
 </body>
 </html>
