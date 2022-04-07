@@ -52,7 +52,7 @@
 
 * {
 	box-sizing: border-box;
-	font-family: "Archivo Black", sans-serif;
+	font-family: 'NanumSquare',san-serif;
 }
 
 h1 {
