@@ -101,14 +101,14 @@
 <body>
 	<div class="nav-containor">
 		<div class="nav-logo">
-			<img src="${url}/img/logo.png" />
+			<a href="/"><img src="${url}/img/logo.png" title="홈"/></a>
 		</div>
 		<div class="dropdown">
 			<button class="dropbtn">
 				<i class="fa-solid fa-bars"></i>
 			</button>
 			<div class="dropdown-content">
-				<a href="${url}/member/login.jsp">로그인</a> 
+				<a href="/member/login">로그인</a> 
 				<a href="${url}/member/memberForm.jsp">회원가입</a> 
 			</div>
 		</div>
