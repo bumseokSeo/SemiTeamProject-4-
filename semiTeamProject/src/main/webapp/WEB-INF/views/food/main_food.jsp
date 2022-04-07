@@ -48,14 +48,6 @@
 
 <style>
 
-	@import url('https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css');
-
-	@font-face {
-		font-family: 'ROKAFSansBold';
-		src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts2201-3@1.0/ROKAFSansBold.woff') format('woff');
-		font-weight: normal;
-		font-style: normal;
-	}
 	
 	
 	ul, li{
@@ -69,18 +61,7 @@
 		background-size: cover;
 		
 	}
-	h1{
-		font-family: 'ROKAFSansBold';
-		font-size: 40px;
-		text-align: center;
-		margin-top: 50px;
-		background: #BEB5CB;
-		background: -webkit-linear-gradient(to top left, #BEB5CB 0%, #4D4D4D 50%, #D19F9C 100%);
-		background: -moz-linear-gradient(to top left, #BEB5CB 0%, #4D4D4D 50%, #D19F9C 100%);
-		background: linear-gradient(to top left, #BEB5CB 0%, #4D4D4D 50%, #D19F9C 100%);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-	}
+	
     #weather{
         display: flex;
         justify-content: center;
@@ -130,6 +111,7 @@
 	}
 </style>
 
+	<h1 class="animate__animated animate__swing">오늘 음식 어때?</h1>
 	<div id="weather">
 		<img class ="weatherIcon" src="" >
 		<div id="info"></div>

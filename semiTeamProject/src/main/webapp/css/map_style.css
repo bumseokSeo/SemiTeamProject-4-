@@ -50,6 +50,7 @@ a {
 }
 
 /*검색바*/
+
 .searching{
 	width: 500px; 
 	height: 50px; 
@@ -57,7 +58,9 @@ a {
     position:relative;
     margin:3px;
     z-index:2;
+    top:-12px;
 }
+
 
 .search-btn{
 	width: 55px; 
