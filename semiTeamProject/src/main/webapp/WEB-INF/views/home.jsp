@@ -113,11 +113,22 @@ body {
 	<span></span> <span></span>
 </div>
 <div class="submenu">
+<<<<<<< HEAD
 	<div class="submenu-a submenu-a-cody"><a href="${url}/cody/main_cody.jsp">코디추천</a></div> 
 	<div class="submenu-a submenu-a-food"><a href="${url}/food/main_food.jsp">음식추천</a></div> 
 
 	<div class="submenu-a submenu-a-food"><a href="map/map.jsp">지도</a></div> 
 
+=======
+	<c:if test="${logId!='master'}">
+		<div class="submenu-a submenu-a-cody"><a id="main_codylink" href="">코디추천</a></div>
+	</c:if>
+	<c:if test="${logId=='master'}">
+		<div class="submenu-a submenu-a-cody"><a href="${url}/master/master_cody">코디관리</a></div>
+	</c:if>
+	<div class="submenu-a submenu-a-food"><a href="/food/main_food">음식추천</a></div> 
+	<div class="submenu-a submenu-a-food"><a href="${url}/map/map.jsp">지도페이지</a></div> 
+>>>>>>> 3a0db8e69fe8a993c2a994a65c113d398519dba1
 </div>
 
 <script>
@@ -134,6 +145,26 @@ body {
            const city = document.querySelector("#weather span:last-child");
            city.innerText = data.name;
            weather.innerHTML = data.weather[0].main +'/'+ data.main.temp;
+           //cody temp 단계 설정
+           var temp = data.main.temp;
+			if(temp<=4) {
+				temp = 1;
+			}else if(temp>4&&temp<=8){
+				temp = 2;				
+			}else if(temp>8&&temp<=11){
+				temp = 3;				
+			}else if(temp>11&&temp<=16){
+				temp = 4;				
+			}else if(temp>16&&temp<=19){
+				temp = 5;				
+			}else if(temp>19&&temp<=22){
+				temp = 6;				
+			}else if(temp>22&&temp<=27){
+				temp = 7;				
+			}else if(temp>28){
+				temp = 8;				
+			}
+           $("#main_codylink").attr("href","/cody/main_cody?temp="+temp);//cody_href
          });
      }
      

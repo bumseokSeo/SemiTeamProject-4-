@@ -10,6 +10,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+<!-- h1 애니메이션 -->
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 	
@@ -54,17 +55,18 @@
 	font-family: "Archivo Black", sans-serif;
 }
 
-h1{
-		font-family: 'ROKAFSansBold';
-		font-size: 40px;
-		text-align: center;
-		margin-top: 50px;
-		background: #BEB5CB;
-		background: -webkit-linear-gradient(to top left, #BEB5CB 0%, #4D4D4D 50%, #D19F9C 100%);
-		background: -moz-linear-gradient(to top left, #BEB5CB 0%, #4D4D4D 50%, #D19F9C 100%);
-		background: linear-gradient(to top left, #BEB5CB 0%, #4D4D4D 50%, #D19F9C 100%);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
+body{
+	font-family: 'NanumSquare',san-serif;
+}
+
+h1 {
+	text-align: center;
+	font-family: "ROKAFSansBold";
+	font-size: 40px;
+	text-shadow: #9c9c9c 4px 4px 0px, 2px 2px 2px rgba(206, 89, 55, 0);
+}
+.animate__animated.animate__swing {
+		--animate-duration: 1.2s;
 }
 
 .nav-containor {
@@ -134,8 +136,18 @@ h1{
 				<i class="fa-solid fa-bars"></i>
 			</button>
 			<div class="dropdown-content">
-				<a href="/member/login">로그인</a> 
-				<a href="/member/memberForm">회원가입</a> 
+				<c:if test="${logStatus != 'Y' }">
+					<a href="/member/login">로그인</a> 
+					<a href="/member/memberForm">회원가입</a>
+				</c:if>
+				<c:if test="${logStatus == 'Y' && logId != 'master'}">
+					<a href="/member/logout">로그아웃</a> 
+					<a href="/member/memberEdit">회원정보수정</a>
+				</c:if>
+				<c:if test="${logId == 'master' }">
+					<a href="/member/logout">로그아웃</a> 
+					<a href="/master/master_member">회원관리</a>
+				</c:if>
 			</div>
 		</div>
 	</div>
