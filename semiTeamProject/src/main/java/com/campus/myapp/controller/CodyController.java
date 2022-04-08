@@ -25,8 +25,8 @@ public class CodyController {
 		ModelAndView mav = new ModelAndView();
 		//String sex = (String)session.getAttribute("logSex");
 		mav.addObject("temp",temp);
-		List<CodyVO> vo = service.codyRecommend(temp, "m");//임시로 설정
-		mav.addObject("vo", vo);
+		//List<CodyVO> vo = service.codyRecommend(temp, "m");//임시로 설정
+		//mav.addObject("vo", vo);
 		mav.setViewName("cody/main_cody");
 		return mav;
 	}
@@ -41,6 +41,11 @@ public class CodyController {
 	public int codyInsert(CodyVO vo) {
 		//파일 업로드 구현 필요
 		return service.codyInsert(vo);
+	}
+	//서브페이지로 이동
+	@GetMapping("/cody/sub_cody")
+	public String subPage() {
+		return "cody/sub_cody";
 	}
 	
 	//코디 목록

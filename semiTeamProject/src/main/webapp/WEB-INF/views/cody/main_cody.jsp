@@ -256,31 +256,30 @@ ul {
             </svg>
           </div>
         </div>
-
         <div>
             <div class="cody-sub-style-list">
-              <a href="#" class="list" target="blank">
+              <a href="${url}/cody/sub_cody" class="list" target="blank">
                 <img src="${url}/img/codyimg/cody01.jpg" alt="" class="list-img" >
                 <div class="list-description">
                   <h3>오피스룩</h3>
                   <span>오피스룩 설명</span>
                 </div>
               </a>
-              <a href="#" class="list" target="blank">
+              <a href="${url}/cody/sub_cody" class="list" target="blank">
                 <img src="${url}/img/codyimg/cody2.jpg"  alt="" class="list-img">
                 <div class="list-description">
                   <h3>오피스룩</h3>
                   <span>오피스룩 설명</span>
                 </div>
               </a>
-              <a href="#" class="list" target="blank">
+              <a href="${url}/cody/sub_cody" class="list" target="blank">
                 <img src="${url}/img/codyimg/cody03.jpg"  class="list-img">
                 <div class="list-description">
                   <h3>오피스룩</h3>
                   <span>오피스룩 설명</span>
                 </div>
               </a>
-              <a href="#" class="list" target="blank">
+              <a href="${url}/cody/sub_cody" class="list" target="blank">
                 <img src="${url}/img/codyimg/cody04.jpg"  class="list-img">
                 <div class="list-description">
                   <h3>오피스룩</h3>

@@ -60,18 +60,14 @@ h1 {
 }
 #rememberIdLi{
 	width:100%;
-	margin-left: 800px;
+	margin-left: 23px;
 }
 
-#resetbtn {
-	width: 300px;
-	margin-left: 32.5px;
-	margin-bottom: 100px;
-}
 
 #submitbtn {
-	width: 300px;
-	margin-left: 265px;
+	width: 90%;
+	margin-left: 0px auto;
+	height:70px;
 	margin-bottom: 100px;
 }
 
@@ -87,6 +83,11 @@ h1 {
 }
 </style>
 <script>
+	$(function() {
+	    
+	    cookieCheck();
+	  
+	});
 	function formcheck() {
 		var userid = document.getElementById("userid");
 
@@ -104,7 +105,13 @@ h1 {
 			userpwd.focus();
 			return false;
 		}
+		saveid();
 		
+		
+		return true;
+	}
+	
+	function saveid(){
 		//체크박스가 체크상태일 때 쿠키를 저장
 		if(document.getElementById("rememberId").checked){//체크값이 true인경우
 			//변수=값;path=/;expires=날짜;
@@ -113,10 +120,40 @@ h1 {
 			var cookieData = "userid="+userid.value+";path=/;expires="+now+";";
 			document.cookie =cookieData;
 			document.cookie = "rememberId=on;path=/;expires="+now+";";
-			
+		}else{
+			var now = new Date();
+			now.setDate(now.getDate()-365);
+			var cookieData = "userid="+userid.value+";path=/;expires="+now+";";
+			document.cookie =cookieData;
+			document.cookie = "rememberId=on;path=/;expires="+now+";";
 		}
-		return true;
 	}
+	
+	function cookieCheck(){
+		var cookieid = getCookie("userid");
+        if(cookieid !=""){
+        	$("input:checkbox[id='rememberId']").prop("checked", true);
+            $('#userid').val(cookieid);
+        }
+	}
+	
+    function getCookie(Name) {
+        var search = Name + "=";
+        
+        if (document.cookie.length > 0) { // 쿠키가 설정되어 있다면 
+            offset = document.cookie.indexOf(search);
+            if (offset != -1) { // 쿠키가 존재하면 
+                offset += search.length;
+                end = document.cookie.indexOf(";", offset);
+                // 쿠키 값의 마지막 위치 인덱스 번호 설정 
+                if (end == -1){
+                	end = document.cookie.length;
+                }  
+                return unescape(document.cookie.substring(offset, end));
+            }
+        }
+        return "";
+    }
 </script>
 <div id="loginForm">
 	<form method="post" action="${url}/member/loginOk"
@@ -132,20 +169,19 @@ h1 {
 			<li><input class="form-control form-control-lg" type="password"
 				placeholder="비밀번호" name="userpwd" id="userpwd"></li>
 			<li id="rememberIdLi">
-				<input class="form-check-input" type="checkbox" value="rememberId" id="rememberId" checked="checked"/> 
+				<input class="form-check-input" type="checkbox" value="rememberId" id="rememberId"/> 
 				<label class="form-check-label"> 아이디 저장하기 </label>
 			</li>
-			<li><input type="reset" value="다시쓰기" id="resetbtn"
-				class="btn btn-danger" /> <input type="submit" value="로그인"
+			<li> <input type="submit" value="로그인"
 				id="submitbtn" class="btn btn-secondary" /></li>
 		</ul>
 	</form>
 	<div class="loginBottom">
 		<div>
-			<a href="/member/findMember">아이디/비밀번호 찾기</a>
+			<a href="/member/findMember" title="아이디/비밀번호 찾기">아이디/비밀번호 찾기</a>
 		</div>
 		<div>
-			<a href="/member/memberForm">회원가입</a>
+			<a href="/member/memberForm" title="회원가입">회원가입</a>
 		</div>
 	</div>
 </div>

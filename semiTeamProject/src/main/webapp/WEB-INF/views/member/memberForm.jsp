@@ -32,7 +32,6 @@
 	#memberForm{
 		padding-top:100px;
 		padding-left:100px;
-		
 		border: 1px solid gray;
 		width:1130px;
 		margin:0px auto;
@@ -74,6 +73,7 @@
 		width:300px;
 		margin-left: 265px;
 		margin-bottom: 100px;
+		
 	}
 	
 	
