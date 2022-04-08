@@ -34,7 +34,8 @@ ul {
   padding-left: 0;
 }
 .main-container {
-  margin: auto;
+  position : relative;
+  margin: 0 auto;
   width: 1130px;
 }
 .cody-main {
