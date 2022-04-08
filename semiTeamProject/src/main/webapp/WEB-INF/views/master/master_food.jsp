@@ -19,6 +19,18 @@
             border-radius: 20px;
             margin-bottom : 50px;
         }
+        #deleteDate{
+            text-decoration: none;
+            color: black;
+        }
+        #deleteDate:hover{
+            color: gray;
+        }
+        #eventSelected{
+            font-size: 17px;
+            text-align: center;
+            font-weight: bold;
+        }
         #priorityForm{
             display: none;
         }
@@ -32,6 +44,14 @@
         }
         #modify{
             width: 70px;
+        }
+        #alertDate{
+            display: none;
+            color: blueviolet;
+        }
+
+        .day{
+            display: none;
         }
 
 </style>
@@ -144,15 +164,75 @@
         });
 
         $("#event").change(function(){
-           var event = $("#event option:selected").val();
+            var event = $("#event option:selected").val();
 
-           if(event != 'no'){
-            $("#priorityYes").prop("checked", true);
-           }
+            if(event != 'no'){
+                 $("#priorityYes").prop("checked", true);
+                 //모달창 띄우기
+                 $(".modal").modal('show');
+                 $("#eventDate").val('');
+             }
 
-           if(event == 'no'){
-            $("#priorityNo").prop("checked", true);
-           }
+            if(event == 'no'){
+             $("#priorityNo").prop("checked", true);
+             $("#eventSelected").html('');
+             $("#eventSelected").css('display', 'none');
+             $("#deleteDate").css('display', 'none');
+            }
+
+         });
+        
+      //모달창 닫히지 배경클릭, esc 입력해도 닫히지 않게
+        $(".modal").modal({
+            backdrop : 'static',
+            keyboard : false
+        });
+
+        // X 버튼 클릭하면 모달 닫히게
+        $(".btn-close").click(function(){
+            $(".modal").modal('hide');
+            //이벤트 상관 없음으로 변경
+            $("#event option:eq(0)").prop("selected", true);
+            $("#eventDate").val('');
+        });
+
+        //날짜 확인 버튼 클릭시
+        $("#eventButton").click(function(){
+
+            var eventDate = $("#eventDate").val();
+            //날짜 입력 값 없을 경우
+            if(eventDate==''){
+                //날짜 입력 알리기
+                $("#alertDate").css('display', 'inline-block');
+            }
+            //날짜 선택 -> 날짜 입력 알리기 안보이게 설정
+            $("#eventDate").change(function(){
+                $("#alertDate").css('display', 'none');
+                
+            });
+            //날짜 입력 값 있으면 모달창 내리기
+            if(eventDate !=''){
+                $(".modal").modal('hide');
+                
+                
+                ////////선택된 날짜 나타나게 하기
+                $("#eventSelected").html(eventDate);
+                
+                $("#eventSelected").css('display', 'inline-block');
+                $("#deleteDate").css('display', 'inline-block');
+
+            }
+
+            //날짜 선택한 뒤 날짜 삭제 버튼 클릭
+            $("#deleteDate").click(function(){
+                $("#eventSelected").html('');
+                $("#eventSelected").css('display', 'none');
+                $("#deleteDate").css('display', 'none');
+
+                //이벤트 없음으로 되돌리기
+                $("#event option:eq(0)").prop("selected", true);
+
+            })
 
         });
 
@@ -227,17 +307,19 @@
                     </div>
                 </div>
                 <!--이벤트 선택 (있으면 모달로 날짜 입력 받기)-->
-                <div class="row m-2">
+                <div class="row m-2" id="eventForm">
                     <label for="event" class="col-sm-2 col-form-label">이벤트</label>
                     <div class="col-sm-5">
                         <select class="form-select col-auto" id="event" name="event">
                             <option selected value="no">상관 없음</option>
-                            <option value="yes">있음</option> <!--날짜 문자열로 넣기-->
+                            <option value="yes">있음</option> 
                         </select>
                     </div>
+                    <span class="col-sm-3" class="day" id="eventSelected"></span>
+                    <a class="col-sm-2 day" id="deleteDate">삭제</a>
                 </div>
                 <!--우선순위 (Not Null)-->
-                <div class="row m-2"  id="priorityForm">
+                <div class="row m-2" id="priorityForm">
                     <label class="col-sm-2 col-form-label">우선순위</label>
                     <div class="form-check col-sm-3">
                         <input class="form-check-input m-2" type="radio" id="priorityYes" name="priority">
@@ -265,13 +347,26 @@
                 </div>
                 
                 <!--날짜 입력 받는 모달창-->
-
+                <div class="modal fade" data-backdrop = "static" data-keyboard="false">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">이벤트 날짜를 입력하세요</h5>
+                                <button type="button"  class="btn-close"  aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body" >
+                                <input class = "col-sm-5" type="date" name="eventDate" id="eventDate"/>
+                                <input  type="button" id="eventButton" value="확인">
+                                <span id="alertDate">날짜를 입력하세요</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
             </form>
 
         </div>
     </div>
-    
     
 </body>
 </html>
