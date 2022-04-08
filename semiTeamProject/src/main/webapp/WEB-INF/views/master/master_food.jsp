@@ -108,7 +108,7 @@
                 </div>
                 <!--우선순위 (Not Null)-->
                 <div class="row m-2">
-                    <label for="colFormLabelSm" class="col-sm-2 col-form-label">우선순위</label>
+                    <label  class="col-sm-2 col-form-label">우선순위</label>
                     <div class="form-check col-sm-3">
                         <input class="form-check-input m-2" type="radio" id="priorityYes" name="priority">
                         <label class="form-check-label" for="priorityYes">

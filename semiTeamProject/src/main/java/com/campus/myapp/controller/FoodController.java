@@ -24,6 +24,7 @@ public class FoodController {
 		mav.setViewName("master/master_food");
 		
 		return mav;
+		
 	}
 	
 

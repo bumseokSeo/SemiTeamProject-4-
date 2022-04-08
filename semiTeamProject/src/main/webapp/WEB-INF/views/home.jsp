@@ -114,8 +114,6 @@ body {
 </div>
 <div class="submenu">
 
-	
-	
 
 	<c:if test="${logId!='master'}">
 		<div class="submenu-a submenu-a-cody"><a id="main_codylink" href="">코디추천</a></div>
