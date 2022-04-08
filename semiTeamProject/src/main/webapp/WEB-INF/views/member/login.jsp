@@ -173,7 +173,7 @@ h1 {
 				<label class="form-check-label"> 아이디 저장하기 </label>
 			</li>
 			<li> <input type="submit" value="로그인"
-				id="submitbtn" class="btn btn-secondary" /></li>
+				id="submitbtn" class="btn btn-secondary"/></li>
 		</ul>
 	</form>
 	<div class="loginBottom">

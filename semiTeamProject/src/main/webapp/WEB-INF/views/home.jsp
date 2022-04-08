@@ -117,7 +117,13 @@ body {
 
 	<div class="submenu-a submenu-a-cody"><a href="${url}/cody/main_cody.jsp">코디추천</a></div> 
 	<div class="submenu-a submenu-a-food"><a href="${url}/food/main_food.jsp">음식추천</a></div> 
+
 	<a href="${url}/map/map.jsp">지도</a>
+
+	<a href="/map/main_map">지도</a>
+
+
+
 
 	<c:if test="${logId!='master'}">
 		<div class="submenu-a submenu-a-cody"><a id="main_codylink" href="">코디추천</a></div>
@@ -138,7 +144,7 @@ body {
 	</c:if>
 	
 	
->>>>>>> de144b15e5a0b25ad1cd490db251d3fd038a0069
+
 
 </div>
 
