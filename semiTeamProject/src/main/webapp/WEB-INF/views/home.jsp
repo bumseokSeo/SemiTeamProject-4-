@@ -113,13 +113,13 @@ body {
 	<span></span> <span></span>
 </div>
 <div class="submenu">
-<<<<<<< HEAD
+
 	<div class="submenu-a submenu-a-cody"><a href="${url}/cody/main_cody.jsp">코디추천</a></div> 
 	<div class="submenu-a submenu-a-food"><a href="${url}/food/main_food.jsp">음식추천</a></div> 
 
 	<div class="submenu-a submenu-a-food"><a href="map/map.jsp">지도</a></div> 
 
-=======
+
 	<c:if test="${logId!='master'}">
 		<div class="submenu-a submenu-a-cody"><a id="main_codylink" href="">코디추천</a></div>
 	</c:if>
@@ -128,7 +128,7 @@ body {
 	</c:if>
 	<div class="submenu-a submenu-a-food"><a href="/food/main_food">음식추천</a></div> 
 	<div class="submenu-a submenu-a-food"><a href="${url}/map/map.jsp">지도페이지</a></div> 
->>>>>>> 3a0db8e69fe8a993c2a994a65c113d398519dba1
+
 </div>
 
 <script>
