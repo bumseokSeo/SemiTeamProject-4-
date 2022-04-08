@@ -55,6 +55,12 @@
 	font-family: "Archivo Black", sans-serif;
 }
 
+<<<<<<< HEAD
+=======
+body{
+	font-family: 'NanumSquare',san-serif;
+}
+>>>>>>> branch 'main' of https://github.com/bumseokSeo/SemiTeamProject-4-.git
 
 h1 {
 	text-align: center;

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.campus.myapp.dao.CodyDAO">
+	<select id="codyRecommend" resultType="com.campus.myapp.vo.CodyVO">
+		select cname, style, info from cody where temp=#{param1} and sex=#{param2}
+	</select>
+	
+	<insert id="codyInsert">
+		insert into cody(cname,temp,weather,sex,style,info)
+		values(#{cname}, ${temp}, #{weather}, #{sex}, #{style}, #{info})
+	</insert>
+</mapper>
