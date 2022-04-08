@@ -65,7 +65,7 @@ $(function() {
 	});
 
 	$("#codyFrm").submit(function() {
-		event.preventDefault();
+		//event.preventDefault();
 		
 		var file = $("#file").val();
 		if (file == '') {
@@ -73,6 +73,7 @@ $(function() {
 			$("#file").focus();
 			return false;
 		}
+		/*
 		var idx = file.lastIndexOf("\\")+1;
 		$("#cname").val(file.substring(idx));
 		console.log(idx,$("#cname").val());
@@ -98,10 +99,10 @@ $(function() {
 			$("#style").focus();
 			return false;
 		}
-		
+		*/
 		var params = $('#codyFrm').serialize();
 		console.log(params);
-		
+		/*
 		$.ajax({
 			url: '/codyInsert',
 			data: params,
@@ -117,6 +118,8 @@ $(function() {
 				alert("코디 등록 실패하였습니다.")
 			}
 		});
+		*/
+		//return false;
 	});
 });
 
@@ -133,12 +136,12 @@ function setImage(input, preview) {
 </script>
 	<div id="d1">
 		<h1>코디 관리자 페이지</h1>
-		<form method="post" action="/codyInsert" id="codyFrm">
+		<form method="post" action="/codyInsert" id="codyFrm" enctype="multipart/form-data">
 			<img src="" id="preview"/>
 			<ul>
 				<li>이미지 추가</li>
 				<li>
-					<input type="file" id ="file"/>
+					<input type="file" name="filename" id ="file"/>
 					<input type="hidden" name="cname" value="" id="cname"/>
 					<a href="javascript:document.getElementById('file').click();"><img src="${url}/img/plus_icon.png"/ id="plus"></a>
 				</li>
