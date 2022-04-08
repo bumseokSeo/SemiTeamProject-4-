@@ -10,7 +10,7 @@ body,ul,li{
 #d1 {
 	width: 800px;
 	margin: 0 auto;
-}
+}	
 
 #codyFrm {
 	width: 800px;
@@ -114,6 +114,7 @@ $(function() {
 			},
 			error:function(e){
 				console.log(e.responseText);
+				alert("코디 등록 실패하였습니다.")
 			}
 		});
 	});

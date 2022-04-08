@@ -233,7 +233,7 @@ ul {
             <svg height="40" width="150" xmlns="http://www.w3.org/2000/svg">
               <rect id="shape" height="40" width="150" />
               <div id="text">
-                <a href=""><span class="spot"></span>ALL</a>
+                <a href="${url}/cody/sub_cody"><span class="spot"></span>ALL</a>
               </div>
             </svg>
           </div>
@@ -242,7 +242,7 @@ ul {
             <svg height="40" width="150" xmlns="http://www.w3.org/2000/svg">
               <rect id="shape" height="40" width="150" />
               <div id="text">
-                <a href=""><span class="spot"></span>MEN</a>
+                <a href="${url}/cody/sub_cody"><span class="spot"></span>MEN</a>
               </div>
             </svg>
           </div>
@@ -251,7 +251,7 @@ ul {
             <svg height="40" width="150" xmlns="http://www.w3.org/2000/svg">
               <rect id="shape" height="40" width="150" />
               <div id="text">
-                <a href=""><span class="spot"></span>WOMEN</a>
+                <a href="${url}/cody/sub_cody"><span class="spot"></span>WOMEN</a>
               </div>
             </svg>
           </div>

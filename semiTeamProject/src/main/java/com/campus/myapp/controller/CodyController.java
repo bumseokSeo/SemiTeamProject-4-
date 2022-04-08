@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.campus.myapp.service.CodyService;
@@ -38,6 +39,7 @@ public class CodyController {
 	}
 	//codyInsert
 	@PostMapping("/codyInsert")
+	@ResponseBody
 	public int codyInsert(CodyVO vo) {
 		//파일 업로드 구현 필요
 		return service.codyInsert(vo);
