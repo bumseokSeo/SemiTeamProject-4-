@@ -117,7 +117,7 @@ body {
 	<div class="submenu-a submenu-a-cody"><a href="${url}/cody/main_cody.jsp">코디추천</a></div> 
 	<div class="submenu-a submenu-a-food"><a href="${url}/food/main_food.jsp">음식추천</a></div> 
 
-	<div class="submenu-a submenu-a-food"><a href="map/map.jsp">지도</a></div> 
+	
 
 
 	<c:if test="${logId!='master'}">
