@@ -17,6 +17,7 @@
             margin-top: 200px;
             font-family: 'NanumSquare',san-serif;
             border-radius: 20px;
+            margin-bottom : 50px;
         }
         #priorityForm{
             display: none;
@@ -103,6 +104,8 @@
         //화면에서는 보이지 않는 부분
         $("#seasons").change(function(){
            var season = $("#seasons option:selected").val();
+           
+           console.log(season);
 
            if(season != 'allseason'){
             $("#priorityYes").prop("checked", true);
@@ -169,7 +172,7 @@
                     <input type="text" class="form-control" id="searchFood" placeholder="수정할 음식 이름을 입력하세요">
                 </div>
                 <div class="col-sm-4">
-                    <button type="submit" class="btn btn-secondary mb-3">수정</button>
+                    <input type="button" class="btn btn-secondary mb-3" id="searchButton" value="검색">
                 </div>
 
                 <!--음식 이름 작성 (Not Null)-->
@@ -191,7 +194,7 @@
                     <label for="seasons" class="col-sm-2 col-form-label">계절</label>
                     <div class="col-sm-5">
                         <select class="form-select col-auto" id="seasons" name="seasons">
-                            <option selected value="every">계절 무관</option>
+                            <option selected value="allseason">계절 무관</option>
                             <option value="spring">봄</option>
                             <option value="summer">여름</option>
                             <option value="fall">가을</option>
@@ -215,7 +218,7 @@
                     <label for="weather" class="col-sm-2 col-form-label">날씨</label>
                     <div class="col-sm-5">
                         <select class="form-select col-auto" id="weather" name="weather">
-                            <option selected >상관 없음</option>
+                            <option selected value="allweather">상관 없음</option>
                             <option value="clear">맑음</option>
                             <option value="cloud">흐림</option>
                             <option value="rain">비</option>
@@ -228,13 +231,13 @@
                     <label for="event" class="col-sm-2 col-form-label">이벤트</label>
                     <div class="col-sm-5">
                         <select class="form-select col-auto" id="event" name="event">
-                            <option selected >상관 없음</option>
+                            <option selected value="no">상관 없음</option>
                             <option value="yes">있음</option> <!--날짜 문자열로 넣기-->
                         </select>
                     </div>
                 </div>
                 <!--우선순위 (Not Null)-->
-                <div class="row m-2" >
+                <div class="row m-2"  id="priorityForm">
                     <label class="col-sm-2 col-form-label">우선순위</label>
                     <div class="form-check col-sm-3">
                         <input class="form-check-input m-2" type="radio" id="priorityYes" name="priority">
@@ -261,7 +264,7 @@
                     <button type="submit" class="btn btn-secondary mb-3" id="modify">수정</button>
                 </div>
                 
-                
+                <!--날짜 입력 받는 모달창-->
 
 
             </form>
