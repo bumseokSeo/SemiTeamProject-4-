@@ -114,11 +114,6 @@ body {
 </div>
 <div class="submenu">
 
-	
-	<div class="submenu-a submenu-a-food"><a href="${url}/food/main_food.jsp">음식추천</a></div> 
-	
-	
-
 
 	<c:if test="${logId!='master'}">
 		<div class="submenu-a submenu-a-cody"><a id="main_codylink" href="">코디추천</a></div>
@@ -126,7 +121,14 @@ body {
 	<c:if test="${logId=='master'}">
 		<div class="submenu-a submenu-a-cody"><a href="${url}/master/master_cody">코디관리</a></div>
 	</c:if>
-	<div class="submenu-a submenu-a-food"><a href="/food/main_food">음식추천</a></div> 
+	
+	<c:if test="${logId != 'master' }">
+		<div class="submenu-a submenu-a-food"><a href="/food/main_food">음식추천</a></div> 
+	</c:if>
+	<c:if test="${logId == 'master' }">
+		<div class="submenu-a submenu-a-food"><a href="/master/master_food">음식관리</a></div> 
+	</c:if>
+	
 	
 
 </div>

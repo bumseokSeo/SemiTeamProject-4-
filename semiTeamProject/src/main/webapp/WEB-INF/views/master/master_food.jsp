@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    
 <style>
 
         body{
@@ -104,7 +108,7 @@
                 </div>
                 <!--우선순위 (Not Null)-->
                 <div class="row m-2">
-                    <label for="colFormLabelSm" class="col-sm-2 col-form-label">우선순위</label>
+                    <label  class="col-sm-2 col-form-label">우선순위</label>
                     <div class="form-check col-sm-3">
                         <input class="form-check-input m-2" type="radio" id="priorityYes" name="priority">
                         <label class="form-check-label" for="priorityYes">
