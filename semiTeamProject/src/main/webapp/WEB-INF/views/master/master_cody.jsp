@@ -65,7 +65,7 @@ $(function() {
 	});
 
 	$("#codyFrm").submit(function() {
-		//event.preventDefault();
+		event.preventDefault();
 		
 		var file = $("#file").val();
 		if (file == '') {
@@ -73,11 +73,27 @@ $(function() {
 			$("#file").focus();
 			return false;
 		}
-		/*
+		
 		var idx = file.lastIndexOf("\\")+1;
 		$("#cname").val(file.substring(idx));
-		console.log(idx,$("#cname").val());
-
+		/*
+		//cname 중복확인
+		$.ajax({
+			url: '/cnameCheck',
+			data: "cname="+$("#cname").val(),
+			method:"post",
+			success:function(result){
+				if(result>0){
+					alert("중복된 파일명입니다.");
+					$("#file").focus();
+					return false;
+				}
+			},
+			error:function(e){
+				console.log(e.responseText);
+			}
+		});
+		*/
 		if ($("#temp").val() == '') {
 			alert("온도를 입력하세요.");
 			$("#temp").focus();
@@ -99,14 +115,16 @@ $(function() {
 			$("#style").focus();
 			return false;
 		}
-		*/
-		var params = $('#codyFrm').serialize();
+		
+		var params = new FormData($("#codyFrm")[0]);
 		console.log(params);
-		/*
+		
 		$.ajax({
 			url: '/codyInsert',
 			data: params,
 			method:"post",
+			processData: false,
+			contentType: false,
 			success:function(result){
 				if(result>0){
 					alert("코디가 등록되었습니다.");
@@ -115,11 +133,9 @@ $(function() {
 			},
 			error:function(e){
 				console.log(e.responseText);
-				alert("코디 등록 실패하였습니다.")
+				alert("코디 등록 실패하였습니다.");
 			}
-		});
-		*/
-		//return false;
+		})
 	});
 });
 

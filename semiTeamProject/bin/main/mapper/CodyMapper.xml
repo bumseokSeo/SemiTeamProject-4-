@@ -8,6 +8,10 @@
 		select cname, style, info from cody where temp=#{param1} and sex=#{param2}
 	</select>
 	
+	<select id="cnameCheck">
+		select count(cname) cnt from cody where cname=#{param1}
+	</select>
+	
 	<insert id="codyInsert">
 		insert into cody(cname,temp,weather,sex,style,info)
 		values(#{cname}, ${temp}, #{weather}, #{sex}, #{style}, #{info})

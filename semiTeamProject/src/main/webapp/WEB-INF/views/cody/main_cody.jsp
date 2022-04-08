@@ -1,8 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>  
 <style>
- /* 제목 : 도현님 */
  @font-face {
   font-family: "ROKAFSansBold";
   src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts2201-3@1.0/ROKAFSansBold.woff")
@@ -210,15 +207,15 @@ ul {
 </style>    
     <h1 class="animate__animated animate__swing">오늘 코디 어때?</h1>
    
-    <!--  날씨, 성별 데이터에 따른 코디 가져오기 테스트
-    <c:forEach var="vo" items="${vo}">
-		<h1>${vo.cname}</h1>
-	</c:forEach>
-	-->
     <div class="main-container">
 
       <div class="cody-main">
         <div class="cody-main-img">
+        	<!-- temp 단계에 해당하는 코디 이미지 가져오기
+            <c:forEach var="vo" items="${vo}">
+				<img src="${url}/img/codyimg/codyupload/${vo.cname}"/>
+			</c:forEach>
+			 -->
         </div>
         <div class="cody-main-text">
       
@@ -305,6 +302,5 @@ ul {
         </div>
       </div>
     </div>
-  
   </body>
 </html>
