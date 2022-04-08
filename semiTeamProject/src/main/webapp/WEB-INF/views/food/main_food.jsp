@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="url" value="<%=request.getContextPath()%>"/>
-<h1>오늘 음식 어때?</h1>
 
 <script>
 
