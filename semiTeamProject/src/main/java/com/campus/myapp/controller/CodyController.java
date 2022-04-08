@@ -1,8 +1,7 @@
 package com.campus.myapp.controller;
 
-import java.util.List;
-
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -40,8 +39,10 @@ public class CodyController {
 	//codyInsert
 	@PostMapping("/codyInsert")
 	@ResponseBody
-	public int codyInsert(CodyVO vo) {
+	public int codyInsert(CodyVO vo, HttpServletRequest request) {
 		//파일 업로드 구현 필요
+		String path = request.getSession().getServletContext().getRealPath("");
+		
 		return service.codyInsert(vo);
 	}
 	//서브페이지로 이동
