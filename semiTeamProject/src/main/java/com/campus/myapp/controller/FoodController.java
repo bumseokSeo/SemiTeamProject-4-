@@ -6,10 +6,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping("/food/")
 public class FoodController {
 	
-	@GetMapping("main_food")
+	@GetMapping("/food/main_food")
 	public ModelAndView foodPage() {
 		
 		ModelAndView mav = new ModelAndView();
@@ -18,5 +17,14 @@ public class FoodController {
 		return mav;
 		
 	}
+	
+	@GetMapping("/master/master_food")
+	public ModelAndView foodAdminPage() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("master/master_food");
+		
+		return mav;
+	}
+	
 
 }
