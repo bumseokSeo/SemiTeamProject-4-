@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<c:set var="url" value="<%=request.getContextPath() %>"/>
+<c:set var="url" value="<%=request.getContextPath()%>" />
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,12 +29,10 @@
 					<a href="#" class="nav__link active"> <ion-icon
 							name="home-outline" class="nav__icon"></ion-icon> <span
 						class="nav_name">지도홈</span>
+					</a> <a href="${url}/map/review" class="nav__link"> <ion-icon
+							name="chatbubbles-outline" class="nav__icon"></ion-icon> <span
+						class="nav_name">리뷰페이지</span>
 					</a>
-					
-                    <a href="${url}/map/review" class="nav__link">
-                        <ion-icon name="chatbubbles-outline" class="nav__icon"></ion-icon>
-                        <span class="nav_name">리뷰페이지</span>
-                    </a>
 					<!-- 
                     <div href="#" class="nav__link collapse">
                         <ion-icon name="folder-outline" class="nav__icon"></ion-icon>
@@ -82,20 +80,26 @@
 	</div>
 	<div>
 		<form class="searching" onsubmit="searchPlaces(); return false;">
-			<input type="text" name="query"
-				placeholder="키워드를 검색하세요" id="keyword" size="15">
+			<input type="text" name="query" placeholder="키워드를 검색하세요" id="keyword"
+				size="15">
 			<button class="search-btn">검색</button>
 		</form>
 	</div>
-
 	<div class="map_wrap">
-		<div id="map" style="width: 100%; height: 100%; position: relative; "></div>
+		<div id="map" style="width: 200px; height: 100px; position: fixed;margin:0 auto"></div>
+
 
 		<div id="menu_wrap" class="bg_white">
 			<div class="option"></div>
 			<ul id="placesList"></ul>
 			<div id="pagination"></div>
 		</div>
+
+
+
+
+
+
 	</div>
 
 	<script>
@@ -115,10 +119,10 @@
 		// 장소 검색 객체를 생성합니다
 		var ps = new kakao.maps.services.Places();
 		var searchOption = {
-		        location: new kakao.maps.LatLng(37.564968, 126.939909),
-		        radius: 5000,
-		        size: 10
-		    };
+			location : new kakao.maps.LatLng(37.564968, 126.939909),
+			radius : 5000,
+			size : 10
+		};
 
 		// 검색 결과 목록이나 마커를 클릭했을 때 장소명을 표출할 인포윈도우를 생성합니다
 		var infowindow = new kakao.maps.InfoWindow({
@@ -142,27 +146,26 @@
 			// 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
 			ps.keywordSearch(keyword, placesSearchCB, searchOption);
 		}
-		*/
+		 */
 		// 키워드 검색을 요청하는 함수입니다
 		function searchPlaces() {
 			navigator.geolocation.getCurrentPosition(function(position) {
-		        var lat = position.coords.latitude, // 위도
-		            lon = position.coords.longitude; // 경도
-		        
-		        var locPosition = {
-		        	location : new kakao.maps.LatLng(lat, lon), // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
-		        	radius : 5000,
-		        	size : 10
-		        };
-		           
-		        // 마커와 인포윈도우를 표시합니다        
-		        var keyword = document.getElementById('keyword').value;
+				var lat = position.coords.latitude, // 위도
+				lon = position.coords.longitude; // 경도
 
-		        // 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
-		        ps.keywordSearch('돈가스', placesSearchCB, locPosition); 
-			});   
+				var locPosition = {
+					location : new kakao.maps.LatLng(lat, lon), // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
+					radius : 5000,
+					size : 10
+				};
+
+				// 마커와 인포윈도우를 표시합니다        
+				var keyword = document.getElementById('keyword').value;
+
+				// 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
+				ps.keywordSearch('돈가스', placesSearchCB, locPosition);
+			});
 		}
-
 
 		// 장소검색이 완료됐을 때 호출되는 콜백함수 입니다
 		function placesSearchCB(data, status, pagination) {
@@ -349,7 +352,7 @@
 		}
 	</script>
 
- 
+
 	<!-- IONICONS -->
 	<script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></script>
 	<!-- JS -->
