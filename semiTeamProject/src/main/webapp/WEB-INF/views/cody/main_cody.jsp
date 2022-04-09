@@ -1,4 +1,40 @@
+<<<<<<< HEAD
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>  
+=======
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    
+<script>
+
+window.addEventListener("wheel",function (e) {
+    e.preventDefault();
+  },{ passive: false 
+  });
+
+var $html = $("html");
+var page = 1;
+var lastPage = $(".content").length;
+
+$html.animate({ scrollTop: 0 }, 10);
+
+$(window).on("wheel", function (e) {
+  if ($html.is(":animated"))
+   return;
+
+  if (e.originalEvent.deltaY > 0) {
+    if (page == lastPage) 
+    return;
+    page++;
+  } else if (e.originalEvent.deltaY < 0) {
+    if (page == 1) return;
+    page--;
+  }
+  var posTop = (page - 1) * $(window).height();
+  $html.animate({ scrollTop: posTop });
+});
+</script>
+    
+>>>>>>> 7a18e8e (장현주 : 코디메인페이지 수정)
 <style>
  @font-face {
   font-family: "ROKAFSansBold";
@@ -7,7 +43,7 @@
   font-weight: normal;
   font-style: normal;
 }
-h1 {
+.title {
   margin-bottom:20px;
   text-align: center;
   font-family: "ROKAFSansBold";
@@ -17,196 +53,58 @@ h1 {
 * {
   box-sizing: border-box;
 }
-body {
-  background: url(${url}/img/codyBackground.png) no-repeat center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  max-height: 100%;
-  max-width: 100%;
+
+html{overflow: hidden;}
+ 
+html, body{width: 100%; height: 100%;}
+ 
+.content{
+	width: 100%; height: 100%;
+	
+	
+	position: relative;
 }
-ul {
-  list-style-type: none;
-  padding-left: 0;
-}
-.main-container {
-  position : relative;
-  margin: 0 auto;
-  width: 1130px;
-}
-.cody-main {
-  position: fixed;
-  width: 60%;
-  height: 600px;
-  float: left;
-  top: 170px;
-  left: 170px;
-}
-.cody-sub {
-  width: 40%;
-  height: 600px;
-  float: right;
-}
-.cody-sub-container {
-  height: 180px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-}
-/* ===========버튼 CSS ============*/
-#workarea {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-color: #1e1a3e;
+/*
+.content > h1{
+	position: absolute;
+	top: 50%; left: 50%;
+	transform: translate(-50%,-50%);
+ 
+	font-size: 20em;
+	font-weight: bold;
+	text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.6);
  
 }
-#personal {
-  color: black;
-  text-decoration:none;
-  position:absolute;
-  bottom:15px;
-  right:2%;
-}
-.spot {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-}
-.svg-wrapper {
-  margin-top: 0;
-  position: relative;
-  width: 150px;
-  height: 40px;
-  display: inline-block;
-  border-radius: 3px;
-  margin-left: 5px;
-  margin-right: 5px
-}
-#shape {
-  stroke-width: 6px;
-  fill: transparent;
-  stroke: black;
-  stroke-dasharray: 85 400;
-  stroke-dashoffset: -220;
-  transition: 1s all ease;
-}
-#text {
-  font-family: "ROKAFSansBold";
-  margin-top: -35px;
-  text-align: center;
-}
-#text a {
-  color: #9c9c9c;
-  text-decoration: none;
-  font-weight: 100;
-  font-size: 1.1em;
-}
-.svg-wrapper:hover #shape {
-  stroke-dasharray: 50 0;
-  stroke-width: 3px;
-  stroke-dashoffset: 0;
-  stroke: coral;
-}
-/*================ 버튼 CSS 끝============== */
-/* ===============리스크 시작================= */
-.cody-sub-style-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  opacity: 1;
-  transition: all var(--animation-duration) ease-out;
-}
-.cody-sub-style-list.anim-out {
-  opacity: 0;
-  transform: scale(0.9) translateY(40px);
-}
-.list {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 180px;
-  height: 180px;
-  margin: 7px;
-  background-color: white;
-  border-radius: 5px;
-  -webkit-box-shadow: 13px 14px 46px 8px rgba(0,0,0,0.75);
-  -moz-box-shadow: 13px 14px 46px 8px rgba(0,0,0,0.75);
-  box-shadow: 13px 14px 46px 8px rgba(0,0,0,0.75);
+*/
+
+.content .img1 {
+  width: 1130px;
+  height: 600px;
   
 }
-.list-img {
-  width: 100px;
-  height: 100px;
+
+.content .img6 {
+  width: 1130px;
+  height: 600px;
+  transform: translate( 0%,-10%);
 }
-.list.invisible{
-  display: none;
+
+
+.content .img7 {
+  width: 1130px;
+  height: 600px;
+  transform: translate( 0%,-10%);
 }
-.list-description {
-  position: absolute;
-  top: 0;
-  left: 0;
-  background-color: #000000;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  opacity: 0;
-  transform: translate(10px);
-  transition: all 500ms ease-in;
-}
-.list:hover .list-description {
-  opacity: 0.8;
-  transform: translate(0px);
-  border-radius: 5px;
-}
-.list-description h3{
-  color: bisque;
-  text-align: center;
-}
-.list-description span {
-  color: #9c9c9c;
-  text-align: center;
-  font-size: 14px;
-}
-.list-description h3:after {
-  display: block;
-  position: relative;
-  left: 50%;
-  content: '';
-  width:25px;
-  height: 2px;
-  margin-left: -12px;
-  margin-top: 8px;
-  background-color: #9c9c9c;
-}
-/* ===============리스크 끝================= */
-/* =============메인 이미지 시작============== */
-.cody-main-img {
-  position: absolute;
-  top: 20px;
-  left: 50px;
-  width: 500px;
-  height: 450px;
-  width: 560px;
- 
-  border: 10px solid #fafafa;
-  outline: 3px solid #333;
-  box-shadow: 15px 15px #9c9c9c;
-}
-/* =============메인 이미지 끝============== */
+
+
+
 .animate__animated.animate__swing {
   --animate-duration: 1.2s;
 }
 </style>    
-    <h1 class="animate__animated animate__swing">오늘 코디 어때?</h1>
+    <h1 class=" title animate__animated animate__swing">오늘 코디 어때?</h1>
    
+<<<<<<< HEAD
     <div class="main-container">
 
       <div class="cody-main">
@@ -302,5 +200,39 @@ ul {
         </div>
       </div>
     </div>
+=======
+    <!--  날씨, 성별 데이터에 따른 코디 가져오기 테스트
+    <c:forEach var="vo" items="${vo}">
+		<h1>${vo.cname}</h1>
+	</c:forEach>
+	-->
+   
+<body>
+   <div class="content">
+      <h1><img class="img1" src="${url}/img/cody_maingif.gif/" alt=""></h1>
+    </div>
+    <div class="content">
+      <h1><img class="img2" src="${url}/img/cody_main2.png/" alt=""></h1>
+    </div>
+    <div class="content">
+      <h1><img class="img3" src="${url}/img/cody_main3.png/" alt=""></h1>
+    </div>
+    <div class="content">
+      <h1><img class="img4" src="${url}/img/cody_main4.png/" alt=""></h1>
+    </div>
+    <div class="content">
+      <h1><img class="img5" src="${url}/img/cody_main5.png/" alt=""></h1>
+    </div>
+    <div class="content">
+      <h1><img class="img6" src="${url}/img/cody_maingif2.gif/" alt=""></h1>
+    </div>
+    <div class="content">
+      <h1><img class="img7" src="${url}/img/cody_mainLast.png/" alt=""></h1>
+    </div>
+   
+</body>
+   
+  
+>>>>>>> 7a18e8e (장현주 : 코디메인페이지 수정)
   </body>
 </html>

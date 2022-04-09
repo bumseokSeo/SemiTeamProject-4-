@@ -47,7 +47,7 @@ a:hover {
   left: 0;
 }
 
-.sidenav .main-buttons, a {
+.sidenav .main-buttons  {
   list-style-type: none;
   margin: 64px 0;
   padding: 0;
@@ -108,7 +108,7 @@ a:hover {
   opacity: 0;
   visibility: hidden;
   list-style-type: none;
-  top: 330px;
+  top: 344px;
   right: 0;
 }
 
