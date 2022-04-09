@@ -117,19 +117,37 @@ body {
 
 	<div class="submenu-a submenu-a-cody"><a href="${url}/cody/main_cody.jsp">코디추천</a></div> 
 	<div class="submenu-a submenu-a-food"><a href="${url}/food/main_food.jsp">음식추천</a></div> 
+<<<<<<< HEAD
 	<a href="${url}/map/map.jsp">지도</a>
 
 	<a href="/map/main_map">지도</a>
 
+=======
+
+	<a href="${url}/map/map.jsp">지도</a>
+
+	<a href="/map/main_map">지도</a>
+
+
+
+
+>>>>>>> d3a8e31a6af773aa7e6ab02ebe40d8b3cb051a7f
 	<c:if test="${logId!='master'}">
 		<div class="submenu-a submenu-a-cody"><a id="main_codylink" href="">코디추천</a></div>
 	</c:if>
 	<c:if test="${logId=='master'}">
 		<div class="submenu-a submenu-a-cody"><a href="${url}/master/master_cody">코디관리</a></div>
 	</c:if>
+<<<<<<< HEAD
 
 	<div class="submenu-a submenu-a-food"><a href="/food/main_food">음식추천</a></div> 
 	
+=======
+
+	<div class="submenu-a submenu-a-food"><a href="/food/main_food">음식추천</a></div> 
+
+
+>>>>>>> d3a8e31a6af773aa7e6ab02ebe40d8b3cb051a7f
 	
 	<c:if test="${logId != 'master' }">
 		<div class="submenu-a submenu-a-food"><a href="/food/main_food">음식추천</a></div> 
@@ -138,6 +156,12 @@ body {
 		<div class="submenu-a submenu-a-food"><a href="/master/master_food">음식관리</a></div> 
 	</c:if>
 	
+<<<<<<< HEAD
+=======
+	
+
+
+>>>>>>> d3a8e31a6af773aa7e6ab02ebe40d8b3cb051a7f
 </div>
 
 <script>

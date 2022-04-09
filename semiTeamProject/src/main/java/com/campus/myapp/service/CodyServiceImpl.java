@@ -23,4 +23,9 @@ public class CodyServiceImpl implements CodyService {
 	public int codyInsert(CodyVO vo) {
 		return dao.codyInsert(vo);
 	}
+
+	@Override
+	public int cnameCheck(String cname) {
+		return dao.cnameCheck(cname);
+	}
 }

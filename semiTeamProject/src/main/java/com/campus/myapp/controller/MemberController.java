@@ -33,7 +33,7 @@ public class MemberController {
 		return mav;
 
 	}
-	/*
+	
 	//회원정보수정 페이지로 이동
 	@GetMapping("memberEdit")
 	public ModelAndView memberEdit() {
@@ -41,7 +41,7 @@ public class MemberController {
 		mav.setViewName("member/memberEdit");
 		return mav;
 	}
-	*/
+	
 	
 	// 회원등록
 	@PostMapping("memberOk")

@@ -10,7 +10,7 @@ body,ul,li{
 #d1 {
 	width: 800px;
 	margin: 0 auto;
-}
+}	
 
 #codyFrm {
 	width: 800px;
@@ -73,10 +73,27 @@ $(function() {
 			$("#file").focus();
 			return false;
 		}
+		
 		var idx = file.lastIndexOf("\\")+1;
 		$("#cname").val(file.substring(idx));
-		console.log(idx,$("#cname").val());
-
+		/*
+		//cname 중복확인
+		$.ajax({
+			url: '/cnameCheck',
+			data: "cname="+$("#cname").val(),
+			method:"post",
+			success:function(result){
+				if(result>0){
+					alert("중복된 파일명입니다.");
+					$("#file").focus();
+					return false;
+				}
+			},
+			error:function(e){
+				console.log(e.responseText);
+			}
+		});
+		*/
 		if ($("#temp").val() == '') {
 			alert("온도를 입력하세요.");
 			$("#temp").focus();
@@ -99,13 +116,15 @@ $(function() {
 			return false;
 		}
 		
-		var params = $('#codyFrm').serialize();
+		var params = new FormData($("#codyFrm")[0]);
 		console.log(params);
 		
 		$.ajax({
 			url: '/codyInsert',
 			data: params,
 			method:"post",
+			processData: false,
+			contentType: false,
 			success:function(result){
 				if(result>0){
 					alert("코디가 등록되었습니다.");
@@ -114,8 +133,9 @@ $(function() {
 			},
 			error:function(e){
 				console.log(e.responseText);
+				alert("코디 등록 실패하였습니다.");
 			}
-		});
+		})
 	});
 });
 
@@ -132,12 +152,12 @@ function setImage(input, preview) {
 </script>
 	<div id="d1">
 		<h1>코디 관리자 페이지</h1>
-		<form method="post" action="/codyInsert" id="codyFrm">
+		<form method="post" action="/codyInsert" id="codyFrm" enctype="multipart/form-data">
 			<img src="" id="preview"/>
 			<ul>
 				<li>이미지 추가</li>
 				<li>
-					<input type="file" id ="file"/>
+					<input type="file" name="filename" id ="file"/>
 					<input type="hidden" name="cname" value="" id="cname"/>
 					<a href="javascript:document.getElementById('file').click();"><img src="${url}/img/plus_icon.png"/ id="plus"></a>
 				</li>

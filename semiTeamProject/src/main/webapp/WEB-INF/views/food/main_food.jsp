@@ -103,10 +103,16 @@
 		height: 200px;
 		margin: 0 auto;	
 	}
+	.foodPhoto:hover{
+		opacity: 0.7;
+	}
 	.foodPhoto img{
 		width: 100%;
 		height: 100%;
 		border-radius: 60px;
+	}
+	.foodDesc{
+		font-size: 17px;
 	}
 </style>
 
@@ -121,22 +127,27 @@
 			<li class="foodInfo">
 				<div>김치찌개</div>
 				<div class="foodPhoto"><img src="${url}/img/foodimg/김치찌개.jpg" alt=""></div>
+				<div class="foodDesc">한식</div>
 			</li>
 			<li class="foodInfo">
 				<div>짜장면</div>
 				<div class="foodPhoto"><img src="${url}/img/foodimg/짜장면.jpg" alt=""></div>
+				<div class="foodDesc">중식</div>
 			</li>
 			<li class="foodInfo">
 				<div>감자탕</div>
 				<div class="foodPhoto"><img src="${url}/img/foodimg/감자탕.jpg" alt=""></div>
+				<div class="foodDesc">한식</div>
 			</li>
 			<li class="foodInfo">
 				<div>떡볶이</div>
 				<div class="foodPhoto"><img src="${url}/img/foodimg/떡볶이.jpg" alt=""></div>
+				<div class="foodDesc">분식</div>
 			</li>
 			<li class="foodInfo">
 				<div>파스타</div>
 				<div class="foodPhoto"><img src="${url}/img/foodimg/파스타.jpg" alt=""></div>
+				<div class="foodDesc">양식</div>
 			</li>
 			
 		</ul>	
