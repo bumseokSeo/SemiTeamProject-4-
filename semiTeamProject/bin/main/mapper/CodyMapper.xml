@@ -8,7 +8,7 @@
 		select cname, style, info from cody where temp=#{param1} and sex=#{param2}
 	</select>
 	
-	<select id="cnameCheck">
+	<select id="cnameCheck" resultType="Integer">
 		select count(cname) cnt from cody where cname=#{param1}
 	</select>
 	

@@ -42,14 +42,13 @@ public class CodyController {
 		return "master/master_cody";
 	}
 
-	/*// cname 중복확인
+	// cname 중복확인
 	@PostMapping("/cnameCheck")
 	@ResponseBody
-	public int userpwdOk(String cname) {
-		System.out.println("중복확인");
+	public Integer userpwdOk(String cname) {
 		return service.cnameCheck(cname);
-	}*/
-
+	}
+	
 	// codyInsert
 	@PostMapping("/codyInsert")
 	@ResponseBody

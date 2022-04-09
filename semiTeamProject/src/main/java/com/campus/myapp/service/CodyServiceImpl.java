@@ -25,7 +25,7 @@ public class CodyServiceImpl implements CodyService {
 	}
 
 	@Override
-	public int cnameCheck(String cname) {
+	public Integer cnameCheck(String cname) {
 		return dao.cnameCheck(cname);
 	}
 }

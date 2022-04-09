@@ -65,7 +65,7 @@ $(function() {
 	});
 
 	$("#codyFrm").submit(function() {
-		event.preventDefault();
+		//event.preventDefault();
 		
 		var file = $("#file").val();
 		if (file == '') {
@@ -76,7 +76,8 @@ $(function() {
 		
 		var idx = file.lastIndexOf("\\")+1;
 		$("#cname").val(file.substring(idx));
-		/*
+		console.log($("#cname").val());
+		
 		//cname 중복확인
 		$.ajax({
 			url: '/cnameCheck',
@@ -84,16 +85,17 @@ $(function() {
 			method:"post",
 			success:function(result){
 				if(result>0){
-					alert("중복된 파일명입니다.");
+					alert("중복된 파일명입니다.\n파일을 다시 업로드해 주세요.");
 					$("#file").focus();
 					return false;
 				}
 			},
 			error:function(e){
 				console.log(e.responseText);
+				alert("중복 확인 에러!?");
 			}
 		});
-		*/
+		
 		if ($("#temp").val() == '') {
 			alert("온도를 입력하세요.");
 			$("#temp").focus();
@@ -135,7 +137,7 @@ $(function() {
 				console.log(e.responseText);
 				alert("코디 등록 실패하였습니다.");
 			}
-		})
+		});
 	});
 });
 
