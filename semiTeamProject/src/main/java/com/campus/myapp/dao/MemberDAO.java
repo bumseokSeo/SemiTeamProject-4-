@@ -15,5 +15,11 @@ public interface MemberDAO {
 	
 	//아이디 중복 검사
 	public int idCheck(String userid);
+	
+	//회원정보수정 진입
+	public MemberVO memberSelect(String userid);
+	
+	//회원정보수정
+	public int memberUpdate(MemberVO vo);
 }
 
