@@ -15,4 +15,12 @@
 		<select id="idCheck" resultType="int">
 		select count(userid) cnt from member where userid=#{param1} 
 	</select>
+	<select id="memberSelect" resultType="com.campus.myapp.vo.MemberVO">
+		select userid, username, profile, email from member
+		where userid=#{param1}
+	</select>
+	<update id="memberUpdate">
+		update member set username=#{username}, profile=#{profile}, userpwd=#{userpwd}, email=#{email}
+		where userid=#{userid}
+	</update>
 </mapper>

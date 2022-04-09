@@ -144,7 +144,7 @@ h1 {
 				</c:if>
 				<c:if test="${logStatus == 'Y' && logId != 'master'}">
 					<a href="/member/logout">로그아웃</a> 
-					<a href="/member/memberEdit">회원정보수정</a>
+					<a href="/member/memberEdit">마이페이지</a>
 				</c:if>
 				<c:if test="${logId == 'master' }">
 					<a href="/member/logout">로그아웃</a> 

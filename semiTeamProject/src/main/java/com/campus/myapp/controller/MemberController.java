@@ -1,13 +1,23 @@
 package com.campus.myapp.controller;
 
+import java.io.File;
+import java.nio.charset.Charset;
+import java.util.List;
+
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.campus.myapp.service.MemberService;
@@ -36,8 +46,13 @@ public class MemberController {
 	
 	//회원정보수정 페이지로 이동
 	@GetMapping("memberEdit")
-	public ModelAndView memberEdit() {
+	public ModelAndView memberEdit(HttpSession session) {
+		String userid = (String) session.getAttribute("logId");
 		ModelAndView mav = new ModelAndView();
+		
+		MemberVO vo = service.memberSelect(userid);
+		
+		mav.addObject("vo", vo);
 		mav.setViewName("member/memberEdit");
 		return mav;
 	}
@@ -88,4 +103,90 @@ public class MemberController {
 		int cnt = service.idCheck(userid);// 중복이면1 아님0
 		return cnt;
 	}
+	
+	//회원정보 수정
+	@PostMapping("memberEditOk")
+	public ResponseEntity<String> memberEditOk(MemberVO vo, HttpServletRequest request, HttpSession session) {
+		// session의 로그인 아이디 확인
+		
+		vo.setUserid((String) request.getSession().getAttribute("logId"));
+		
+		ResponseEntity<String> entity = null;
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(new MediaType("text","html",Charset.forName("UTF-8")));
+		
+		//파일 업로드를 위한 업로드 위치의 절대주소
+		String path = request.getSession().getServletContext().getRealPath("/img/memberimg");
+		System.out.println("path-->"+path);
+		try {
+			//파일업로드를 위한 request객체에서 multipart객체를 구해야 한다
+			MultipartHttpServletRequest mr = (MultipartHttpServletRequest)request;
+			
+			//mr에 파일의 수만큼 multipartfile객체가 존재해야 함
+			List<MultipartFile> files = mr.getFiles("imgName");
+			
+			
+			if(files != null) {//if - 1
+				
+				
+					//1.multipartfile객체 얻어오기
+					MultipartFile mf = files.get(0);
+					//2.업로드한 실제 파일명 구하기
+					String orgFileName = mf.getOriginalFilename();
+					System.out.println("orgFileName = " + orgFileName);
+					
+					//3.rename하기
+					if(orgFileName != null && !orgFileName.equals("")) {//if - 3
+						File f = new File(path, orgFileName);
+						
+						if(f.exists()) {//if - 4 파일 존재 여부
+							for(int renameNum=1;;renameNum++) {// for - 5
+								
+								int point = orgFileName.lastIndexOf(".");
+								String fileName = orgFileName.substring(0, point);//파일명
+								String ext = orgFileName.substring(point+1);//확장자
+								
+								f = new File(path,fileName+" ("+renameNum+")."+ext);//새로운 파일명
+								if(!f.exists()) {//if - 6   새로생성된 파일 객체가 없으면
+									orgFileName = f.getName();
+									break;
+								}
+							}// for - 5
+						}//if - 4
+						
+						try {
+							mf.transferTo(f);//실제 업로드가 진행
+						} catch (Exception ee) {
+							ee.printStackTrace();
+						}
+						
+						vo.setProfile(orgFileName);
+					}//if - 3
+			}//if - 1
+			
+			//db등록
+			service.memberUpdate(vo);
+			session.setAttribute("logImg", vo.getProfile());
+			//레코드 추가 성공
+			String msg = "<script>alert('프로필이 수정되었습니다.'); location.href='/';</script>";
+			entity = new ResponseEntity<String>(msg, headers, HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			//레코드 추가 실패
+			fileDelete(path, vo.getProfile());
+			
+			//실패 메세지
+			String msg = "<script>alert('프로필 수정에 실패하였습니다'); history.back();</script>";
+
+			entity = new ResponseEntity<String>(msg,headers,HttpStatus.BAD_REQUEST);
+			}
+		return entity;
+	}
+	//파일 지우기
+		public void fileDelete(String p, String f) {
+			if(f != null) {//파일명이 존재하면 
+				File file = new File(p,f);
+				file.delete();
+			}
+		}
 }
