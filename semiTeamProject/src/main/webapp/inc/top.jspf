@@ -29,8 +29,13 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	
 <!-- jquery -->
-<script
-	src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	
+<!-- 제이쿼리 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- XEIcon -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
 
 <title>오늘 날씨 어때?</title>
 <style>
@@ -69,6 +74,10 @@ h1 {
 }
 .animate__animated.animate__swing {
 		--animate-duration: 1.2s;
+}
+
+.nav-logo {
+	z-index: 999999
 }
 
 .nav-containor {
@@ -119,6 +128,7 @@ h1 {
 
 .dropdown:hover .dropdown-content {
 	display: block;
+	z-index: 999999
 }
 
 .dropdown:hover .dropbtn {

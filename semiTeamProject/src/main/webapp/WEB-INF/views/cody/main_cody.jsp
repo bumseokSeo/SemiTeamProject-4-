@@ -56,7 +56,7 @@ ul, li {
 	right: 20px;
 	bottom: 1%;
 	transform: translateY(-50%);
-	z-index: 100000;
+	z-index: 100;
 }
 
 .quick li {
