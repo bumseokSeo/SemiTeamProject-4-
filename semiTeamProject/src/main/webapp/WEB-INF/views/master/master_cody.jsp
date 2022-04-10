@@ -65,7 +65,7 @@ $(function() {
 	});
 
 	$("#codyFrm").submit(function() {
-		//event.preventDefault();
+		event.preventDefault();
 		
 		var file = $("#file").val();
 		if (file == '') {

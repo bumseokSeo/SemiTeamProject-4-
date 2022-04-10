@@ -1,6 +1,8 @@
 package com.campus.myapp.controller;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -28,10 +30,21 @@ public class CodyController {
 	@GetMapping("/cody/main_cody")
 	public ModelAndView codyPage(int temp, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
-		// String sex = (String)session.getAttribute("logSex");
+		String sex = (String)session.getAttribute("logSex");
 		mav.addObject("temp", temp);
-		// List<CodyVO> vo = service.codyRecommend(temp, "f");//임시로 설정
-		// mav.addObject("vo", vo);
+		/*List<CodyVO> vo = service.codyRecommend(temp, sex);//임시로 설정
+		Collections.shuffle(vo);
+		List<CodyVO> cvo = new ArrayList<CodyVO>();
+		
+		for(int i=0; i<5; i++) {
+			cvo.add(vo.get(i));
+		}
+		// 랜덤 출력 확인
+		for (CodyVO codyVO : cvo) {
+			System.out.println(codyVO.getCname());
+		}
+		
+		mav.addObject("vo", cvo);*/
 		mav.setViewName("cody/main_cody");
 		return mav;
 	}

@@ -27,27 +27,16 @@ html, body {
 	margin: 0 auto;
 }
 
-.img1 {
+.fullImg {
 	width: 80%;
 	height: 80%;
 	margin-bottom: -89px;
 }
-
-.img2 {
-}
-
-.img3 {
-}
-
-.img4 {
-}
-
-.img5 {
-}
-
-.img6 {
-	width: 80%;
-	height: 80%;
+/*코디 이미지*/
+.codyImg {
+	width:40%;
+	height:65%;
+	margin-top:50px;
 }
 
 .img7 {
@@ -89,25 +78,33 @@ ul, li {
 			<ul></ul>
 		</div>
 		<div class="fullsection full1" pageNum="1">
-			<img class="img1" src="${url}/img/cody_maingif.gif/" alt="">
+			<img class="fullImg" src="${url}/img/cody_maingif.gif/" alt="">
 		</div>
+		<!-- 코디 추천 이미지 출력
+		<c:forEach var="vo" items="${vo}" varStatus="status" end="4">
+			<div class="fullsection full${status.index+2}" pageNum="${status.index+2}">
+				<img class="codyImg" src="${url}/img/codyimg/codyupload/${vo.cname}" alt="">
+			</div>
+		</c:forEach>
+		-->
+		
 		<div class="fullsection full2" pageNum="2">
-			<img class="img2" src="${url}/img/cody_main2.png/" alt="">
+			<img class="fullImg" src="${url}/img/cody_main2.png/" alt="">
 		</div>
 		<div class="fullsection full3" pageNum="3">
-			<img class="img3" src="${url}/img/cody_main3.png/" alt="">
+			<img class="fullImg" src="${url}/img/cody_main3.png/" alt="">
 		</div>
 		<div class="fullsection full4" pageNum="4">
-			<img class="img4" src="${url}/img/cody_main4.png/" alt="">
+			<img class="fullImg" src="${url}/img/cody_main4.png/" alt="">
 		</div>
 		<div class="fullsection full5" pageNum="5">
-			<img class="img5" src="${url}/img/cody_main5.png/" alt="">
+			<img class="fullImg" src="${url}/img/cody_main5.png/" alt="">
 		</div>
 		<div class="fullsection full6" pageNum="6">
-			<img class="img6" src="${url}/img/cody_maingif2.gif/" alt="">
+			<img class="fullImg" src="${url}/img/cody_maingif2.gif/" alt="">
 		</div>
 		<div class="fullsection full7" pageNum="7">
-			<img class="img7" src="${url}/img/cody_mainLast.png/" alt="">
+			<img class="fullImg" src="${url}/img/cody_mainLast.png/" alt="">
 		</div>
 	</div>
 </body>
