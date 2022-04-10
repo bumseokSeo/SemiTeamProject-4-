@@ -50,10 +50,11 @@ ul, li {
 	list-style: none;
 }
 
+/*=========오른쪽하단 페이징표시======= */
 .quick {
 	position: fixed;
 	right: 20px;
-	top: 50%;
+	bottom: 1%;
 	transform: translateY(-50%);
 	z-index: 100000;
 }
@@ -63,16 +64,138 @@ ul, li {
 	height: 10px;
 	margin-bottom: 10px;
 	border-radius: 15px;
-	border: 2px solid #4d4d4d;
+	border: 1px solid #87909B;
 	cursor: pointer;
 }
 
 .quick .on {
 	background: #4d4d4d;
 }
+/*=========오른쪽하단 페이징표시 끝======= */
+
+
+/*========= 왼쪽 fixed 메뉴 시작 ======= */
+
+ a {color: black;  text-decoration: none;}
+ a:link { text-decoration: none;}
+ a:visited { text-decoration: none;}
+ a:hover { color: #87909B; text-decoration: none;}
+
+
+ .sidenav {
+  position: fixed;
+  width: 230px;
+  top: 10%;
+  left: 0;
+  z-index: 100000;
+  
+}
+
+.sidenav .main-buttons {
+  list-style-type: none;
+  margin: 64px 0;
+  padding: 0;
+  color: #534439;
+}
+
+.sidenav .main-buttons li {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-family: "ROKAFSansBold";
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.sidenav .main-buttons > li {
+  padding: 16px 52px;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+
+ .sidenav .main-buttons > li:hover,
+ .sidenav .main-buttons > li:active,
+  .sidenav .main-buttons > li:focus {
+  cursor: pointer;
+  color : #69727C;
+  text-shadow: #FFF 2px 2px 0px, #9C9C9C 4px 4px 0px;
+}
+
+.sidenav .main-buttons > li:hover .hidden {
+  opacity: 1;
+  visibility: visible;
+}
+
+.sidenav .main-buttons > li:hover .hidden, 
+.sidenav .main-buttons > li:active .hidden, 
+.sidenav .main-buttons > li:focus .hidden {
+  width: 190px;
+}
+
+/* 
+ .hidden {
+  width: 0;
+  height: 600px;
+  padding: 64px 0;
+  position: absolute;
+  top: 0;
+  right: 0;
+  overflow: hidden;
+  list-style-type: none;
+  background-color: #ffffffb2;
+  -moz-transition: 0.3s;
+  -o-transition: 0.3s;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+} 
+*/
+
+.hidden {
+  position: absolute;
+  opacity: 0;
+  visibility: hidden;
+  list-style-type: none;
+  top: 280px;
+  right: 0;
+}
+
+.hidden li {
+  padding: 16px 24px;
+}
+
+.hidden li:hover, 
+.hidden li:active, 
+.hidden li:focus {
+  text-shadow: 1px 0px 1px #CCCCCC, 0px 1px 1px #EEEEEE,
+    2px 1px 1px #CCCCCC, 1px 2px 1px #EEEEEE,
+    3px 2px 1px #CCCCCC, 2px 3px 1px #EEEEEE,
+    4px 3px 1px #CCCCCC, 3px 4px 1px #EEEEEE,
+    5px 4px 1px #CCCCCC, 4px 5px 1px #EEEEEE,
+    6px 5px 1px #CCCCCC, 5px 6px 1px #EEEEEE, 7px 6px 1px #CCCCCC;
+  color: #87909B;
+}
+/*========= 왼쪽 fixed 메뉴 끝 ======= */
 </style>
 </head>
 <body>
+    <nav class="sidenav">
+      <ul class="main-buttons">
+        <li><a href="${url}/cody/sub_cody">ALL</a></li>
+        <li><a href="${url}/cody/sub_cody">MEN</a></li>
+        <li><a href="${url}/cody/sub_cody">WOMEN</a></li>
+        <li>STYLE
+          <ul class="hidden">
+            <li>캐주얼룩</li>
+            <li>모던룩</li>
+            <li>오피스룩</li>
+            <li>스트릿룩</li>
+            <li>산책룩</li>
+            <li>바캉스룩</li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
 	<div id="fullpage">
 		<div class="quick">
 			<ul></ul>
@@ -148,7 +271,7 @@ ul, li {
 								top : -pagelength + "px"
 							}, 1000, "swing");
 						} else {
-							alert("첫번째페이지 입니다.");
+							alert("시작페이지 입니다.");
 						}
 					} else {
 						// 마우스 휠을 아래로
