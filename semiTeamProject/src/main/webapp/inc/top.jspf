@@ -37,6 +37,8 @@
 <!-- XEIcon -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
 
+<!-- favicon -->
+<link rel="icon" type="image/png" href="${url}/img/favi.png">
 <title>오늘 날씨 어때?</title>
 <style>
 @import
