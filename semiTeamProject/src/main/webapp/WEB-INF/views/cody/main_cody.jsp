@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>  
-=======
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
@@ -34,7 +31,7 @@ $(window).on("wheel", function (e) {
 });
 </script>
     
->>>>>>> 7a18e8e (장현주 : 코디메인페이지 수정)
+
 <style>
  @font-face {
   font-family: "ROKAFSansBold";
@@ -59,20 +56,20 @@ html{overflow: hidden;}
 html, body{width: 100%; height: 100%;}
  
 .content{
-	width: 100%; height: 100%;
-	
-	
-	position: relative;
+   width: 100%; height: 100%;
+   
+   
+   position: relative;
 }
 /*
 .content > h1{
-	position: absolute;
-	top: 50%; left: 50%;
-	transform: translate(-50%,-50%);
+   position: absolute;
+   top: 50%; left: 50%;
+   transform: translate(-50%,-50%);
  
-	font-size: 20em;
-	font-weight: bold;
-	text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.6);
+   font-size: 20em;
+   font-weight: bold;
+   text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.6);
  
 }
 */
@@ -104,110 +101,12 @@ html, body{width: 100%; height: 100%;}
 </style>    
     <h1 class=" title animate__animated animate__swing">오늘 코디 어때?</h1>
    
-<<<<<<< HEAD
-    <div class="main-container">
-
-      <div class="cody-main">
-        <div class="cody-main-img">
-        	<!-- temp 단계에 해당하는 코디 이미지 가져오기
-            <c:forEach var="vo" items="${vo}">
-				<img src="${url}/img/codyimg/codyupload/${vo.cname}"/>
-			</c:forEach>
-			 -->
-        </div>
-        <div class="cody-main-text">
-      
-        </div>
-      </div>
-
-
-      <div class="cody-sub">
-
-        <div class="cody-sub-container">
-          <!--start button -->
-          <div class="svg-wrapper">
-            <svg height="40" width="150" xmlns="http://www.w3.org/2000/svg">
-              <rect id="shape" height="40" width="150" />
-              <div id="text">
-                <a href="${url}/cody/sub_cody"><span class="spot"></span>ALL</a>
-              </div>
-            </svg>
-          </div>
-          <!--Next button -->
-          <div class="svg-wrapper">
-            <svg height="40" width="150" xmlns="http://www.w3.org/2000/svg">
-              <rect id="shape" height="40" width="150" />
-              <div id="text">
-                <a href="${url}/cody/sub_cody"><span class="spot"></span>MEN</a>
-              </div>
-            </svg>
-          </div>
-          <!--Next button -->
-          <div class="svg-wrapper">
-            <svg height="40" width="150" xmlns="http://www.w3.org/2000/svg">
-              <rect id="shape" height="40" width="150" />
-              <div id="text">
-                <a href="${url}/cody/sub_cody"><span class="spot"></span>WOMEN</a>
-              </div>
-            </svg>
-          </div>
-        </div>
-        <div>
-            <div class="cody-sub-style-list">
-              <a href="${url}/cody/sub_cody" class="list" target="blank">
-                <img src="${url}/img/codyimg/cody01.jpg" alt="" class="list-img" >
-                <div class="list-description">
-                  <h3>오피스룩</h3>
-                  <span>오피스룩 설명</span>
-                </div>
-              </a>
-              <a href="${url}/cody/sub_cody" class="list" target="blank">
-                <img src="${url}/img/codyimg/cody2.jpg"  alt="" class="list-img">
-                <div class="list-description">
-                  <h3>오피스룩</h3>
-                  <span>오피스룩 설명</span>
-                </div>
-              </a>
-              <a href="${url}/cody/sub_cody" class="list" target="blank">
-                <img src="${url}/img/codyimg/cody03.jpg"  class="list-img">
-                <div class="list-description">
-                  <h3>오피스룩</h3>
-                  <span>오피스룩 설명</span>
-                </div>
-              </a>
-              <a href="${url}/cody/sub_cody" class="list" target="blank">
-                <img src="${url}/img/codyimg/cody04.jpg"  class="list-img">
-                <div class="list-description">
-                  <h3>오피스룩</h3>
-                  <span>오피스룩 설명</span>
-                </div>
-              </a>
-              <a href="#" class="list" target="blank">
-                <img src="${url}/img/codyimg/cody04.jpg"  class="list-img">
-                <div class="list-description">
-                  <h3>오피스룩</h3>
-                  <span>오피스룩 설명</span>
-                </div>
-              </a>
-               <a href="#" class="list" target="blank">
-                <img src="${url}/img/codyimg/cody04.jpg"  class="list-img">
-                <div class="list-description">
-                  <h3>오피스룩</h3>
-                  <span>오피스룩 설명</span>
-                </div>
-              </a>
-            </div>
-        </div>
-      </div>
-    </div>
-=======
     <!--  날씨, 성별 데이터에 따른 코디 가져오기 테스트
     <c:forEach var="vo" items="${vo}">
-		<h1>${vo.cname}</h1>
-	</c:forEach>
-	-->
+      <h1>${vo.cname}</h1>
+   </c:forEach>
+   -->
    
-<body>
    <div class="content">
       <h1><img class="img1" src="${url}/img/cody_maingif.gif/" alt=""></h1>
     </div>
@@ -230,9 +129,7 @@ html, body{width: 100%; height: 100%;}
       <h1><img class="img7" src="${url}/img/cody_mainLast.png/" alt=""></h1>
     </div>
    
-</body>
    
   
->>>>>>> 7a18e8e (장현주 : 코디메인페이지 수정)
   </body>
 </html>
