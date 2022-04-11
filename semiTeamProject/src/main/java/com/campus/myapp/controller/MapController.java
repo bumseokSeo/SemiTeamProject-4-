@@ -15,7 +15,10 @@ public class MapController {
 	
 	@GetMapping("main_map")
 	public ModelAndView Main_map() {
+		//DB에서 음식메뉴 가져오기 ==> 서비스 
 		ModelAndView mav = new ModelAndView();
+		// String menu = menuSerivce.getMenu()
+		mav.addObject("menu","초밥");
 		mav.setViewName("map/map");
 		return mav;
 	}
