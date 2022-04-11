@@ -50,7 +50,7 @@
    <div class="map_wrap" style="position:relative;">
     <div style="z-index:9">
       <form class="searching" onsubmit="searchPlaces(); return false;">
-         <input type="text" name="query" placeholder="키워드를 검색하세요" id="keyword">
+         <input type="text" name="query" placeholder="우리집 주변의 ${menu}" id="keyword">
          <button class="search-btn">검색</button>
       </form>
    </div>

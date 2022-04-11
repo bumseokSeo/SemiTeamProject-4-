@@ -24,8 +24,8 @@ public class ReviewController {
 	@Inject
 	ReviewService service;
 	
-	// 글목록
-	@GetMapping("/")
+	// 리뷰목록
+	@GetMapping("reviewList")
 	public ModelAndView reviewList(PagingVO pVO) {
 		ModelAndView mav = new ModelAndView();
 		
@@ -36,21 +36,21 @@ public class ReviewController {
 		mav.addObject("list", service.reviewList(pVO));
 		mav.addObject("pVO", pVO);
 		
-		mav.setViewName("/"); // 
+		mav.setViewName("review/reviewList"); // 
 		return mav;
 	}
 	
-	// 글등록 폼
-	@GetMapping("/")
+	// 리뷰등록 폼
+	@GetMapping("reviewWrite")
 	public ModelAndView reviewWrite() {
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("/");
+		mav.setViewName("review/reviewWrite");
 		return mav;
 	}
 	
-	// 글등록
-	@PostMapping("/")
-	public ResponseEntity<String> boardWriteOk(ReviewVO vo, HttpServletRequest request) {
+	// 리뷰등록
+	@PostMapping("reviewWriteOk")
+	public ResponseEntity<String> reviewWriteOk(ReviewVO vo, HttpServletRequest request) {
 		
 		vo.setIp(request.getRemoteAddr()); // 접속자 아이피
 		vo.setUserid((String)request.getSession().getAttribute("logId")); // 글쓴이-session로그인 아이디를 구한다.
@@ -65,7 +65,7 @@ public class ReviewController {
 			// 정상구현
 			String msg = "<script>";
 			msg += "alert('리뷰가 등록되었습니다.');";
-			msg += "location.href='/myapp/board/boardList';";
+			msg += "location.href='/myapp/review/reviewList';";
 			msg += "</script>";
 			
 			entity = new ResponseEntity<String>(msg, headers, HttpStatus.OK); // 정상구현: 200
@@ -82,30 +82,30 @@ public class ReviewController {
 		return entity;
 	}
 	
-	// 글 내용 보기
-	@GetMapping("/")
+	// 리뷰 내용 보기
+	@GetMapping("reviewView")
 	public ModelAndView reviewView(int reviewno) {
 		ModelAndView mav = new ModelAndView();
 		
 		mav.addObject("vo", service.reviewSelect(reviewno)); // db에서 select한 데이터 들어가있음
-		mav.setViewName("/");
+		mav.setViewName("review/reviewView");
 		
 		return mav;		
 	}
 	
-	// 글 수정 폼
-	@GetMapping("/")
-	public ModelAndView boardEdit(int no) {
+	// 리뷰 수정 폼
+	@GetMapping("reviewEdit")
+	public ModelAndView reviewEdit(int reviewno) {
 		ModelAndView mav = new ModelAndView();
 		
-		mav.addObject("vo", service.reviewSelect(no));
-		mav.setViewName("board/boardEdit");
+		mav.addObject("vo", service.reviewSelect(reviewno));
+		mav.setViewName("review/reviewEdit");
 		
 		return mav;		
 	}
 	
-	// 글 수정 (DB)
-	@PostMapping("/")
+	// 리뷰 수정 (DB)
+	@PostMapping("reviewEditOk")
 	public ResponseEntity<String> reviewEditOk(ReviewVO vo, HttpSession session) {
 		ResponseEntity<String> entity = null;
 		HttpHeaders headers = new HttpHeaders();
@@ -128,19 +128,18 @@ public class ReviewController {
 		}
 		return entity;
 	}
-	// 글 삭제
-	@GetMapping("/")
-	public ModelAndView reviewDel(int no, HttpSession session) {
+	// 리뷰 삭제
+	@GetMapping("reviewDel")
+	public ModelAndView reviewDel(int reviewno, HttpSession session) {
 		String userid = (String)session.getAttribute("logId");
 		
-		int reviewno = 0;
 		int result = service.reviewDelete(reviewno, userid);
 		
 		ModelAndView mav = new ModelAndView();
 		if(result>0) { // 삭제
 			mav.setViewName("redirect:reviewList"); // list로 이동한 컨트롤러를 호출
 		}else { // 삭제안됨
-			mav.addObject("no", no);
+			mav.addObject("reviewno", reviewno);
 			mav.setViewName("redirect:reviewView");
 		}
 		return mav;

@@ -1,7 +1,6 @@
 package com.campus.myapp.controller;
 
 
-
 import org.springframework.web.bind.annotation.GetMapping;
 
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,7 +17,7 @@ public class MapController {
 		//DB에서 음식메뉴 가져오기 ==> 서비스 
 		ModelAndView mav = new ModelAndView();
 		// String menu = menuSerivce.getMenu()
-		mav.addObject("menu","초밥");
+		mav.addObject("menu","떡볶이");
 		mav.setViewName("map/map");
 		return mav;
 	}
