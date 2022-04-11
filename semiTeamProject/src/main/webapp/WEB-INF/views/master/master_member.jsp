@@ -89,8 +89,8 @@
 </style>
 <script>
 $(function(){
-	//댓글 목록을 가져오는 함수
-	function memberListAll(){//현재 글의 댓글을 모두 가져옴
+	
+	function memberListAll(){
 		var url = "${url}/member/memberListAll";
 		
 		$.ajax({
