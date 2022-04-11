@@ -84,9 +84,7 @@
 		padding-top: 4px;
 		width: 15%;
 	}
-	#delbtn{
-		
-	}
+
 	
 </style>
 <script>
