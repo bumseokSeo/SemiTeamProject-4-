@@ -10,6 +10,11 @@
 
 <!-- CSS -->
 <link rel="stylesheet" href="${url }/css/map_style.css">
+<style>
+	#top{
+		display:none;
+	}
+</style>
 <!-- 카카오 api 라이브러리  -->
 <!-- services와 clusterer, drawing 라이브러리 불러오기 -->
 <script type="text/javascript"
@@ -41,15 +46,15 @@
          </div>
       </nav>
    </div>
-   <div>
+  
+   <div class="map_wrap" style="position:relative;">
+    <div style="z-index:9">
       <form class="searching" onsubmit="searchPlaces(); return false;">
-         <input type="text" name="query" placeholder="키워드를 검색하세요" id="keyword"
-            size="15">
+         <input type="text" name="query" placeholder="키워드를 검색하세요" id="keyword">
          <button class="search-btn">검색</button>
       </form>
    </div>
-   <div class="map_wrap">
-      <div id="map" style="width: 100%; height: 100%; position: fixed;margin:0 auto"></div>
+      <div id="map" style="width: 100%; height: 100%; position: fixed; left:0;top:0;margin:0 auto;z-index:1"></div>
       <div id="menu_wrap" class="bg_white">
          <div class="option"></div>
          <ul id="placesList"></ul>
@@ -130,7 +135,7 @@
             // 마커와 인포윈도우를 표시합니다        
             var keyword = document.getElementById('keyword').value;
             // 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
-            ps.keywordSearch('돈가스', placesSearchCB, locPosition);
+            ps.keywordSearch('${menu}', placesSearchCB, locPosition);
          });
       }
       // 장소검색이 완료됐을 때 호출되는 콜백함수 입니다
