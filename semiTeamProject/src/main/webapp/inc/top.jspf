@@ -148,7 +148,7 @@ h1 {
 </style>
 </head>
 <body>
-	<div class="nav-containor">
+	<div class="nav-containor" id="top">
 		<div class="nav-logo">
 			<a href="/"><img src="${url}/img/logo.png" title="홈"/></a>
 		</div>

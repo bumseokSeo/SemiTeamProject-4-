@@ -10,6 +10,11 @@
 
 <!-- CSS -->
 <link rel="stylesheet" href="${url }/css/map_style.css">
+<style>
+	#top{
+		display:none;
+	}
+</style>
 <!-- 카카오 api 라이브러리  -->
 <!-- services와 clusterer, drawing 라이브러리 불러오기 -->
 <script type="text/javascript"
@@ -41,23 +46,21 @@
          </div>
       </nav>
    </div>
-   <div>
+  
+   <div class="map_wrap" style="position:relative;">
+    <div style="z-index:9">
       <form class="searching" onsubmit="searchPlaces(); return false;">
-         <input type="text" name="query" placeholder="키워드를 검색하세요" id="keyword"
-            size="15">
+         <input type="text" name="query" placeholder="우리집 주변의 ${menu}" id="keyword">
          <button class="search-btn">검색</button>
       </form>
    </div>
-   <div class="map_wrap">
-      <div id="map" style="width: 100%; height: 100%; position: fixed;margin:0 auto"></div>
+      <div id="map" style="width: 100%; height: 100%; position: fixed; left:0;top:0;margin:0 auto;z-index:1"></div>
       <div id="menu_wrap" class="bg_white">
          <div class="option"></div>
          <ul id="placesList"></ul>
          <div id="pagination"></div>         
       </div>
-      <div id="review" style="border:solid #20B2AA;display:none;float:left;width:300px; height:100%;position:relative;background-color: white;">
-         <h1 style="font-size:16px;font-weight:bold;color:white;background-color: #20B2AA">리뷰</h1>
-         <div style="text-align: center;"><a href="">리뷰작성하기</a></div>
+      <div id="review" style="border:solid #20B2AA;display:none;float:left;width:300px; height:100%;position:relative;background-color: white;">                  
          <ul>
             <li>이미지 </li>
             <li>제목</li>
@@ -88,8 +91,27 @@
             <li>내용 </li>
             <li>작성자 | 작성일자</li>                  
          </ul>
-         <hr/>      
-      </div>      
+         <hr/>
+         <div id="reviewcomment">
+			<h5 style="height: 23px; font-size:17px;line-height:24px; text-align: center;">리뷰 작성</h5>
+			<div class="evaluation">
+				<form id="evaluation" method="post" action="./save">
+					<fieldset>
+						<input type="radio" name="rating" value="5" id="rate1"><label for="rate1">⭐</label>
+						<input type="radio" name="rating" value="4" id="rate2"><label for="rate2">⭐</label>
+						<input type="radio" name="rating" value="3" id="rate3"><label for="rate3">⭐</label>
+						<input type="radio" name="rating" value="2" id="rate4"><label for="rate4">⭐</label>
+						<input type="radio" name="rating" value="1" id="rate5"><label for="rate5">⭐</label>
+					</fieldset>
+				</form>
+				<div style="text-align:center;">
+					<form method='post' id="repviewFrm">
+						<textarea name="coment" id='coment' style="width:100%; height:50px;"></textarea>
+						<input type="submit" value="리뷰 등록";/>
+					</form>
+				</div>
+			</div>      
+      	</div>      
    </div>
    
    <script>
@@ -130,7 +152,7 @@
             // 마커와 인포윈도우를 표시합니다        
             var keyword = document.getElementById('keyword').value;
             // 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
-            ps.keywordSearch('돈가스', placesSearchCB, locPosition);
+            ps.keywordSearch('${menu}', placesSearchCB, locPosition);
          });
       }
       // 장소검색이 완료됐을 때 호출되는 콜백함수 입니다

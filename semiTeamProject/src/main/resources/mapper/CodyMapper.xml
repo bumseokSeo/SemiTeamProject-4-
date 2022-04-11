@@ -16,4 +16,17 @@
 		insert into cody(cname,temp,weather,sex,style,info)
 		values(#{cname}, ${temp}, #{weather}, #{sex}, #{style}, #{info})
 	</insert>
+	
+	<select id="codyListAll" resultType="com.campus.myapp.vo.CodyVO">
+		select cname, temp, weather, sex, style, info from cody
+	</select>
+	
+	<select id="codyGenderList" resultType="com.campus.myapp.vo.CodyVO">
+		select cname, temp, weather, sex, style, info from cody where sex=#{param1}
+	</select>
+	
+	<select id="codyStyleList" resultType="com.campus.myapp.vo.CodyVO">
+		select cname, temp, weather, sex, style, info from cody where style=#{param1} and sex=#{param2}
+	</select>
+	
 </mapper>
