@@ -30,19 +30,18 @@ public class CodyController {
 	@GetMapping("/cody/main_cody")
 	public ModelAndView codyPage(int temp, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
-		String sex = (String)session.getAttribute("logSex");
-		mav.addObject("temp", temp);
-		/*List<CodyVO> vo = service.codyRecommend(temp, sex);//임시로 설정
+		/*String sex = (String)session.getAttribute("logSex");
+		List<CodyVO> vo = service.codyRecommend(temp, sex);//임시로 설정
 		Collections.shuffle(vo);
 		List<CodyVO> cvo = new ArrayList<CodyVO>();
 		
 		for(int i=0; i<5; i++) {
 			cvo.add(vo.get(i));
 		}
-		// 랜덤 출력 확인
-		for (CodyVO codyVO : cvo) {
-			System.out.println(codyVO.getCname());
-		}
+		
+		//for (CodyVO codyVO : cvo) {// 랜덤 출력 확인
+		//	System.out.println(codyVO.getCname());
+		//}
 		
 		mav.addObject("vo", cvo);*/
 		mav.setViewName("cody/main_cody");
@@ -87,13 +86,58 @@ public class CodyController {
 
 		return service.codyInsert(vo);
 	}
-
-	// 서브페이지로 이동
+	
+	//서브페이지(전체선택)
+	@GetMapping("/codyListAll")
+	public ModelAndView codyListAll(CodyVO vo) {
+		ModelAndView mav = new ModelAndView();
+		List<CodyVO> allVO = service.codyListAll();
+		mav.addObject("vo", allVO);
+		if(allVO.size()%3==0) {
+			mav.addObject("len", allVO.size()/3);
+		}else {
+			mav.addObject("len", allVO.size()/3+1);			
+		}
+		mav.setViewName("cody/sub_cody");
+		return mav;
+	}
+	
+	//서브페이지(성별)
+	@GetMapping("/codyGenderList")
+	public ModelAndView codyGenderList(CodyVO vo, String sex) {
+		ModelAndView mav = new ModelAndView();
+		List<CodyVO> genderVO = service.codyGenderList(sex);
+		mav.addObject("vo", genderVO);
+		if(genderVO.size()%3==0) {
+			mav.addObject("len", genderVO.size()/3);
+		}else {
+			mav.addObject("len", genderVO.size()/3+1);			
+		}
+		mav.setViewName("cody/sub_cody");
+		return mav;
+	}
+	
+	//서브페이지(스타일)
+	@GetMapping("/codyStyleList")
+	public ModelAndView codyStyleList(CodyVO vo, String style, HttpSession session) {
+		ModelAndView mav = new ModelAndView();
+		String sex = (String)session.getAttribute("logSex");
+		List<CodyVO> styleVO = service.codyStyleList(style, sex);
+		mav.addObject("vo", styleVO);
+		if(styleVO.size()%3==0) {
+			mav.addObject("len", styleVO.size()/3);
+		}else {
+			mav.addObject("len", styleVO.size()/3+1);			
+		}
+		mav.setViewName("cody/sub_cody");
+		return mav;
+	}
+	
+	//
+	/* 서브페이지로 이동
 	@GetMapping("/cody/sub_cody")
 	public String subPage() {
 		return "cody/sub_cody";
-	}
-
-	// 코디 목록
-
+	}	*/
+		
 }

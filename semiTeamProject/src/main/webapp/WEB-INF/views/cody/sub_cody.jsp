@@ -89,7 +89,6 @@ section {
 .imgC>img {
   width: 250px;
   height: 250px;
-  border: 1px solid black;
   
 }
 
@@ -148,9 +147,9 @@ section {
 }
 
 .modalBox p {
-  color: #ffffff;
+	color: #ffffff;
 	background-color: #000;
-	font-size: 2rem;
+	font-size: 14px;
 	padding: 2rem;
 }
 /* ======================오른쪽 imgList 모달창 끝==================== */
@@ -292,12 +291,13 @@ section {
 }
 
 .list-description h3{
+  font-size:22px;
   color: bisque;
   text-align: center;
 }
 
 .list-description span {
-  color: #4d4d4d;
+  color: gray;
   text-align: center;
   font-size: 14px;
 }
@@ -319,7 +319,7 @@ section {
 
 </style>    
 	<div class="main-container">
-    <h1 class="animate__animated animate__swing">오늘 코디 어때?</h1>
+    <h1 class="animate__animated animate__swing">Cody List</h1>
 		<div class="cody-sub">
 			<div class="cody-sub-container">
 				<!--start button -->
@@ -327,7 +327,7 @@ section {
 					<svg height="40" width="150" xmlns="http://www.w3.org/2000/svg">
 						<rect id="shape" height="40" width="150" />
 						<div id="text">
-							<a href=""><span class="spot"></span>ALL</a>
+							<a href="${url}/codyListAll"><span class="spot"></span>ALL</a>
 						</div>
 					</svg>
 				</div>
@@ -336,7 +336,7 @@ section {
 					<svg height="40" width="150" xmlns="http://www.w3.org/2000/svg">
 						<rect id="shape" height="40" width="150" />
 						<div id="text">
-							<a href=""><span class="spot"></span>MEN</a>
+							<a href="${url}/codyGenderList?sex=m"><span class="spot"></span>MEN</a>
 						</div>
 					</svg>
 				</div>
@@ -345,7 +345,7 @@ section {
 					<svg height="40" width="150" xmlns="http://www.w3.org/2000/svg">
 						<rect id="shape" height="40" width="150" />
 						<div id="text">
-							<a href=""><span class="spot"></span>WOMEN</a>
+							<a href="${url}/codyGenderList?sex=f"><span class="spot"></span>WOMEN</a>
 						</div>
 					</svg>
 				</div>
@@ -356,43 +356,43 @@ section {
 					<a href="#" class="list" target="blank">
 						<img src="${url}/img/cody_main2.png"  alt="" class="list-img" >
 						<div class="list-description">
-							<h3>오피스룩</h3>
-							<span>오피스룩 설명</span>
+							<h3>Casual</h3>
+							<span>캐주얼룩</span>
 						</div>
 					</a>
 					<a href="#" class="list" target="blank">
 						<img src="${url}/img/cody_main3.png" alt="" class="list-img">
 						<div class="list-description">
-							<h3>오피스룩</h3>
-							<span>오피스룩 설명</span>
+							<h3>Modern</h3>
+							<span>모던룩</span>
 						</div>
 					</a>
 					<a href="#" class="list" target="blank">
 						<img src="${url}/img/cody_main4.png" alt="" class="list-img">
 						<div class="list-description">
-							<h3>오피스룩</h3>
-							<span>오피스룩 설명</span>
+							<h3>Office</h3>
+							<span>오피스룩</span>
 						</div>
 					</a>
 					<a href="#" class="list" target="blank">
 						<img src="${url}/img/cody_main2.png" alt="" class="list-img">
 						<div class="list-description">
-							<h3>오피스룩</h3>
-							<span>오피스룩 설명</span>
+							<h3>Street</h3>
+							<span>스트릿룩</span>
 						</div>
 					</a>
 					<a href="#" class="list" target="blank">
 						<img src="${url}/img/cody_main2.png" alt="" class="list-img">
 						<div class="list-description">
-							<h3>오피스룩</h3>
-							<span>오피스룩 설명</span>
+							<h3>Walk</h3>
+							<span>산책룩</span>
 						</div>
 					</a>
 					<a href="#" class="list" target="blank">
 						<img src="${url}/img/cody_main2.png" alt="" class="list-img">
 						<div class="list-description">
-							<h3>오피스룩</h3>
-							<span>오피스룩 설명</span>
+							<h3>Special</h3>
+							<span>스페셜룩(파티, 바캉스)</span>
 						</div>
 					</a>
 				</div>
@@ -400,35 +400,21 @@ section {
 
   <section>
   	<div class="imgList">
-  		<div class="imgList-row">
-  		  <div class="imgC">
-    			<img src="${url}/img/cody_main2.png" alt="모달할 이미지">
-    			<p>이미지 1</p>
-    		</div>
-    		<div class="imgC">
-    			<img src="${url}/img/cody_main3.png" alt="모달할 이미지">
-    			<p>이미지 2</p>
-    		</div>
-    		<div class="imgC">
-    			<img src="${url}/img/cody_main4.png" alt="모달할 이미지">
-    			<p>이미지 3</p>
-    		</div>
-  		</div>
-  
-      <div class="imgList-row">
-        <div class="imgC">
-    			<img src="${url}/img/cody_main2.png" alt="모달할 이미지">
-    			<p>이미지 1</p>
-    		</div>
-    		<div class="imgC">
-    			<img src="${url}/img/cody_main2.png" alt="모달할 이미지">
-    			<p>이미지 2</p>
-    		</div>
-    		<div class="imgC">
-    			<img src="${url}/img/cody_main2.png" alt="모달할 이미지">
-    			<p>이미지 3</p>
-    		</div>
-      </div>
+  		<c:forEach var="i" begin="1" end="${len}">
+	  		<div class="imgList-row">
+	  		<c:forEach var="j" begin="${3*i-3}" end="${3*i-1}">
+				<div class="imgC">
+					<c:if test="${vo[j]!=null}">
+		    			<img src="${url}/img/codyimg/codyupload/${vo[j].cname}" alt="모달할 이미지">
+		    			<p>${vo[j].info}</p>
+		    		</c:if>
+		    		<c:if test="${vo[j]==null}">	<!-- 자리 채울 이미지 -->
+		    			<img src="${url}/img/codyimg/none.jpg">
+	    			</c:if>
+	    		</div>
+	    	</c:forEach>
+	  		</div>
+  		</c:forEach>
   	</div>
   </section>
 
@@ -440,7 +426,7 @@ section {
 			<p></p>
 		</div>
 	</div>
-
+	
 </div>
 </body>
 </html>

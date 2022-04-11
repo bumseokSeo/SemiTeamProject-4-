@@ -28,4 +28,19 @@ public class CodyServiceImpl implements CodyService {
 	public Integer cnameCheck(String cname) {
 		return dao.cnameCheck(cname);
 	}
+
+	@Override
+	public List<CodyVO> codyListAll() {
+		return dao.codyListAll();
+	}
+
+	@Override
+	public List<CodyVO> codyGenderList(String sex) {
+		return dao.codyGenderList(sex);
+	}
+
+	@Override
+	public List<CodyVO> codyStyleList(String style, String sex) {
+		return dao.codyStyleList(style, sex);
+	}
 }
