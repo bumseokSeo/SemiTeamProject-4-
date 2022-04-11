@@ -133,11 +133,4 @@ public class CodyController {
 		return mav;
 	}
 	
-	//
-	/* 서브페이지로 이동
-	@GetMapping("/cody/sub_cody")
-	public String subPage() {
-		return "cody/sub_cody";
-	}	*/
-		
 }

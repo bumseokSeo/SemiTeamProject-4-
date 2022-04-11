@@ -161,7 +161,7 @@ ul, li {
 }
 
 .hidden li {
-  padding: 16px 24px;
+  padding: 14px 17px;
 }
 
 .hidden li:hover, 
@@ -186,12 +186,12 @@ ul, li {
         <li><a href="${url}/codyGenderList?sex=f">WOMEN</a></li>
         <li>STYLE
           <ul class="hidden">
-            <li><a href="${url}/codyStyleList?style=casual">캐주얼룩</a></li>
-            <li><a href="${url}/codyStyleList?style=modern">모던룩</a></li>
-            <li><a href="${url}/codyStyleList?style=office">오피스룩</a></li>
-            <li><a href="${url}/codyStyleList?style=street">스트릿룩</a></li>
-            <li><a href="${url}/codyStyleList?style=walk">산책룩</a></li>
-            <li><a href="${url}/codyStyleList?style=special">스페셜룩</a></li>
+            <li><a href="${url}/codyStyleList?style=casual">Casual</a></li>
+            <li><a href="${url}/codyStyleList?style=modern">Modern</a></li>
+            <li><a href="${url}/codyStyleList?style=office">Office</a></li>
+            <li><a href="${url}/codyStyleList?style=street">Street</a></li>
+            <li><a href="${url}/codyStyleList?style=walk">Walk</a></li>
+            <li><a href="${url}/codyStyleList?style=special">Special</a></li>
           </ul>
         </li>
       </ul>

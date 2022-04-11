@@ -392,7 +392,7 @@ section {
 						<img src="${url}/img/cody_main2.png" alt="" class="list-img">
 						<div class="list-description">
 							<h3>Special</h3>
-							<span>스페셜룩(파티, 바캉스)</span>
+							<span>스페셜룩(파티 or 바캉스)</span>
 						</div>
 					</a>
 				</div>

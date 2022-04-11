@@ -16,6 +16,7 @@ public interface CodyDAO {
 	public int codyInsert(CodyVO vo);
 	//cname 중복확인
 	public Integer cnameCheck(String cname);
+	
 	//코디 리스트(all)
 	public List<CodyVO> codyListAll();
 	//코디 리스트(성별)
