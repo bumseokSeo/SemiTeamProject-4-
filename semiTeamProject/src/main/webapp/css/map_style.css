@@ -120,6 +120,29 @@ overflow-y:auto;background:white;z-index: 1;font-size:12px;border:solid #20B2AA;
 #pagination a {display:inline-block;margin-right:10px;}
 #pagination .on {font-weight: bold; cursor: default;color:#777;}
 
+#evaluation fieldset{
+display: inline-block;
+direction:rtl;
+border:0;
+}
+#evaluation input[type=radio]{
+display: none;
+}
+#evaluation label{
+font-size:3em;
+color: transparent;
+text-shadow: 0 0 0 #f0f0f0;
+}
+#evaluation label:hover{
+text-shadow: 0 0 0 #a00;
+}
+#evaluation label:hover~label{
+text-shadow: 0 0 0 #a00;
+}
+#evaluation input[type=radio]:checked~label{
+text-shadow:0 0 0 #a00;
+}
+
 /* l NAV */
 .nav-containor {
    /*로고 감춤*/
