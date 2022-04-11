@@ -114,50 +114,23 @@ body {
 </div>
 <div class="submenu">
 
-<<<<<<< HEAD
-
-	<div class="submenu-a submenu-a-cody"><a href="${url}/cody/main_cody.jsp">코디추천</a></div> 
-	<div class="submenu-a submenu-a-food"><a href="${url}/food/main_food.jsp">음식추천</a></div> 
-
 	<a href="${url}/map/map.jsp">지도확인</a>
-
 	<a href="/map/main_map">지도</a>
 
-
-=======
-	<a href="/map/main_map">지도</a>
-
->>>>>>> 93b643d2eb5bd56dd0f3c4b8af31f635235c3306
 	<c:if test="${logId!='master'}">
 		<div class="submenu-a submenu-a-cody"><a id="main_codylink" href="">코디추천</a></div>
 	</c:if>
 	<c:if test="${logId=='master'}">
 		<div class="submenu-a submenu-a-cody"><a href="${url}/master/master_cody">코디관리</a></div>
 	</c:if>
-<<<<<<< HEAD
 
-
-	<div class="submenu-a submenu-a-food"><a href="/food/main_food">음식추천</a></div> 
-	
-
-
-	<div class="submenu-a submenu-a-food"><a href="/food/main_food">음식추천</a></div> 
-
-	
-=======
-
->>>>>>> 93b643d2eb5bd56dd0f3c4b8af31f635235c3306
 	<c:if test="${logId != 'master' }">
 		<div class="submenu-a submenu-a-food"><a href="/food/main_food">음식추천</a></div> 
 	</c:if>
 	<c:if test="${logId == 'master' }">
 		<div class="submenu-a submenu-a-food"><a href="/master/master_food">음식관리</a></div> 
 	</c:if>
-<<<<<<< HEAD
-	
-=======
 
->>>>>>> 93b643d2eb5bd56dd0f3c4b8af31f635235c3306
 </div>
 
 <script>
