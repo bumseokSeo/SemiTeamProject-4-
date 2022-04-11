@@ -12,8 +12,6 @@ import org.springframework.web.servlet.ModelAndView;
 @RestController
 @RequestMapping("/map/")
 public class MapController {
-
-
 	
 	@GetMapping("main_map")
 	public ModelAndView Main_map() {
