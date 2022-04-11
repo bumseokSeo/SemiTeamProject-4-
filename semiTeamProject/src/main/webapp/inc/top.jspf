@@ -91,7 +91,14 @@ h1 {
 	margin: 0 auto;
 	margin-left: 15px;
 }
-
+#logImg{
+	position:absolute;
+	top:10px;
+	right:70px;
+	display: inline-block;
+	height: 50px;
+	width: 50px;
+}
 .dropbtn {
 	background-color: transparent;
 	color: #4d4d4d;
@@ -145,6 +152,14 @@ h1 {
 		<div class="nav-logo">
 			<a href="/"><img src="${url}/img/logo.png" title="홈"/></a>
 		</div>
+		<c:if test="${logStatus == 'Y'}">
+			<c:if test="${logImg =='' || logImg == null }">
+				<a href="/member/memberEdit"><img id="logImg" src='${url}/img/sampleProfile.jpg' class="rounded-circle" title="프로필사진 등록하기"></a>
+			</c:if>
+			<c:if test="${logImg !='' && logImg != null }">
+				<a href="/member/memberEdit"><img id="logImg" src='${url}/img/memberimg/${logImg}' class="rounded-circle" title="프로필사진 변경하기"></a>
+			</c:if>
+		</c:if>
 		<div class="dropdown">
 			<button class="dropbtn">
 				<i class="fa-solid fa-bars"></i>
@@ -157,10 +172,12 @@ h1 {
 				<c:if test="${logStatus == 'Y' && logId != 'master'}">
 					<a href="/member/logout">로그아웃</a> 
 					<a href="/member/memberEdit">마이페이지</a>
+					<a href="/">내 리뷰 보기</a>
+					<!-- <a href="/map/memberReview">내 리뷰 보기</a> -->
 				</c:if>
 				<c:if test="${logId == 'master' }">
 					<a href="/member/logout">로그아웃</a> 
-					<a href="/master/master_member">회원관리</a>
+					<a href="/member/masterPage">회원관리</a>
 				</c:if>
 			</div>
 		</div>

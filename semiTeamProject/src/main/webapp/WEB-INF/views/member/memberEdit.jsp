@@ -27,6 +27,10 @@
       margin-bottom: 50px;
       
    }
+   
+   #delbtn{
+   	margin-left: 850px;
+   }
 	
 
 	#memberEdit{
@@ -81,12 +85,22 @@
 		
 	}
 	
+	#review{
+		width:1130px;
+		height:1000px;
+		margin-top:100px;
+		border: 1px solid gray;
+		margin:0px auto;
+		overflow:auto;
+	}
+	
 	
 </style>
 <script>
 
 $(function(){
 	$('#profile').change(function() {//이미지 첨부되면 실행
+		
 		setImage(this, '#preview');
 	});
 
@@ -161,6 +175,7 @@ $(function(){
 	}
 	//이미지 미리보기
 	function setImage(input, preview) {
+		$('#preview').css("display","block");//display설정 변경
 		if (input.files && input.files[0]) {
 			var reader = new FileReader();
 			reader.onload = function(e) {
@@ -169,8 +184,17 @@ $(function(){
 			reader.readAsDataURL(input.files[0]);
 		}
 	};
+	
+	function delCheck(){
+		//회원탈퇴
+		if(confirm("탈퇴할경우 지난 리뷰들이 모두 삭제됩니다.\n탈퇴하시겠습니까?")){
+			location.href="${url}/member/memberDelete?userid=${vo.userid}"
+		}
+		
+	}
 </script>
 	<div id="memberEdit">
+		<button type="button" onclick="delCheck()" class="btn btn-danger" id="delbtn">회원탈퇴</button>
 		<form method="post" action="${url}/member/memberEditOk" onsubmit="return formcheck()" enctype="multipart/form-data">
 			<h1>마이페이지</h1>
 			<ul>
@@ -186,30 +210,24 @@ $(function(){
 				<li>이메일</li>
 				<li><input class="form-control form-control-lg" type="text" placeholder="" name="email" id="email" value="${vo.email}"></li>
 				<li>프로필 사진 등록
-				
 				</li>
-				
 					<li><input type="file" class="form-control-file border" name="imgName" id="profile" accept="image/jpeg,image/png,image/bmp,image/tiff,image/gif"/></li>
-				
 				<li></li>
 				<li>
-					<img src='
-					<c:if test="${vo.profile != null && vo.profile != '' }">
-						${url}/img/memberimg/${vo.profile}
-					</c:if>
-					' id="preview" class="rounded-circle"/>
+					<img src='' id="preview" style="display: none" class="rounded-circle"/>
 				</li>
 				<li>
 					<input type="reset" value="취소" id="resetbtn" class="btn btn-danger"/>
 					<input type="submit" value="등록" id="submitbtn" class="btn btn-secondary"/>
 				</li>
-				
-						
-				
 			</ul>
-			
-			
 		</form>
+	</div>
+	<div id="review">
+		<ul>
+			
+		</ul>
+	
 	</div>
 
 </body>

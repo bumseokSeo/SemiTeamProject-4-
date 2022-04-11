@@ -183,10 +183,43 @@ public class MemberController {
 		return entity;
 	}
 	//파일 지우기
-		public void fileDelete(String p, String f) {
-			if(f != null) {//파일명이 존재하면 
-				File file = new File(p,f);
-				file.delete();
-			}
+	public void fileDelete(String p, String f) {
+		if(f != null) {//파일명이 존재하면 
+			File file = new File(p,f);
+			file.delete();
 		}
+	}
+	
+	//회원탈퇴
+	@GetMapping("memberDelete")
+	public ModelAndView memberDelete(String userid) {
+		
+		
+		int result = service.memberDelete(userid);//result값에따라 삭제여부 판단 0 or 1
+		
+		ModelAndView mav = new ModelAndView();
+		if(result>0) {
+			mav.setViewName("redirect:logout");  //list로 이동한 컨트롤러 호출
+		}else {
+			
+			mav.setViewName("redirect:memberEdit");
+		}
+		return mav;
+	}
+	@GetMapping("masterPage")
+	public ModelAndView masterPage() {
+		ModelAndView mav = new ModelAndView();
+		
+		//mav.addObject("lst",service.memberSelectAll());
+		
+		mav.setViewName("master/master_member");
+		return mav;
+	}
+	
+	//회원 정보 전부 출력
+	@RequestMapping("memberListAll")
+	public List<MemberVO> list() {
+		return service.memberListAll();
+	}
+	
 }
