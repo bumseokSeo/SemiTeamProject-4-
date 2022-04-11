@@ -6,63 +6,65 @@
 <script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> 
     
 <style>
-
-        body{
-            background-color: rgb(228, 231, 234);
-        }
-        #foodForm{
-            background-color: #f5f4f4;
-            width: 650px;
-            margin: 0 auto;
-            margin-top: 200px;
-            font-family: 'NanumSquare',san-serif;
-            border-radius: 20px;
-            margin-bottom : 50px;
-        }
-        #foodNameFixed{
-            display: none;
-        }
-        #deleteDate{
-            text-decoration: none;
-            color: black;
-        }
-        #deleteDate:hover{
-            color: gray;
-        }
-        #eventSelected{
-            font-size: 17px;
-            text-align: center;
-            font-weight: bold;
-        }
-        #priorityForm{
-            display: none;
-        }
-        #cancel{
-            margin:0 50px;
-            width: 70px;
-        }
-        #add{
-            margin-right:50px;
-            width: 70px;
-        }
-        #modify{
-            width: 70px;
-        }
-        #alertDate{
-            display: none;
-            color: blueviolet;
-        }
-
-        .day{
-            display: none;
-        }
+	
+	   body{
+	       background-color: rgb(228, 231, 234);
+	   }
+	   #foodForm{
+	       background-color: #f5f4f4;
+	       width: 650px;
+	       margin: 0 auto;
+	       margin-top: 200px;
+	       font-family: 'NanumSquare',san-serif;
+	       border-radius: 20px;
+	       margin-bottom : 50px;
+	   }
+	   #foodNameFixed{
+	       display: none;
+	   }
+	   #deleteDate{
+	       text-decoration: none;
+	       color: black;
+	   }
+	   #deleteDate:hover{
+	       color: gray;
+	   }
+	   #eventSelected{
+	       font-size: 17px;
+	       text-align: center;
+	       font-weight: bold;
+	   }
+	   #priorityForm{
+	       display: none;
+	   }
+	   #cancel{
+	       margin:0 50px;
+	       width: 70px;
+	   }
+	   #add{
+	       margin-right:50px;
+	       width: 70px;
+	   }
+	   #modify{
+	       width: 70px;
+	   }
+	   #alertDate{
+	       display: none;
+	       color: blueviolet;
+	   }
+	
+	   .day{
+	       display: none;
+	   }
 
 </style>
 <script>
     $(function(){
-
-    	//상관 없음 개수
-    	var cnt=0;
+    	
+    	var flagSeason = false;
+    	var flagTemp = false;
+    	var flagWeather = false;
+    	var flagEvent = false;
     	
         //검색 버튼 클릭하면 DB에서 해당 음식 정보 끌어오기
         //검색 버튼 클릭시 해당 음식이 DB에 없다면 없는 음식이라고 알리기
@@ -76,20 +78,40 @@
                 $("#searchFood").focus();
                 return false;
             }
-            
           	//음식이름은 기본키여서 수정 불가
             $("#fname").attr("disabled", true);
             //수정할 음식을 검색했기 때문에 추가 버튼은 안보이게
             $("#add").css('visibility', 'hidden');
             
             //검색 버튼 클릭시 submit
+            /*
             $("#adminForm").attr("action", "foodSearch");
+            $("#adminForm").submit(function(){
+            	
+            	
+            });*/
             
-            $("#adminForm").submit();
+            var searchFood = $("#searchFood").val();
+            
+            /*
+            $.ajax({
+            	url : "/getFoodData",
+            	data : "searchFood=" + searchFood,
+            	method : 'post',
+            	success : function(result){
+            		
+            	},
+            	error : function(error){
+            		
+            	}
+            	
+            	
+            });
+            */
+            
 
         });
         
-
         //취소 버튼 클릭시 초기화
         $("#cancel").click(function(){
 
@@ -113,9 +135,8 @@
                 $("#fname").focus();
                 return false;
             }
-
             if($("#fcategory").val()==''){
-                alert("음식 종류를 입력하세요. (ex.한식, 양식, 중식, 일식..)");
+                alert("음식 종류를 입력하세요. (ex.한식, 양식, 중식, 일식, 디저트..)");
                 $("#fcategory").focus();
                 return false;
             }
@@ -125,19 +146,13 @@
                 return false;
             }
             
-            
-            
-            
             //추가 버튼 클릭시 submit
             $("#adminForm").attr("action", "foodAdd");
             
             $("#adminForm").submit();
             
-            
-
         });
-        
-        
+       
         //파일 이름 중복 확인
         $("#foodimg").change(function(){
         	
@@ -147,9 +162,7 @@
         	var fileName = file.substring(file.lastIndexOf("\\")+1);
         	console.log(fileName);
         	
-        	
         	$.ajax({
-        		
         		url : '/fileNameCheck',
         		data : "fileName=" + fileName,
         		method : "post",
@@ -157,28 +170,17 @@
         	 	success : function(result){
         	 		
         	 		if(result>0){
-        	 			alert('동일한 이름의 이미지 파일이 있습니다. 다른 이름의 파일을 업로드하세요');
-        	 			$("#foodImageFile").val('');
-        	 			return false;
-        	 			
+        	 			alert('동일한 이름의 이미지 파일이 있습니다. 추가하려는 음식 이름과 같은 이름의 사진 파일을 업로드하세요');
+        	 			$("#foodimg").val('');
+        	 			return false;		
         	 		}
-        	 		
         	 	},
         	 	error : function(error){
-        	 		console.log(error.responseText);
-        	 		
-        	 	}
-        		
+        	 		console.log(error.responseText);	 		
+        	 	}	
         	});
-        	
-        	
-        	
-        	
         });
         
-        
-
-      
         //수정 버튼 클릭 시
         $("#modify").click(function(){
         	
@@ -186,13 +188,8 @@
         	 $("#adminForm").attr("action", "foodModify");
              
              $("#adminForm").submit();
-
-            
         });
        
-       
- 		
- 
 		//음식 추가시 검색창, 수정 버튼 안보이게 처리
 		 $("#fname").focus(function(){
 		     
@@ -202,34 +199,23 @@
 		 });
 		
 		function priorityChange(){
-			console.log(cnt);
-			
-			 if(cnt==0){
-		        	$("#priorityNo").prop("checked", true);
+			 if(flagSeason == false && flagTemp==false && flagWeather==false && flagEvent==false){	 
+				 $("#priorityNo").prop("checked", true);
 			 }
-			 else{
-				 $("#priorityYes").prop("checked", true);
-			 }
-			
 		}
-        
         
         //우선 순위 라디오 버튼은 select에서 모두 첫번째 항목일때  N 체크 
         //select에서 선택한 항목이 한개라도 첫번째가 아니면 저절로 Y 체크
         //화면에서는 보이지 않는 부분
         $("#season").change(function(){
            var season = $("#season option:selected").val();
-           
-           console.log(season);
-
+        
            if(season != 'allseason'){
             $("#priorityYes").prop("checked", true);
-            cnt++;
-            
+            flagSeason=true;
            }
-
            if(season == 'allseason'){
-            cnt--;
+            flagSeason=false;
            }
            priorityChange();
 
@@ -240,14 +226,12 @@
 
            if(temp != '0'){
             $("#priorityYes").prop("checked", true);
-            cnt++;
+            flagTemp = true;
            }
-
            if(temp == '0'){
-            cnt--;
+            flagTemp = false;
            }
            priorityChange();
-
         });
 
         $("#weather").change(function(){
@@ -255,14 +239,12 @@
 
            if(weather != 'allweather'){
             $("#priorityYes").prop("checked", true);
-            cnt++;
+            flagWeather = true;
            }
-
            if(weather == 'allweather'){
-            cnt--;
+        	 flagWeather = false;
            }
            priorityChange();
-
         });
 
         $("#event").change(function(){
@@ -272,23 +254,19 @@
                  $("#priorityYes").prop("checked", true);
                  //모달창 띄우기
                  $(".modal").modal('show');
-                 $("#eventDate").val('');
-                 
-                 cnt++;
+                 $("#eventDate").val('');   
+                 flagEvent = true;
              }
 
             if(event == 'no'){
-             
              $("#eventSelected").html('');
              $("#eventSelected").css('display', 'none');
              $("#deleteDate").css('display', 'none');
-             cnt--;
+             flagEvent = false;
             }
             priorityChange();
 
-         });
-        
-       
+         });  
         
       //모달창 닫히지 배경클릭, esc 입력해도 닫히지 않게
         $(".modal").modal({
@@ -302,7 +280,7 @@
             //이벤트 상관 없음으로 변경
             $("#event option:eq(0)").prop("selected", true);
             $("#eventDate").val('');
-            cnt--;
+            flagEvent = false;
             priorityChange();
         });
 
@@ -324,16 +302,16 @@
             if(eventDate !=''){
                 $(".modal").modal('hide');
                 
+            	/////이벤트 있음의 value에 이벤트 날짜 넣기
+                $("#event option:eq(1)").val(eventDate);
+                console.log($("#event option:eq(1)").val());
                 
                 ////////선택된 날짜 나타나게 하기
                 $("#eventSelected").html(eventDate);
-                
                 $("#eventSelected").css('display', 'inline-block');
                 $("#deleteDate").css('display', 'inline-block');
                 
-                //cnt++;
-                //priorityChange();
-
+                flagEvent = true; 
             }
 
             //날짜 선택한 뒤 날짜 삭제 버튼 클릭
@@ -342,18 +320,17 @@
                 $("#eventSelected").css('display', 'none');
                 $("#deleteDate").css('display', 'none');
 
-                //이벤트 없음으로 되돌리기
+              //이벤트 없음으로 되돌리기
                 $("#event option:eq(0)").prop("selected", true);
                 
-                cnt--;
+                flagEvent = false;
                 priorityChange();
-
+              
+                //이벤트 저장된 값 초기화
+               $("#event option:eq(1)").val('');  
+               console.log($("#event option:eq(1)").val());           
             })
-
         });
-
-
-
     });
 
 </script>
@@ -363,7 +340,6 @@
         <div id="foodForm">
         
         	<form method="post" id="adminForm" name="adminForm" enctype="multipart/form-data">
-
 	            <div class="row g-3 searchForm">
 	                <!--수정할 음식 이름 검색-->
 	                <div class="col-sm-6 m-3">
@@ -381,7 +357,7 @@
                       <input type="text" class="form-control " id="fname" name="fname" placeholder="음식이름">
                     </div>
                     <span class="col-sm-2" id="foodNamechk"></span>
-                    <input class = "col-sm-3" type="text" name="foodNameFixed" id="foodNameFixed" value="김치찌개">
+                    <input class = "col-sm-3" type="text" name="foodNameFixed" id="foodNameFixed" value="">
                 </div>
                 <!--음식 종류 작성 (Not Null)-->
                 <div class="row m-2">
@@ -433,30 +409,27 @@
                     <div class="col-sm-5">
                         <select class="form-select col-auto" id="event" name="event">
                             <option selected value="no">상관 없음</option>
-                            <option value="yes">있음</option> 
+                            <option value="">있음</option> 
                         </select>
                     </div>
-                    <span class="col-sm-3" class="day" id="eventSelected" ></span>
+                    <span class="col-sm-3" class="day" id="eventSelected"></span>
                     <a class="col-sm-2 day" id="deleteDate">삭제</a>
                 </div>
                 <!--우선순위 (Not Null)-->
-                <div class="row m-2"  name="priority">
+                <div class="row m-2"  >
                     <label class="col-sm-2 col-form-label">우선순위</label>
                     <div class="form-check col-sm-3">
-                    	
-                        
-                        <input class="form-check-input m-2" type="radio" id="priorityYes"  value='Y'>
+                        <input class="form-check-input m-2" type="radio" id="priorityYes" name="priority" value='Y'>
                         <label class="form-check-label" for="priorityYes">
                             Y
                         </label> 
                     </div>
                     <div class="form-check col-sm-3">
-                        <input class="form-check-input m-2" type="radio" id="priorityNo"  checked="checked" value='N'>
+                        <input class="form-check-input m-2" type="radio" id="priorityNo" name="priority" checked="checked" value='N'>
                         <label class="form-check-label" for="priorityNo">
                             N
                         </label>
                     </div>
-                    
                 </div>
                 <!--음식 사진 파일 업로드 (Not Null)-->
                 <div class="row m-2">
@@ -468,9 +441,7 @@
                     <input type="button" class="btn btn-secondary mb-3" id="cancel" value="취소">
                     <input type="button" class="btn btn-secondary mb-3" id="add" value="추가">
                     <input type="button" class="btn btn-secondary mb-3" id="modify" value="수정">
-                    
                 </div>
-                
                 <!--날짜 입력 받는 모달창-->
                 <div class="modal fade" data-backdrop = "static" data-keyboard="false">
                     <div class="modal-dialog">

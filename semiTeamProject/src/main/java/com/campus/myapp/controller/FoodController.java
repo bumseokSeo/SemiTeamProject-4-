@@ -36,19 +36,17 @@ public class FoodController {
 	public ModelAndView foodPage() {
 		
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("food/main_food");
-		
+		mav.setViewName("food/main_food");		
 		return mav;
 		
 	}
 	
 	@GetMapping("/master/master_food")
 	public ModelAndView foodAdminPage() {
+		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("master/master_food");
-		
 		return mav;
-		
 	}
 	
 	//파일 이름 중복 확인
@@ -70,59 +68,86 @@ public class FoodController {
 		
 		headers.setContentType(new MediaType("text", "html", Charset.forName("UTF-8"))); 
 		
+		/////이미 데이터베이스에 해당 이름의 음식이 있는지 확인
 		
-		//파일 업로드를 위한 업로드 위치의 절대 주소
-		String path = request.getSession().getServletContext().getRealPath("/img/foodimg/upload");
+		int result = service.checkFoodName(vo.getFname());
 		
-		System.out.println(path);
 		
-		System.out.println(vo.getEvent());
-		
-		try {
+		if(result>0) {
 			
-			//파일 업로드를 위해 request 객체에서 multipart 객체로 형변환
-			MultipartHttpServletRequest mr = (MultipartHttpServletRequest) request;
-			
-			MultipartFile file = mr.getFile("filename");
-			
-			String fileName = file.getOriginalFilename();
-			System.out.println(fileName);
-			
-			File f = new File(path, fileName);
-			
-			
-			//파일 업로드
-			try {
-				
-				file.transferTo(f);
-				System.out.println("파일 업로드");
-				vo.setFoodimg(fileName);
-				
-			}catch(Exception ee) {
-				
-			}
-			
-			//DB에 추가
-			service.foodInsert(vo);
-			
-			String msg = "<script>alert('음식이 추가가 완료되었습니다.');location.href='/master/master_food'; </script>";
-		
-			entity = new ResponseEntity(msg, headers,HttpStatus.OK );
-			
-			
-		}catch(Exception e) {
-			
-			e.printStackTrace();
-			
-			//파일 삭제
-			deleteFile(path, vo.getFoodimg());
-			
-			String msg = "<script>alert('음식이 추가를 실패하였습니다.'); history.back(); </script>";
+			String msg = "<script>alert('해당 음식은 이미 저장되어 있습니다.'); history.back(); </script>";
 			
 			entity = new ResponseEntity(msg, headers,HttpStatus.BAD_REQUEST );
 			
+			
+			
+		}else {
+			
+			//파일 업로드를 위한 업로드 위치의 절대 주소
+			String path = request.getSession().getServletContext().getRealPath("/img/foodimg/upload");
+			
+			System.out.println(path);
+			
+			System.out.println(vo.getEvent());  //no
+			
+			
+			//event가 no면 변경해주기
+			if((vo.getEvent()).equals("no")) {
+				vo.setEvent(null);
+				
+			}
+			
+			System.out.println(vo.getEvent()); 
+			
+			
+			System.out.println(vo.getPriority());
+	
+			
+			try {
+				
+				//파일 업로드를 위해 request 객체에서 multipart 객체로 형변환
+				MultipartHttpServletRequest mr = (MultipartHttpServletRequest) request;
+				
+				MultipartFile file = mr.getFile("filename");
+				
+				String fileName = file.getOriginalFilename();
+				System.out.println(fileName);
+				
+				File f = new File(path, fileName);
+				
+				
+				//파일 업로드
+				try {
+					
+					file.transferTo(f);
+					System.out.println("파일 업로드");
+					vo.setFoodimg(fileName);
+					
+				}catch(Exception ee) {
+					
+				}
+				
+				//DB에 추가
+				service.foodInsert(vo);
+				
+				String msg = "<script>alert('음식이 추가가 완료되었습니다.');location.href='/master/master_food'; </script>";
+			
+				entity = new ResponseEntity(msg, headers,HttpStatus.OK );
+				
+				
+			}catch(Exception e) {
+				
+				e.printStackTrace();
+				
+				//파일 삭제
+				deleteFile(path, vo.getFoodimg());
+				
+				String msg = "<script>alert('음식이 추가를 실패하였습니다.'); history.back(); </script>";
+				
+				entity = new ResponseEntity(msg, headers,HttpStatus.BAD_REQUEST );
+				
+			}
 		}
-		
 		
 		return entity;
 	}

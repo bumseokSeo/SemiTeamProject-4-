@@ -18,12 +18,20 @@ public class FoodServiceImpl implements FoodService {
 		
 		return dao.checkFilename(filename);
 	}
+	
+	@Override
+	public int checkFoodName(String fname) {
+		
+		return dao.checkFoodName(fname);
+	}
 
 	@Override
 	public int foodInsert(FoodVO vo) {
-		// TODO Auto-generated method stub
+		
 		return dao.foodInsert(vo);
 	}
+
+	
 
 
 }

@@ -11,10 +11,15 @@
   	
   	</select>
   	
+  	<select id="checkFoodName" resultType="int">
+  		select count(fname) from food where fname=#{param1}
+  	
+  	</select>
+  	
   	<insert id="foodInsert" >
   		
-  		insert into food(fname, season, temp, weather, foodimg, fcategory, priority)
-  		values(#{fname}, #{season}, #{temp}, #{weather}, #{foodimg}, #{fcategory}, #{fcategory})
+  		insert into food(fname, season, temp, weather, foodimg, fcategory, priority, event)
+  		values(#{fname}, #{season}, #{temp}, #{weather}, #{foodimg}, #{fcategory}, #{priority}, #{event})
   		
   	</insert>
   
