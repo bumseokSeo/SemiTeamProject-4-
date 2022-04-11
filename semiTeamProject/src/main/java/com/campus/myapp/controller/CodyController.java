@@ -30,7 +30,8 @@ public class CodyController {
 	@GetMapping("/cody/main_cody")
 	public ModelAndView codyPage(int temp, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
-		/*String sex = (String)session.getAttribute("logSex");
+		String sex = (String)session.getAttribute("logSex");
+		//여기서부터
 		List<CodyVO> vo = service.codyRecommend(temp, sex);//임시로 설정
 		Collections.shuffle(vo);
 		List<CodyVO> cvo = new ArrayList<CodyVO>();
@@ -39,11 +40,8 @@ public class CodyController {
 			cvo.add(vo.get(i));
 		}
 		
-		//for (CodyVO codyVO : cvo) {// 랜덤 출력 확인
-		//	System.out.println(codyVO.getCname());
-		//}
-		
-		mav.addObject("vo", cvo);*/
+		mav.addObject("vo", cvo);
+		//여기까지
 		mav.setViewName("cody/main_cody");
 		return mav;
 	}

@@ -203,14 +203,14 @@ ul, li {
 		<div class="fullsection full1" pageNum="1">
 			<img class="fullImg" src="${url}/img/cody_maingif.gif/" alt="">
 		</div>
-		<!-- 코디 추천 이미지 출력
+	
 		<c:forEach var="vo" items="${vo}" varStatus="status" end="4">
 			<div class="fullsection full${status.index+2}" pageNum="${status.index+2}">
 				<img class="codyImg" src="${url}/img/codyimg/codyupload/${vo.cname}" alt="">
 			</div>
 		</c:forEach>
-		-->
 		
+		<!-- 테스트 이미지
 		<div class="fullsection full2" pageNum="2">
 			<img class="fullImg" src="${url}/img/cody_main2.png/" alt="">
 		</div>
@@ -229,6 +229,7 @@ ul, li {
 		<div class="fullsection full7" pageNum="7">
 			<img class="fullImg" src="${url}/img/cody_mainLast.png/" alt="">
 		</div>
+		-->
 	</div>
 </body>
 
