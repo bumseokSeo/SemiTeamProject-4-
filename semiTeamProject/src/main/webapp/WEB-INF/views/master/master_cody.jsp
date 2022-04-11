@@ -57,6 +57,7 @@ textarea {
 	width:160px;
 }
 </style>
+
 <script>
 $(function() {
 	
@@ -186,12 +187,12 @@ function setImage(input, preview) {
 				<li>
 					<select class="form-control" name="style" id="style">
 					    	<option>선택</option>
-					    	<option>캐주얼룩</option>
-					    	<option>모던룩</option>
-					    	<option>스트릿룩</option>
-					    	<option>오피스룩</option>
-					    	<option>산책룩</option>
-					    	<option>바캉스룩</option>
+					    	<option value="casual">캐주얼룩</option>
+					    	<option value="modern">모던룩</option>
+					    	<option value="street">스트릿룩</option>
+					    	<option value="office ">오피스룩</option>
+					    	<option value="walk">산책룩</option>
+					    	<option value="special">스페셜룩</option>
 					</select>
 				</li>
 				<li><label for="info">상세설명</label></li>
