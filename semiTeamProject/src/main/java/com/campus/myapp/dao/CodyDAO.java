@@ -15,5 +15,5 @@ public interface CodyDAO {
 	//코디 추가
 	public int codyInsert(CodyVO vo);
 	//cname 중복확인
-	public int cnameCheck(String cname);
+	public Integer cnameCheck(String cname);
 }

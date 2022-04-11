@@ -1,306 +1,339 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>  
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+
 <style>
- @font-face {
-  font-family: "ROKAFSansBold";
-  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts2201-3@1.0/ROKAFSansBold.woff")
-    format("woff");
-  font-weight: normal;
-  font-style: normal;
+html, body {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0px;
+	overflow: hidden;
+	font-family: sans-serif;
 }
-h1 {
-  margin-bottom:20px;
-  text-align: center;
-  font-family: "ROKAFSansBold";
-  font-size: 40px;
-  text-shadow: #9c9c9c 4px 4px 0px, 2px 2px 2px rgba(206, 89, 55, 0);
+
+#fullpage {
+	position: relative;
+	top: 0px;
+	z-index: 9;
+	width: 100%;
+	height: 100%;
 }
-* {
-  box-sizing: border-box;
+
+.fullsection {
+	width: 100%;
+	height: 100%;
+	position: relative;
+	text-align: center;
+	margin: 0 auto;
 }
-body {
-  background: url(${url}/img/codyBackground.png) no-repeat center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  max-height: 100%;
-  max-width: 100%;
+
+.fullImg {
+	width: 80%;
+	height: 80%;
+	margin-bottom: -89px;
 }
-ul {
-  list-style-type: none;
-  padding-left: 0;
+/*코디 이미지*/
+.codyImg {
+	width:40%;
+	height:65%;
+	margin-top:50px;
 }
-.main-container {
-  position : relative;
-  margin: 0 auto;
-  width: 1130px;
+
+.img7 {
+	width: 80%;
+	height: 80%
 }
-.cody-main {
+
+ul, li {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+/*=========오른쪽하단 페이징표시======= */
+.quick {
+	position: fixed;
+	right: 20px;
+	bottom: 1%;
+	transform: translateY(-50%);
+	z-index: 100;
+}
+
+.quick li {
+	width: 10px;
+	height: 10px;
+	margin-bottom: 10px;
+	border-radius: 15px;
+	border: 1px solid #87909B;
+	cursor: pointer;
+}
+
+.quick .on {
+	background: #4d4d4d;
+}
+/*=========오른쪽하단 페이징표시 끝======= */
+
+
+/*========= 왼쪽 fixed 메뉴 시작 ======= */
+
+ a {color: black;  text-decoration: none;}
+ a:link { text-decoration: none;}
+ a:visited { text-decoration: none;}
+ a:hover { color: #87909B; text-decoration: none;}
+
+
+ .sidenav {
   position: fixed;
-  width: 60%;
-  height: 600px;
-  float: left;
-  top: 170px;
-  left: 170px;
-}
-.cody-sub {
-  width: 40%;
-  height: 600px;
-  float: right;
-}
-.cody-sub-container {
-  height: 180px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-}
-/* ===========버튼 CSS ============*/
-#workarea {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-color: #1e1a3e;
- 
-}
-#personal {
-  color: black;
-  text-decoration:none;
-  position:absolute;
-  bottom:15px;
-  right:2%;
-}
-.spot {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
+  width: 230px;
+  top: 10%;
   left: 0;
-}
-.svg-wrapper {
-  margin-top: 0;
-  position: relative;
-  width: 150px;
-  height: 40px;
-  display: inline-block;
-  border-radius: 3px;
-  margin-left: 5px;
-  margin-right: 5px
-}
-#shape {
-  stroke-width: 6px;
-  fill: transparent;
-  stroke: black;
-  stroke-dasharray: 85 400;
-  stroke-dashoffset: -220;
-  transition: 1s all ease;
-}
-#text {
-  font-family: "ROKAFSansBold";
-  margin-top: -35px;
-  text-align: center;
-}
-#text a {
-  color: #9c9c9c;
-  text-decoration: none;
-  font-weight: 100;
-  font-size: 1.1em;
-}
-.svg-wrapper:hover #shape {
-  stroke-dasharray: 50 0;
-  stroke-width: 3px;
-  stroke-dashoffset: 0;
-  stroke: coral;
-}
-/*================ 버튼 CSS 끝============== */
-/* ===============리스크 시작================= */
-.cody-sub-style-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  opacity: 1;
-  transition: all var(--animation-duration) ease-out;
-}
-.cody-sub-style-list.anim-out {
-  opacity: 0;
-  transform: scale(0.9) translateY(40px);
-}
-.list {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 180px;
-  height: 180px;
-  margin: 7px;
-  background-color: white;
-  border-radius: 5px;
-  -webkit-box-shadow: 13px 14px 46px 8px rgba(0,0,0,0.75);
-  -moz-box-shadow: 13px 14px 46px 8px rgba(0,0,0,0.75);
-  box-shadow: 13px 14px 46px 8px rgba(0,0,0,0.75);
+  z-index: 100000;
   
 }
-.list-img {
-  width: 100px;
-  height: 100px;
+
+.sidenav .main-buttons {
+  list-style-type: none;
+  margin: 64px 0;
+  padding: 0;
+  color: #534439;
 }
-.list.invisible{
-  display: none;
+
+.sidenav .main-buttons li {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-family: "ROKAFSansBold";
+  font-size: 16px;
+  font-weight: 600;
 }
-.list-description {
+
+.sidenav .main-buttons > li {
+  padding: 16px 52px;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+
+ .sidenav .main-buttons > li:hover,
+ .sidenav .main-buttons > li:active,
+  .sidenav .main-buttons > li:focus {
+  cursor: pointer;
+  color : #69727C;
+  text-shadow: #FFF 2px 2px 0px, #9C9C9C 4px 4px 0px;
+}
+
+.sidenav .main-buttons > li:hover .hidden {
+  opacity: 1;
+  visibility: visible;
+}
+
+.sidenav .main-buttons > li:hover .hidden, 
+.sidenav .main-buttons > li:active .hidden, 
+.sidenav .main-buttons > li:focus .hidden {
+  width: 190px;
+}
+
+/* 
+ .hidden {
+  width: 0;
+  height: 600px;
+  padding: 64px 0;
   position: absolute;
   top: 0;
-  left: 0;
-  background-color: #000000;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  opacity: 0;
-  transform: translate(10px);
-  transition: all 500ms ease-in;
-}
-.list:hover .list-description {
-  opacity: 0.8;
-  transform: translate(0px);
-  border-radius: 5px;
-}
-.list-description h3{
-  color: bisque;
-  text-align: center;
-}
-.list-description span {
-  color: #9c9c9c;
-  text-align: center;
-  font-size: 14px;
-}
-.list-description h3:after {
-  display: block;
-  position: relative;
-  left: 50%;
-  content: '';
-  width:25px;
-  height: 2px;
-  margin-left: -12px;
-  margin-top: 8px;
-  background-color: #9c9c9c;
-}
-/* ===============리스크 끝================= */
-/* =============메인 이미지 시작============== */
-.cody-main-img {
+  right: 0;
+  overflow: hidden;
+  list-style-type: none;
+  background-color: #ffffffb2;
+  -moz-transition: 0.3s;
+  -o-transition: 0.3s;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+} 
+*/
+
+.hidden {
   position: absolute;
-  top: 20px;
-  left: 50px;
-  width: 500px;
-  height: 450px;
-  width: 560px;
- 
-  border: 10px solid #fafafa;
-  outline: 3px solid #333;
-  box-shadow: 15px 15px #9c9c9c;
+  opacity: 0;
+  visibility: hidden;
+  list-style-type: none;
+  top: 280px;
+  right: 0;
 }
-/* =============메인 이미지 끝============== */
-.animate__animated.animate__swing {
-  --animate-duration: 1.2s;
+
+.hidden li {
+  padding: 16px 24px;
 }
-</style>    
-    <h1 class="animate__animated animate__swing">오늘 코디 어때?</h1>
-   
-    <div class="main-container">
 
-      <div class="cody-main">
-        <div class="cody-main-img">
-        	<!-- temp 단계에 해당하는 코디 이미지 가져오기
-            <c:forEach var="vo" items="${vo}">
-				<img src="${url}/img/codyimg/codyupload/${vo.cname}"/>
-			</c:forEach>
-			 -->
-        </div>
-        <div class="cody-main-text">
-      
-        </div>
-      </div>
+.hidden li:hover, 
+.hidden li:active, 
+.hidden li:focus {
+  text-shadow: 1px 0px 1px #CCCCCC, 0px 1px 1px #EEEEEE,
+    2px 1px 1px #CCCCCC, 1px 2px 1px #EEEEEE,
+    3px 2px 1px #CCCCCC, 2px 3px 1px #EEEEEE,
+    4px 3px 1px #CCCCCC, 3px 4px 1px #EEEEEE,
+    5px 4px 1px #CCCCCC, 4px 5px 1px #EEEEEE,
+    6px 5px 1px #CCCCCC, 5px 6px 1px #EEEEEE, 7px 6px 1px #CCCCCC;
+  color: #87909B;
+}
+/*========= 왼쪽 fixed 메뉴 끝 ======= */
+</style>
+</head>
+<body>
+    <nav class="sidenav">
+      <ul class="main-buttons">
+        <li><a href="${url}/cody/sub_cody">ALL</a></li>
+        <li><a href="${url}/cody/sub_cody">MEN</a></li>
+        <li><a href="${url}/cody/sub_cody">WOMEN</a></li>
+        <li>STYLE
+          <ul class="hidden">
+            <li>캐주얼룩</li>
+            <li>모던룩</li>
+            <li>오피스룩</li>
+            <li>스트릿룩</li>
+            <li>산책룩</li>
+            <li>바캉스룩</li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+	<div id="fullpage">
+		<div class="quick">
+			<ul></ul>
+		</div>
+		<div class="fullsection full1" pageNum="1">
+			<img class="fullImg" src="${url}/img/cody_maingif.gif/" alt="">
+		</div>
+		<!-- 코디 추천 이미지 출력
+		<c:forEach var="vo" items="${vo}" varStatus="status" end="4">
+			<div class="fullsection full${status.index+2}" pageNum="${status.index+2}">
+				<img class="codyImg" src="${url}/img/codyimg/codyupload/${vo.cname}" alt="">
+			</div>
+		</c:forEach>
+		-->
+		
+		<div class="fullsection full2" pageNum="2">
+			<img class="fullImg" src="${url}/img/cody_main2.png/" alt="">
+		</div>
+		<div class="fullsection full3" pageNum="3">
+			<img class="fullImg" src="${url}/img/cody_main3.png/" alt="">
+		</div>
+		<div class="fullsection full4" pageNum="4">
+			<img class="fullImg" src="${url}/img/cody_main4.png/" alt="">
+		</div>
+		<div class="fullsection full5" pageNum="5">
+			<img class="fullImg" src="${url}/img/cody_main5.png/" alt="">
+		</div>
+		<div class="fullsection full6" pageNum="6">
+			<img class="fullImg" src="${url}/img/cody_maingif2.gif/" alt="">
+		</div>
+		<div class="fullsection full7" pageNum="7">
+			<img class="fullImg" src="${url}/img/cody_mainLast.png/" alt="">
+		</div>
+	</div>
+</body>
 
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script type="text/javascript"
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+<script>
+	$(document).ready(function() {
+		fullset();
+		quickClick();
+	});
+	function fullset() {
+		var pageindex = $("#fullpage > .fullsection").size(); //fullpage 안에 섹션이(.fullsection) 몇개인지 확인하기
+		for (var i = 1; i <= pageindex; i++) {
+			$("#fullpage > .quick > ul").append("<li></li>");
+		}
+		$("#fullpage .quick ul :first-child").addClass("on"); //일단 화면이 로드 되었을때는 퀵버튼에 1번째에 불이 들어오게
+		//마우스 휠 이벤트
+		$(window).bind(
+				"mousewheel",
+				function(event) {
+					var page = $(".quick ul li.on");
+					//alert(page.index()+1);  // 현재 on 되어있는 페이지 번호
+					if ($("body").find("#fullpage:animated").length >= 1)
+						return false;
+					//마우스 휠을 위로
+					if (event.originalEvent.wheelDelta >= 0) {
+						var before = page.index();
+						if (page.index() >= 0)
+							page.prev().addClass("on").siblings(".on")
+									.removeClass("on"); //퀵버튼옮기기
+						var pagelength = 0;
+						for (var i = 1; i < before; i++) {
+							pagelength += $(".full" + i).height();
+						}
+						if (page.index() > 0) {
+							//첫번째 페이지가 아닐때 (index는 0부터 시작임)
+							page = page.index() - 1;
+							$("#fullpage").animate({
+								top : -pagelength + "px"
+							}, 1000, "swing");
+						} else {
+							alert("시작페이지 입니다.");
+						}
+					} else {
+						// 마우스 휠을 아래로
+						var nextPage = parseInt(page.index() + 1); //다음페이지번호
+						var lastPageNum = parseInt($(".quick ul li").size()); //마지막 페이지번호
+						//현재페이지번호 <= (마지막 페이지 번호 - 1)
+						//이럴때 퀵버튼옮기기
+						if (page.index() <= $(".quick ul li").size() - 1) {
+							page.next().addClass("on").siblings(".on")
+									.removeClass("on");
+						}
 
-      <div class="cody-sub">
+						if (nextPage < lastPageNum) {
+							//마지막 페이지가 아닐때만 animate !
+							var pagelength = 0;
+							for (var i = 1; i < nextPage + 1; i++) {
+								//총 페이지 길이 구하기
+								//ex) 현재 1번페이지에서 2번페이지로 내려갈때는 1번페이지 길이 + 2번페이지 길이가 더해짐
+								pagelength += $(".full" + i).height();
+							}
+							$("#fullpage").animate({
+								top : -pagelength + "px"
+							}, 1000, "swing");
+						} else {
+							// 현재 마지막 페이지 일때는
+							alert("마지막 페이지 입니다!");
+						}
+					}
+				});
+		$(window).resize(function() {
+			//페이지가 100%이기때문에 브라우저가 resize 될때마다 스크롤 위치가 그대로 남아있는것을 방지하기 위해
+			var resizeindex = $(".quick ul li.on").index() + 1;
 
-        <div class="cody-sub-container">
-          <!--start button -->
-          <div class="svg-wrapper">
-            <svg height="40" width="150" xmlns="http://www.w3.org/2000/svg">
-              <rect id="shape" height="40" width="150" />
-              <div id="text">
-                <a href="${url}/cody/sub_cody"><span class="spot"></span>ALL</a>
-              </div>
-            </svg>
-          </div>
-          <!--Next button -->
-          <div class="svg-wrapper">
-            <svg height="40" width="150" xmlns="http://www.w3.org/2000/svg">
-              <rect id="shape" height="40" width="150" />
-              <div id="text">
-                <a href="${url}/cody/sub_cody"><span class="spot"></span>MEN</a>
-              </div>
-            </svg>
-          </div>
-          <!--Next button -->
-          <div class="svg-wrapper">
-            <svg height="40" width="150" xmlns="http://www.w3.org/2000/svg">
-              <rect id="shape" height="40" width="150" />
-              <div id="text">
-                <a href="${url}/cody/sub_cody"><span class="spot"></span>WOMEN</a>
-              </div>
-            </svg>
-          </div>
-        </div>
-        <div>
-            <div class="cody-sub-style-list">
-              <a href="${url}/cody/sub_cody" class="list" target="blank">
-                <img src="${url}/img/codyimg/cody01.jpg" alt="" class="list-img" >
-                <div class="list-description">
-                  <h3>오피스룩</h3>
-                  <span>오피스룩 설명</span>
-                </div>
-              </a>
-              <a href="${url}/cody/sub_cody" class="list" target="blank">
-                <img src="${url}/img/codyimg/cody2.jpg"  alt="" class="list-img">
-                <div class="list-description">
-                  <h3>오피스룩</h3>
-                  <span>오피스룩 설명</span>
-                </div>
-              </a>
-              <a href="${url}/cody/sub_cody" class="list" target="blank">
-                <img src="${url}/img/codyimg/cody03.jpg"  class="list-img">
-                <div class="list-description">
-                  <h3>오피스룩</h3>
-                  <span>오피스룩 설명</span>
-                </div>
-              </a>
-              <a href="${url}/cody/sub_cody" class="list" target="blank">
-                <img src="${url}/img/codyimg/cody04.jpg"  class="list-img">
-                <div class="list-description">
-                  <h3>오피스룩</h3>
-                  <span>오피스룩 설명</span>
-                </div>
-              </a>
-              <a href="#" class="list" target="blank">
-                <img src="${url}/img/codyimg/cody04.jpg"  class="list-img">
-                <div class="list-description">
-                  <h3>오피스룩</h3>
-                  <span>오피스룩 설명</span>
-                </div>
-              </a>
-               <a href="#" class="list" target="blank">
-                <img src="${url}/img/codyimg/cody04.jpg"  class="list-img">
-                <div class="list-description">
-                  <h3>오피스룩</h3>
-                  <span>오피스룩 설명</span>
-                </div>
-              </a>
-            </div>
-        </div>
-      </div>
-    </div>
-  </body>
+			var pagelength = 0;
+			for (var i = 1; i < resizeindex; i++) {
+				//총 페이지 길이 구하기
+				//ex) 현재 1번페이지에서 2번페이지로 내려갈때는 1번페이지 길이 + 2번페이지 길이가 더해짐
+				pagelength += $(".full" + i).height();
+			}
+
+			$("#fullpage").animate({
+				top : -pagelength + "px"
+			}, 0);
+		});
+	}
+	// 사이드 퀵버튼 클릭 이동
+	function quickClick() {
+		$(".quick li").click(function() {
+			var gnbindex = $(this).index() + 1;
+			var length = 0;
+			for (var i = 1; i < gnbindex; i++) {
+				length += $(".full" + i).height();
+			}
+			if ($("body").find("#fullpage:animated").length >= 1)
+				return false;
+			$(this).addClass("on").siblings("li").removeClass("on");
+
+			$("#fullpage").animate({
+				top : -length + "px"
+			}, 800, "swing");
+			return false;
+		});
+	}
+</script>
 </html>
