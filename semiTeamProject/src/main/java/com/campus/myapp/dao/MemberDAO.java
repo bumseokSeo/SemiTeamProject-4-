@@ -1,5 +1,7 @@
 package com.campus.myapp.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
@@ -21,5 +23,13 @@ public interface MemberDAO {
 	
 	//회원정보수정
 	public int memberUpdate(MemberVO vo);
+	
+	//회원탈퇴
+	public int memberDelete(String userid);
+	
+	//맴버정보 전부 출력
+	public List<MemberVO> memberListAll();
+	
+	
 }
 

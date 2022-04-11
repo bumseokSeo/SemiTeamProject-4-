@@ -1,5 +1,7 @@
 package com.campus.myapp.service;
 
+import java.util.List;
+
 import com.campus.myapp.vo.MemberVO;
 
 public interface MemberService {
@@ -8,4 +10,6 @@ public interface MemberService {
 	public int idCheck(String userid);
 	public MemberVO memberSelect(String userid);
 	public int memberUpdate(MemberVO vo);
+	public int memberDelete(String userid);
+	public List<MemberVO> memberListAll();
 }
