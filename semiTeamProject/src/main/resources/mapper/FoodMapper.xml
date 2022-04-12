@@ -32,9 +32,5 @@
   		select fname, season, temp, weather, foodimg, fcategory, priority, event from food where fname=#{param1}
   	
   	</select>
-  
-<<<<<<< HEAD
-  
-=======
->>>>>>> f021c274d0dcba40ebbba929a6d02f696179fca2
+ 
   </mapper>
