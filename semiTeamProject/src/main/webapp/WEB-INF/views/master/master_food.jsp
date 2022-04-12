@@ -92,12 +92,15 @@
     			reader.readAsDataURL(input.files[0]);
     		}
     	}
-       
     	
-        //검색 버튼 클릭하면 DB에서 해당 음식 정보 끌어오기
-        //검색 버튼 클릭시 해당 음식이 DB에 없다면 없는 음식이라고 알리기
-
-
+    	//사진 지우기
+    	function photoDelete(){
+			$("#foodPhoto").attr("src", "");
+			$("#photoDelete").css("display", "none");
+			$("#foodimg").val('');
+			$("#fnameCheck").html('');
+    	}
+       
         //검색 버튼 클릭시 
         $("#searchButton").click(function(){
             //수정할 음식을 입력 안했을 때
@@ -195,6 +198,7 @@
             		$("#foodPhoto").attr("src", "/img/foodimg/upload/"+result.foodimg);
             		$("#photoDelete").css("display", "inline-block");
             		
+            		
             		$("#photoDelete").click(function(){
             			$("#foodPhoto").attr("src", "");
             			$("#photoDelete").css("display", "none");
@@ -219,10 +223,29 @@
             $("#fname").attr("disabled", false);
             $("#fcategory").val('');
             $(".form-select option:eq(0)").prop("selected", true);
+            ///////////////////////////////////////////////////////
+            $("#weather option:eq(0)").prop("selected", true);
+            //////////////////////////////////////////////////////
             $(".form-check").attr("checked", false);
-            $("#foodimg").val('');
             $("#add").css('visibility', 'visible');
             $("#modify").css('visibility', 'visible');
+            
+            $("#eventSelected").html('');
+            $("#eventSelected").css('display', 'none');
+            $("#deleteDate").css('display', 'none');
+
+          //이벤트 없음으로 되돌리기
+            $("#event option:eq(0)").prop("selected", true);
+            
+            flagSeason = false;
+        	flagTemp = false;
+        	flagWeather = false;
+        	flagEvent = false;
+        	
+        	priorityChange();
+        	
+        	photoDelete();
+        	
         });
 
         //추가 버튼 클릭 시
@@ -276,9 +299,12 @@
         	 	success : function(result){
         	 		
         	 		if(result>0){
-        	 			alert('동일한 이름의 이미지 파일이 있습니다. 추가하려는 음식 이름과 같은 이름의 사진 파일을 업로드하세요');
+        	 			//alert('동일한 이름의 이미지 파일이 있습니다. 추가하려는 음식 이름과 같은 이름의 사진 파일을 업로드하세요');
+        	 			$("#fnameCheck").html("동일한 이름의 이미지 파일이 있습니다. 다른 이름의 사진 파일을 업로드 하세요");
         	 			$("#foodimg").val('');
         	 			return false;		
+        	 		}else{
+        	 			$("#fnameCheck").html("업로드 가능한 이미지 입니다.");
         	 		}
         	 	},
         	 	error : function(error){
@@ -290,6 +316,7 @@
     			$("#foodPhoto").attr("src", "");
     			$("#photoDelete").css("display", "none");
     			$("#foodimg").val('');
+    			$("#fnameCheck").html('');
     		});
         	
         	
@@ -299,10 +326,25 @@
         //수정 버튼 클릭 시
         $("#modify").click(function(){
         	
+        	if($("#fcategory").val()==''){
+                alert("음식 종류를 입력하세요. (ex.한식, 양식, 중식, 일식, 디저트..)");
+                $("#fcategory").focus();
+                return false;
+            }
+        	
+        	
+
+            if($("#foodimg").val()=='' && $("#foodPhoto").src == ''){
+                alert("음식 이미지 파일을 선택해 업로드 하세요.");
+                return false;
+            }
+            
+        	
         	//수정 버튼 클릭 시 submit
         	 $("#adminForm").attr("action", "foodModify");
              
              $("#adminForm").submit();
+             
              
              
         });
@@ -554,6 +596,7 @@
                     <input type="file" class="col-sm-5" id="foodimg" name="filename" >
                    
 	               <button type="button"  class="btn-close"  aria-label="Close" id="photoDelete"></button>
+	               <span id="fnameCheck"></span>
 	               <img id="foodPhoto"/>
                     
                 </div>
