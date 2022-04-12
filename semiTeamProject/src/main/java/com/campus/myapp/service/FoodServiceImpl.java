@@ -31,6 +31,12 @@ public class FoodServiceImpl implements FoodService {
 		return dao.foodInsert(vo);
 	}
 
+	@Override
+	public FoodVO getFoodData(String searchFood) {
+		
+		return dao.getFoodData(searchFood);
+	}
+
 	
 
 

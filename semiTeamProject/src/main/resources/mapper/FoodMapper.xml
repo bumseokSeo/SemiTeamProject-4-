@@ -22,6 +22,11 @@
   		values(#{fname}, #{season}, #{temp}, #{weather}, #{foodimg}, #{fcategory}, #{priority}, #{event})
   		
   	</insert>
+  	
+  	<select id="getFoodData" resultType="com.campus.myapp.vo.FoodVO">
+  		select fname, season, temp, weather, foodimg, fcategory, priority, event from food where fname=#{param1}
+  	
+  	</select>
   
   
   </mapper>
