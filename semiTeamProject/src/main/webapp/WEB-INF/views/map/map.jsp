@@ -27,7 +27,7 @@
          <div>
             <div class="nav__brand">
                <ion-icon name="menu-outline" class="nav__toggle" id="nav-toggle"></ion-icon>
-               <a href="#" class="nav__logo">검색바?</a>
+               <a href="#" class="nav__logo"></a>
             </div>
 
             <div class="nav__list">
@@ -47,24 +47,24 @@
       </nav>
    </div>
   
-   <div class="map_wrap" style="position:relative;">
+   <div class="map_wrap" style="position:relative;" >
     <div style="z-index:9">
       <form class="searching" onsubmit="searchPlaces(); return false;">
          <input type="text" name="query" placeholder="우리집 주변의 ${menu}" id="keyword">
          <button class="search-btn">검색</button>
       </form>
    </div>
-      <div id="map" style="width: 100%; height: 100%; position: fixed; left:0;top:0;margin:0 auto;z-index:1"></div>
+   <div id="map" style="width: 100%; height: 100%; position: fixed; left:0;top:0;margin:0 auto;z-index:1"></div>
       <div id="menu_wrap" class="bg_white">
          <div class="option"></div>
          <ul id="placesList"></ul>
          <div id="pagination"></div>         
       </div>
-      <div id="review" style="border:solid #20B2AA;display:none;float:left;width:300px; height:100%;position:relative;background-color: white;">                  
-         <ul>
-            <li>이미지 </li>
-            <li>제목</li>
-            <li>내용 </li>
+   <div id="review" style="border:solid #20B2AA;display:none;float:left;width:300px;position:relative;z-index:1; height:100%;background-color: white;">                  
+       <ul>
+          <li>이미지 </li>
+          <li>제목</li>
+          <li>내용 </li>
             <li>작성자 | 작성일자</li>                  
          </ul>
          <ul>
@@ -112,6 +112,7 @@
 				</div>
 			</div>      
       	</div>      
+   </div>
    </div>
    
    <script>

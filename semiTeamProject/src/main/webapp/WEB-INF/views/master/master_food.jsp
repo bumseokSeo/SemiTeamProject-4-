@@ -56,6 +56,11 @@
 	   .day{
 	       display: none;
 	   }
+	   
+	   #photoDelete{
+	   		display: none;
+	   }
+	   
 
 </style>
 <script>
@@ -65,6 +70,29 @@
     	var flagTemp = false;
     	var flagWeather = false;
     	var flagEvent = false;
+    	
+    	//우선순위 확인 함수
+    	function priorityChange(){
+			 if(flagSeason == false && flagTemp==false && flagWeather==false && flagEvent==false){	 
+				 $("#priorityNo").prop("checked", true);
+			 }
+			 else{
+				 $("#priorityYes").prop("checked", true);
+			 }
+		}
+    	
+    	//이미지 미리보기 함수
+    	function imagePreview(input, expression){
+    		if(input.files && input.files[0]){
+    			var reader = new FileReader();
+    			
+    			reader.onload = function(e){
+    				$(expression).attr('src', e.target.result);			
+    			}
+    			reader.readAsDataURL(input.files[0]);
+    		}
+    	}
+       
     	
         //검색 버튼 클릭하면 DB에서 해당 음식 정보 끌어오기
         //검색 버튼 클릭시 해당 음식이 DB에 없다면 없는 음식이라고 알리기
@@ -82,39 +110,109 @@
             $("#fname").attr("disabled", true);
             //수정할 음식을 검색했기 때문에 추가 버튼은 안보이게
             $("#add").css('visibility', 'hidden');
+           
             
-            //검색 버튼 클릭시 submit
-            /*
-            $("#adminForm").attr("action", "foodSearch");
-            $("#adminForm").submit(function(){
-            	
-            	
-            });*/
-            
+            //검색 버튼 클릭하면 음식 정보 가져오기
             var searchFood = $("#searchFood").val();
             
-            /*
+            /////////////////////////////////////////////////////////////////
             $.ajax({
             	url : "/getFoodData",
             	data : "searchFood=" + searchFood,
             	method : 'post',
             	success : function(result){
             		
+            		if(result==""){
+            			alert('존재하지 않는 음식입니다.\n ');
+            			return false;
+            		}
+            		
+            		console.log(result);
+            		$("#fname").val(result.fname);
+            		$("#fcategory").val(result.fcategory);
+            		$("#season").val(result.season).prop("selected", true);
+            		$("#temp").val(result.temp).prop("selected", true);
+            		
+            		if(result.season !="allseason"){
+            			flagSeason = true;
+            		}else{
+            			flagSeason=false;
+            		}
+            		
+            		if(result.temp!="0"){
+            			flagTemp = true;
+            		}else{
+            			flagTemp = false;
+            		}
+            		
+            		if(result.weather==null){
+            			$("#weather option:eq(0)").prop("selected", true);
+            			flagWeather=false;
+            		}else{
+            			$("#weather").val(result.weather).prop("selected", true);
+            			flagWeather=true;
+            		}
+            		
+            		if(result.event==null){
+            			$("#event option:eq(0)").prop("selected", true);
+            			flagEvent=false;
+            		}else{
+            			$("#event option:eq(1)").prop("selected", true);
+            			var event = result.event;
+            			var idx = event.indexOf("-");
+            			console.log(idx);
+            			
+            			//월일만 보이게 하기
+            			
+            			$("#eventSelected").html(event.substr(idx+1));
+                        $("#eventSelected").css('display', 'inline-block');
+                        $("#deleteDate").css('display', 'inline-block');
+                        flagEvent=true;
+            		}
+            		
+            		 //날짜 선택한 뒤 날짜 삭제 버튼 클릭
+		            $("#deleteDate").click(function(){
+		                $("#eventSelected").html('');
+		                $("#eventSelected").css('display', 'none');
+		                $("#deleteDate").css('display', 'none');
+		
+		              //이벤트 없음으로 되돌리기
+		                $("#event option:eq(0)").prop("selected", true);
+		                
+		                flagEvent = false;
+		                priorityChange();
+		              
+		                //이벤트 저장된 값 초기화
+		               $("#event option:eq(1)").val('');  
+		               console.log($("#event option:eq(1)").val());           
+		            })
+                   
+		            //우선순위 반영
+            		priorityChange();
+            		
+            		//3.
+            		//음식 사진 가져오기
+            		$("#foodPhoto").attr("src", "/img/foodimg/upload/"+result.foodimg);
+            		$("#photoDelete").css("display", "inline-block");
+            		
+            		$("#photoDelete").click(function(){
+            			$("#foodPhoto").attr("src", "");
+            			$("#photoDelete").css("display", "none");
+            		});
+            		
             	},
             	error : function(error){
+            		console.log(error.responseText);	
             		
             	}
-            	
-            	
-            });
-            */
             
-
+            });
+           
         });
         
         //취소 버튼 클릭시 초기화
         $("#cancel").click(function(){
-
+        	
         	$(".searchForm").css('visibility','visible');
             $("#searchFood").val('');
             $("#fname").val('');
@@ -124,17 +222,21 @@
             $(".form-check").attr("checked", false);
             $("#foodimg").val('');
             $("#add").css('visibility', 'visible');
-		    $("#modify").css('visibility', 'visible');
+            $("#modify").css('visibility', 'visible');
         });
 
         //추가 버튼 클릭 시
         $("#add").click(function(){
+        	
+        	var standard = /\s/g;
+        	var fname = $("#fname").val();
 
-            if($("#fname").val()==''){
+            if(fname=='' || fname.match(standard)){
                 alert('음식 이름을 입력하세요.');
                 $("#fname").focus();
                 return false;
             }
+             
             if($("#fcategory").val()==''){
                 alert("음식 종류를 입력하세요. (ex.한식, 양식, 중식, 일식, 디저트..)");
                 $("#fcategory").focus();
@@ -162,6 +264,10 @@
         	var fileName = file.substring(file.lastIndexOf("\\")+1);
         	console.log(fileName);
         	
+        	//////////////////////////////////////////////
+        	imagePreview(this, "#foodPhoto");
+        	$("#photoDelete").css("display", "inline-block");
+        	
         	$.ajax({
         		url : '/fileNameCheck',
         		data : "fileName=" + fileName,
@@ -179,6 +285,15 @@
         	 		console.log(error.responseText);	 		
         	 	}	
         	});
+        	
+        	$("#photoDelete").click(function(){
+    			$("#foodPhoto").attr("src", "");
+    			$("#photoDelete").css("display", "none");
+    			$("#foodimg").val('');
+    		});
+        	
+        	
+        	
         });
         
         //수정 버튼 클릭 시
@@ -188,6 +303,8 @@
         	 $("#adminForm").attr("action", "foodModify");
              
              $("#adminForm").submit();
+             
+             
         });
        
 		//음식 추가시 검색창, 수정 버튼 안보이게 처리
@@ -198,12 +315,7 @@
 		     
 		 });
 		
-		function priorityChange(){
-			 if(flagSeason == false && flagTemp==false && flagWeather==false && flagEvent==false){	 
-				 $("#priorityNo").prop("checked", true);
-			 }
-		}
-        
+		
         //우선 순위 라디오 버튼은 select에서 모두 첫번째 항목일때  N 체크 
         //select에서 선택한 항목이 한개라도 첫번째가 아니면 저절로 Y 체크
         //화면에서는 보이지 않는 부분
@@ -307,7 +419,13 @@
                 console.log($("#event option:eq(1)").val());
                 
                 ////////선택된 날짜 나타나게 하기
-                $("#eventSelected").html(eventDate);
+                
+            	var idx = eventDate.indexOf("-");
+            	console.log(idx);
+            			
+            	//월일만 보이게 하기
+            			
+            	$("#eventSelected").html(eventDate.substr(idx+1));
                 $("#eventSelected").css('display', 'inline-block');
                 $("#deleteDate").css('display', 'inline-block');
                 
@@ -397,7 +515,6 @@
                         <select class="form-select col-auto" id="weather" name="weather">
                             <option selected value="allweather">상관 없음</option>
                             <option value="clear">맑음</option>
-                            <option value="cloud">흐림</option>
                             <option value="rain">비</option>
                             <option value="snow">눈</option>
                         </select>
@@ -434,7 +551,11 @@
                 <!--음식 사진 파일 업로드 (Not Null)-->
                 <div class="row m-2">
                     <label class="col-sm-2 col-form-label" for="foodimg">음식 사진</label>
-                    <input type="file" class="col-sm-5" id="foodimg" name="filename">
+                    <input type="file" class="col-sm-5" id="foodimg" name="filename" >
+                   
+	               <button type="button"  class="btn-close"  aria-label="Close" id="photoDelete"></button>
+	               <img id="foodPhoto"/>
+                    
                 </div>
                 
                 <div class="m-2">

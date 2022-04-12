@@ -8,9 +8,11 @@ spring:
       suffix: .jsp
   datasource: #바이바티스
     driver-class-name: com.mysql.cj.jdbc.Driver
+
     url: jdbc:mysql://218.51.41.197/semiproject?characterEncoding=UTF-8
     username: semiproject_id
     password: fullstackteam4
+
   devtools: #자동실행
     livereload:
       enabled: true

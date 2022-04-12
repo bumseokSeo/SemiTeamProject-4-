@@ -12,5 +12,8 @@ public interface FoodService {
 	
 	//폼의 음식 데이터 추가
 	public int foodInsert(FoodVO vo);
+	
+	//해당 음식 데이터 가져오기
+	public FoodVO getFoodData(String searchFood);
 
 }
