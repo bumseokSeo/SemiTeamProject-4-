@@ -61,17 +61,14 @@ public class FoodController {
 	@PostMapping("/master/foodAdd")
 	public ResponseEntity<String> foodAddOk(FoodVO vo, HttpServletRequest request){
 		
-		
 		ResponseEntity<String> entity = null;
 		
 		HttpHeaders headers = new HttpHeaders();
 		
 		headers.setContentType(new MediaType("text", "html", Charset.forName("UTF-8"))); 
 		
-		/////이미 데이터베이스에 해당 이름의 음식이 있는지 확인
-		
+		//이미 데이터베이스에 해당 이름의 음식이 있는지 확인
 		int result = service.checkFoodName(vo.getFname());
-		
 		
 		if(result>0) {
 			
@@ -79,29 +76,23 @@ public class FoodController {
 			
 			entity = new ResponseEntity(msg, headers,HttpStatus.BAD_REQUEST );
 			
-			
-			
-		}else {
-			
+		}else {		
 			//파일 업로드를 위한 업로드 위치의 절대 주소
 			String path = request.getSession().getServletContext().getRealPath("/img/foodimg/upload");
 			
 			System.out.println(path);
 			
-			System.out.println(vo.getEvent());  //no
-			
-			
 			//event가 no면 변경해주기
 			if((vo.getEvent()).equals("no")) {
 				vo.setEvent(null);
-				
+			}
+			
+			if((vo.getWeather()).equals("allweather")) {
+				vo.setWeather(null);
 			}
 			
 			System.out.println(vo.getEvent()); 
-			
-			
 			System.out.println(vo.getPriority());
-	
 			
 			try {
 				
@@ -115,10 +106,8 @@ public class FoodController {
 				
 				File f = new File(path, fileName);
 				
-				
 				//파일 업로드
 				try {
-					
 					file.transferTo(f);
 					System.out.println("파일 업로드");
 					vo.setFoodimg(fileName);
@@ -126,7 +115,6 @@ public class FoodController {
 				}catch(Exception ee) {
 					
 				}
-				
 				//DB에 추가
 				service.foodInsert(vo);
 				
@@ -134,24 +122,25 @@ public class FoodController {
 			
 				entity = new ResponseEntity(msg, headers,HttpStatus.OK );
 				
-				
 			}catch(Exception e) {
-				
 				e.printStackTrace();
-				
 				//파일 삭제
 				deleteFile(path, vo.getFoodimg());
 				
 				String msg = "<script>alert('음식이 추가를 실패하였습니다.'); history.back(); </script>";
-				
 				entity = new ResponseEntity(msg, headers,HttpStatus.BAD_REQUEST );
-				
 			}
 		}
-		
 		return entity;
 	}
 	
+	@PostMapping("/getFoodData")
+	@ResponseBody
+	public FoodVO sendFoodData(@RequestParam("searchFood") String searchFood) {
+		
+		return service.getFoodData(searchFood);
+		
+	}
 	
 	//파일 삭제
 	public void deleteFile(String p, String f) {
@@ -165,6 +154,4 @@ public class FoodController {
 	}
 	
 	
-	
-
 }
