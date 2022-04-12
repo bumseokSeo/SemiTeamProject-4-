@@ -27,7 +27,7 @@
          <div>
             <div class="nav__brand">
                <ion-icon name="menu-outline" class="nav__toggle" id="nav-toggle"></ion-icon>
-               <a href="#" class="nav__logo">검색바?</a>
+               <a href="#" class="nav__logo"></a>
             </div>
 
             <div class="nav__list">
