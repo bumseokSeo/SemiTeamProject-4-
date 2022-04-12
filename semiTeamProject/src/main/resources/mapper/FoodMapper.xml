@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace = "com.campus.myapp.dao.FoodDAO">
+  
+  	<select id="checkFilename" resultType="int">
+  		select count(foodimg) from food where foodimg=#{param1} 
+  	
+  	</select>
+  	
+  	<select id="checkFoodName" resultType="int">
+  		select count(fname) from food where fname=#{param1}
+  	
+  	</select>
+  	
+  	<insert id="foodInsert" >
+  		
+  		insert into food(fname, season, temp, weather, foodimg, fcategory, priority, event)
+  		values(#{fname}, #{season}, #{temp}, #{weather}, #{foodimg}, #{fcategory}, #{priority}, #{event})
+  		
+  	</insert>
+  
+  
+  </mapper>

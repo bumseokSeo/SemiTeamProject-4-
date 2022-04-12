@@ -23,4 +23,11 @@
 		update member set username=#{username}, profile=#{profile}, userpwd=#{userpwd}, email=#{email}
 		where userid=#{userid}
 	</update>
+	<delete id="memberDelete">
+		delete from member where userid=#{param1}
+	</delete>
+	<select id="memberListAll" resultType="com.campus.myapp.vo.MemberVO">
+		select userid,username,email,sex from member where userid not in ("master")
+	</select>
+
 </mapper>

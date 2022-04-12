@@ -104,6 +104,7 @@ section {
 
 .imgC p {
   text-align: center;
+  color:gray;
 }
 
 .modal {
@@ -150,7 +151,7 @@ section {
 	color: #ffffff;
 	background-color: #000;
 	font-size: 14px;
-	padding: 2rem;
+	padding: 10px;
 }
 /* ======================오른쪽 imgList 모달창 끝==================== */
 
@@ -353,42 +354,42 @@ section {
 
 	
 				<div class="cody-sub-style-list">
-					<a href="#" class="list" target="blank">
+					<a href="${url}/codyStyleList?style=casual" class="list" target="blank">
 						<img src="${url}/img/cody_main2.png"  alt="" class="list-img" >
 						<div class="list-description">
 							<h3>Casual</h3>
 							<span>캐주얼룩</span>
 						</div>
 					</a>
-					<a href="#" class="list" target="blank">
+					<a href="${url}/codyStyleList?style=modern" class="list" target="blank">
 						<img src="${url}/img/cody_main3.png" alt="" class="list-img">
 						<div class="list-description">
 							<h3>Modern</h3>
 							<span>모던룩</span>
 						</div>
 					</a>
-					<a href="#" class="list" target="blank">
+					<a href="${url}/codyStyleList?style=office" class="list" target="blank">
 						<img src="${url}/img/cody_main4.png" alt="" class="list-img">
 						<div class="list-description">
 							<h3>Office</h3>
 							<span>오피스룩</span>
 						</div>
 					</a>
-					<a href="#" class="list" target="blank">
+					<a href="${url}/codyStyleList?style=street" class="list" target="blank">
 						<img src="${url}/img/cody_main2.png" alt="" class="list-img">
 						<div class="list-description">
 							<h3>Street</h3>
 							<span>스트릿룩</span>
 						</div>
 					</a>
-					<a href="#" class="list" target="blank">
+					<a href="${url}/codyStyleList?style=walk" class="list" target="blank">
 						<img src="${url}/img/cody_main2.png" alt="" class="list-img">
 						<div class="list-description">
 							<h3>Walk</h3>
 							<span>산책룩</span>
 						</div>
 					</a>
-					<a href="#" class="list" target="blank">
+					<a href="${url}/codyStyleList?style=special" class="list" target="blank">
 						<img src="${url}/img/cody_main2.png" alt="" class="list-img">
 						<div class="list-description">
 							<h3>Special</h3>

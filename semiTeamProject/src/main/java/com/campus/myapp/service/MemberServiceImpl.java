@@ -1,5 +1,7 @@
 package com.campus.myapp.service;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
@@ -40,5 +42,19 @@ public class MemberServiceImpl implements MemberService {
 		// TODO Auto-generated method stub
 		return dao.memberUpdate(vo);
 	}
+
+	@Override
+	public int memberDelete(String userid) {
+		// TODO Auto-generated method stub
+		return dao.memberDelete(userid);
+	}
+
+	@Override
+	public List<MemberVO> memberListAll() {
+		// TODO Auto-generated method stub
+		return dao.memberListAll();
+	}
+
+	
 
 }
