@@ -65,7 +65,5 @@ public class ReviewVO {
 	public int getNo() {
 		// TODO Auto-generated method stub
 		return 0;
-	}
-	
-	
+	}	
 }
