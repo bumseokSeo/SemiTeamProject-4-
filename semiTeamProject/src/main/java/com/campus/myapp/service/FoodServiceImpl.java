@@ -43,11 +43,6 @@ public class FoodServiceImpl implements FoodService {
 		
 		return dao.getFoodData(searchFood);
 
-
-
 	}
-
-	
-
 
 }
