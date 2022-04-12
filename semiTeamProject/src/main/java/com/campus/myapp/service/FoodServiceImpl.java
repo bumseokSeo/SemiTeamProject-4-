@@ -32,15 +32,16 @@ public class FoodServiceImpl implements FoodService {
 	}
 
 	@Override
-<<<<<<< HEAD
+
 	public String getfname() {
 		// TODO Auto-generated method stub
 		return dao.getfname();
-=======
+	}
+	
+	@Override
 	public FoodVO getFoodData(String searchFood) {
 		
 		return dao.getFoodData(searchFood);
->>>>>>> 0605d22f4076ad5c585a690f66443ff201cd4fb1
 	}
 
 	

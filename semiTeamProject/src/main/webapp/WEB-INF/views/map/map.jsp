@@ -106,7 +106,7 @@
 							
 						</form>
 					</div>
-=======
+
    <div class="l-navbar" id="navbar">
       <nav class="nav">
          <div>
@@ -145,37 +145,8 @@
          <ul id="placesList"></ul>
          <div id="pagination"></div>         
       </div>
-   <div id="review" style="border:solid #20B2AA;display:none;float:left;width:300px;position:relative;z-index:1; height:100%;background-color: white;">                  
-       <ul>
-          <li>이미지 </li>
-          <li>제목</li>
-          <li>내용 </li>
-            <li>작성자 | 작성일자</li>                  
-         </ul>
-         <ul>
-            <li>이미지 </li>
-            <li>제목</li>
-            <li>내용 </li>
-            <li>작성자 | 작성일자</li>                  
-         </ul>
-         <ul>
-            <li>이미지 </li>
-            <li>제목</li>
-            <li>내용 </li>
-            <li>작성자 | 작성일자</li>                  
-         </ul>
-         <ul>
-            <li>이미지 </li>
-            <li>제목</li>
-            <li>내용 </li>
-            <li>작성자 | 작성일자</li>                  
-         </ul>
-         <ul>
-            <li>이미지 </li>
-            <li>제목</li>
-            <li>내용 </li>
-            <li>작성자 | 작성일자</li>                  
-         </ul>
+   <div id="review" style="border:solid #20B2AA;display:none;float:left;width:300px;position:relative;z-index:2; height:100%;background-color: white;">                  
+       
          <hr/>
          <div id="reviewcomment">
 			<h5 style="height: 23px; font-size:17px;line-height:24px; text-align: center;">리뷰 작성</h5>
@@ -194,6 +165,39 @@
 						<textarea name="coment" id='coment' style="width:100%; height:50px;"></textarea>
 						<input type="submit" value="리뷰 등록";/>
 					</form>
+				</div>
+						<table cellspacing="0" class="reviewList">
+						<caption class="blind">리뷰 목록으로 별점, 이미지, 내용, 작성자, 작성일자
+							정보를 제공</caption>
+						
+						<thead>
+							<tr>
+								<th>이미지</th>
+								<th>내용</th>
+								<th><span>작성자·작성일자</span></th>
+							</tr>
+						</thead>
+						<tbody>
+
+							<tr>
+								<td class="lst_reviewimg">${vo.reviewimg }음식사진.jpg</td>
+								<td class="lst_star">${vo.star}☆☆☆☆</td>
+								<td class="lst_content">
+									<br>최고의 떡볶이 ${vo.content }</td>
+								<td class="lst_userid">이정은${vo.userid }<br>22.04.12${vo.writedate}</td>
+							</tr>
+							<tr>
+								<td class="lst_reviewimg">${vo.reviewimg }음식사진.jpg</td>
+								<td class="lst_star">${vo.star}☆☆</td>
+								<td class="lst_content">
+									<br>맛있는 아이스크림!${vo.content } </td>
+								<td class="lst_userid">김이박${vo.userid }<br>22.03.08${vo.writedate}</td>
+							</tr>
+
+						</tbody>
+					</table>
+			</div>
+		</div>
 				</div>
 			</div>      
       	</div>      
@@ -400,42 +404,7 @@
          }
       }
    </script>
->>>>>>> 0605d22f4076ad5c585a690f66443ff201cd4fb1
 
-
-					<table cellspacing="0" class="reviewList">
-						<caption class="blind">리뷰 목록으로 별점, 이미지, 내용, 작성자, 작성일자
-							정보를 제공</caption>
-						
-						<thead>
-							<tr>
-								<th>이미지</th>
-								<th>내용</th>
-								<th><span>작성자·작성일자</span></th>
-							</tr>
-						</thead>
-						<tbody>
-
-							<tr>
-								<td class="lst_reviewimg">${vo.reviewimg }음식사진.jpg</td>
-								<td class="lst_star">${vo.star}☆☆☆☆</td>
-								<td class="lst_content">
-									<br>최고의 떡볶이 ${vo.content }</td>
-								<td class="lst_userid">이정은${vo.userid }<br>22.04.12${vo.writedate}</td>
-							</tr>
-							<tr>
-								<td class="lst_reviewimg">${vo.reviewimg }음식사진.jpg</td>
-								<td class="lst_star">${vo.star}☆☆</td>
-								<td class="lst_content">
-									<br>맛있는 아이스크림!${vo.content } </td>
-								<td class="lst_userid">김이박${vo.userid }<br>22.03.08${vo.writedate}</td>
-							</tr>
-
-						</tbody>
-					</table>
-				</div>
-			</div>
-		</div>
 
 		<script>
 			// 마커를 담을 배열입니다

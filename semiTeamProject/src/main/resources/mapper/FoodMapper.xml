@@ -22,17 +22,16 @@
   		values(#{fname}, #{season}, #{temp}, #{weather}, #{foodimg}, #{fcategory}, #{priority}, #{event})
   		
   	</insert>
-<<<<<<< HEAD
+
   	<select id="getfname" resultType="String">
   		select fname from food order by rand() limit 1
   	</select>
-=======
+
   	
   	<select id="getFoodData" resultType="com.campus.myapp.vo.FoodVO">
   		select fname, season, temp, weather, foodimg, fcategory, priority, event from food where fname=#{param1}
   	
   	</select>
   
->>>>>>> 0605d22f4076ad5c585a690f66443ff201cd4fb1
   
   </mapper>
