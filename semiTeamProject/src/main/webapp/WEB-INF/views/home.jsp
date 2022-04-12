@@ -14,11 +14,9 @@
 
 body {
 	margin:0;
-	background: url(${url}/img/구름.gif) no-repeat center center fixed;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
-	background-size: cover;
 }
 
 
@@ -32,7 +30,7 @@ body {
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-	color: #4d4d4d;
+
 }
 
 #weather span:first-child {
@@ -147,6 +145,28 @@ body {
            const city = document.querySelector("#weather span:last-child");
            city.innerText = data.name;
            weather.innerHTML = data.weather[0].main +'/'+ data.main.temp;
+           
+           // 날씨에 따른 배경화면 변경
+   			let weatherinfo = data.weather[0].main;
+
+			if (weatherinfo == "Rain") {
+				  document.body.style.background = "url(${url}/img/raining.png) no-repeat center center fixed",
+				  document.body.style.backgroundSize = "cover";
+				  document.body.style.color = "#ffffff";
+		   } else if (weatherinfo == "Clouds") {
+				  document.body.style.background = "url(${url}/img/구름.gif) no-repeat center center fixed",
+				  document.body.style.backgroundSize = "cover";
+				  document.body.style.color = "#4d4d4d";
+		   } else if (weatherinfo == "Clear") {
+		          document.body.style.background = "url(${url}/img/clear.jpg) no-repeat center center fixed";
+			      document.body.style.backgroundSize = "cover";
+			      document.body.style.color = "#4d4d4d";
+		   } else {
+				  document.body.style.background = "url(${url}/img/bluesky.png) no-repeat center center fixed",
+				  document.body.style.backgroundSize = "cover";
+				  document.body.style.color = "#4d4d4d";
+		   }
+           
            //cody temp 단계 설정
            var temp = data.main.temp;
 			if(temp<=4) {
