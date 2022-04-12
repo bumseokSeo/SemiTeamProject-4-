@@ -29,5 +29,8 @@
 	<select id="memberListAll" resultType="com.campus.myapp.vo.MemberVO">
 		select userid,username,email,sex from member where userid not in ("master")
 	</select>
+	<delete id="memberDeleteOk">
+		delete from member where userid=#{param1}
+	</delete>
 
 </mapper>

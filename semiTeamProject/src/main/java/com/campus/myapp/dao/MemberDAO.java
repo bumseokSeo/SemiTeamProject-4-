@@ -30,6 +30,9 @@ public interface MemberDAO {
 	//맴버정보 전부 출력
 	public List<MemberVO> memberListAll();
 	
+	//회원관리-탈퇴
+	public int memberDeleteOk(String userid);
+	
 	
 }
 

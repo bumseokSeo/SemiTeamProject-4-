@@ -9,6 +9,7 @@ public class ReviewVO {
 	private String content;
 	private String reviewimg;
 	private String placeid;
+	private String placename;
 	
 	public int getReviewno() {
 		return reviewno;
@@ -57,6 +58,12 @@ public class ReviewVO {
 	}
 	public void setPlaceid(String placeid) {
 		this.placeid = placeid;
+	}
+	public String getPlacename() {
+		return placename;
+	}
+	public void setPlacename(String placename) {
+		this.placename = placename;
 	}
 	public void setIp(String remoteAddr) {
 		// TODO Auto-generated method stub

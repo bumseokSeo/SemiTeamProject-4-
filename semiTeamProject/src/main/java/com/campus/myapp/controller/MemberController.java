@@ -222,4 +222,10 @@ public class MemberController {
 		return service.memberListAll();
 	}
 	
+	//È¸¿øÅ»Åð½ÃÅ°±â
+	@GetMapping("memberDeleteOk")
+	public int memberDeleteOk(String userid) {
+		return service.memberDeleteOk(userid);
+	}
+	
 }
