@@ -31,9 +31,9 @@ public class CodyController {
 	public ModelAndView codyPage(int temp, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		String sex = (String)session.getAttribute("logSex");
-		//여기서부터
+		//
 		List<CodyVO> vo = service.codyRecommend(temp, sex);//임시로 설정
-		Collections.shuffle(vo);
+		Collections.shuffle(vo);//리스트 랜덤 정렬
 		List<CodyVO> cvo = new ArrayList<CodyVO>();
 		
 		for(int i=0; i<5; i++) {
@@ -41,7 +41,7 @@ public class CodyController {
 		}
 		
 		mav.addObject("vo", cvo);
-		//여기까지
+		//
 		mav.setViewName("cody/main_cody");
 		return mav;
 	}
