@@ -107,6 +107,34 @@
                   </form>
                </div>
 
+<<<<<<< HEAD
+=======
+			<hr />
+			<div id="reviewcomment">
+				<h5 style="height: 23px; font-size: 20px; line-height: 24px; text-align: center;">리뷰작성</h5>
+				<div class="evaluation">
+					<form id="evaluation" method="post" action="./save">
+						<fieldset>
+							<input type="radio" name="rating" value="5" id="rate1"><label
+								for="rate1">⭐</label> <input type="radio" name="rating"
+								value="4" id="rate2"><label for="rate2">⭐</label> <input
+								type="radio" name="rating" value="3" id="rate3"><label
+								for="rate3">⭐</label> <input type="radio" name="rating"
+								value="2" id="rate4"><label for="rate4">⭐</label> <input
+								type="radio" name="rating" value="1" id="rate5"><label
+								for="rate5">⭐</label>
+						</fieldset>
+					</form>
+					<div style="text-align: center;">
+						<form method='post' id="repviewFrm">
+							<textarea name="coment" id='coment'
+								style="width: 100%; height: 80px;"></textarea>
+							<input type="submit" value="리뷰 등록"/>
+							
+						</form>
+					</div>
+
+>>>>>>> 086b713e07000a28d3f16ff27830d5614d744649
    <div class="l-navbar" id="navbar">
       <nav class="nav">
          <div>
@@ -149,6 +177,7 @@
        
          <hr/>
          <div id="reviewcomment">
+<<<<<<< HEAD
          <h5 style="height: 23px; font-size:17px;line-height:24px; text-align: center;">리뷰 작성</h5>
          <div class="evaluation">
             <form id="evaluation" method="post" action="./save">
@@ -201,6 +230,60 @@
             </div>
          </div>      
          </div>      
+=======
+			<h5 style="height: 23px; font-size:17px;line-height:24px; text-align: center;">리뷰 작성</h5>
+			<div class="evaluation">
+				<form id="evaluation" method="post" action="./save">
+					<fieldset>
+						<input type="radio" name="rating" value="5" id="rate1"><label for="rate1">⭐</label>
+						<input type="radio" name="rating" value="4" id="rate2"><label for="rate2">⭐</label>
+						<input type="radio" name="rating" value="3" id="rate3"><label for="rate3">⭐</label>
+						<input type="radio" name="rating" value="2" id="rate4"><label for="rate4">⭐</label>
+						<input type="radio" name="rating" value="1" id="rate5"><label for="rate5">⭐</label>
+					</fieldset>
+				</form>
+				<div style="text-align:center;">
+					<form method='post' id="repviewFrm">
+						<textarea name="coment" id='coment' style="width:100%; height:50px;"></textarea>
+						<input type="submit" value="리뷰 등록";/>
+					</form>
+				</div>
+						<table cellspacing="0" class="reviewList">
+						<caption class="blind">리뷰 목록으로 별점, 이미지, 내용, 작성자, 작성일자
+							정보를 제공</caption>
+						
+						<thead>
+							<tr>
+								<th>이미지</th>
+								<th>내용</th>
+								<th><span>작성자·작성일자</span></th>
+							</tr>
+						</thead>
+						<tbody>
+
+							<tr>
+								<td class="lst_reviewimg">${vo.reviewimg }음식사진.jpg</td>
+								<td class="lst_star">${vo.star}☆☆☆☆</td>
+								<td class="lst_content">
+									<br>최고의 떡볶이 ${vo.content }</td>
+								<td class="lst_userid">이정은${vo.userid }<br>22.04.12${vo.writedate}</td>
+							</tr>
+							<tr>
+								<td class="lst_reviewimg">${vo.reviewimg }음식사진.jpg</td>
+								<td class="lst_star">${vo.star}☆☆</td>
+								<td class="lst_content">
+									<br>맛있는 아이스크림!${vo.content } </td>
+								<td class="lst_userid">김이박${vo.userid }<br>22.03.08${vo.writedate}</td>
+							</tr>
+
+						</tbody>
+					</table>
+			</div>
+		</div>
+				</div>
+			</div>      
+      	</div>      
+>>>>>>> 086b713e07000a28d3f16ff27830d5614d744649
    </div>
    </div>
    
@@ -406,6 +489,7 @@
    </script>
 
 
+<<<<<<< HEAD
       <script>
          // 마커를 담을 배열입니다
          var markers = [];
@@ -544,6 +628,32 @@
                div.style.display = 'block';
             }
          }
+=======
+		<script>
+			// 마커를 담을 배열입니다
+			var markers = [];
+			var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+			mapOption = {
+				center : new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
+				level : 3
+			// 지도의 확대 레벨
+			};
+			// 지도를 생성합니다    
+			var map = new kakao.maps.Map(mapContainer, mapOption);
+			// 장소 검색 객체를 생성합니다
+			var ps = new kakao.maps.services.Places();
+			var searchOption = {
+				location : new kakao.maps.LatLng(37.564968, 126.939909),
+				radius : 5000,
+				size : 10
+			};
+			// 검색 결과 목록이나 마커를 클릭했을 때 장소명을 표출할 인포윈도우를 생성합니다
+			var infowindow = new kakao.maps.InfoWindow({
+				zIndex : 1
+			});
+			// 키워드로 장소를 검색합니다
+			searchPlaces();
+>>>>>>> 086b713e07000a28d3f16ff27830d5614d744649
 
          // 마커를 생성하고 지도 위에 마커를 표시하는 함수입니다
          function addMarker(position, idx, title) {
