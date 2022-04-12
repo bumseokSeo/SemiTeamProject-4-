@@ -111,7 +111,7 @@ $(function(){
 						tag +="<li>남성</li>";
 					}
 						
-					tag +="<li><button type='button' onclick='delCheck()' class='btn btn-danger' id='delbtn'>회원탈퇴</button></li></ul></form>";
+					tag +="<li><input type='button' value='회원탈퇴' title='"+vo.userid+"'class='btn btn-danger' id='delbtn'></input></li></ul></form>";
 				});
 				$("#d1").html(tag);
 			},
@@ -120,6 +120,23 @@ $(function(){
 			}
 		});
 	}
+	
+	$(document).on('click','#memberform input[value=회원탈퇴]',function(){
+		
+		if(confirm('탈퇴처리 시키겠습니까?')){
+			var params = "userid="+$(this).attr("title");
+			$.ajax({
+				url:'${url}/member/memberDeleteOk',
+				data:params,
+				success:function(result){
+					memberListAll();
+				},
+				error:function(e){
+					console.log(e.resopnseText);
+				}
+			});
+		}
+	});
 	memberListAll();
 });
 </script>
@@ -134,18 +151,6 @@ $(function(){
 			<li></li>
 		</ul>
     	<div id="d1">
-    		
-	    		
-	    			
-					
-					
-					
-					
-					
-					
-					
-			
-	    	
     	</div>
     </div>
     

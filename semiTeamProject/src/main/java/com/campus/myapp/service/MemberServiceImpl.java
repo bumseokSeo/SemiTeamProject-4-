@@ -55,6 +55,12 @@ public class MemberServiceImpl implements MemberService {
 		return dao.memberListAll();
 	}
 
+	@Override
+	public int memberDeleteOk(String userid) {
+		// TODO Auto-generated method stub
+		return dao.memberDeleteOk(userid);
+	}
+
 	
 
 }

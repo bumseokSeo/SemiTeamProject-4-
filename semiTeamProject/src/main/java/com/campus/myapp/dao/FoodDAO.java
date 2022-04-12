@@ -20,6 +20,9 @@ public interface FoodDAO {
 
 	public String getfname();
 	
+	//해당 음식 데이터 가져오기
+	public FoodVO getFoodData(String searchFood);
+	
 	
 	
 

@@ -12,4 +12,5 @@ public interface MemberService {
 	public int memberUpdate(MemberVO vo);
 	public int memberDelete(String userid);
 	public List<MemberVO> memberListAll();
+	public int memberDeleteOk(String userid);
 }
