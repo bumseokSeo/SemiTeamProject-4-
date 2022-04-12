@@ -17,6 +17,8 @@ public interface FoodDAO {
 	
 	//폼의 음식 데이터 추가
 	public int foodInsert(FoodVO vo);
+
+	public String getfname();
 	
 	
 	

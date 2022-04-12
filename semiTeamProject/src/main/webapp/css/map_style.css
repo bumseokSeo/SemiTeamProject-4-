@@ -129,18 +129,24 @@ border:0;
 display: none;
 }
 #evaluation label{
+margin:0px 0px 0px 30px;
+text-align:center;
 font-size:3em;
 color: transparent;
 text-shadow: 0 0 0 #f0f0f0;
 }
 #evaluation label:hover{
-text-shadow: 0 0 0 #a00;
+text-shadow: 0 0 0 #FAF082;
 }
 #evaluation label:hover~label{
-text-shadow: 0 0 0 #a00;
+text-shadow: 0 0 0 #FAF082;
 }
 #evaluation input[type=radio]:checked~label{
-text-shadow:0 0 0 #a00;
+text-shadow:0 0 0 #FAF082;
+}
+.reviewList{
+	width:100%;
+	
 }
 
 /* l NAV */

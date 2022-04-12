@@ -31,6 +31,12 @@ public class FoodServiceImpl implements FoodService {
 		return dao.foodInsert(vo);
 	}
 
+	@Override
+	public String getfname() {
+		// TODO Auto-generated method stub
+		return dao.getfname();
+	}
+
 	
 
 
