@@ -38,7 +38,7 @@
 <title>map메인화면</title>
 </head>
 <body id="body-pd">
-<<<<<<< HEAD
+
    <div class="l-navbar" id="navbar">
       <nav class="nav">
          <div>
@@ -107,8 +107,6 @@
                   </form>
                </div>
 
-<<<<<<< HEAD
-=======
 			<hr />
 			<div id="reviewcomment">
 				<h5 style="height: 23px; font-size: 20px; line-height: 24px; text-align: center;">리뷰작성</h5>
@@ -134,7 +132,6 @@
 						</form>
 					</div>
 
->>>>>>> 086b713e07000a28d3f16ff27830d5614d744649
    <div class="l-navbar" id="navbar">
       <nav class="nav">
          <div>
@@ -177,7 +174,7 @@
        
          <hr/>
          <div id="reviewcomment">
-<<<<<<< HEAD
+
          <h5 style="height: 23px; font-size:17px;line-height:24px; text-align: center;">리뷰 작성</h5>
          <div class="evaluation">
             <form id="evaluation" method="post" action="./save">
@@ -230,7 +227,7 @@
             </div>
          </div>      
          </div>      
-=======
+
 			<h5 style="height: 23px; font-size:17px;line-height:24px; text-align: center;">리뷰 작성</h5>
 			<div class="evaluation">
 				<form id="evaluation" method="post" action="./save">
@@ -283,7 +280,7 @@
 				</div>
 			</div>      
       	</div>      
->>>>>>> 086b713e07000a28d3f16ff27830d5614d744649
+
    </div>
    </div>
    
@@ -489,7 +486,7 @@
    </script>
 
 
-<<<<<<< HEAD
+
       <script>
          // 마커를 담을 배열입니다
          var markers = [];
@@ -628,7 +625,7 @@
                div.style.display = 'block';
             }
          }
-=======
+
 		<script>
 			// 마커를 담을 배열입니다
 			var markers = [];
@@ -653,7 +650,7 @@
 			});
 			// 키워드로 장소를 검색합니다
 			searchPlaces();
->>>>>>> 086b713e07000a28d3f16ff27830d5614d744649
+
 
          // 마커를 생성하고 지도 위에 마커를 표시하는 함수입니다
          function addMarker(position, idx, title) {
