@@ -20,6 +20,10 @@ a:link, a:visited {
 	text-decoration: none;
 	color: black;
 }
+a:hover{
+	text-decoration: underline;
+	color: black;
+}
 
 h1 {
 	margin-right: 100px;
@@ -163,7 +167,7 @@ h1 {
 			<li>아이디</li>
 
 			<li><input class="form-control form-control-lg" type="text"
-				placeholder="아이디" name="userid" id="userid"> <!-- <input type="text" id="idcheck" value='N' disabled/> -->
+				placeholder="아이디" name="userid" id="userid">
 			</li>
 			<li>비밀번호</li>
 			<li><input class="form-control form-control-lg" type="password"
@@ -178,7 +182,7 @@ h1 {
 	</form>
 	<div class="loginBottom">
 		<div>
-			<a href="/member/findMember" title="아이디/비밀번호 찾기">아이디/비밀번호 찾기</a>
+			<a href="/member/findId" title="아이디 찾기">아이디</a>/<a href="/member/findPwd" title="비밀번호 찾기">비밀번호 찾기</a>
 		</div>
 		<div>
 			<a href="/member/memberForm" title="회원가입">회원가입</a>
