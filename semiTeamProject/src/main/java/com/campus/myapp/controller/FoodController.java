@@ -5,6 +5,10 @@ package com.campus.myapp.controller;
 
 import java.io.File;
 import java.nio.charset.Charset;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -35,11 +39,75 @@ public class FoodController {
 	@GetMapping("/food/main_food")
 	public ModelAndView foodPage() {
 		
-		//음식 추천
 		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("food/main_food");		
 		return mav;
+		
+	}
+	
+	@PostMapping("/getFoodRecommend")
+	@ResponseBody
+	public List<FoodVO> foodRecommend(String weather){
+		
+		//음식 추천
+		//우선 위 있는 음식에서 2개
+		
+		//음식 추천 화면으로 보낼 음식 리스트
+		List<FoodVO> vo = new ArrayList<FoodVO>();
+		
+		//이벤트 일치 저장할 리스트
+		//List<FoodVO> event = new ArrayList<FoodVO>();
+		
+		//날씨 일치, 계절 일치, 온도 해당 하는 음식 저장할 리스트
+		List<FoodVO> foods = new ArrayList<FoodVO>();
+		
+		
+		
+		int cnt=0;
+		//cnt<=2까지 일때
+		//1. 오늘 날짜와 일치하는 이벤트 날짜 있는지 확인 -- 0개, 1개, 2개 이상...(여러개 있다면 이중 1개 선택해서 출력 리스트에 추가)
+		//오늘 날짜
+		LocalDate now = LocalDate.now();
+		
+		List<FoodVO> event = service.getEqualEvent(now.toString());
+		
+		if(event.size()>=2) {
+			//1개 선택하기
+			Collections.shuffle(event);
+			vo.add(event.get(0));
+			cnt=1;
+		}else if(event.size()==1) {
+			//1개
+			vo.add(event.get(0));
+			cnt=1;
+		}
+		//0개인 경우 - cnt = 0
+		
+		
+		
+		//2. 오늘 날씨와 일치하는 음식 있는지 확인
+		/////////////////////////오늘 날씨를 받아와야 한다.....
+		
+		
+		
+		//3. 오늘 계절과 일치하는 음식 있는지 확인
+		int month = now.getMonthValue();
+		
+		
+		//4. 오늘 온도에 해당하는 음식 있는지 확인
+		
+		
+		
+		//2,3,4, 담는 리스트에 추가 <- (1번이 0개이면 2개 추출, 1개 이상이면 1개 추출)
+		
+		
+		
+		
+		//우선 순위 없는 음식에서 3개
+		//priorty==N인 음식 리스트 가져오기 그중 무작위 3개
+				
+		 return vo;
 		
 	}
 	
