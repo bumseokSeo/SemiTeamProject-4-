@@ -6,7 +6,7 @@
 <mapper namespace="com.campus.myapp.dao.MapDAO">
 	
 	<select id="myReviewListAll" resultType="com.campus.myapp.vo.ReviewVO">
-		select r.star, date_format(r.writedate,' %y-%m-%d') writedate, date_format(r.modifydate,' %y-%m-%d') modifydate, r.content, r.reviewimg, s.placename
+		select r.star, date_format(r.writedate,' %y-%m-%d') writedate, date_format(r.modifydate,' %y-%m-%d') modifydate, r.content, r.reviewimg, s.placename, r.reviewno 
 		from review r join store s on r.placeid=s.placeid
 		where r.userid=#{param1} order by reviewno desc
 	</select>

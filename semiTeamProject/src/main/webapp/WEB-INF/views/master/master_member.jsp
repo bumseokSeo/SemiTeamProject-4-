@@ -36,6 +36,7 @@
 		padding:49px;
 		overflow:hidden;
 		margin: 0 auto;
+		margin-bottom: 100px;
 		
 	
 	}
@@ -45,7 +46,7 @@
 		width:670px;
 		margin-right:60px;
 		float:left;
-		height:1000px;
+		height:900px;
 		overflow:auto;
 		
 		
@@ -55,7 +56,7 @@
 		border: 1px solid gray;
 		width:670px;
 		float:left;
-		height:1000px;
+		height:900px;
 		overflow:auto;
 		
 	}
@@ -84,6 +85,13 @@
 		padding-top: 4px;
 		width: 15%;
 	}
+	#search{
+		width:670px;
+		height:80px;
+		position:absolute;
+		top:1170px;
+		border : 1px solid gray;
+	}
 
 	
 </style>
@@ -92,10 +100,13 @@ $(function(){
 	
 	function memberListAll(){
 		var url = "${url}/member/memberListAll";
-		
+		var a = $("#searchWord").val();
+		var params = "searchword=$('#searchWord').val()";
+		//var params = "searchword=$('#searchWord')";
+
 		$.ajax({
 			url:url,
-			data:null,
+			data:params,
 			success:function(result){
 				var $result = $(result);
 				var tag = "";
@@ -137,8 +148,22 @@ $(function(){
 			});
 		}
 	});
+	
+	$("#searchFrm").submit(function(){
+		event.preventDefault();
+	    if($("#searchWord").val()==""){
+	       alert("검색어를 입력하세요.");
+	       return false;
+	    }
+	    
+	    
+	    memberListAll();
+	 });
+	
+	
 	memberListAll();
 });
+
 </script>
 <h1>관리자 페이지</h1>
 <div id="master">
@@ -157,6 +182,13 @@ $(function(){
     <div id="reviewlst">
     
     </div>
+    <div id="search">
+      <form method="get" action="" id="searchFrm">
+         
+         <input type="text" name="searchWord" id="searchWord"/>
+         <input type="submit" value="Search">
+      </form>
+   </div>
 </div>
 
 </body>

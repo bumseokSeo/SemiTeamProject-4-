@@ -28,6 +28,9 @@
 	</delete>
 	<select id="memberListAll" resultType="com.campus.myapp.vo.MemberVO">
 		select userid,username,email,sex from member where userid not in ("master")
+		<if	test='#{param1} != null'>
+			and userid like '%#{param1}%'
+		</if>
 	</select>
 	<delete id="memberDeleteOk">
 		delete from member where userid=#{param1}

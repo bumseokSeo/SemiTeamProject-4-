@@ -11,6 +11,7 @@ public class MemberVO {
 	private String answer;
     private String profile;
     
+    
 	public String getUserid() {
 		return userid;
 	}
@@ -59,4 +60,6 @@ public class MemberVO {
 	public void setProfile(String profile) {
 		this.profile = profile;
 	}
+	
+	
 }
