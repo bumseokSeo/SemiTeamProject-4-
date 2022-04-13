@@ -2,53 +2,35 @@ package com.campus.myapp.service;
 
 import java.util.List;
 
-import javax.inject.Inject;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.campus.myapp.dao.ReviewDAO;
-import com.campus.myapp.vo.PagingVO;
 import com.campus.myapp.vo.ReviewVO;
 
 @Service
 public class ReviewServiceImpl implements ReviewService{
+    @Autowired
+    ReviewDAO dao;
 
-	
-	@Override
-	public int ReviewInsert(ReviewVO vo) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+    @Override
+    public int reviewWrite(ReviewVO vo) {
+        return dao.reviewWrite(vo);
+    }
 
-	@Override
-	public List<ReviewVO> reviewList(PagingVO pVO) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    @Override
+    public List<ReviewVO> reviewList(int reviewno) {
+        return dao.reviewList(reviewno);
+    }
 
-	@Override
-	public int totalRecord(PagingVO pVO) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+    @Override
+    public int reviewEdit(ReviewVO vo) {
+        return dao.reviewEdit(vo);
+    }
 
-	@Override
-	public ReviewVO reviewSelect(int reviewno) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    @Override
+    public int reviewDel(int reviewno, String uesrid) {
+        return dao.reviewDel(reviewno, uesrid);
+    }
 
-
-	@Override
-	public int reviewUpdate(ReviewVO vo) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int reviewDelete(int reviewno, String userid) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-	
 }

@@ -38,9 +38,76 @@
 
 <!-- bootstrap -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+	
+	
+	// 댓글----------------------------------------------------------
+	$(function(){
+		// 댓글 목록을 가져오는 함수
+		function reviewListAll(){ // 현재 글의 댓글을 모두 가져오기
+			var url = "/review/list";
+			var params = "reviewno=${vo.reviewno}"; // 32번 글인경우: no=32 
+			$.ajax({
+				url:url,
+				data:params,
+				success:function(result){
+					var $result = $(result); // vo, vo, vo, vo...
+					
+					var tag = "<ul>";
+					
+					$result.each(function(idx, vo){
+						tag += "<li><div>"+vo.userid;
+						tag += "<li><div>"+vo.star;
+						tag += "("+vo.writedate+")";
+						
+						tag += "<br/>"+vo.content+"</div>";
+						
+						
+						tag +="<hr/></li>"; // vo의 개수만큼 순환
+					});
+					
+					tag += "</ul>";
+					
+					$("#reviewList").html(tag);
+					
+				}, error:function(e){
+					console.log(e.responseText);
+				}
+			})
+		}
+		
+		// 리뷰등록
+		$("#evaluation").submit(function(){
+			
+			event.preventDefault(); // form 기본이벤트 제거
+			if($("#content").val()==''){
+				alert("리뷰 입력 후 등록하세요.");
+				return;
+			}else{ // 리뷰을 입력한 경우
+				var params = $("#evaluation").serialize(); // form에 있는 데이터가 담김
+				alert(params);	
+				$.ajax({
+					url:'/review/writeOk',
+					data: params,
+					type:'POST',
+					success: function(r){
+						//alert(r);
+						$("content").val("");
+						// 에러가 안난다면 => 댓글목록이 refresh되어야 한다. 
+						//reviewListAll();
+					}, error:function(e){
+						console.log(e.responseText);
+					}
+				});
+			}
+		});
+		// 현재글의 댓글
+		//reviewListAll();
+	});
+</script>
 <title>map메인화면</title>
 </head>
 <body id="body-pd">
@@ -93,24 +160,23 @@
 				<h5 
 					style="height: 23px; font-size: 20px; line-height: 24px; text-align: center; margin:10px;">리뷰작성</h5>
 				<div class="evaluation">
-					<form id="evaluation" method="post" action="./save">
+					<form id="evaluation" method="post" action="/review/writeOk">
 						<fieldset>
-							<input type="radio" name="rating" value="5" id="rate1"><label
-								for="rate1">⭐</label> <input type="radio" name="rating"
+							<input type="radio" name="star" value="5" id="rate1"><label
+								for="rate1">⭐</label> <input type="radio" name="star"
 								value="4" id="rate2"><label for="rate2">⭐</label> <input
-								type="radio" name="rating" value="3" id="rate3"><label
-								for="rate3">⭐</label> <input type="radio" name="rating"
+								type="radio" name="star" value="3" id="rate3"><label
+								for="rate3">⭐</label> <input type="radio" name="star"
 								value="2" id="rate4"><label for="rate4">⭐</label> <input
-								type="radio" name="rating" value="1" id="rate5"><label
+								type="radio" name="star" value="1" id="rate5"><label
 								for="rate5">⭐</label>
 						</fieldset>
-					</form>
+					
 					<div style="text-align: center;">
-						<form method='post' id="repviewFrm" >
-							<textarea name="coment" id='coment'  class="form-control"
+							<textarea name="content" id='content'  class="form-control"
 								style="width: 100%; height: 80px;"></textarea>
 							<input type="submit" value="리뷰 등록" class="btn btn-info" style="margin:5px;" />
-
+							<input type="hidden" value="p1" name="placeid"/>
 						</form>
 					</div>
 					<div class="container">

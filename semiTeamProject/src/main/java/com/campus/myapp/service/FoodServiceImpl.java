@@ -1,5 +1,7 @@
 package com.campus.myapp.service;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
@@ -31,12 +33,6 @@ public class FoodServiceImpl implements FoodService {
 		return dao.foodInsert(vo);
 	}
 
-	@Override
-
-	public String getfname() {
-		
-		return dao.getfname();
-	}
 	
 	@Override
 	public FoodVO getFoodData(String searchFood) {
@@ -55,6 +51,12 @@ public class FoodServiceImpl implements FoodService {
 	public int foodUpdate(FoodVO vo) {
 		
 		return dao.foodUpdate(vo);
+	}
+
+	@Override
+	public List<FoodVO> getEqualEvent(String event) {
+		
+		return dao.getEqualEvent(event);
 	}
 
 }

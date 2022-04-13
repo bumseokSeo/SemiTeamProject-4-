@@ -3,9 +3,14 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="url" value="<%=request.getContextPath()%>"/>
 
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
 <script>
 
+	
+    var weatherData = null;
 	function onGeoOk(position) {
+		
 		
 		const API_KEY = "34f03c607cbd5ac6878b951a96d17bef";
 
@@ -17,9 +22,9 @@
 		.then(response => response.json())
 		.then(data => {
 
-			var line = "기온 : "+ data.main.temp + "<br/>";
-                line += "날씨 : " + data.weather[0].description + "<br/>";
-		
+			var line = "<div>기온 : "+ data.main.temp + "</div><br/>";
+                line += "<div>날씨 : <span  id='weatherInfo'>" + data.weather[0].description + "</span></div><br/>";
+				line += "<input type='button' id='b'/>"
 			var info = document.querySelector("#info");
 
 			info.innerHTML = line;
@@ -30,7 +35,27 @@
 			var icon = document.querySelector(".weatherIcon");
 			icon.src = weatherIconUrl;
 			
+			weatherData = $("#weatherInfo").text();
+			$('#b').val(weatherData);
+			alert(weatherData);
+			
+			$.ajax({
 				
+				url : "/getFoodRecommend",
+				data : "weather=" + weatherData,
+				method : "post",
+				
+				success : function(result){
+					
+				},
+				error : function(error){
+					console.log(error.responseText);
+				}
+				
+				
+				
+			}); 
+			
 		
 		});
 	}
@@ -39,7 +64,48 @@
 		alert('위치를 찾을 수 없습니다. ')
 	}
 	
+
 	navigator.geolocation.getCurrentPosition(onGeoOk,onGeoError);
+	
+	//음식 데이터 추천 받기 위해 날씨 정보를 넘겨줘야 한다. 
+	$(document).ready(function(){
+		
+		
+		
+		
+		/* 
+		if(weatherData==null){
+			return;
+		}
+		
+		$.ajax({
+			
+			url : "/getFoodRecommend",
+			data : "weather=" + weatherData,
+			method : "post",
+			
+			success : function(result){
+				
+			},
+			error : function(error){
+				console.log(error.responseText);
+			}
+			
+			
+			
+		});  */
+		
+		
+		
+	});
+	 
+	$(function(){
+	
+		$('#b').click(function(){
+			alert('in');
+			
+		})	
+	})
 
     
 
@@ -120,6 +186,7 @@
 	<div id="weather">
 		<img class ="weatherIcon" src="" >
 		<div id="info"></div>
+		
 	</div>
 
 	<div id="foods">
