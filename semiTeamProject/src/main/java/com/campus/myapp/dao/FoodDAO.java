@@ -1,5 +1,7 @@
 package com.campus.myapp.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
@@ -17,8 +19,6 @@ public interface FoodDAO {
 	
 	//폼의 음식 데이터 추가
 	public int foodInsert(FoodVO vo);
-
-	public String getfname();
 	
 	//해당 음식 데이터 가져오기
 	public FoodVO getFoodData(String searchFood);
@@ -28,6 +28,11 @@ public interface FoodDAO {
 	
 	//음식 정보 수정
 	public int foodUpdate(FoodVO vo);
+	
+	//현재 날짜와 이벤트가 일치하는 음식 가져오기
+	public List<FoodVO> getEqualEvent(String event);
+	
+	//현재 날씨와 일치하는 음식 정보 가져오기
 	
 
 }

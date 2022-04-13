@@ -1,50 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper
-PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.campus.myapp.dao.ReviewDAO"><!-- namespace속성에 DAO의 위치 알려주기 -->
-	<insert id = "reviewInsert">
-		insert into review(reviewno, userid, writedate, modifydate, star, content, reviewimg, placeid)
-		value(#{reviewno},#{userid},#{writedate}, #{modifydate}, #{star}, #{content}, #{reviewimg}, #{placeid})
-	</insert>
-	<select id = "reviewList" resultType="com.campus.myapp.vo.ReviewVO">
-		select reviewno, userid, date_format(writedate,'%m-%d %H:%i') writedate, star, content, reviewimg, placeid
-		from review 
-		<if test='searchWord !=null'>
-			where ${searchKey} like '%${searchWord}%'
-		</if>
-		order by no desc
-		limit ${onePageRecord} offset ${offsetIndex}
-	</select>
-	<select id = "totalRecord" resultType="int">
-        select count(reviewno) cnt from review
-        <if test='searchWord !=null'>
-            where ${searchKey} like '%${searchWord}%'
-        </if>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace = "com.campus.myapp.dao.ReviewDAO">
+    <insert id="reviewWrite">
+        insert into review (reviewno, userid, content, star, reviewimg, placeid) values(#{reviewno}, #{userid}, #{content}, #{star}, #{reviewimg}, #{placeid})
+    </insert>
+    <select id="reviewList" resultType="com.campus.myapp.vo.ReviewVO">
+        select reviewno, userid, content, writedate, star, reviewimg from review
+        where no=${param1}
+        order by reviewno desc
     </select>
-    <select id="reviewSelect" resultType="com.campus.myapp.vo.ReviewVO">
-    	select reviewno, userid, writedate, modifydate, star, content, reviewimg, placeid
-    	from review where no=#{param1}    	
-    </select>
-    
-	
-	<update id="reviewUpdate">
-		update review set content=#{content} where reviewno=${reviewno} and userid=#{userid}
-	</update>
-	
-	<!-- 글 삭제 -->
-	<delete id="reviewDelete">
-		delete from review where reviewno=#{param1} and userid=#{param2}
-	</delete>
-	
-	<!-- 글 선택 삭제 -->
-	<delete id="reviewMultiDelete">
-		delete from review
-		<where>
-			<foreach item="item" collection="noList" open="no in(" separator="," close=")">
-				#{item}
-			</foreach>
-			and userid=#{userid}
-		</where>
-	</delete>
+    <update id="reviewEdit">
+        update review set modifydate=#{modifydate}, content=#{content} where reviewno=${reviewno} and userid=#{userid}
+    </update>
+    <delete id="reviewDel">
+        delete from review where reviewno=#{param1} and userid=#{param2}
+    </delete>
 </mapper>

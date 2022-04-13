@@ -49,13 +49,12 @@ h1 {
 	float: left;
 	width: 80%;
 }
+
 #findform li:last-of-type {
 	float: left;
 	margin: 0px;
 	width: 100%;
 }
-
-
 
 .form-control-lg {
 	width: 90%;
@@ -63,12 +62,11 @@ h1 {
 
 
 
-#findidbtn {
+#findpwdbtn {
 	width: 90%;
 	margin-left: 0px auto;
 	height:70px;
 	margin-bottom: 100px;
-	
 }
 
 .loginBottom {
@@ -88,6 +86,13 @@ h1 {
 	  
 	});
 	function formcheck() {
+		var userid = document.getElementById("userid");
+
+		if (userid.value == "") {
+			alert("아이디를 입력해주세요");
+			userid.focus();
+			return false;
+		}
 		var email = document.getElementById("email");
 
 		if (email.value == "") {
@@ -108,11 +113,15 @@ h1 {
 
 </script>
 <div id="findform">
-	<form method="post" action="${url}/member/findIdOk" onsubmit="return formcheck()">
-		<h1>아이디 찾기</h1>
+	<form method="post" action="${url}/member/findPwdOk"
+		onsubmit="return formcheck()">
+		<h1>비밀번호 찾기</h1>
 		<ul>
+			<li>아이디</li>
+			<li><input class="form-control form-control-lg" type="text"
+				placeholder="찾을 계정의 아이디를 입력하세요" name="userid" id="userid">
+			</li>
 			<li>가입한 이메일</li>
-
 			<li><input class="form-control form-control-lg" type="text"
 				placeholder="이메일" name="email" id="email">
 			</li>
@@ -126,18 +135,19 @@ h1 {
 			</li>
 			<li>답변</li>
 			<li><input class="form-control form-control-lg" type="text" placeholder="" name="answer" id="answer"></li>
-			<li> <input type="submit" value="아이디 찾기"
-				id="findidbtn" class="btn btn-secondary"/></li>
+			<li> <input type="submit" value="비밀번호 찾기"
+				id="findpwdbtn" class="btn btn-secondary"/></li>
 		</ul>
 	</form>
 	<div class="loginBottom">
 		<div>
-			<a href="/member/findPwd" title="비밀번호 찾기">비밀번호 찾기</a>
+			<a href="/member/findId" title="아이디 찾기">아이디 찾기</a>
 		</div>
 		<div>
 			<a href="/member/memberForm" title="회원가입">회원가입</a>
 		</div>
 	</div>
 </div>
+
 </body>
 </html>

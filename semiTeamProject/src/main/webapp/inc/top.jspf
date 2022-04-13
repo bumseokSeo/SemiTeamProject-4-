@@ -172,8 +172,7 @@ h1 {
 				<c:if test="${logStatus == 'Y' && logId != 'master'}">
 					<a href="/member/logout">로그아웃</a> 
 					<a href="/member/memberEdit">마이페이지</a>
-					<a href="/">내 리뷰 보기</a>
-					<!-- <a href="/map/memberReview">내 리뷰 보기</a> -->
+					<a href="/map/myReview">내 리뷰 보기</a>
 				</c:if>
 				<c:if test="${logId == 'master' }">
 					<a href="/member/logout">로그아웃</a> 

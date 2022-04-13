@@ -133,7 +133,7 @@ body {
 
 <script>
      function onGeoOk(position) {
-      const API_KEY = "f5c60c534d9d9d62379dd9a1123c1983";
+      const API_KEY = "34f03c607cbd5ac6878b951a96d17bef";
        const lat = position.coords.latitude;
        const lon = position.coords.longitude;
        
@@ -143,8 +143,8 @@ body {
          .then((data) => {
            const weather = document.querySelector("#weather span:first-child");
            const city = document.querySelector("#weather span:last-child");
-           city.innerText = data.name;
-           weather.innerHTML = data.weather[0].main +'/'+ data.main.temp;
+           //city.innerText = data.name;
+           weather.innerHTML = data.weather[0].description +'/'+ data.main.temp;
            
            // 날씨에 따른 배경화면 변경
    			let weatherinfo = data.weather[0].main;

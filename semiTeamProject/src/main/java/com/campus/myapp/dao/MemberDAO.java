@@ -28,10 +28,19 @@ public interface MemberDAO {
 	public int memberDelete(String userid);
 	
 	//맴버정보 전부 출력
-	public List<MemberVO> memberListAll();
+	public List<MemberVO> memberListAll(String searchword);
 	
 	//회원관리-탈퇴
 	public int memberDeleteOk(String userid);
+	
+	//아이디 찾기
+	public MemberVO findId(MemberVO vo);
+
+	//비밀번호 찾기
+	public MemberVO findPwd(MemberVO vo);
+	
+	//비밀번호 재설정
+	public int resetPwdOk(MemberVO vo);
 	
 	
 }
