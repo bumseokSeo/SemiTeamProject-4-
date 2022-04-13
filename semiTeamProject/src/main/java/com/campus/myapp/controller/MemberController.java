@@ -56,6 +56,19 @@ public class MemberController {
 		mav.setViewName("member/memberEdit");
 		return mav;
 	}
+	//회원정보찾기 이동
+	@GetMapping("findId")
+	public ModelAndView findId() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("member/findId");
+		return mav;
+	}
+	@GetMapping("findPwd")
+	public ModelAndView findPwd() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("member/findPwd");
+		return mav;
+	}
 	
 	
 	// 회원등록

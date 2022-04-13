@@ -223,12 +223,7 @@ $(function(){
 			</ul>
 		</form>
 	</div>
-	<div id="review">
-		<ul>
-			
-		</ul>
 	
-	</div>
 
 </body>
 </html>
