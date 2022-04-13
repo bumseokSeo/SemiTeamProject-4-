@@ -119,7 +119,7 @@ body {
 		<div class="submenu-a submenu-a-cody"><a id="main_codylink" href="">코디추천</a></div>
 	</c:if>
 	<c:if test="${logId=='master'}">
-		<div class="submenu-a submenu-a-cody"><a href="${url}/master/master_cody">코디관리</a></div>
+		<div class="submenu-a submenu-a-cody"><a href="${url}/master/master_modify_cody">코디관리</a></div>
 	</c:if>
 
 	<c:if test="${logId != 'master' }">

@@ -49,12 +49,33 @@ public class CodyController {
 		return mav;
 	}
 
-	// 코디 관리자 페이지
-	@GetMapping("/master/master_cody")
-	public String masterPage() {
-		return "master/master_cody";
+	// 코디 관리자 페이지(수정)
+	@GetMapping("/master/master_modify_cody")
+	public ModelAndView masterModify() {
+		ModelAndView mav = new ModelAndView();
+		List<CodyVO> allVO = service.codyListAll();
+		mav.addObject("vo", allVO);
+		if(allVO.size()%3==0) {
+			mav.addObject("len", allVO.size()/3);
+		}else {
+			mav.addObject("len", allVO.size()/3+1);			
+		}
+		mav.setViewName("master/master_modify_cody");
+		return mav;
 	}
-
+	
+	// 코디 관리자 페이지(수정폼)
+	@GetMapping("/master/master_modify_form")
+	public String modifyForm() {
+		return "master/master_modify_form";
+	}
+	
+	// 코디 관리자 페이지(추가)
+	@GetMapping("/master/master_add_cody")
+	public String masterAdd() {
+		return "master/master_add_cody";
+	}
+	
 	// cname 중복확인
 	@PostMapping("/cnameCheck")
 	@ResponseBody

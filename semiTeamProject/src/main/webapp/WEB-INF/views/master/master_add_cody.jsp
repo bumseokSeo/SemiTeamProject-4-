@@ -154,7 +154,7 @@ function setImage(input, preview) {
 };
 </script>
 	<div id="d1">
-		<h1>코디 관리자 페이지</h1>
+		<h1>코디 추가페이지</h1>
 		<form method="post" action="/codyInsert" id="codyFrm" enctype="multipart/form-data">
 			<img src="" id="preview"/>
 			<ul>
