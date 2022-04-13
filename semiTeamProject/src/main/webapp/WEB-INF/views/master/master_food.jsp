@@ -60,7 +60,7 @@
 	   #photoDelete{
 	   		display: none;
 	   }
-	   
+	 
 
 </style>
 <script>
@@ -110,7 +110,7 @@
                 return false;
             }
           	//음식이름은 기본키여서 수정 불가
-            $("#fname").attr("disabled", true);
+            $("#fname").attr("readonly", true);
             //수정할 음식을 검색했기 때문에 추가 버튼은 안보이게
             $("#add").css('visibility', 'hidden');
            
@@ -126,7 +126,8 @@
             	success : function(result){
             		
             		if(result==""){
-            			alert('존재하지 않는 음식입니다.\n ');
+            			alert('존재하지 않는 음식입니다.\n');
+            			$("#cancel").click();
             			return false;
             		}
             		
@@ -161,6 +162,7 @@
             			flagEvent=false;
             		}else{
             			$("#event option:eq(1)").prop("selected", true);
+            			$("#event option:eq(1)").val(result.event);
             			var event = result.event;
             			var idx = event.indexOf("-");
             			console.log(idx);
@@ -189,6 +191,7 @@
 		               $("#event option:eq(1)").val('');  
 		               console.log($("#event option:eq(1)").val());           
 		            })
+		            
                    
 		            //우선순위 반영
             		priorityChange();
@@ -220,7 +223,7 @@
         	$(".searchForm").css('visibility','visible');
             $("#searchFood").val('');
             $("#fname").val('');
-            $("#fname").attr("disabled", false);
+            $("#fname").attr("readonly", false);
             $("#fcategory").val('');
             $(".form-select option:eq(0)").prop("selected", true);
             ///////////////////////////////////////////////////////
@@ -318,9 +321,7 @@
     			$("#foodimg").val('');
     			$("#fnameCheck").html('');
     		});
-        	
-        	
-        	
+ 	
         });
         
         //수정 버튼 클릭 시
@@ -331,21 +332,16 @@
                 $("#fcategory").focus();
                 return false;
             }
-        	
-        	
-
+ 
             if($("#foodimg").val()=='' && $("#foodPhoto").src == ''){
                 alert("음식 이미지 파일을 선택해 업로드 하세요.");
                 return false;
             }
             
-        	
         	//수정 버튼 클릭 시 submit
         	 $("#adminForm").attr("action", "foodModify");
              
              $("#adminForm").submit();
-             
-             
              
         });
        
@@ -458,6 +454,7 @@
                 
             	/////이벤트 있음의 value에 이벤트 날짜 넣기
                 $("#event option:eq(1)").val(eventDate);
+            	$("#eventSend").text(eventDate);
                 console.log($("#event option:eq(1)").val());
                 
                 ////////선택된 날짜 나타나게 하기
@@ -575,7 +572,7 @@
                     <a class="col-sm-2 day" id="deleteDate">삭제</a>
                 </div>
                 <!--우선순위 (Not Null)-->
-                <div class="row m-2"  >
+                <div class="row m-2"  id="priorityForm">
                     <label class="col-sm-2 col-form-label">우선순위</label>
                     <div class="form-check col-sm-3">
                         <input class="form-check-input m-2" type="radio" id="priorityYes" name="priority" value='Y'>

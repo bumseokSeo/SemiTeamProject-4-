@@ -34,7 +34,7 @@ public class FoodServiceImpl implements FoodService {
 	@Override
 
 	public String getfname() {
-		// TODO Auto-generated method stub
+		
 		return dao.getfname();
 	}
 	
@@ -43,6 +43,18 @@ public class FoodServiceImpl implements FoodService {
 		
 		return dao.getFoodData(searchFood);
 
+	}
+
+	@Override
+	public String getFileName(String fname) {
+		
+		return dao.getFileName(fname);
+	}
+
+	@Override
+	public int foodUpdate(FoodVO vo) {
+		
+		return dao.foodUpdate(vo);
 	}
 
 }

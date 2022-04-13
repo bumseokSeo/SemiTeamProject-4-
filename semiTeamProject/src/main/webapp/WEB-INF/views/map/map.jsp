@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-   pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="url" value="<%=request.getContextPath()%>" />
 <!DOCTYPE html>
@@ -12,104 +12,86 @@
 <link rel="stylesheet" href="${url }/css/map_style.css">
 <style>
 #top {
-   display: none;
+	display: none;
 }
 
 .reviewList {
-   overflow: hidden;
-   list-style-type: none;
-   font-size: 14px;
-   color: #000;
-   letter-spacing: -1px;
-   margin: 0;
-   list-style: none;
-   overflow: hidden;
-   position: relative;
-   min-height: 52px;
-   padding: 17px 0 18px;
-   border-top: 1px solid #f2f2f2;
-   border-bottin: 1px solid #ddd;
+	overflow: hidden;
+	list-style-type: none;
+	font-size: 14px;
+	color: #000;
+	letter-spacing: -1px;
+	margin: 0;
+	list-style: none;
+	overflow: hidden;
+	position: relative;
+	min-height: 52px;
+	padding: 17px 0 18px;
+	border-top: 1px solid #f2f2f2;
+	border-bottin: 1px solid #ddd;
 }
 </style>
 <!-- 카카오 api 라이브러리  -->
 <!-- services와 clusterer, drawing 라이브러리 불러오기 -->
 <script type="text/javascript"
-   src="//dapi.kakao.com/v2/maps/sdk.js?appkey=096ec0036610b77d5b4e1aa8571cbb1e&libraries=services,clusterer,drawing"></script>
+	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=096ec0036610b77d5b4e1aa8571cbb1e&libraries=services,clusterer,drawing"></script>
+
+<!-- bootstrap -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 <title>map메인화면</title>
 </head>
 <body id="body-pd">
 
-   <div class="l-navbar" id="navbar">
-      <nav class="nav">
-         <div>
-            <div class="nav__brand">
-               <ion-icon name="menu-outline" class="nav__toggle" id="nav-toggle"></ion-icon>
-               <a href="#" class="nav__logo"></a>
-            </div>
+	<div class="l-navbar" id="navbar">
+		<nav class="nav">
+			<div>
+				<div class="nav__brand">
+					<ion-icon name="menu-outline" class="nav__toggle" id="nav-toggle"></ion-icon>
+					<a href="#" class="nav__logo"></a>
+				</div>
 
-            <div class="nav__list">
-               <a href="#" class="nav__link active"> <ion-icon
-                     name="home-outline" class="nav__icon"></ion-icon> <span
-                  class="nav_name">지도홈</span>
-               </a> <a href="${url}/map/review" class="nav__link"> <ion-icon
-                     name="chatbubbles-outline" class="nav__icon"></ion-icon> <span
-                  class="nav_name">리뷰페이지</span>
-               </a>
-            </div>
-            <a href="#" class="nav__link"> <ion-icon name="log-out-outline"
-                  class="nav__icon"></ion-icon> <span class="nav_name">이 페이지
-                  나가기</span>
-            </a>
-         </div>
-      </nav>
-   </div>
+				<div class="nav__list">
+					<a href="#" class="nav__link active"> <ion-icon
+							name="home-outline" class="nav__icon"></ion-icon> <span
+						class="nav_name">지도홈</span>
+					</a> <a href="${url}/map/review" class="nav__link"> <ion-icon
+							name="chatbubbles-outline" class="nav__icon"></ion-icon> <span
+						class="nav_name">리뷰페이지</span>
+					</a>
+				</div>
+				<a href="#" class="nav__link"> <ion-icon name="log-out-outline"
+						class="nav__icon"></ion-icon> <span class="nav_name">이 페이지
+						나가기</span>
+				</a>
+			</div>
+		</nav>
+	</div>
 
-   <div class="map_wrap" style="position: relative;">
-      <div style="z-index: 9">
-         <form class="searching" onsubmit="searchPlaces(); return false;">
-            <input type="text" name="query" placeholder="우리집 주변의 ${menu}"
-               id="keyword">
-            <button class="search-btn">검색</button>
-         </form>
-      </div>
-      <div id="map"
-         style="width: 100%; height: 100%; position: fixed; left: 0; top: 0; margin: 0 auto; z-index: 1"></div>
-      <div id="menu_wrap" class="bg_white">
-         <div class="option"></div>
-         <ul id="placesList"></ul>
-         <div id="pagination"></div>
-      </div>
-      <div id="review"
-         style="margin: 2px; border: solid #20B2AA; float: left; display: block; width: 450px; height: 100%; position: relative; background-color: white; z-index: 1;">
-
-         <hr />
-         <div id="reviewcomment">
-            <h5 style="height: 23px; font-size: 20px; line-height: 24px; text-align: center;">리뷰작성</h5>
-            <div class="evaluation">
-               <form id="evaluation" method="post" action="./save">
-                  <fieldset>
-                     <input type="radio" name="rating" value="5" id="rate1"><label
-                        for="rate1">⭐</label> <input type="radio" name="rating"
-                        value="4" id="rate2"><label for="rate2">⭐</label> <input
-                        type="radio" name="rating" value="3" id="rate3"><label
-                        for="rate3">⭐</label> <input type="radio" name="rating"
-                        value="2" id="rate4"><label for="rate4">⭐</label> <input
-                        type="radio" name="rating" value="1" id="rate5"><label
-                        for="rate5">⭐</label>
-                  </fieldset>
-               </form>
-               <div style="text-align: center;">
-                  <form method='post' id="repviewFrm">
-                     <textarea name="coment" id='coment'
-                        style="width: 100%; height: 80px;"></textarea>
-                     <input type="submit" value="리뷰 등록"/>
-                     
-                  </form>
-               </div>
+	<div class="map_wrap" style="position: relative;">
+		<div style="z-index: 9">
+			<form class="searching" onsubmit="searchPlaces(); return false;">
+				<input type="text" name="query" placeholder="우리집 주변의 ${menu}"
+					id="keyword">
+				<button class="search-btn">검색</button>
+			</form>
+		</div>
+		<div id="map"
+			style="width: 100%; height: 100%; position: fixed; left: 0; top: 0; margin: 0 auto; z-index: 1"></div>
+		<div id="menu_wrap" class="bg_white">
+			<div class="option"></div>
+			<ul id="placesList"></ul>
+			<div id="pagination"></div>
+		</div>
+		<div id="review"
+			style="margin: 2px; border: solid #20B2AA; float: left; display: block; width: 450px; height: 100%; position: relative; background-color: white; z-index: 1;">
 
 			<hr />
 			<div id="reviewcomment">
-				<h5 style="height: 23px; font-size: 20px; line-height: 24px; text-align: center;">리뷰작성</h5>
+				<h5 
+					style="height: 23px; font-size: 20px; line-height: 24px; text-align: center; margin:10px;">리뷰작성</h5>
 				<div class="evaluation">
 					<form id="evaluation" method="post" action="./save">
 						<fieldset>
@@ -124,167 +106,49 @@
 						</fieldset>
 					</form>
 					<div style="text-align: center;">
-						<form method='post' id="repviewFrm">
-							<textarea name="coment" id='coment'
+						<form method='post' id="repviewFrm" >
+							<textarea name="coment" id='coment'  class="form-control"
 								style="width: 100%; height: 80px;"></textarea>
-							<input type="submit" value="리뷰 등록"/>
-							
+							<input type="submit" value="리뷰 등록" class="btn btn-info" style="margin:5px;" />
+
 						</form>
 					</div>
-
-   <div class="l-navbar" id="navbar">
-      <nav class="nav">
-         <div>
-            <div class="nav__brand">
-               <ion-icon name="menu-outline" class="nav__toggle" id="nav-toggle"></ion-icon>
-               <a href="#" class="nav__logo"></a>
-            </div>
-
-            <div class="nav__list">
-               <a href="#" class="nav__link active"> <ion-icon
-                     name="home-outline" class="nav__icon"></ion-icon> <span
-                  class="nav_name">지도홈</span>
-               </a> <a href="${url}/map/review" class="nav__link"> <ion-icon
-                     name="chatbubbles-outline" class="nav__icon"></ion-icon> <span
-                  class="nav_name">리뷰페이지</span>
-               </a>               
-            </div>
-            <a href="#" class="nav__link"> <ion-icon name="log-out-outline"
-                  class="nav__icon"></ion-icon> <span class="nav_name">이 페이지
-                  나가기</span>
-            </a>
-         </div>
-      </nav>
-   </div>
-  
-   <div class="map_wrap" style="position:relative;" >
-    <div style="z-index:9">
-      <form class="searching" onsubmit="searchPlaces(); return false;">
-         <input type="text" name="query" placeholder="우리집 주변의 ${menu}" id="keyword">
-         <button class="search-btn">검색</button>
-      </form>
-   </div>
-   <div id="map" style="width: 100%; height: 100%; position: fixed; left:0;top:0;margin:0 auto;z-index:1"></div>
-      <div id="menu_wrap" class="bg_white">
-         <div class="option"></div>
-         <ul id="placesList"></ul>
-         <div id="pagination"></div>         
-      </div>
-   <div id="review" style="border:solid #20B2AA;display:none;float:left;width:300px;position:relative;z-index:2; height:100%;background-color: white;">                  
-       
-         <hr/>
-         <div id="reviewcomment">
-
-         <h5 style="height: 23px; font-size:17px;line-height:24px; text-align: center;">리뷰 작성</h5>
-         <div class="evaluation">
-            <form id="evaluation" method="post" action="./save">
-               <fieldset>
-                  <input type="radio" name="rating" value="5" id="rate1"><label for="rate1">⭐</label>
-                  <input type="radio" name="rating" value="4" id="rate2"><label for="rate2">⭐</label>
-                  <input type="radio" name="rating" value="3" id="rate3"><label for="rate3">⭐</label>
-                  <input type="radio" name="rating" value="2" id="rate4"><label for="rate4">⭐</label>
-                  <input type="radio" name="rating" value="1" id="rate5"><label for="rate5">⭐</label>
-               </fieldset>
-            </form>
-            <div style="text-align:center;">
-               <form method='post' id="repviewFrm">
-                  <textarea name="coment" id='coment' style="width:100%; height:50px;"></textarea>
-                  <input type="submit" value="리뷰 등록";/>
-               </form>
-            </div>
-                  <table cellspacing="0" class="reviewList">
-                  <caption class="blind">리뷰 목록으로 별점, 이미지, 내용, 작성자, 작성일자
-                     정보를 제공</caption>
-                  
-                  <thead>
-                     <tr>
-                        <th>이미지</th>
-                        <th>내용</th>
-                        <th><span>작성자·작성일자</span></th>
-                     </tr>
-                  </thead>
-                  <tbody>
-
-                     <tr>
-                        <td class="lst_reviewimg">${vo.reviewimg }음식사진.jpg</td>
-                        <td class="lst_star">${vo.star}☆☆☆☆</td>
-                        <td class="lst_content">
-                           <br>최고의 떡볶이 ${vo.content }</td>
-                        <td class="lst_userid">이정은${vo.userid }<br>22.04.12${vo.writedate}</td>
-                     </tr>
-                     <tr>
-                        <td class="lst_reviewimg">${vo.reviewimg }음식사진.jpg</td>
-                        <td class="lst_star">${vo.star}☆☆</td>
-                        <td class="lst_content">
-                           <br>맛있는 아이스크림!${vo.content } </td>
-                        <td class="lst_userid">김이박${vo.userid }<br>22.03.08${vo.writedate}</td>
-                     </tr>
-
-                  </tbody>
-               </table>
-         </div>
-      </div>
-            </div>
-         </div>      
-         </div>      
-
-			<h5 style="height: 23px; font-size:17px;line-height:24px; text-align: center;">리뷰 작성</h5>
-			<div class="evaluation">
-				<form id="evaluation" method="post" action="./save">
-					<fieldset>
-						<input type="radio" name="rating" value="5" id="rate1"><label for="rate1">⭐</label>
-						<input type="radio" name="rating" value="4" id="rate2"><label for="rate2">⭐</label>
-						<input type="radio" name="rating" value="3" id="rate3"><label for="rate3">⭐</label>
-						<input type="radio" name="rating" value="2" id="rate4"><label for="rate4">⭐</label>
-						<input type="radio" name="rating" value="1" id="rate5"><label for="rate5">⭐</label>
-					</fieldset>
-				</form>
-				<div style="text-align:center;">
-					<form method='post' id="repviewFrm">
-						<textarea name="coment" id='coment' style="width:100%; height:50px;"></textarea>
-						<input type="submit" value="리뷰 등록";/>
-					</form>
-				</div>
-						<table cellspacing="0" class="reviewList">
+					<div class="container">
+					<table cellspacing="0" class="table">
 						<caption class="blind">리뷰 목록으로 별점, 이미지, 내용, 작성자, 작성일자
 							정보를 제공</caption>
-						
+
 						<thead>
-							<tr>
-								<th>이미지</th>
-								<th>내용</th>
-								<th><span>작성자·작성일자</span></th>
+							<tr style="text-align:center;">
+								<th style="width:15%;">이미지</th>
+								<th style="width:40%;">내용</th>
+								<th style="width:20%;">작성자</th>
+								<th style="width:20%;">작성일</th>
 							</tr>
 						</thead>
 						<tbody>
 
-							<tr>
-								<td class="lst_reviewimg">${vo.reviewimg }음식사진.jpg</td>
-								<td class="lst_star">${vo.star}☆☆☆☆</td>
-								<td class="lst_content">
-									<br>최고의 떡볶이 ${vo.content }</td>
-								<td class="lst_userid">이정은${vo.userid }<br>22.04.12${vo.writedate}</td>
+							<tr style="text-align:center;">
+								<td class="lst_reviewimg" style="width:15%;" class="rounded">${vo.reviewimg }음식사진.jpg</td>
+								<td class="lst_content" style="width:40%;text-overflow:ellipsis;">${vo.star}☆☆☆☆<br>최고의 떡볶이 ${vo.content }</td>
+								<td class="lst_userid" style="width:20%;">이정은${vo.userid }</td>
+								<td class="lst_writedate" style="width:20%;">22.04.12${vo.writedate}</td>
 							</tr>
-							<tr>
-								<td class="lst_reviewimg">${vo.reviewimg }음식사진.jpg</td>
-								<td class="lst_star">${vo.star}☆☆</td>
-								<td class="lst_content">
-									<br>맛있는 아이스크림!${vo.content } </td>
-								<td class="lst_userid">김이박${vo.userid }<br>22.03.08${vo.writedate}</td>
+							<tr style="text-align:center;">
+								<td class="lst_reviewimg" >${vo.reviewimg }음식사진.jpg</td>
+								<td class="lst_content" style="width:50%; text-overflow:ellipsis;">${vo.star}☆☆<br>맛있는 아이스크림${vo.content }</td>
+								<td class="lst_userid">이정은${vo.userid }</td>
+								<td class="lst_writedate">22.04.12${vo.writedate}</td>
 							</tr>
-
+							
 						</tbody>
 					</table>
+				</div>
 			</div>
 		</div>
-				</div>
-			</div>      
-      	</div>      
-
-   </div>
-   </div>
-   
-   <script>
+	</div>
+</div>
+	<script>
       // 마커를 담을 배열입니다
       var markers = [];
       var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
@@ -487,7 +351,7 @@
 
 
 
-      <script>
+	<script>
          // 마커를 담을 배열입니다
          var markers = [];
          var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
@@ -720,9 +584,9 @@
       </script>
 
 
-      <!-- IONICONS -->
-      <script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></script>
-      <!-- JS -->
-      <script src="../js/map.js"></script>
+	<!-- IONICONS -->
+	<script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></script>
+	<!-- JS -->
+	<script src="../js/map.js"></script>
 </body>
 </html>
