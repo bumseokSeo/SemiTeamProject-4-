@@ -61,6 +61,18 @@ public class MemberServiceImpl implements MemberService {
 		return dao.memberDeleteOk(userid);
 	}
 
+	@Override
+	public MemberVO findId(MemberVO vo) {
+		// TODO Auto-generated method stub
+		return dao.findId(vo);
+	}
+
+	@Override
+	public MemberVO findPwd(MemberVO vo) {
+		// TODO Auto-generated method stub
+		return dao.findPwd(vo);
+	}
+
 	
 
 }

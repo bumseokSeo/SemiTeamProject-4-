@@ -32,5 +32,13 @@
 	<delete id="memberDeleteOk">
 		delete from member where userid=#{param1}
 	</delete>
+	<select id="findId" resultType="com.campus.myapp.vo.MemberVO">
+		select userid, username from member where email=#{email} 
+		and ask=#{ask} and answer=#{answer}
+	</select>
+	<select id="findPwd" resultType="com.campus.myapp.vo.MemberVO">
+		select userid, username from member where email=#{email} 
+		and ask=#{ask} and answer=#{answer} and userid=#{userid}
+	</select>
 
 </mapper>

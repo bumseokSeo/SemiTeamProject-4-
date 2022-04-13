@@ -13,4 +13,6 @@ public interface MemberService {
 	public int memberDelete(String userid);
 	public List<MemberVO> memberListAll();
 	public int memberDeleteOk(String userid);
+	public MemberVO findId(MemberVO vo);
+	public MemberVO findPwd(MemberVO vo);
 }

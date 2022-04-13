@@ -33,6 +33,12 @@ public interface MemberDAO {
 	//회원관리-탈퇴
 	public int memberDeleteOk(String userid);
 	
+	//아이디 찾기
+	public MemberVO findId(MemberVO vo);
+
+	//비밀번호 찾기
+	public MemberVO findPwd(MemberVO vo);
+	
 	
 }
 

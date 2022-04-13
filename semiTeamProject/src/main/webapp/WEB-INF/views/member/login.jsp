@@ -40,6 +40,7 @@ h1 {
 	margin: 0px auto;
 	font-size: 1em;
 	overflow: auto;
+	margin-bottom: 200px;
 }
 
 #loginForm li {
@@ -95,7 +96,6 @@ h1 {
 	function formcheck() {
 		var userid = document.getElementById("userid");
 
-		console.log(userid);
 		if (userid.value == "") {
 			alert("아이디를 입력해주세요");
 			userid.focus();

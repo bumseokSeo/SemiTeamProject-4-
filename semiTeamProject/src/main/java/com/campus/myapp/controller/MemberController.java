@@ -63,13 +63,72 @@ public class MemberController {
 		mav.setViewName("member/findId");
 		return mav;
 	}
+	
 	@GetMapping("findPwd")
 	public ModelAndView findPwd() {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("member/findPwd");
 		return mav;
 	}
-	
+	@GetMapping("resetPwd")
+	public ModelAndView resetPwd() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("member/resetPwd");
+		return mav;
+	}
+	//비밀번호 찾기
+	@PostMapping("findPwdOk")
+	public ResponseEntity<String> findPwdOk(MemberVO vo, HttpServletRequest request, HttpSession session ) {
+		ResponseEntity<String> entity = null;
+		HttpHeaders headers = new HttpHeaders();
+		
+		headers.add("Content-Type", "text/html; charset=UTF-8");
+		try {
+			MemberVO vo2 = service.findPwd(vo);
+			String msg = "<script>";
+			msg+="alert('"+vo2.getUsername()+"님 비밀번호 초기화페이지로 이동합니다.');";
+			msg += "location.href='/member/resetPwd'";
+			msg+="</script>";
+			entity = new ResponseEntity<String>(msg, headers, HttpStatus.OK);//200
+			
+			
+		}catch(Exception e) {//찾기실패
+			e.printStackTrace();
+			String msg = "<script>";
+			msg+="alert('해당하는 비밀번호가 존재하지 않습니다.');";
+			msg += "history.back()";
+			msg+="</script>";
+			entity = new ResponseEntity<String>(msg,headers,HttpStatus.BAD_REQUEST);//200
+		}
+		return entity;
+	}
+	//아이디 찾기
+	@PostMapping("findIdOk")
+	public ResponseEntity<String> findIdOk(MemberVO vo, HttpServletRequest request, HttpSession session) {
+		ResponseEntity<String> entity = null;
+		HttpHeaders headers = new HttpHeaders();
+		
+		headers.add("Content-Type", "text/html; charset=UTF-8");
+		try {
+			MemberVO vo2 = service.findId(vo);
+			String msg = "<script>";
+			msg+="alert('"+vo2.getUsername()+"님의 아이디는\\n"+vo2.getUserid()+"입니다.');";
+			msg += "location.href='/member/login'";
+			msg+="</script>";
+			
+			entity = new ResponseEntity<String>(msg, headers, HttpStatus.OK);//200
+			
+			
+		}catch(Exception e) {//찾기 실패
+			
+			String msg = "<script>";
+			msg+="alert('해당하는 아이디가 존재하지 않습니다.');";
+			msg += "history.back()";
+			msg+="</script>";
+			entity = new ResponseEntity<String>(msg,headers,HttpStatus.BAD_REQUEST);//200
+		}
+		return entity;
+	}
 	
 	// 회원등록
 	@PostMapping("memberOk")
@@ -89,13 +148,13 @@ public class MemberController {
 		MemberVO vo2 = service.loginCheck(vo);
 
 		ModelAndView mav = new ModelAndView();
-		// 로그인 성공시 세션에 id와 이름 저장
+		
 		if (vo2 != null) {// 로그인 성공
 			session.setAttribute("logId", vo2.getUserid());
 			session.setAttribute("logSex", vo2.getSex());
 			session.setAttribute("logImg", vo2.getProfile());
 			session.setAttribute("logStatus", "Y");
-			mav.setViewName("redirect:/");// '/' <- 홈으로 이동
+			mav.setViewName("redirect:/");// 홈으로 이동
 		} else {// 로그인 실패
 			mav.setViewName("redirect:login");
 		}
@@ -164,8 +223,8 @@ public class MemberController {
 									orgFileName = f.getName();
 									break;
 								}
-							}// for - 5
-						}//if - 4
+							}
+						}
 						
 						try {
 							mf.transferTo(f);//실제 업로드가 진행
@@ -174,8 +233,8 @@ public class MemberController {
 						}
 						
 						vo.setProfile(orgFileName);
-					}//if - 3
-			}//if - 1
+					}
+			}
 			
 			//db등록
 			service.memberUpdate(vo);
@@ -188,7 +247,6 @@ public class MemberController {
 			//레코드 추가 실패
 			fileDelete(path, vo.getProfile());
 			
-			//실패 메세지
 			String msg = "<script>alert('프로필 수정에 실패하였습니다'); history.back();</script>";
 
 			entity = new ResponseEntity<String>(msg,headers,HttpStatus.BAD_REQUEST);
@@ -222,9 +280,6 @@ public class MemberController {
 	@GetMapping("masterPage")
 	public ModelAndView masterPage() {
 		ModelAndView mav = new ModelAndView();
-		
-		//mav.addObject("lst",service.memberSelectAll());
-		
 		mav.setViewName("master/master_member");
 		return mav;
 	}
