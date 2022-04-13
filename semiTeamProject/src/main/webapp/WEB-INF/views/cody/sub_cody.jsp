@@ -1,18 +1,18 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <script>
 $(function(){
 	// 이미지 클릭시 이미지 모달
-		$(".imgC").click(function(){
+		$(".Cimg").click(function(){
 			$(".modal").show();
 			// 이미지 가져오기
-			var imgSrc = $(this).children("img").attr("src");
-			var imgAlt = $(this).children("img").attr("alt");
+			var imgSrc = $(this).attr("src");
+			var imgAlt = $(this).attr("alt");
 			$(".modalBox img").attr("src", imgSrc);
 			$(".modalBox img").attr("alt", imgAlt);
 			
 			// 이미지 텍스트 가져오기
-			var imgTit =  $(this).children("p").text();
+			var imgTit =  $(this).next("p").text();
 			$(".modalBox p").text(imgTit);
 			
 	   // 이미지에 alt값을 가져와 제목으로
@@ -31,8 +31,30 @@ $(function(){
 	    } else {
 	      $(".modal").hide();
 	    }
-	  });
 	});
+		
+	$(document).ready(function(){
+		//heart 정보 가져오기
+		$.ajax({
+			url: "/heartSelect",
+			type:"get",
+			success: function(result){
+				var idx = "";
+				var num = "";
+				$(result).each(function(){
+					idx = this.cname.indexOf(".");
+					num = this.cname.substring(1,idx);
+					$("#eheart"+num).css("display", "none");
+					$("#fheart"+num).css("display", "block");
+				});
+			},
+			error: function(e){
+				console.log(e.responseText);
+			}
+		});
+	});
+	
+});
 
 
 	//arrow updown
@@ -53,6 +75,43 @@ $(function(){
 	        $('html, body').animate({scrollTop : ($(document).height())}, 600);
 	    });
 	});
+	
+function heartInsert(cname){//emptyheart 클릭
+	var idx = cname.substring(1, cname.indexOf('.'));
+	
+	$.ajax({
+		url: "/heartInsert",
+		data: "cname="+cname,
+		type: "post",
+		success: function(result){
+			if(result>0){
+				$("#eheart"+idx).css("display","none");
+				$("#fheart"+idx).css("display", "block");
+			}
+		},
+		error : function(e){
+			console.log(e.responseText);
+		}		
+	});
+}
+
+function heartDelete(cname){	//fullheart 클릭
+	var idx = cname.substring(1, cname.indexOf('.'));
+	$.ajax({
+		url: "/heartDelete",
+		data: "cname="+cname,
+		type: "post",
+		success: function(result){
+			if(result>0){
+				$("#eheart"+idx).css("display","block");
+				$("#fheart"+idx).css("display", "none");
+			}
+		},
+		error : function(e){
+			console.log(e.responseText);
+		}		
+	});
+}
 
 </script>
 <style>
@@ -173,6 +232,7 @@ section {
 	font-size: 14px;
 	padding: 10px;
 }
+
 /* ======================오른쪽 imgList 모달창 끝==================== */
 
 
@@ -359,7 +419,19 @@ section {
 
   bottom: 50px;
 }
-
+.emptyheart{
+	margin-top:3px;
+	width:24px !important;
+	height:25px !important;
+	float:right !important;
+}
+.fullheart{
+	display:none;
+	margin-top:3px;
+	width:22px !important;
+	height:22px !important;
+	float:right !important;
+}
 /* ===============arrow updown 끝================= */
 
 
@@ -448,18 +520,22 @@ section {
   	<div class="imgList">
   		<c:forEach var="i" begin="1" end="${len}">
 	  		<div class="imgList-row">
-	  		<c:forEach var="j" begin="${3*i-3}" end="${3*i-1}">
-				<div class="imgC">
-					<c:if test="${vo[j]!=null}">
-		    			<img src="${url}/img/codyimg/codyupload/${vo[j].cname}" alt="모달할 이미지">
-		    			<p>${vo[j].info}</p>
-		    		</c:if>
-		    		<c:if test="${vo[j]==null}">	<!-- 자리 채울 이미지 -->
-		    			<img src="${url}/img/codyimg/none.jpg">
-	    			</c:if>
-	    		</div>
-	    	</c:forEach>
-	  		</div>
+		  		<c:forEach var="j" begin="${3*i-3}" end="${3*i-1}">
+					<div class="imgC">
+						<c:if test="${vo[j]!=null}">
+				    		<img src="${url}/img/codyimg/codyupload/${vo[j].cname}" alt="모달할 이미지" class="Cimg">
+				    		<p>${vo[j].info}
+				    		<c:set var="idx" value="${fn:indexOf(vo[j].cname,'.')}"/>
+							<a href="javascript:heartInsert('${vo[j].cname}');"><img src="${url}/img/codyimg/heart1.png" class="emptyheart" id="eheart${fn:substring(vo[j].cname,1,idx)}"/></a>
+							<a href="javascript:heartDelete('${vo[j].cname}');"><img src="${url}/img/codyimg/heart2.png" class="fullheart" id="fheart${fn:substring(vo[j].cname,1,idx)}"/></a>
+				    		</p>
+				    	</c:if>
+				    	<c:if test="${vo[j]==null}">	<!-- 자리 채울 이미지 -->
+				    		<img src="${url}/img/codyimg/none.jpg">
+			    		</c:if>
+			    	</div>
+		    	</c:forEach>
+		  	</div>
   		</c:forEach>
   	</div>
   </section>

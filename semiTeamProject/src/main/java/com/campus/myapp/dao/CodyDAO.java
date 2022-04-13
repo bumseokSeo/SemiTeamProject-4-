@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
 import com.campus.myapp.vo.CodyVO;
+import com.campus.myapp.vo.HeartVO;
 
 @Mapper
 @Repository
@@ -23,4 +24,11 @@ public interface CodyDAO {
 	public List<CodyVO> codyGenderList(String sex);
 	//코디 리스트(style)
 	public List<CodyVO> codyStyleList(String style, String sex);
+	
+	//좋아요 추가
+	public int heartInsert(String userid, String cname, String heartinfo);
+	//좋아요 삭제
+	public int heartDelete(String userid, String cname);
+	//좋아요 검색
+	public List<HeartVO> heartSelect(String userid);
 }

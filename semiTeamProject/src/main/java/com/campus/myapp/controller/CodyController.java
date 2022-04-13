@@ -19,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.campus.myapp.service.CodyService;
 import com.campus.myapp.vo.CodyVO;
+import com.campus.myapp.vo.HeartVO;
 
 @Controller
 public class CodyController {
@@ -131,6 +132,30 @@ public class CodyController {
 		}
 		mav.setViewName("cody/sub_cody");
 		return mav;
+	}
+	
+	//좋아요 추가
+	@PostMapping("/heartInsert")
+	@ResponseBody
+	public int heartInsert(String cname, HttpSession session) {
+		String userid = (String)session.getAttribute("logId");
+		return service.heartInsert(userid, cname, "Y");
+	}
+	
+	//좋아요 추가
+	@PostMapping("/heartDelete")
+	@ResponseBody
+	public int heartDelete(String cname, HttpSession session) {
+		String userid = (String)session.getAttribute("logId");
+		return service.heartDelete(userid, cname);
+	}
+	
+	//좋아요 검색
+	@GetMapping("/heartSelect")
+	@ResponseBody
+	public List<HeartVO> heartSelect(HttpSession session){
+		String userid = (String)session.getAttribute("logId");
+		return service.heartSelect(userid);
 	}
 	
 }
