@@ -17,5 +17,11 @@ public interface FoodService {
 	public FoodVO getFoodData(String searchFood);
 
 	public String getfname();
+	
+	//저장되어 있던 음식 이미지 파일 이름 가져오기
+	public String getFileName(String fname);
+	
+	//음식 정보 수정
+	public int foodUpdate(FoodVO vo);
 
 }

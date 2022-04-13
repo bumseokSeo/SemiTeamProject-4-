@@ -142,13 +142,114 @@ public class FoodController {
 		
 	}
 	
-	/*
-	 * @PostMapping("/foodModify") public ResponseEntity<String> foodModifyOk(FoodVO
-	 * vo, HttpServletRequest request){
-	 * 
-	 * 
-	 * }
-	 */
+	
+	 @PostMapping("/master/foodModify") 
+	 public ResponseEntity<String> foodModifyOk(FoodVO vo, HttpServletRequest request){
+		 
+		 ResponseEntity<String> entity = null;
+		 
+		 HttpHeaders headers = new HttpHeaders();
+		 
+		 headers.setContentType(new MediaType("text", "html", Charset.forName("UTF-8")));
+		 
+		 System.out.println(vo.getFoodimg());
+		 
+		
+		 if((vo.getEvent()).equals("no")) {
+			 vo.setEvent(null);
+		 }
+		 if((vo.getWeather()).equals("allweather")) {
+			 vo.setWeather(null);
+		 }
+		 
+		 //DB에서 파일 이름 가져오기
+		 String priorFile = service.getFileName(vo.getFname());
+		 System.out.println(priorFile+"<<<");
+		 
+		 //파일 업로드를 위한 업로드 위치의 절대 주소
+		 String path = request.getSession().getServletContext().getRealPath("/img/foodimg/upload");
+		 
+		 //if(!priorFile.equals(vo.getFoodimg())) {
+			 
+			 try {
+				 //새로 받은 이미지 파일 올리기
+				 MultipartHttpServletRequest mr = (MultipartHttpServletRequest)request;
+				 
+				 MultipartFile file = mr.getFile("filename");
+				 
+				 String fileName = file.getOriginalFilename();
+				 
+				 System.out.println(fileName);
+				 
+				 File f = new File(path, fileName);
+				 
+				///파일넣기	 
+				//DB update
+				 try {
+					 file.transferTo(f);
+					 System.out.println("파일 업로드");
+					 
+					 if(file!=null &&!file.isEmpty()) {
+						 //첨부했다면
+						 deleteFile(path, priorFile);
+					 }
+				 
+					 vo.setFoodimg(fileName);
+					 //System.out.println(vo.getFoodimg());  
+				 }catch(Exception ex) {
+					 
+				 }
+				 //DB 업데이트
+				 
+				 service.foodUpdate(vo);
+				 
+				 String msg = "<script>alert('음식 수정이 완료되었습니다.');location.href='/master/master_food';</script>";
+				 
+				 entity = new ResponseEntity(msg, headers, HttpStatus.OK);
+				 
+				 
+				 
+			 }catch(Exception e) {
+				 
+				 e.printStackTrace();
+				 //파일 삭제할 필요
+				 
+				 deleteFile(path, vo.getFoodimg());
+				 
+				 String msg = "<script>alert('음식 수정을 실패하였습니다.');history.back();</script>";
+				 entity = new ResponseEntity(msg, headers, HttpStatus.BAD_REQUEST);
+				 
+			 }
+		/* }else {
+			 
+			 try {
+				 //DB update
+				 
+				 service.foodUpdate(vo);
+				 
+				 String msg = "<script>alert('음식 수정이 완료되었습니다.');location.href='/master/master_food';</script>";
+				 
+				 entity = new ResponseEntity(msg, headers, HttpStatus.OK);
+				 
+				 
+				 
+			 }catch(Exception e) {
+				 //에러
+				 //파일 삭제할 필요 없다
+				 String msg = "<script>alert('음식 수정을 실패하였습니다.');history.back();</script>";
+				 entity = new ResponseEntity(msg, headers, HttpStatus.BAD_REQUEST);
+				 
+			 }
+			 */
+			 
+		 //}
+		 
+		 
+		 
+		 return entity;
+
+	 }
+
 
 
 	

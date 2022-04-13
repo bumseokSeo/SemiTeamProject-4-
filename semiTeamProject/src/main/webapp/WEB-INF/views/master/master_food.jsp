@@ -60,7 +60,10 @@
 	   #photoDelete{
 	   		display: none;
 	   }
-	   
+	  /*  #eventSend{
+	   	display:none;
+	   }
+	    */
 
 </style>
 <script>
@@ -110,7 +113,7 @@
                 return false;
             }
           	//음식이름은 기본키여서 수정 불가
-            $("#fname").attr("disabled", true);
+            $("#fname").attr("readonly", true);
             //수정할 음식을 검색했기 때문에 추가 버튼은 안보이게
             $("#add").css('visibility', 'hidden');
            
@@ -161,6 +164,7 @@
             			flagEvent=false;
             		}else{
             			$("#event option:eq(1)").prop("selected", true);
+            			$("#event option:eq(1)").val(result.event);
             			var event = result.event;
             			var idx = event.indexOf("-");
             			console.log(idx);
@@ -189,6 +193,7 @@
 		               $("#event option:eq(1)").val('');  
 		               console.log($("#event option:eq(1)").val());           
 		            })
+		            
                    
 		            //우선순위 반영
             		priorityChange();
@@ -339,7 +344,6 @@
                 return false;
             }
             
-        	
         	//수정 버튼 클릭 시 submit
         	 $("#adminForm").attr("action", "foodModify");
              
@@ -458,6 +462,7 @@
                 
             	/////이벤트 있음의 value에 이벤트 날짜 넣기
                 $("#event option:eq(1)").val(eventDate);
+            	$("#eventSend").text(eventDate);
                 console.log($("#event option:eq(1)").val());
                 
                 ////////선택된 날짜 나타나게 하기

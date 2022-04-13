@@ -31,5 +31,21 @@
   	<select id="getFoodData" resultType="com.campus.myapp.vo.FoodVO">
   		select fname, season, temp, weather, foodimg, fcategory, priority, event from food where fname=#{param1}
   	</select>
+  	
+  	<select id="getFileName" resultType="String">
+  		select foodimg from food where fname=#{param1}
+ 
+  	</select>
+  	
+  	<update id="foodUpdate">
+  	
+  		update food set season=#{season}, temp=#{temp}, weather=#{weather}
+  		<if test="foodimg != null and foodimg != ''">
+  		,foodimg=#{foodimg}
+  		</if>
+  		, fcategory=#{fcategory}, priority=#{priority}, event=#{event}
+  		where fname=#{fname}
+  	
+  	</update>
 
   </mapper>
