@@ -40,5 +40,10 @@
 		select userid, username from member where email=#{email} 
 		and ask=#{ask} and answer=#{answer} and userid=#{userid}
 	</select>
+	<update id="resetPwdOk">
+		update member set userpwd=#{userpwd}
+		where userid=#{userid}
+	</update>
+	
 
 </mapper>

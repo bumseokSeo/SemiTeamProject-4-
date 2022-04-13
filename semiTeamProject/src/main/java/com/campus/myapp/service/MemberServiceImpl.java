@@ -73,6 +73,14 @@ public class MemberServiceImpl implements MemberService {
 		return dao.findPwd(vo);
 	}
 
+	@Override
+	public int resetPwdOk(MemberVO vo) {
+		// TODO Auto-generated method stub
+		return dao.resetPwdOk(vo);
+	}
+
+	
+
 	
 
 }

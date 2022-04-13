@@ -89,6 +89,7 @@ public class MemberController {
 			msg+="alert('"+vo2.getUsername()+"님 비밀번호 초기화페이지로 이동합니다.');";
 			msg += "location.href='/member/resetPwd'";
 			msg+="</script>";
+			session.setAttribute("tempUserId", vo2.getUserid());
 			entity = new ResponseEntity<String>(msg, headers, HttpStatus.OK);//200
 			
 			
@@ -100,6 +101,40 @@ public class MemberController {
 			msg+="</script>";
 			entity = new ResponseEntity<String>(msg,headers,HttpStatus.BAD_REQUEST);//200
 		}
+		return entity;
+	}
+	//비밀번호 초기화resetPwdOk
+	@PostMapping("resetPwdOk")
+	public ResponseEntity<String> resetPwdOk(MemberVO vo,HttpSession session) {
+		ResponseEntity<String> entity = null;
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(new MediaType("text","html",Charset.forName("UTF-8")));
+		vo.setUserid((String) session.getAttribute("tempUserId"));
+		try {
+			int result = service.resetPwdOk(vo);
+			if(result>0) {
+				String msg = "<script>";
+				msg+="alert('비밀번호 재설정이 완료되었습니다.\\n 로그인 화면으로 이동합니다.');";
+				msg += "location.href='/member/login'";
+				msg+="</script>";
+				entity = new ResponseEntity<String>(msg,headers,HttpStatus.OK);
+			}else {
+				String msg = "<script>";
+				msg+="alert('비밀번호 재설정에 실패하였습니다.');";
+				msg += "history.back()";
+				msg+="</script>";
+				entity = new ResponseEntity<String>(msg, headers, HttpStatus.BAD_REQUEST);
+			}
+				
+			
+		} catch (Exception e) {
+			String msg = "<script>";
+			msg+="alert('비밀번호 재설정에 실패하였습니다.');";
+			msg += "history.back()";
+			msg+="</script>";
+			entity = new ResponseEntity<String>(msg, headers, HttpStatus.BAD_REQUEST);
+		}
+		
 		return entity;
 	}
 	//아이디 찾기
@@ -115,7 +150,6 @@ public class MemberController {
 			msg+="alert('"+vo2.getUsername()+"님의 아이디는\\n"+vo2.getUserid()+"입니다.');";
 			msg += "location.href='/member/login'";
 			msg+="</script>";
-			
 			entity = new ResponseEntity<String>(msg, headers, HttpStatus.OK);//200
 			
 			

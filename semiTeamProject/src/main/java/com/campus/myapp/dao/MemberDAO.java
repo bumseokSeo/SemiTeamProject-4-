@@ -39,6 +39,9 @@ public interface MemberDAO {
 	//비밀번호 찾기
 	public MemberVO findPwd(MemberVO vo);
 	
+	//비밀번호 재설정
+	public int resetPwdOk(MemberVO vo);
+	
 	
 }
 

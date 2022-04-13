@@ -62,22 +62,11 @@ h1 {
 
 
 
-#findpwdbtn {
+#submitbtn {
 	width: 90%;
 	margin-left: 0px auto;
 	height:70px;
 	margin-bottom: 100px;
-}
-
-.loginBottom {
-	margin-right: 100px;
-	margin-bottom: 500px;
-}
-
-.loginBottom div {
-	float: left;
-	width: 50%;
-	text-align: center;
 }
 </style>
 <script>
@@ -86,19 +75,26 @@ h1 {
 	  
 	});
 	function formcheck() {
+		//비밀번호
 		var userpwd = document.getElementById("userpwd");
-		
+		var reg = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,16}$/;
 	
 		if(userpwd.value==""){
 			alert("비밀번호를 입력해주세요");
 			userpwd.focus();
 			return false;
 		}
+		if(!reg.test(userpwd.value)){
+			alert("비밀번호는 8~16자리 영문,숫자,특수문자가 각각\n1개 이상 존재해야합니다");
+			userpwd.focus();
+			return false;
+		}
 		
+		//비밀번호확인
 		var userpwd2 = document.getElementById("userpwd2");
 		
 		if(userpwd2.value==""){
-			alert("비밀번호를 입력해주세요");
+			alert("비밀번호를 확인해주세요");
 			userpwd2.focus();
 			return false;	
 		}
@@ -107,22 +103,21 @@ h1 {
 			userpwd2.focus();
 			return false;
 		}
-		return true;
 	}
 
 </script>
 <div id="findform">
-	<form method="post" action="${url}/member/loginOk"
+	<form method="post" action="${url}/member/resetPwdOk"
 		onsubmit="return formcheck()">
 		<h1>비밀번호 변경</h1>
 		<ul>
 			<li>아이디</li>
-			<li><input class="form-control form-control-lg" type="text" placeholder="아이디" name="userid" id="userid" maxlength="20" disabled="disabled" value=""></li>
+			<li><input class="form-control form-control-lg" type="text" placeholder="아이디" name="userid" id="userid" maxlength="20" disabled="disabled" value="${tempUserId}"></li>
 			<li>새로운 비밀번호</li>
 			<li><input class="form-control form-control-lg" type="password" placeholder="비밀번호" name="userpwd" id="userpwd"></li>
 			<li>비밀번호 확인</li>
 			<li><input class="form-control form-control-lg" type="password" placeholder="비밀번호 확인" name="userpwd2" id="userpwd2"></li>
-				
+			<li><input type="submit" value="비밀번호 변경" id="submitbtn" class="btn btn-secondary"/></li>
 		</ul>
 	</form>
 </div>

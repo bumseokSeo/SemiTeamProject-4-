@@ -15,4 +15,5 @@ public interface MemberService {
 	public int memberDeleteOk(String userid);
 	public MemberVO findId(MemberVO vo);
 	public MemberVO findPwd(MemberVO vo);
+	public int resetPwdOk(MemberVO vo);
 }
