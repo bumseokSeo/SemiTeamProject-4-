@@ -34,6 +34,26 @@ $(function(){
 	  });
 	});
 
+
+	//arrow updown
+	$(function() {
+	    $(window).scroll(function() {
+	        if ($(this).scrollTop() > 600) {
+	            $('.ScrollButton').fadeIn();
+	        } else {
+	            $('.ScrollButton').fadeOut();
+	        }
+	    });
+	        
+	    $("#TopButton").click(function() {
+	        $('html').animate({scrollTop : 0}, 600);
+	    });
+	 
+	    $("#BottomButton").click(function() {
+	        $('html, body').animate({scrollTop : ($(document).height())}, 600);
+	    });
+	});
+
 </script>
 <style>
 @font-face {
@@ -318,6 +338,31 @@ section {
 /* ===============왼쪽 리스트 끝================= */
 
 
+/* ===============arrow updown 시작================= */
+
+.ScrollButton {
+  position: fixed;   
+  right: 10px;       
+  cursor: pointer;   
+  z-index: 10;  
+  font-size: 20px;
+  color: black;     
+  display: none;
+  right: 24px;
+}
+
+#TopButton {
+
+  bottom: 75px;        
+}
+#BottomButton {
+
+  bottom: 50px;
+}
+
+/* ===============arrow updown 끝================= */
+
+
 </style>    
 	<div class="main-container">
     <h1 class="animate__animated animate__swing">Cody List</h1>
@@ -429,6 +474,14 @@ section {
 	</div>
 	
 </div>
+
+<!-- arrow updown -->
+<a id="TopButton" class="ScrollButton">
+	<i class="fa-solid fa-arrow-up"></i>
+</a>
+<a id="BottomButton" class="ScrollButton">
+	<i class="fa-solid fa-arrow-down"></i>
+</a>
 </body>
 </html>
 
