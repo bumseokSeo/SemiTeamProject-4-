@@ -60,10 +60,7 @@
 	   #photoDelete{
 	   		display: none;
 	   }
-	  /*  #eventSend{
-	   	display:none;
-	   }
-	    */
+	 
 
 </style>
 <script>
@@ -129,7 +126,8 @@
             	success : function(result){
             		
             		if(result==""){
-            			alert('존재하지 않는 음식입니다.\n ');
+            			alert('존재하지 않는 음식입니다.\n');
+            			$("#cancel").click();
             			return false;
             		}
             		
@@ -225,7 +223,7 @@
         	$(".searchForm").css('visibility','visible');
             $("#searchFood").val('');
             $("#fname").val('');
-            $("#fname").attr("disabled", false);
+            $("#fname").attr("readonly", false);
             $("#fcategory").val('');
             $(".form-select option:eq(0)").prop("selected", true);
             ///////////////////////////////////////////////////////
@@ -323,9 +321,7 @@
     			$("#foodimg").val('');
     			$("#fnameCheck").html('');
     		});
-        	
-        	
-        	
+ 	
         });
         
         //수정 버튼 클릭 시
@@ -336,9 +332,7 @@
                 $("#fcategory").focus();
                 return false;
             }
-        	
-        	
-
+ 
             if($("#foodimg").val()=='' && $("#foodPhoto").src == ''){
                 alert("음식 이미지 파일을 선택해 업로드 하세요.");
                 return false;
@@ -348,8 +342,6 @@
         	 $("#adminForm").attr("action", "foodModify");
              
              $("#adminForm").submit();
-             
-             
              
         });
        
@@ -580,7 +572,7 @@
                     <a class="col-sm-2 day" id="deleteDate">삭제</a>
                 </div>
                 <!--우선순위 (Not Null)-->
-                <div class="row m-2"  >
+                <div class="row m-2"  id="priorityForm">
                     <label class="col-sm-2 col-form-label">우선순위</label>
                     <div class="form-check col-sm-3">
                         <input class="form-check-input m-2" type="radio" id="priorityYes" name="priority" value='Y'>
