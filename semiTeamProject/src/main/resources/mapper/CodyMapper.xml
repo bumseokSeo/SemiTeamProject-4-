@@ -24,7 +24,9 @@
 	<select id="codyGenderList" resultType="com.campus.myapp.vo.CodyVO">
 		select cname, temp, weather, sex, style, info from cody where sex=#{param1} order by length(cname), cname;
 	</select>
-	
+	<select id="codyHeartList" resultType="com.campus.myapp.vo.HeartVO">
+		select cname, heartinfo from heart where userid=#{param1} order by length(cname), cname;
+	</select>
 	<select id="codyStyleList" resultType="com.campus.myapp.vo.CodyVO">
 		select cname, temp, weather, sex, style, info from cody where style=#{param1} and sex=#{param2} order by length(cname), cname;
 	</select>
