@@ -10,26 +10,17 @@
 
 <!-- CSS -->
 <link rel="stylesheet" href="${url }/css/map_style.css">
+	
+<!-- 아이콘용 -->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+
 <style>
 #top {
 	display: none;
 }
 
-.reviewList {
-	overflow: hidden;
-	list-style-type: none;
-	font-size: 14px;
-	color: #000;
-	letter-spacing: -1px;
-	margin: 0;
-	list-style: none;
-	overflow: hidden;
-	position: relative;
-	min-height: 52px;
-	padding: 17px 0 18px;
-	border-top: 1px solid #f2f2f2;
-	border-bottin: 1px solid #ddd;
-}
 </style>
 <!-- 카카오 api 라이브러리  -->
 <!-- services와 clusterer, drawing 라이브러리 불러오기 -->
@@ -48,30 +39,46 @@
 	$(function(){
 		// 댓글 목록을 가져오는 함수
 		function reviewListAll(){ // 현재 글의 댓글을 모두 가져오기
-			var url = "/review/list";
-			var params = "reviewno=${vo.reviewno}"; // 32번 글인경우: no=32 
+			
+			var params = "placeid=${placeid}"; // 32번 글인경우: no=32
+			var url = "/review/list?"+params;
+			
 			$.ajax({
+				type:'get',
 				url:url,
-				data:params,
+				// data:params,
 				success:function(result){
-					var $result = $(result); // vo, vo, vo, vo...
 					
-					var tag = "<ul>";
+					var $result = $(result); // vo, vo, vo, vo...
+					/*
+					<tbody>
+							<c:forEach var="vo" items="${list }">
+							<tr style="text-align:center;">
+								<td style="width:15%;" class="rounded">${vo.reviewimg }</td>
+								<td style="width:40%;text-overflow:ellipsis;">${vo.star}<br> ${vo.content }</td>
+								<td style="width:20%;">${vo.userid }</td>
+								<td style="width:20%;">${vo.writedate}</td>
+							</tr>
+							</c:forEach>
+
+						</tbody>
+					*/
+					var tag = "<table><tbody>";
 					
 					$result.each(function(idx, vo){
-						tag += "<li><div>"+vo.userid;
-						tag += "<li><div>"+vo.star;
-						tag += "("+vo.writedate+")";
+						tag+='<tr style="text-align:center;">'
+						tag += '<td style="width:15%;border-bottom:1px solid #ddd" class="rounded">'+vo.reviewimg+'</td>';
+						tag += '<td style="width:40%;text-overflow:ellipsis;;border-bottom:1px solid #ddd">'+'<i class="fa fa-star" style="color: red;"></i>'+vo.star+'<br>'+vo.content+'</td>';
+						tag += '<td style="width:20%;border-bottom:1px solid #ddd">'+vo.userid+'</td>';
+						tag += '<td style="width:20%;border-bottom:1px solid #ddd">'+vo.writedate+'</td>';
 						
-						tag += "<br/>"+vo.content+"</div>";
 						
-						
-						tag +="<hr/></li>"; // vo의 개수만큼 순환
+						tag +="</tr>"; // vo의 개수만큼 순환
 					});
 					
-					tag += "</ul>";
+					tag += "</tbody></table>";
 					
-					$("#reviewList").html(tag);
+					$("#reviewListBody").html(tag);
 					
 				}, error:function(e){
 					console.log(e.responseText);
@@ -80,15 +87,15 @@
 		}
 		
 		// 리뷰등록
-		$("#evaluation").submit(function(){
+		$("#evaluation444").submit(function(){
 			
 			event.preventDefault(); // form 기본이벤트 제거
 			if($("#content").val()==''){
 				alert("리뷰 입력 후 등록하세요.");
 				return;
 			}else{ // 리뷰을 입력한 경우
-				var params = $("#evaluation").serialize(); // form에 있는 데이터가 담김
-				alert(params);	
+				var params = $("#evaluation444").serialize(); // form에 있는 데이터가 담김
+			
 				$.ajax({
 					url:'/review/writeOk',
 					data: params,
@@ -97,7 +104,7 @@
 						//alert(r);
 						$("content").val("");
 						// 에러가 안난다면 => 댓글목록이 refresh되어야 한다. 
-						//reviewListAll();
+						reviewListAll();
 					}, error:function(e){
 						console.log(e.responseText);
 					}
@@ -105,7 +112,7 @@
 			}
 		});
 		// 현재글의 댓글
-		//reviewListAll();
+		reviewListAll();
 	});
 </script>
 <title>map메인화면</title>
@@ -123,10 +130,10 @@
 				<div class="nav__list">
 					<a href="#" class="nav__link active"> <ion-icon
 							name="home-outline" class="nav__icon"></ion-icon> <span
-						class="nav_name">지도홈</span>
-					</a> <a href="${url}/map/review" class="nav__link"> <ion-icon
+						class="nav_name"  onclick="toggleDiv()">리뷰 작성하기</span>
+					</a> <a href="myReview" class="nav__link"> <ion-icon
 							name="chatbubbles-outline" class="nav__icon"></ion-icon> <span
-						class="nav_name">리뷰페이지</span>
+						class="nav_name">내가 쓴 리뷰 목록</span>
 					</a>
 				</div>
 				<a href="#" class="nav__link"> <ion-icon name="log-out-outline"
@@ -153,14 +160,14 @@
 			<div id="pagination"></div>
 		</div>
 		<div id="review"
-			style="margin: 2px; border: solid #20B2AA; float: left; display: block; width: 450px; height: 100%; position: relative; background-color: white; z-index: 1;">
+			style="margin: 2px; overflow:auto; border: solid #20B2AA; float: left; display: block; width: 450px; height: 100%; position: relative; background-color: white; z-index: 1;">
 
 			<hr />
 			<div id="reviewcomment">
 				<h5 
 					style="height: 23px; font-size: 20px; line-height: 24px; text-align: center; margin:10px;">리뷰작성</h5>
 				<div class="evaluation">
-					<form id="evaluation" method="post" action="/review/writeOk">
+					<form id="evaluation" method="post" enctype="multipart/form-data" action="/review/writeOk">
 						<fieldset>
 							<input type="radio" name="star" value="5" id="rate1"><label
 								for="rate1">⭐</label> <input type="radio" name="star"
@@ -175,12 +182,15 @@
 					<div style="text-align: center;">
 							<textarea name="content" id='content'  class="form-control"
 								style="width: 100%; height: 80px;"></textarea>
+							<input type="file" name="file" id="file" value="사진 업로드" style="margin:3px"/>
 							<input type="submit" value="리뷰 등록" class="btn btn-info" style="margin:5px;" />
 							<input type="hidden" value="p1" name="placeid"/>
-						</form>
+						
 					</div>
-					<div class="container">
-					<table cellspacing="0" class="table">
+					</form>
+					<div class="container" >
+					
+					<table class="table" id="reviewList">
 						<caption class="blind">리뷰 목록으로 별점, 이미지, 내용, 작성자, 작성일자
 							정보를 제공</caption>
 
@@ -192,23 +202,10 @@
 								<th style="width:20%;">작성일</th>
 							</tr>
 						</thead>
-						<tbody>
-
-							<tr style="text-align:center;">
-								<td class="lst_reviewimg" style="width:15%;" class="rounded">${vo.reviewimg }음식사진.jpg</td>
-								<td class="lst_content" style="width:40%;text-overflow:ellipsis;">${vo.star}☆☆☆☆<br>최고의 떡볶이 ${vo.content }</td>
-								<td class="lst_userid" style="width:20%;">이정은${vo.userid }</td>
-								<td class="lst_writedate" style="width:20%;">22.04.12${vo.writedate}</td>
-							</tr>
-							<tr style="text-align:center;">
-								<td class="lst_reviewimg" >${vo.reviewimg }음식사진.jpg</td>
-								<td class="lst_content" style="width:50%; text-overflow:ellipsis;">${vo.star}☆☆<br>맛있는 아이스크림${vo.content }</td>
-								<td class="lst_userid">이정은${vo.userid }</td>
-								<td class="lst_writedate">22.04.12${vo.writedate}</td>
-							</tr>
-							
-						</tbody>
+						
 					</table>
+					<div id="reviewListBody">
+					</div>
 				</div>
 			</div>
 		</div>

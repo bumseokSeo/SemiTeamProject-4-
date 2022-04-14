@@ -23,12 +23,13 @@ public class MapController {
 	@Inject
 	MapService service;
 	
-	@PostMapping("main_map")
+	@GetMapping("main_map")
 	public ModelAndView Main_map() {
 		//DB에서 음식메뉴 가져오기 ==> 서비스 
 		ModelAndView mav = new ModelAndView();
 		//String fname = service.getfname();
 		//mav.addObject("menu",fname);
+		mav.addObject("placeid","p1");
 		mav.setViewName("map/map");
 		return mav;
 	}

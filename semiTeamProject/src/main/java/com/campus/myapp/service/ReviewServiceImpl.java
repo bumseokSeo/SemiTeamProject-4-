@@ -19,8 +19,8 @@ public class ReviewServiceImpl implements ReviewService{
     }
 
     @Override
-    public List<ReviewVO> reviewList(int reviewno) {
-        return dao.reviewList(reviewno);
+    public List<ReviewVO> reviewList(String placeid) {
+        return dao.reviewList(placeid);
     }
 
     @Override
@@ -32,5 +32,10 @@ public class ReviewServiceImpl implements ReviewService{
     public int reviewDel(int reviewno, String uesrid) {
         return dao.reviewDel(reviewno, uesrid);
     }
+
+	@Override
+	public ReviewVO getFileName(int reviewno) {
+		return dao.getFileName(reviewno);
+	}
 
 }
