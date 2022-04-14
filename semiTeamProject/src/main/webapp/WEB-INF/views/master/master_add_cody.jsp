@@ -62,12 +62,10 @@ h1 {
 	width:90%;
 	height:100%;
 	margin:0 auto;
-	margin-left:30px;
 }
 
 #codyFrm {
 	width: 65%;
-	float: left;
 	border: 1px solid gray;
 	padding: 50px;
 	margin-top: 30px;
