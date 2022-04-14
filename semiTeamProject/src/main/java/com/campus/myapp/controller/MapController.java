@@ -24,11 +24,14 @@ public class MapController {
 	MapService service;
 	
 	@GetMapping("main_map")
-	public ModelAndView Main_map() {
+	public ModelAndView Main_map(String fname) {
 		//DB에서 음식메뉴 가져오기 ==> 서비스 
 		ModelAndView mav = new ModelAndView();
+<<<<<<< HEAD
+=======
 		//String fname = service.getfname();
-		//mav.addObject("menu",fname);
+>>>>>>> 7ef60b1a8da5bac1758d75c670c61ba4c577cd1e
+		mav.addObject("menu",fname);
 		mav.addObject("placeid","p1");
 		mav.setViewName("map/map");
 		return mav;
