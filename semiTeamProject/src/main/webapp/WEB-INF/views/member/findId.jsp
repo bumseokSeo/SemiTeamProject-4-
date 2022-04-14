@@ -54,28 +54,19 @@ h1 {
 	margin: 0px;
 	width: 100%;
 }
-
-
-
 .form-control-lg {
 	width: 90%;
 }
-
-
-
 #findidbtn {
 	width: 90%;
 	margin-left: 0px auto;
 	height:70px;
 	margin-bottom: 100px;
-	
 }
-
 .loginBottom {
 	margin-right: 100px;
 	margin-bottom: 500px;
 }
-
 .loginBottom div {
 	float: left;
 	width: 50%;
@@ -83,10 +74,6 @@ h1 {
 }
 </style>
 <script>
-	$(function() {
-
-	  
-	});
 	function formcheck() {
 		var email = document.getElementById("email");
 
@@ -95,7 +82,6 @@ h1 {
 			email.focus();
 			return false;
 		}
-
 		var answer = document.getElementById("answer");
 
 		if (answer.value == "") {

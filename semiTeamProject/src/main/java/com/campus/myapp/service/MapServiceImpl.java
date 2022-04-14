@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.campus.myapp.dao.MapDAO;
 import com.campus.myapp.vo.ReviewVO;
+import com.campus.myapp.vo.StoreVO;
 
 @Service
 public class MapServiceImpl implements MapService {
@@ -25,15 +26,9 @@ public class MapServiceImpl implements MapService {
 		// TODO Auto-generated method stub
 		return dao.myreviewDeleteOk(reviewno);
 	}
-
 	
-
-	
-	
-	
-
-	
-
-	
-
+	@Override
+	public int addplace(StoreVO vo) {
+		return dao.addplace(vo);
+	}
 }

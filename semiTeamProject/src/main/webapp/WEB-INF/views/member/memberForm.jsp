@@ -28,29 +28,28 @@
       
    }
 	
-
 	#memberForm{
 		padding-top:100px;
 		padding-left:100px;
 		border: 1px solid gray;
 		width:1130px;
 		margin:0px auto;
-		
 		font-size: 1em;
 		overflow:auto;
-		
-	
+
 	}
-	
 	#memberForm li{
 		float:left;
 		width:20%;
 		margin-bottom: 30px;
+		line-height: 2.5;
+		
 		
 	}
 	#memberForm li:nth-child(2n){
 		float:left;
 		width:80%;
+		
 	}
 	
 	#memberForm li:last-of-type{
@@ -118,10 +117,7 @@ $(function(){
 		
 	});
 });
-
 	function formcheck(){
-		
-		
 		var userid = document.getElementById("userid");
 		if(document.getElementById("userid").value==""){
 			alert("아이디를 입력해주세요");
@@ -178,10 +174,7 @@ $(function(){
 			alert("닉네임을 2글자 이상 입력해주세요");
 			username.focus();
 			return false;
-		}
-		
-		
-		
+		}	
 		var reg = /^\w{6,12}[@]{1}[a-zA-Z]{2,8}[.]{1}[a-zA-Z]{2,4}([.][a-zA-Z]{2,4})?$/;
 		var email = document.getElementById("email");
 		if(email.value==""){
@@ -203,7 +196,6 @@ $(function(){
 			answer.focus();
 			return false;
 		}
-
 		return true;
 	}
 </script>
@@ -215,7 +207,6 @@ $(function(){
 					
 				<li><input class="form-control form-control-lg" type="text" placeholder="아이디" name="userid" id="userid" maxlength="20">
 					<span id="idcheck" style="display: none"></span>
-					
 				</li>
 				<li>비밀번호</li>
 				<li><input class="form-control form-control-lg" type="password" placeholder="비밀번호" name="userpwd" id="userpwd"></li>
@@ -232,7 +223,7 @@ $(function(){
 					    	<option value="f">여성</option>
 					</select>
 				</li>
-				<li><label for="sel_ask" style="font-size: 0.5em;">질문을 선택하세요<br>(계정 분실시 사용됩니다)</label></li>
+				<li style="margin-bottom: 10px;"><label for="sel_ask" style="font-size: 0.5em;">질문을 선택하세요<br>(계정 분실시 사용됩니다)</label></li>
 				<li>
 					<select class="form-control form-control-lg" id="ask" name="ask" style="width:90%">
 					    	<option value="school">입학했던 초등학교 이름은?</option>
@@ -251,13 +242,8 @@ $(function(){
 					<input type="reset" value="취소" id="resetbtn" class="btn btn-danger"/>
 					<input type="submit" value="등록" id="submitbtn" class="btn btn-secondary"/>
 				</li>
-						
-				
 			</ul>
-			
-			
 		</form>
 	</div>
-
 </body>
 </html>

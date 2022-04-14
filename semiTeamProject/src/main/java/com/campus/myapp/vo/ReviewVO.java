@@ -9,7 +9,7 @@ public class ReviewVO {
     private String reviewimg;
     private String writedate;
     private String modifydate;
-    private String placename;
+    private String place_name;
 
     public String getPlaceid() {
         return placeid;
@@ -59,10 +59,11 @@ public class ReviewVO {
     public void setModifydate(String modifydate) {
         this.modifydate = modifydate;
     }
-	public String getPlacename() {
-		return placename;
+	public String getPlace_name() {
+		return place_name;
 	}
-	public void setPlacename(String placename) {
-		this.placename = placename;
+	public void setPlace_name(String place_name) {
+		this.place_name = place_name;
 	}
+	
 }

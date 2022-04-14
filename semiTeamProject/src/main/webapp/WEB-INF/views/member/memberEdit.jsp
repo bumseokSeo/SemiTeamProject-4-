@@ -93,11 +93,8 @@
 		margin:0px auto;
 		overflow:auto;
 	}
-	
-	
 </style>
 <script>
-
 $(function(){
 	$('#profile').change(function() {//이미지 첨부되면 실행
 		
@@ -105,9 +102,7 @@ $(function(){
 	});
 
 });
-
 	function formcheck(){
-		
 		//비밀번호
 		var userpwd = document.getElementById("userpwd");
 		var reg = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,16}$/;
@@ -223,7 +218,5 @@ $(function(){
 			</ul>
 		</form>
 	</div>
-	
-
 </body>
 </html>
