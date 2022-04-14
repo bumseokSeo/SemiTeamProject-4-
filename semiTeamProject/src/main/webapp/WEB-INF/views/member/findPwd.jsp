@@ -5,29 +5,24 @@ body {
 	margin: 0;
 	padding: 0;
 }
-
 ul, li {
 	margin: 0;
 	padding: 0;
 }
-
 li {
 	list-style-type: none;
 	font-size: 1em;
 }
-
 a:link, a:visited {
 	text-decoration: none;
 	color: black;
 }
-
 h1 {
 	margin-right: 100px;
 	font-size: 40px;
 	text-align: center;
 	margin-bottom: 50px;
 }
-
 #findform {
 	padding-top: 100px;
 	padding-left: 100px;
@@ -37,42 +32,33 @@ h1 {
 	font-size: 1em;
 	overflow: auto;
 }
-
 #findform li {
 	float: left;
 	width: 20%;
 	margin-bottom: 30px;
 }
-
 #findform li:nth-child(2n) {
 	float: left;
 	width: 80%;
 }
-
 #findform li:last-of-type {
 	float: left;
 	margin: 0px;
 	width: 100%;
 }
-
 .form-control-lg {
 	width: 90%;
 }
-
-
 #findpwdbtn {
 	width: 90%;
 	margin-left: 0px auto;
 	height:70px;
 	margin-bottom: 100px;
-	
 }
-
 .loginBottom {
 	margin-right: 100px;
 	margin-bottom: 500px;
 }
-
 .loginBottom div {
 	float: left;
 	width: 50%;
@@ -80,10 +66,6 @@ h1 {
 }
 </style>
 <script>
-	$(function() {
-
-	  
-	});
 	function formcheck() {
 		var userid = document.getElementById("userid");
 		

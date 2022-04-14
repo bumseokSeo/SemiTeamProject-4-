@@ -28,20 +28,16 @@
       
    }
 	
-
 	#memberForm{
 		padding-top:100px;
 		padding-left:100px;
 		border: 1px solid gray;
 		width:1130px;
 		margin:0px auto;
-		
 		font-size: 1em;
 		overflow:auto;
-		
-	
+
 	}
-	
 	#memberForm li{
 		float:left;
 		width:20%;
@@ -121,10 +117,7 @@ $(function(){
 		
 	});
 });
-
 	function formcheck(){
-		
-		
 		var userid = document.getElementById("userid");
 		if(document.getElementById("userid").value==""){
 			alert("아이디를 입력해주세요");
@@ -181,10 +174,7 @@ $(function(){
 			alert("닉네임을 2글자 이상 입력해주세요");
 			username.focus();
 			return false;
-		}
-		
-		
-		
+		}	
 		var reg = /^\w{6,12}[@]{1}[a-zA-Z]{2,8}[.]{1}[a-zA-Z]{2,4}([.][a-zA-Z]{2,4})?$/;
 		var email = document.getElementById("email");
 		if(email.value==""){
@@ -206,7 +196,6 @@ $(function(){
 			answer.focus();
 			return false;
 		}
-
 		return true;
 	}
 </script>
@@ -218,7 +207,6 @@ $(function(){
 					
 				<li><input class="form-control form-control-lg" type="text" placeholder="아이디" name="userid" id="userid" maxlength="20">
 					<span id="idcheck" style="display: none"></span>
-					
 				</li>
 				<li>비밀번호</li>
 				<li><input class="form-control form-control-lg" type="password" placeholder="비밀번호" name="userpwd" id="userpwd"></li>
@@ -254,13 +242,8 @@ $(function(){
 					<input type="reset" value="취소" id="resetbtn" class="btn btn-danger"/>
 					<input type="submit" value="등록" id="submitbtn" class="btn btn-secondary"/>
 				</li>
-						
-				
 			</ul>
-			
-			
 		</form>
 	</div>
-
 </body>
 </html>

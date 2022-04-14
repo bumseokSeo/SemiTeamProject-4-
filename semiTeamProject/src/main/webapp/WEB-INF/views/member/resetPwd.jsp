@@ -70,10 +70,6 @@ h1 {
 }
 </style>
 <script>
-	$(function() {
-
-	  
-	});
 	function formcheck() {
 		//비밀번호
 		var userpwd = document.getElementById("userpwd");

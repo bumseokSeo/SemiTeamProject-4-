@@ -26,10 +26,8 @@
       font-size: 40px;
       text-align: center;
       margin-bottom: 50px;
-      
    }
 	#master{
-		
 		border: 1px solid gray;
 		width:1500px;
 		height:1100px;
@@ -37,8 +35,6 @@
 		overflow:hidden;
 		margin: 0 auto;
 		margin-bottom: 100px;
-		
-	
 	}
 	#memberlst{
 		position:relative;
@@ -49,9 +45,6 @@
 		height:900px;
 		overflow:auto;
 		top:-120px;
-		
-		
-	
 	}
 	#reviewlst{
 		position:relative;
@@ -61,10 +54,8 @@
 		height:900px;
 		overflow:auto;
 		top:-120px;
-		
 	}
 	#reviewsearch{
-		
 		width:670px;
 		height:80px;
 		left:730px;
@@ -81,8 +72,6 @@
 		width:100%;
 		height:50px;
 		text-align:center;
-		
-		
 		border-bottom: 1px solid black;
 	}
 	.memberul>li{
@@ -186,19 +175,9 @@ $(function(){
 	
 	$("#searchFrm").submit(function(){
 		event.preventDefault();
-		/*
-	    if($("#searchWord").val()==""){
-	       alert("검색어를 입력하세요.");
-	       return false;
-	    }
-		*/
 	    search="searchword="+$('#searchWord').val();
-	    console.log(search);
-	    
 	    memberListAll();
 	 });
-	
-	
 	memberListAll();
 });
 

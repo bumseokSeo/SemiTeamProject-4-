@@ -36,34 +36,24 @@
 		padding:49px;
 		overflow:hidden;
 		margin: 0 auto;
-		
-	
 	}
-	#myreview2{
-		
+	#myreview2{	
 		border: 1px solid gray;
 		width:1030px;
 		height:1000px;
 		overflow:auto;
-		
-		
-	
 	}
-	
 	.reviewul{
 		overflow:hidden;
 		width:100%;
 		height:60px;
 		text-align:center;
-		
-		
 		border-bottom: 1px solid black;
 	}
 	.reviewul>li{
 		padding-top: 10px;
 		float: left;
 		width:18%;
-		
 	}
 	.reviewul>li:nth-child(6n+2) {
 		
@@ -72,14 +62,11 @@
 	.reviewul>li:nth-child(6n+1) {
 		white-space:nowrap; /*줄 안바꿈*/
       	overflow : hidden; /*넘친 내용 숨기기 */
-      	text-overflow : ellipsis/* */
+      	text-overflow : ellipsis/* 넘친텍스트 ...처리 */
 	}
 	.reviewul>li:last-of-type {
-		
 		width: 9%;
 	}
-
-	
 </style>
 <script>
 $(function(){
@@ -161,9 +148,6 @@ $(function(){
     	<div id="d1">
     	</div>
     </div>
-    
-    
 </div>
-
 </body>
 </html>

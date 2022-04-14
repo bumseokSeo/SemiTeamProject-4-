@@ -8,7 +8,6 @@
 		alert("회원가입에 성공했습니다.");
 		location.href="${url}/member/login";
 	</script>
-
 </c:if>
 <!-- 등록 실패시 -->
 <c:if test="${cnt==null || cnt==0 }">
