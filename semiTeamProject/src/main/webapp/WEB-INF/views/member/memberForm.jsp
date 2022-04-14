@@ -46,11 +46,14 @@
 		float:left;
 		width:20%;
 		margin-bottom: 30px;
+		line-height: 2.5;
+		
 		
 	}
 	#memberForm li:nth-child(2n){
 		float:left;
 		width:80%;
+		
 	}
 	
 	#memberForm li:last-of-type{
@@ -232,7 +235,7 @@ $(function(){
 					    	<option value="f">여성</option>
 					</select>
 				</li>
-				<li><label for="sel_ask" style="font-size: 0.5em;">질문을 선택하세요<br>(계정 분실시 사용됩니다)</label></li>
+				<li style="margin-bottom: 10px;"><label for="sel_ask" style="font-size: 0.5em;">질문을 선택하세요<br>(계정 분실시 사용됩니다)</label></li>
 				<li>
 					<select class="form-control form-control-lg" id="ask" name="ask" style="width:90%">
 					    	<option value="school">입학했던 초등학교 이름은?</option>
