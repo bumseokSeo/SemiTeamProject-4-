@@ -46,7 +46,7 @@ $(function(){
 				var num = "";
 				$(result).each(function(){
 					idx = this.cname.indexOf(".");
-					num = this.cname.substring(1,idx);
+					num = this.cname.substring(0,idx);
 					$("#eheart"+num).css("display", "none");
 					$("#fheart"+num).css("display", "block");
 				});
@@ -80,7 +80,7 @@ $(function(){
 	});
 	
 function heartInsert(cname){//emptyheart 클릭
-	var idx = cname.substring(1, cname.indexOf('.'));
+	var idx = cname.substring(0, cname.indexOf('.'));
 	
 	$.ajax({
 		url: "/heartInsert",
@@ -99,7 +99,7 @@ function heartInsert(cname){//emptyheart 클릭
 }
 
 function heartDelete(cname){	//fullheart 클릭
-	var idx = cname.substring(1, cname.indexOf('.'));
+	var idx = cname.substring(0, cname.indexOf('.'));
 	$.ajax({
 		url: "/heartDelete",
 		data: "cname="+cname,
@@ -559,8 +559,8 @@ section {
 					    		<img src="${url}/img/codyimg/codyupload/${vo[j].cname}" alt="모달할 이미지" class="Cimg">
 					    		<p>${vo[j].info}
 					    		<c:set var="idx" value="${fn:indexOf(vo[j].cname,'.')}"/>
-								<a href="javascript:heartInsert('${vo[j].cname}');"><img src="${url}/img/codyimg/heart1.png" class="emptyheart" id="eheart${fn:substring(vo[j].cname,1,idx)}"/></a>
-								<a href="javascript:heartDelete('${vo[j].cname}');"><img src="${url}/img/codyimg/heart2.png" class="fullheart" id="fheart${fn:substring(vo[j].cname,1,idx)}"/></a>
+								<a href="javascript:heartInsert('${vo[j].cname}');"><img src="${url}/img/codyimg/heart1.png" class="emptyheart" id="eheart${fn:substring(vo[j].cname,0,idx)}"/></a>
+								<a href="javascript:heartDelete('${vo[j].cname}');"><img src="${url}/img/codyimg/heart2.png" class="fullheart" id="fheart${fn:substring(vo[j].cname,0,idx)}"/></a>
 					    		</p>
 					    		<input type="hidden" id = ".styleVal" value="${vo[j].style}"/>
 					    	</c:if>
@@ -581,8 +581,8 @@ section {
 					    		<img src="${url}/img/codyimg/codyupload/${hVO[j].cname}" alt="모달할 이미지" class="Cimg">
 					    		<p>
 					    		<c:set var="idx" value="${fn:indexOf(hVO[j].cname,'.')}"/>
-								<a href="javascript:heartInsert('${hVO[j].cname}');"><img src="${url}/img/codyimg/heart1.png" class="emptyheart" id="eheart${fn:substring(hVO[j].cname,1,idx)}"/></a>
-								<a href="javascript:heartDelete('${hVO[j].cname}');"><img src="${url}/img/codyimg/heart2.png" class="fullheart" id="fheart${fn:substring(hVO[j].cname,1,idx)}"/></a>
+									<a href="javascript:heartInsert('${hVO[j].cname}');"><img src="${url}/img/codyimg/heart1.png" class="emptyheart" id="eheart${fn:substring(hVO[j].cname,0,idx)}"/></a>
+									<a href="javascript:heartDelete('${hVO[j].cname}');"><img src="${url}/img/codyimg/heart2.png" class="fullheart" id="fheart${fn:substring(hVO[j].cname,0,idx)}"/></a>
 					    		</p>
 					    	</c:if>
 					    	<c:if test="${hVO[j]==null}">	<!-- 자리 채울 이미지 -->
