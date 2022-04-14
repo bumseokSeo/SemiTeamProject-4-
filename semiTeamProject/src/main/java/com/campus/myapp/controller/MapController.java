@@ -4,17 +4,16 @@ package com.campus.myapp.controller;
 import java.util.List;
 
 import javax.inject.Inject;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import org.springframework.web.servlet.ModelAndView;
 
 import com.campus.myapp.service.MapService;
-import com.campus.myapp.service.ReviewService;
+
 import com.campus.myapp.vo.ReviewVO;
 
 @RestController
@@ -27,10 +26,9 @@ public class MapController {
 	public ModelAndView Main_map(String fname) {
 		//DB에서 음식메뉴 가져오기 ==> 서비스 
 		ModelAndView mav = new ModelAndView();
-<<<<<<< HEAD
-=======
+
 		//String fname = service.getfname();
->>>>>>> 7ef60b1a8da5bac1758d75c670c61ba4c577cd1e
+
 		mav.addObject("menu",fname);
 		mav.addObject("placeid","p1");
 		mav.setViewName("map/map");
