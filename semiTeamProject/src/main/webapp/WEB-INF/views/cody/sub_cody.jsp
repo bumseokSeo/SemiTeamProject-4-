@@ -126,6 +126,11 @@ function heartDelete(cname){	//fullheart 클릭
   font-style: normal;
 }
 
+ a {color: black;  text-decoration: none;}
+ a:link { text-decoration: none;}
+ a:visited { text-decoration: none;}
+ a:hover { color: black; text-decoration: none;}
+
 html,
 body {
   background-image: linear-gradient(to top, #d5d4d0 0%, #d5d4d0 1%, #eeeeec 31%, #efeeec 75%, #e9e9e7 100%);
@@ -142,6 +147,7 @@ body {
 }
 
 .main-container {
+  max-width: 1300px;
   width: 1300px;
   height: 100%;
   margin-top: 100px;
@@ -150,6 +156,9 @@ body {
 }
 
 .cody-sub {
+  position: fixed;
+  top:3%;
+  left:5%;
   float: left;
   width: 28%;
   height: 100%;
@@ -410,7 +419,7 @@ section {
   cursor: pointer;   
   z-index: 10;  
   font-size: 20px;
-  color: black;     
+  color: #4d4d4d;     
   display: none;
   right: 24px;
 }
@@ -423,6 +432,8 @@ section {
 
   bottom: 50px;
 }
+
+
 .emptyheart{
 	margin-top:3px;
 	width:24px !important;

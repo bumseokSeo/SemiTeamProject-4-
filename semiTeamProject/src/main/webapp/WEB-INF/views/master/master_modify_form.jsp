@@ -36,8 +36,10 @@ body,ul,li{
 
 #codyImg {
    width: 200px;
-   margin-bottom:20px;
-   margin:0 auto;
+   margin:0px auto;
+   margin-bottom: 35px;
+   display: flex;
+   justify-content: center;
 }
 
 textarea {
