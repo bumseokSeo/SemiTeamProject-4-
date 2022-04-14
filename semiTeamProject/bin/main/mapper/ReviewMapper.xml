@@ -6,11 +6,14 @@
     </insert>
     <select id="reviewList" resultType="com.campus.myapp.vo.ReviewVO">
         select reviewno, userid, content, writedate, star, reviewimg from review
-        where no=${param1}
+        where placeid=#{param1}
         order by reviewno desc
     </select>
+    	<select id="getFileName" resultType="com.campus.myapp.vo.ReviewVO">
+		select reviewimg from review where reviewno=${param1}
+	</select>
     <update id="reviewEdit">
-        update review set modifydate=#{modifydate}, content=#{content} where reviewno=${reviewno} and userid=#{userid}
+        update review set reviewimg=#{reviewimg}, content=#{content} where reviewno=${reviewno} and userid=#{userid}
     </update>
     <delete id="reviewDel">
         delete from review where reviewno=#{param1} and userid=#{param2}
