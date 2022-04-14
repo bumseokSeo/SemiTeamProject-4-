@@ -320,8 +320,8 @@ public class MemberController {
 	
 	//회원 정보 전부 출력
 	@RequestMapping("memberListAll")
-	public List<MemberVO> list(String searchword) {
-		return service.memberListAll(searchword);
+	public List<MemberVO> memberListAll(MemberVO vo) {
+		return service.memberListAll(vo);
 	}
 	
 	//회원탈퇴시키기

@@ -34,6 +34,9 @@ body {
 }
 
 #weather span:first-child {
+	animation: blink-effect 1s step-end infinite;
+}
+#weather span:nth-child(2n) {
 	display: block;
 	font-size: 50px;
 }
@@ -94,20 +97,24 @@ body {
 }
 
 @keyframes blink-effect { 50% {opacity: 0;}}
+/*
 .blink {
 	animation: blink-effect 1s step-end infinite;
-	/* animation-name: blink-effect; animation-duration: 1s; animation-iteration-count:infinite; animation-timing-function:step-end; */
 	text-align: center;
 	position: absolute;
 	top: 140px;
 	left: 50%;
 	transform: translate(-50%, 0);
 }
+*/
+
+
 </style>
 
-<p class="blink">Click Me ↓</p>
+
 <div id="weather" class="rotate-center" onmouseenter="return mouseenter"
 	ondblclick="dbmouse()">
+	<span>Click Me ↓</span>
 	<span></span> <span></span>
 </div>
 <div class="submenu">
@@ -141,7 +148,7 @@ body {
        fetch(url)
          .then((response) => response.json())
          .then((data) => {
-           const weather = document.querySelector("#weather span:first-child");
+           const weather = document.querySelector("#weather span:nth-child(2n)");
            const city = document.querySelector("#weather span:last-child");
            //city.innerText = data.name;
            weather.innerHTML = data.weather[0].description +'/'+ data.main.temp;

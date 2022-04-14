@@ -76,12 +76,13 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public List<MemberVO> memberListAll(String searchword) {
+	public List<MemberVO> memberListAll(MemberVO vo) {
 		// TODO Auto-generated method stub
-		System.out.println(searchword);
-		return dao.memberListAll(searchword);
-		
+		return dao.memberListAll(vo);
 	}
+
+	
+	
 
 	
 

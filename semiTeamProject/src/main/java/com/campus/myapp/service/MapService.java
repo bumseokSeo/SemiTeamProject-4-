@@ -6,4 +6,5 @@ import com.campus.myapp.vo.ReviewVO;
 
 public interface MapService {
 	public List<ReviewVO> myReviewListAll(String userid);
+	public int myreviewDeleteOk(int reviewno);
 }
