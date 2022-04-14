@@ -17,6 +17,10 @@
 		values(#{cname}, ${temp}, #{weather}, #{sex}, #{style}, #{info})
 	</insert>
 	
+	<select id="codySelect" resultType="com.campus.myapp.vo.CodyVO">
+		select cname, temp, weather, sex, style, info from cody where cname=#{param1}
+	</select>
+	
 	<select id="codyListAll" resultType="com.campus.myapp.vo.CodyVO">
 		select cname, temp, weather, sex, style, info from cody order by length(cname), cname;
 	</select>

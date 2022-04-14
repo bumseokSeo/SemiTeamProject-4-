@@ -66,8 +66,12 @@ public class CodyController {
 
 	// 코디 관리자 페이지(수정폼)
 	@GetMapping("/master/master_modify_form")
-	public String modifyForm() {
-		return "master/master_modify_form";
+	public ModelAndView modifyForm(String cname) {
+		ModelAndView mav = new ModelAndView();
+		List<CodyVO> vo = service.codySelect(cname);
+		mav.addObject("vo", vo);
+		mav.setViewName("master/master_modify_form");
+		return mav;
 	}
 
 	// 코디 관리자 페이지(추가)

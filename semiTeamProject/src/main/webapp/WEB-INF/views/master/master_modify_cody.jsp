@@ -20,9 +20,7 @@
 	        $('html, body').animate({scrollTop : ($(document).height())}, 600);
 	    });
 	});
-
 </script>
-
 
 <style>
 @import url('https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css');
@@ -158,13 +156,13 @@ h1 {
 						<div class="imgC">
 							<c:if test="${vo[j]!=null}">
 				    			<img src="${url}/img/codyimg/codyupload/${vo[j].cname}" alt="모달할 이미지" class="Cimg">
-				    		
-				    				<p><a href="${url}/master/master_modify_form">수정</a> /  
-                 					<a href="#">삭제</a></p>
-                 				
+				    			<p>
+				    				<a href="${url}/master/master_modify_form?cname=${vo[j].cname}" class="modify">수정</a> /  
+                 					<a href="javascript:void(0);">삭제</a>
+                 				</p>
 				    		</c:if>
 				    		<c:if test="${vo[j]==null}">	<!-- 자리 채울 이미지 -->
-				    		<img src="${url}/img/codyimg/none.jpg">
+				    			<img src="${url}/img/codyimg/none.jpg">
 			    			</c:if>
 			    		</div>
 		    		</c:forEach>

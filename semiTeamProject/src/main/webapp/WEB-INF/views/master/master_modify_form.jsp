@@ -77,24 +77,6 @@ $(function() {
       $("#cname").val(file.substring(idx));
       console.log($("#cname").val());
       
-      //cname 중복확인
-      $.ajax({
-         url: '/cnameCheck',
-         data: "cname="+$("#cname").val(),
-         method:"post",
-         success:function(result){
-            if(result>0){
-               alert("중복된 파일명입니다.\n파일을 다시 업로드해 주세요.");
-               $("#file").focus();
-               return false;
-            }
-         },
-         error:function(e){
-            console.log(e.responseText);
-            alert("중복 확인 에러!?");
-         }
-      });
-      
       if ($("#temp").val() == '') {
          alert("온도를 입력하세요.");
          $("#temp").focus();
@@ -121,20 +103,20 @@ $(function() {
       console.log(params);
       
       $.ajax({
-         url: '/codyInsert',
+         url: '/codyUpdate',
          data: params,
          method:"post",
          processData: false,
          contentType: false,
          success:function(result){
             if(result>0){
-               alert("코디가 등록되었습니다.");
+               alert("수정되었습니다.");
                location.reload();
             }
          },
          error:function(e){
             console.log(e.responseText);
-            alert("코디 등록 실패하였습니다.");
+            alert("수정 실패하였습니다.");
          }
       });
    });
@@ -144,45 +126,45 @@ $(function() {
    <div id="d1">
       <h1>코디 관리자 수정폼</h1>
       <form method="post" action="/codyInsert" id="codyFrm" enctype="multipart/form-data">
-         <img src="${url}/img/codyimg/codyupload/f1.jpg" id="codyImg"/>
+         <img src="${url}/img/codyimg/codyupload/${vo[0].cname}" id="codyImg"/>
             <div class="addimage">
-               <input type="hidden" name="cname" value="" id="cname"/>
+               <input type="hidden" name="cname" value="${vo[0].cname}" id="cname"/>
             </div>
          <ul>
             <li>온도</li>
-            <li><input type="text" class="form-control" name="temp" id="temp"></li>
+            <li><input type="text" class="form-control" name="temp" id="temp" value="${vo[0].temp}"></li>
             <li>날씨</li>
             <li>
                <select class="form-control" name="weather" id="weather">
-                     <option>선택</option>
-                      <option value="clear">맑음</option>
-                      <option value="rain">비</option>
-                      <option value="snow">눈</option>
+  					<option<c:if test="${vo[0].weather==null}"> selected</c:if>>선택</option>
+					<option value="clear"<c:if test="${vo[0].weather=='clear'}"> selected</c:if>>맑음</option>
+                  	<option value="rain"<c:if test="${vo[0].weather=='rain'}"> selected</c:if>>비</option>
+					<option value="snow"<c:if test="${vo[0].weather=='snow'}"> selected</c:if>>눈</option>
                </select>
             </li>
             <li><label for="sex">성별</label></li>
             <li>
                <select class="form-control" name="sex" id="sex">
-                     <option>선택</option>
-                      <option value="m">남성</option>
-                      <option value="f">여성</option>
+                      <option>선택</option>
+                      <option value="m"<c:if test="${vo[0].sex=='m'}"> selected</c:if>>남성</option>
+                      <option value="f"<c:if test="${vo[0].sex=='f'}"> selected</c:if>>여성</option>
                </select>
             </li>
             <li>스타일</li>
             <li>
                <select class="form-control" name="style" id="style">
                       <option>선택</option>
-                      <option value="casual">캐주얼룩</option>
-                      <option value="modern">모던룩</option>
-                      <option value="street">스트릿룩</option>
-                      <option value="office ">오피스룩</option>
-                      <option value="walk">산책룩</option>
-                      <option value="special">스페셜룩</option>
+                      <option value="casual"<c:if test="${vo[0].style=='casual'}"> selected</c:if>>캐주얼룩</option>
+                      <option value="modern"<c:if test="${vo[0].style=='modern'}"> selected</c:if>>모던룩</option>
+                      <option value="street"<c:if test="${vo[0].style=='street'}"> selected</c:if>>스트릿룩</option>
+                      <option value="office"<c:if test="${vo[0].style=='office'}"> selected</c:if>>오피스룩</option>
+                      <option value="walk"<c:if test="${vo[0].style=='walk'}"> selected</c:if>>산책룩</option>
+                      <option value="special"<c:if test="${vo[0].style=='special'}"> selected</c:if>>스페셜룩</option>
                </select>
             </li>
             <li><label for="info">상세설명</label></li>
             <li>
-                 <textarea class="form-control" rows="2" name="info" id="info"></textarea>
+                 <textarea class="form-control" rows="2" name="info" id="info">${vo[0].info}</textarea>
               </li>
          </ul>
          <input type="reset" value="취소" id="resetbtn" class="btn btn-danger"/>
