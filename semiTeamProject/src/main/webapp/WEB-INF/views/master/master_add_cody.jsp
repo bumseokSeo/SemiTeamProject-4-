@@ -17,7 +17,6 @@ body,ul,li{
 	float: left;
 	border: 1px solid gray;
 	padding: 50px;
-	padding-top: 10px;
 	margin-top: 30px;
 	margin-bottom:20px;
 }
@@ -43,8 +42,7 @@ body,ul,li{
 }
 
 #plus {
-	width: 80px;
-	height: 80px;
+	width: 30px;
 }
 
 textarea {
@@ -58,13 +56,6 @@ textarea {
 #submitbtn{
 	width:160px;
 }
-
-.filecontainer {
-	margin: 0 auto;
-	text-align: center;
-	margin-bottom: 45px;
-}
-
 </style>
 
 <script>
@@ -166,12 +157,13 @@ function setImage(input, preview) {
 		<h1>코디 추가페이지</h1>
 		<form method="post" action="/codyInsert" id="codyFrm" enctype="multipart/form-data">
 			<img src="" id="preview"/>
-			<div class="filecontainer">
-				<input type="file" name="filename" id ="file"/>
-				<input type="hidden" name="cname" value="" id="cname"/>
-				<a href="javascript:document.getElementById('file').click();"><img src="${url}/img/plus_icon.png"/ id="plus"></a>
-			</div>
 			<ul>
+				<li>이미지 추가</li>
+				<li>
+					<input type="file" name="filename" id ="file"/>
+					<input type="hidden" name="cname" value="" id="cname"/>
+					<a href="javascript:document.getElementById('file').click();"><img src="${url}/img/plus_icon.png"/ id="plus"></a>
+				</li>
 				<li>온도</li>
 				<li><input type="text" class="form-control" name="temp" id="temp"></li>
 				<li>날씨</li>

@@ -209,6 +209,10 @@ ul, li {
 				<img class="codyImg" src="${url}/img/codyimg/codyupload/${vo.cname}" alt="">
 			</div>
 		</c:forEach>
+		
+		<div class="fullsection full7" pageNum="7">
+			<img class="fullImg" src="${url}/img/thankyou.png/" alt="">
+		</div>
 	</div>
 </body>
 
