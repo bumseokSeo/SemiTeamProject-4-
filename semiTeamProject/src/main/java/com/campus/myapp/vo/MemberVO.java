@@ -10,6 +10,7 @@ public class MemberVO {
 	private String ask;
 	private String answer;
     private String profile;
+    private String searchword;
     
     
 	public String getUserid() {
@@ -59,6 +60,12 @@ public class MemberVO {
 	}
 	public void setProfile(String profile) {
 		this.profile = profile;
+	}
+	public String getSearchword() {
+		return searchword;
+	}
+	public void setSearchword(String searchword) {
+		this.searchword = searchword;
 	}
 	
 	

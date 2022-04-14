@@ -46,5 +46,9 @@ public class MapController {
 	public List<ReviewVO> myReviewListAll(String userid) {
 		return service.myReviewListAll(userid);
 	}
-	
+	//나의 리뷰 삭제
+	@GetMapping("myreviewDeleteOk")
+	public int myreviewDeleteOk(int reviewno) {
+		return service.myreviewDeleteOk(reviewno);
+	}
 }

@@ -41,23 +41,38 @@
 	
 	}
 	#memberlst{
-		
+		position:relative;
 		border: 1px solid gray;
 		width:670px;
 		margin-right:60px;
 		float:left;
 		height:900px;
 		overflow:auto;
+		top:-120px;
 		
 		
 	
 	}
 	#reviewlst{
+		position:relative;
 		border: 1px solid gray;
 		width:670px;
 		float:left;
 		height:900px;
 		overflow:auto;
+		top:-120px;
+		
+	}
+	#reviewsearch{
+		
+		width:670px;
+		height:80px;
+		left:730px;
+		top:-111px;
+		position:relative;
+		margin-bottom:30px;
+		border : 1px solid gray;
+		padding:20px;
 		
 	}
 	
@@ -77,6 +92,9 @@
 	}
 	.memberul>li:nth-child(5n+3) {
 		width: 25%;
+		white-space:nowrap; /*줄 안바꿈*/
+      	overflow : hidden; /*넘친 내용 숨기기 */
+      	text-overflow : ellipsis/* */
 	}
 	.memberul>li:nth-child(5n+4) {
 		width: 15%;
@@ -85,28 +103,45 @@
 		padding-top: 4px;
 		width: 15%;
 	}
+	
 	#search{
 		width:670px;
 		height:80px;
-		position:absolute;
-		top:1170px;
+		position:relative;
+		margin-bottom:30px;
 		border : 1px solid gray;
+		padding:20px;
+		padding-left: 120px;
+	}
+	#searchWord{
+		width:300px;
+		height:40px;
+		float:left;
+		margin-left: 20px;
+		margin-right: 20px;
+	}
+	#searchIcon{
+		width:40px;
+		height:40px;
+		float:left;
+		
+	}
+	#searchBtn{
+		float:left;
 	}
 
 	
 </style>
 <script>
 $(function(){
-	
+	var search="";
 	function memberListAll(){
 		var url = "${url}/member/memberListAll";
-		var a = $("#searchWord").val();
-		var params = "searchword=$('#searchWord').val()";
-		//var params = "searchword=$('#searchWord')";
+
 
 		$.ajax({
 			url:url,
-			data:params,
+			data:search,
 			success:function(result){
 				var $result = $(result);
 				var tag = "";
@@ -151,11 +186,14 @@ $(function(){
 	
 	$("#searchFrm").submit(function(){
 		event.preventDefault();
+		/*
 	    if($("#searchWord").val()==""){
 	       alert("검색어를 입력하세요.");
 	       return false;
 	    }
-	    
+		*/
+	    search="searchword="+$('#searchWord').val();
+	    console.log(search);
 	    
 	    memberListAll();
 	 });
@@ -167,6 +205,16 @@ $(function(){
 </script>
 <h1>관리자 페이지</h1>
 <div id="master">
+	<div id="search">
+      <form method="get" action="" id="searchFrm">
+         <img alt="" src="${url}/img/search.png" id="searchIcon" >
+         <input type="text" name="searchWord" id="searchWord" placeholder="아이디로 검색" class="form-control form-control-lg"/>
+         <input type="submit" value="검색" class="btn btn-info" id="searchBtn">
+      </form>
+   </div>
+   <div id="reviewsearch">
+   
+   </div>
     <div id="memberlst">
     	<ul class="memberul">
     		<li>아이디</li>
@@ -182,13 +230,7 @@ $(function(){
     <div id="reviewlst">
     
     </div>
-    <div id="search">
-      <form method="get" action="" id="searchFrm">
-         
-         <input type="text" name="searchWord" id="searchWord"/>
-         <input type="submit" value="Search">
-      </form>
-   </div>
+    
 </div>
 
 </body>

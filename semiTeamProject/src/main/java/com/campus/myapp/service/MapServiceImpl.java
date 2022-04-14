@@ -20,6 +20,12 @@ public class MapServiceImpl implements MapService {
 		return dao.myReviewListAll(userid);
 	}
 
+	@Override
+	public int myreviewDeleteOk(int reviewno) {
+		// TODO Auto-generated method stub
+		return dao.myreviewDeleteOk(reviewno);
+	}
+
 	
 
 	

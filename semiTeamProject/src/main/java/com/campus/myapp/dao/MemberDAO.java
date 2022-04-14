@@ -28,7 +28,7 @@ public interface MemberDAO {
 	public int memberDelete(String userid);
 	
 	//맴버정보 전부 출력
-	public List<MemberVO> memberListAll(String searchword);
+	public List<MemberVO> memberListAll(MemberVO vo);
 	
 	//회원관리-탈퇴
 	public int memberDeleteOk(String userid);

@@ -91,6 +91,7 @@ $(function(){
 			url:url,
 			data:params,
 			success:function(result){
+				
 				var $result = $(result);
 				var tag = "";
 				
@@ -98,7 +99,13 @@ $(function(){
 					tag += "<form method='post' id='memberform'>";
 					tag +="<ul class='reviewul'>";
 					tag +="<li>"+vo.placename+"</li><li>"+vo.content+"</li><li>"+vo.star+"</li>";
-					tag +="<li>"+vo.writedate+"</li>";
+					if(vo.modifydate=='' || vo.modifydate==null){
+						tag +="<li>"+vo.writedate+"</li>";
+					}
+					if(vo.modifydate!='' && vo.modifydate!=null){
+						tag +="<li>"+vo.modifydate+"</li>";
+					}
+					
 					if(vo.reviewimg=='' || vo.reviewimg==null){
 						tag +="<li>없음</li>";
 					}
@@ -119,13 +126,14 @@ $(function(){
 	
 	$(document).on('click','#memberform input[value=리뷰삭제]',function(){
 		
-		if(confirm('탈퇴처리 시키겠습니까?')){
-			var params = "userid="+$(this).attr("title");
+		if(confirm('삭제하겠습니까?')){
+			var params = "reviewno="+$(this).attr("title");
 			$.ajax({
-				url:'${url}/member/memberDeleteOk',
+				url:'${url}/map/myreviewDeleteOk',
 				data:params,
+				
 				success:function(result){
-					memberListAll();
+					myReviewListAll();
 				},
 				error:function(e){
 					console.log(e.resopnseText);

@@ -11,6 +11,10 @@
 		where r.userid=#{param1} order by reviewno desc
 	</select>
 	
+	<delete id="myreviewDeleteOk">
+		delete from review where reviewno=#{param1}
+	</delete>
+	
 	
 
 </mapper>
