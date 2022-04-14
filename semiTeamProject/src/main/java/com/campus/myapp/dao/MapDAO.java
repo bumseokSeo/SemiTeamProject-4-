@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
 import com.campus.myapp.vo.ReviewVO;
+import com.campus.myapp.vo.StoreVO;
 
 
 @Mapper
@@ -18,9 +19,7 @@ public interface MapDAO {
 	
 	//나의 리뷰 삭제
 	public int myreviewDeleteOk(int reviewno);
-	
-	
-	
-	
-}
 
+	//가게정보 등록
+	public int addplace(StoreVO vo);	
+}
