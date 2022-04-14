@@ -8,11 +8,13 @@ import java.nio.charset.Charset;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.ibatis.javassist.bytecode.Descriptor.Iterator;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -20,7 +22,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -46,22 +50,18 @@ public class FoodController {
 		
 	}
 	
-	@PostMapping("/getFoodRecommend")
+	@RequestMapping(value="/getFoodRecommend", method=RequestMethod.GET)
 	@ResponseBody
-	public List<FoodVO> foodRecommend(String weather){
-		
+	public List<FoodVO> foodRecommend(String weather, String temp){
+
 		//음식 추천
-		//우선 위 있는 음식에서 2개
+		//우선 순위 있는 음식에서 2개
 		
 		//음식 추천 화면으로 보낼 음식 리스트
-		List<FoodVO> vo = new ArrayList<FoodVO>();
-		
-		//이벤트 일치 저장할 리스트
-		//List<FoodVO> event = new ArrayList<FoodVO>();
+		List<FoodVO> list = new ArrayList<FoodVO>();
 		
 		//날씨 일치, 계절 일치, 온도 해당 하는 음식 저장할 리스트
-		List<FoodVO> foods = new ArrayList<FoodVO>();
-		
+		HashSet<FoodVO> foods = new HashSet<FoodVO>();
 		
 		
 		int cnt=0;
@@ -70,44 +70,120 @@ public class FoodController {
 		//오늘 날짜
 		LocalDate now = LocalDate.now();
 		
+		//오늘 날짜와 일치하는 이벤트 있는 음식 저장
 		List<FoodVO> event = service.getEqualEvent(now.toString());
 		
 		if(event.size()>=2) {
 			//1개 선택하기
 			Collections.shuffle(event);
-			vo.add(event.get(0));
+			list.add(event.get(0));
 			cnt=1;
 		}else if(event.size()==1) {
 			//1개
-			vo.add(event.get(0));
+			list.add(event.get(0));
 			cnt=1;
 		}
-		//0개인 경우 - cnt = 0
-		
+		//0개인 경우 - cnt = 0 넘어간다
 		
 		
 		//2. 오늘 날씨와 일치하는 음식 있는지 확인
-		/////////////////////////오늘 날씨를 받아와야 한다.....
+		//오늘 날씨
+		System.out.println(weather);
 		
+		String todayWeather = "";
+		
+		if(weather.contains("맑음")) {
+			todayWeather = "clear";
+			
+		}else if(weather.contains("비") || weather.contains("소나기")) {
+			
+			todayWeather = "rain";
+			
+		}else if(weather.contains("눈")) {
+			todayWeather = "snow";
+			
+		}
+		if(!todayWeather.equals("")) {
+			foods.addAll(service.getEqualWeather(todayWeather));
+		}
 		
 		
 		//3. 오늘 계절과 일치하는 음식 있는지 확인
 		int month = now.getMonthValue();
 		
+		String season = "";
+		
+		if(month>=3 && month <=5) {
+			season = "spring";
+		}else if(month>=6 && month <=8) {
+			season = "summer";
+		}else if(month>=9 && month <=11) {
+			season = "fall";
+		}else if(month <= 2 || month ==12) {
+			season = "winter";
+		}
+		
+		if(season.equals("")) {
+			foods.addAll(service.getEqualSeason(season));		
+		}
+		
 		
 		//4. 오늘 온도에 해당하는 음식 있는지 확인
+		Double tem = Double.parseDouble(temp);
+		int temperature = 0;
+		
+		if(tem <=15) {
+			temperature = 2;
+		}else if(tem>=25) {
+			temperature= 1;
+		}
+		
+		if(temperature >0) {
+			foods.addAll(service.getEqualTemp(temperature));
+		}
 		
 		
+		//event에서 선택된 것과 중복되는 데이터 삭제
+		if(list.size()>0) {
+			foods.removeIf(FoodVO->FoodVO.getFname().equals(list.get(0).getFname()));
+		}
+		
+		// 2,3,4추가후 객체 중복 제거
+		//fname으로 객체 제거 
+		
+		List<FoodVO> f = new ArrayList<FoodVO>(foods);
 		
 		//2,3,4, 담는 리스트에 추가 <- (1번이 0개이면 2개 추출, 1개 이상이면 1개 추출)
 		
-		
-		
-		
-		//우선 순위 없는 음식에서 3개
-		//priorty==N인 음식 리스트 가져오기 그중 무작위 3개
-				
-		 return vo;
+		if(f.size()>0) {
+			
+			Collections.shuffle(f);
+			list.add(f.get(0));
+			cnt++;
+			
+			if(cnt==0 && f.size()>1) {
+				list.add(f.get(1));
+				cnt++;
+			}
+		}
+			
+		//우선 순위 없는 음식 가져오기
+		//priorty==N인 음식 리스트 가져오기 그중 무작위 3개 또는 4개 또는 5개
+		List<FoodVO> priorityN = service.getPriorityN("N");
+		Collections.shuffle(priorityN);
+			
+		int i=0;
+		while(cnt<5) {
+			list.add(priorityN.get(i));
+			i++;
+			cnt++;
+		}
+			
+		for(FoodVO fvo: list) {
+			System.out.println(fvo.getFname());
+		}
+			
+		return list;
 		
 	}
 	
@@ -290,9 +366,6 @@ public class FoodController {
 		 return entity;
 
 	 }
-
-
-
 	
 	//파일 삭제
 	public void deleteFile(String p, String f) {
@@ -304,6 +377,6 @@ public class FoodController {
 		}
 		
 	}
-	
-	
 }
+
+

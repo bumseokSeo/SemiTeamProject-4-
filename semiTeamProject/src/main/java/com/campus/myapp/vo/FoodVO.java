@@ -74,7 +74,23 @@ public class FoodVO {
 	public void setPriority(String priority) {
 		this.priority = priority;
 	}
-	
-	
 
+	@Override
+	public int hashCode() {
+		
+		return fname.hashCode();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		
+		if(obj instanceof FoodVO) {
+			FoodVO food=(FoodVO)obj;
+			boolean bool=food.fname.equals(this.fname);
+			return true;
+		}else {
+			return false;
+		}
+	}
+	
 }

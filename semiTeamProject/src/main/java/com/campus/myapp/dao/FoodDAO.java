@@ -33,6 +33,16 @@ public interface FoodDAO {
 	public List<FoodVO> getEqualEvent(String event);
 	
 	//현재 날씨와 일치하는 음식 정보 가져오기
+	public List<FoodVO> getEqualWeather(String todayWeather);
+	
+	//현재 계절과 일치하는 음식 정보 가져오기
+	public List<FoodVO> getEqualSeason(String season);
+	
+	//기본 값이 아닌 현재 기온의 범위에 속하는 기온을 가지고 있는 음식 정보 가져오기
+	public List<FoodVO> getEqualTemp(int temp);
+	
+	//우선순위 N인 음식 가져오기
+	public List<FoodVO> getPriorityN(String priorityN);
 	
 
 }

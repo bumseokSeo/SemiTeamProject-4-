@@ -7,17 +7,18 @@
     
 <style>
 	
-	   body{
-	       background-color: rgb(228, 231, 234);
-	   }
+	  
 	   #foodForm{
-	       background-color: #f5f4f4;
-	       width: 650px;
+	      width: 800px;
 	       margin: 0 auto;
-	       margin-top: 200px;
-	       font-family: 'NanumSquare',san-serif;
-	       border-radius: 20px;
-	       margin-bottom : 50px;
+	   }
+	   
+	   #adminForm{
+	       width: 800px;
+	       border: 1px solid gray;
+		   padding: 50px;
+		   margin-top: 30px;
+		   margin-bottom:20px;
 	   }
 	   #foodNameFixed{
 	       display: none;
@@ -118,7 +119,7 @@
             //검색 버튼 클릭하면 음식 정보 가져오기
             var searchFood = $("#searchFood").val();
             
-            /////////////////////////////////////////////////////////////////
+           
             $.ajax({
             	url : "/getFoodData",
             	data : "searchFood=" + searchFood,
@@ -226,9 +227,7 @@
             $("#fname").attr("readonly", false);
             $("#fcategory").val('');
             $(".form-select option:eq(0)").prop("selected", true);
-            ///////////////////////////////////////////////////////
             $("#weather option:eq(0)").prop("selected", true);
-            //////////////////////////////////////////////////////
             $(".form-check").attr("checked", false);
             $("#add").css('visibility', 'visible');
             $("#modify").css('visibility', 'visible');
@@ -290,7 +289,7 @@
         	var fileName = file.substring(file.lastIndexOf("\\")+1);
         	console.log(fileName);
         	
-        	//////////////////////////////////////////////
+        	
         	imagePreview(this, "#foodPhoto");
         	$("#photoDelete").css("display", "inline-block");
         	
@@ -302,7 +301,6 @@
         	 	success : function(result){
         	 		
         	 		if(result>0){
-        	 			//alert('동일한 이름의 이미지 파일이 있습니다. 추가하려는 음식 이름과 같은 이름의 사진 파일을 업로드하세요');
         	 			$("#fnameCheck").html("동일한 이름의 이미지 파일이 있습니다. 다른 이름의 사진 파일을 업로드 하세요");
         	 			$("#foodimg").val('');
         	 			return false;		
@@ -452,12 +450,12 @@
             if(eventDate !=''){
                 $(".modal").modal('hide');
                 
-            	/////이벤트 있음의 value에 이벤트 날짜 넣기
+            	//이벤트 있음의 value에 이벤트 날짜 넣기
                 $("#event option:eq(1)").val(eventDate);
             	$("#eventSend").text(eventDate);
                 console.log($("#event option:eq(1)").val());
                 
-                ////////선택된 날짜 나타나게 하기
+                //선택된 날짜 나타나게 하기
                 
             	var idx = eventDate.indexOf("-");
             	console.log(idx);
@@ -493,9 +491,9 @@
 </script>
 
 <div class="container">
-        <h1>음식 관리 페이지</h1>
-        <div id="foodForm">
         
+        <div id="foodForm">
+        <h1>음식 관리 페이지</h1>
         	<form method="post" id="adminForm" name="adminForm" enctype="multipart/form-data">
 	            <div class="row g-3 searchForm">
 	                <!--수정할 음식 이름 검색-->
