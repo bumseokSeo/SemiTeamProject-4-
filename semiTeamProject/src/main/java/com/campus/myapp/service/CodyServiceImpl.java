@@ -39,6 +39,11 @@ public class CodyServiceImpl implements CodyService {
 	public List<CodyVO> codyGenderList(String sex) {
 		return dao.codyGenderList(sex);
 	}
+	//좋아요
+	@Override
+	public List<HeartVO> codyHeartList(String userid) {
+		return dao.codyHeartList(userid);
+	}
 	//스타일
 	@Override
 	public List<CodyVO> codyStyleList(String style, String sex) {

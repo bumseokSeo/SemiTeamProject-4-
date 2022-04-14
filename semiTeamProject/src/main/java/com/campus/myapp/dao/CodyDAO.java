@@ -24,6 +24,8 @@ public interface CodyDAO {
 	public List<CodyVO> codyGenderList(String sex);
 	//코디 리스트(style)
 	public List<CodyVO> codyStyleList(String style, String sex);
+	//코디 리스트(heart)
+	public List<HeartVO> codyHeartList(String userid);
 	
 	//좋아요 추가
 	public int heartInsert(String userid, String cname, String heartinfo);
@@ -31,4 +33,5 @@ public interface CodyDAO {
 	public int heartDelete(String userid, String cname);
 	//좋아요 검색
 	public List<HeartVO> heartSelect(String userid);
+	
 }

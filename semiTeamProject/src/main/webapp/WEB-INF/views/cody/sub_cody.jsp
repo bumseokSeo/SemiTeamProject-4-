@@ -13,7 +13,10 @@ $(function(){
 			
 			// 이미지 텍스트 가져오기
 			var imgTit =  $(this).next("p").text();
-			$(".modalBox p").text(imgTit);
+			//$(".modalBox p").text(imgTit);
+			
+			var imgStyle = $(this).next().next().val();
+			$(".modalBox p").text(imgStyle);
 			
 	   // 이미지에 alt값을 가져와 제목으로
 			//$(".modalBox p").text(imgAlt);
@@ -229,7 +232,7 @@ section {
 .modalBox p {
 	color: #ffffff;
 	background-color: #000;
-	font-size: 14px;
+	font-size: 18px;
 	padding: 10px;
 }
 
@@ -277,7 +280,7 @@ section {
   display: inline-block;
   border-radius: 3px;
   margin-left: 5px;
-  margin-right: 5px
+  margin-right: 5px;
 }
 
 #shape {
@@ -315,6 +318,7 @@ section {
 /* ===============왼쪽 리스트 시작================= */
 
 .cody-sub-style-list {
+  margin-top:10px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -467,6 +471,15 @@ section {
 						</div>
 					</svg>
 				</div>
+				<!--Next button -->
+				<div class="svg-wrapper">
+					<svg height="40" width="150" xmlns="http://www.w3.org/2000/svg">
+						<rect id="shape" height="40" width="150" />
+						<div id="text">
+							<a href="${url}/codyHeartList"><span class="spot"></span>MY PICK</a>
+						</div>
+					</svg>
+				</div>
 			</div>
 
 	
@@ -518,34 +531,60 @@ section {
 
   <section>
   	<div class="imgList">
-  		<c:forEach var="i" begin="1" end="${len}">
-	  		<div class="imgList-row">
-		  		<c:forEach var="j" begin="${3*i-3}" end="${3*i-1}">
-					<div class="imgC">
-						<c:if test="${vo[j]!=null}">
-				    		<img src="${url}/img/codyimg/codyupload/${vo[j].cname}" alt="모달할 이미지" class="Cimg">
-				    		<p>${vo[j].info}
-				    		<c:set var="idx" value="${fn:indexOf(vo[j].cname,'.')}"/>
-							<a href="javascript:heartInsert('${vo[j].cname}');"><img src="${url}/img/codyimg/heart1.png" class="emptyheart" id="eheart${fn:substring(vo[j].cname,1,idx)}"/></a>
-							<a href="javascript:heartDelete('${vo[j].cname}');"><img src="${url}/img/codyimg/heart2.png" class="fullheart" id="fheart${fn:substring(vo[j].cname,1,idx)}"/></a>
-				    		</p>
-				    	</c:if>
-				    	<c:if test="${vo[j]==null}">	<!-- 자리 채울 이미지 -->
-				    		<img src="${url}/img/codyimg/none.jpg">
-			    		</c:if>
-			    	</div>
-		    	</c:forEach>
-		  	</div>
-  		</c:forEach>
+  		<c:if test="${vo!=null}">
+	  		<c:forEach var="i" begin="1" end="${len}">
+		  		<div class="imgList-row">
+			  		<c:forEach var="j" begin="${3*i-3}" end="${3*i-1}">
+						<div class="imgC">
+							<c:if test="${vo[j]!=null}">
+					    		<img src="${url}/img/codyimg/codyupload/${vo[j].cname}" alt="모달할 이미지" class="Cimg">
+					    		<p>${vo[j].info}
+					    		<c:set var="idx" value="${fn:indexOf(vo[j].cname,'.')}"/>
+								<a href="javascript:heartInsert('${vo[j].cname}');"><img src="${url}/img/codyimg/heart1.png" class="emptyheart" id="eheart${fn:substring(vo[j].cname,1,idx)}"/></a>
+								<a href="javascript:heartDelete('${vo[j].cname}');"><img src="${url}/img/codyimg/heart2.png" class="fullheart" id="fheart${fn:substring(vo[j].cname,1,idx)}"/></a>
+					    		</p>
+					    		<input type="hidden" id = ".styleVal" value="${vo[j].style}"/>
+					    	</c:if>
+					    	<c:if test="${vo[j]==null}">	<!-- 자리 채울 이미지 -->
+					    		<img src="${url}/img/codyimg/none.png">
+				    		</c:if>
+				    	</div>
+			    	</c:forEach>
+			  	</div>
+	  		</c:forEach>
+  		</c:if>
+  		<c:if test="${hVO!=null}">
+  		  	<c:forEach var="i" begin="1" end="${hlen}">
+		  		<div class="imgList-row">
+			  		<c:forEach var="j" begin="${3*i-3}" end="${3*i-1}">
+						<div class="imgC">
+							<c:if test="${hVO[j]!=null}">
+					    		<img src="${url}/img/codyimg/codyupload/${hVO[j].cname}" alt="모달할 이미지" class="Cimg">
+					    		<p>
+					    		<c:set var="idx" value="${fn:indexOf(hVO[j].cname,'.')}"/>
+								<a href="javascript:heartInsert('${hVO[j].cname}');"><img src="${url}/img/codyimg/heart1.png" class="emptyheart" id="eheart${fn:substring(hVO[j].cname,1,idx)}"/></a>
+								<a href="javascript:heartDelete('${hVO[j].cname}');"><img src="${url}/img/codyimg/heart2.png" class="fullheart" id="fheart${fn:substring(hVO[j].cname,1,idx)}"/></a>
+					    		</p>
+					    	</c:if>
+					    	<c:if test="${hVO[j]==null}">	<!-- 자리 채울 이미지 -->
+					    		<img src="${url}/img/codyimg/none.png">
+				    		</c:if>
+				    	</div>
+			    	</c:forEach>
+			  	</div>
+	  		</c:forEach>
+  		</c:if>
   	</div>
   </section>
-
+	
 	<!-- 팝업 될 곳 -->
 	<div class="modal">
 		<button>&times;</button>
 		<div class="modalBox">
 			<img src="" alt="">
-			<p></p>
+			<c:if test="${hVO==null}">
+				<p></p>
+			</c:if>
 		</div>
 	</div>
 	
