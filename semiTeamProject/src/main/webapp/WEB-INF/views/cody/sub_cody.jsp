@@ -121,9 +121,6 @@ function heartDelete(cname){	//fullheart 클릭
 		$(".cody-sub").css("margin-top",Math.max(-100,50-$(this).scrollTop()));
 	});
 
-
-
-
 </script>
 <style>
 @font-face {
@@ -165,6 +162,7 @@ body {
 
 .cody-sub {
   position: fixed;
+  max-width:430px;
   top:17%;
   left:4%;
   float: left;
@@ -205,6 +203,7 @@ section {
 .imgC p {
   text-align: center;
   color:gray;
+  margin-top: 10px;
 }
 
 .modal {
