@@ -116,6 +116,14 @@ function heartDelete(cname){	//fullheart 클릭
 	});
 }
 
+	// 왼쪽 서브메뉴 fixed고정
+	$(window).scroll(function(){
+		$(".cody-sub").css("margin-top",Math.max(-100,50-$(this).scrollTop()));
+	});
+
+
+
+
 </script>
 <style>
 @font-face {
@@ -157,12 +165,13 @@ body {
 
 .cody-sub {
   position: fixed;
-  top:3%;
-  left:5%;
+  top:17%;
+  left:4%;
   float: left;
   width: 28%;
   height: 100%;
-  margin-top: 50px;
+  margin-top: 70px;
+
 }
 
 
