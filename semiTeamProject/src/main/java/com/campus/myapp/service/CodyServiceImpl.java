@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.campus.myapp.dao.CodyDAO;
 import com.campus.myapp.vo.CodyVO;
+import com.campus.myapp.vo.HeartVO;
 
 @Service
 public class CodyServiceImpl implements CodyService {
@@ -38,9 +39,29 @@ public class CodyServiceImpl implements CodyService {
 	public List<CodyVO> codyGenderList(String sex) {
 		return dao.codyGenderList(sex);
 	}
+	//좋아요
+	@Override
+	public List<HeartVO> codyHeartList(String userid) {
+		return dao.codyHeartList(userid);
+	}
 	//스타일
 	@Override
 	public List<CodyVO> codyStyleList(String style, String sex) {
 		return dao.codyStyleList(style, sex);
+	}
+
+	@Override
+	public int heartInsert(String userid, String cname, String heartinfo) {
+		return dao.heartInsert(userid, cname, heartinfo);
+	}
+
+	@Override
+	public int heartDelete(String userid, String cname) {
+		return dao.heartDelete(userid, cname);
+	}
+
+	@Override
+	public List<HeartVO> heartSelect(String userid) {
+		return dao.heartSelect(userid);
 	}
 }

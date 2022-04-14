@@ -45,9 +45,11 @@ public class MapController {
 	//나의 리뷰 정보 전부 출력
 	@RequestMapping("myReviewListAll")
 	public List<ReviewVO> myReviewListAll(String userid) {
-		
-		System.out.println("mapcon");
 		return service.myReviewListAll(userid);
 	}
-	
+	//나의 리뷰 삭제
+	@GetMapping("myreviewDeleteOk")
+	public int myreviewDeleteOk(int reviewno) {
+		return service.myreviewDeleteOk(reviewno);
+	}
 }

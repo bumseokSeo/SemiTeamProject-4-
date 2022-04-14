@@ -36,7 +36,6 @@ h1 {
 	margin: 0px auto;
 	font-size: 1em;
 	overflow: auto;
-	margin-bottom: 200px;
 }
 
 #findform li {
@@ -61,12 +60,12 @@ h1 {
 }
 
 
-
 #findpwdbtn {
 	width: 90%;
 	margin-left: 0px auto;
 	height:70px;
 	margin-bottom: 100px;
+	
 }
 
 .loginBottom {
@@ -87,12 +86,13 @@ h1 {
 	});
 	function formcheck() {
 		var userid = document.getElementById("userid");
-
-		if (userid.value == "") {
+		
+		if(document.getElementById("userid").value==""){
 			alert("아이디를 입력해주세요");
 			userid.focus();
 			return false;
 		}
+		
 		var email = document.getElementById("email");
 
 		if (email.value == "") {
@@ -118,9 +118,7 @@ h1 {
 		<h1>비밀번호 찾기</h1>
 		<ul>
 			<li>아이디</li>
-			<li><input class="form-control form-control-lg" type="text"
-				placeholder="찾을 계정의 아이디를 입력하세요" name="userid" id="userid">
-			</li>
+			<li><input class="form-control form-control-lg" type="text" name="userid" id="userid" maxlength="20"></li>
 			<li>가입한 이메일</li>
 			<li><input class="form-control form-control-lg" type="text"
 				placeholder="이메일" name="email" id="email">
@@ -131,23 +129,27 @@ h1 {
 					    <option value="school">입학했던 초등학교 이름은?</option>
 					    <option value="travel">가장 기억에 남는 여행지는?</option>
 					    <option value="born">내가 태어난 장소는?</option>
+					    <option value="motto">나의 좌우명은?</option>
+					    <option value="treasure">나의 보물1호는?</option>
+					    <option value="book">인상 깊게 읽은 책 제목은?</option>
+					    <option value="character">내가 좋아하는 캐릭터는?</option>
+					    <option value="friend">유년시절 가장 생각나는 친구 이름은?</option>
 				</select>
 			</li>
 			<li>답변</li>
 			<li><input class="form-control form-control-lg" type="text" placeholder="" name="answer" id="answer"></li>
-			<li> <input type="submit" value="비밀번호 찾기"
+			<li><input type="submit" value="비밀번호 초기화하기"
 				id="findpwdbtn" class="btn btn-secondary"/></li>
 		</ul>
 	</form>
 	<div class="loginBottom">
 		<div>
-			<a href="/member/findId" title="아이디 찾기">아이디 찾기</a>
+			<a href="/member/findId" title="아이디 찾기">아이디</a>
 		</div>
 		<div>
 			<a href="/member/memberForm" title="회원가입">회원가입</a>
 		</div>
 	</div>
 </div>
-
 </body>
 </html>

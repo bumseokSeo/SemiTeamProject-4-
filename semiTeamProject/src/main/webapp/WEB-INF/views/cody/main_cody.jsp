@@ -28,14 +28,14 @@ html, body {
 }
 
 .fullImg {
-	width: 80%;
+	width: 70%;
 	height: 80%;
 	margin-bottom: -89px;
 }
 /*코디 이미지*/
 .codyImg {
 	width:40%;
-	height:65%;
+	height:70%;
 	margin-top:50px;
 }
 
@@ -210,26 +210,9 @@ ul, li {
 			</div>
 		</c:forEach>
 		
-		<!-- 테스트 이미지
-		<div class="fullsection full2" pageNum="2">
-			<img class="fullImg" src="${url}/img/cody_main2.png/" alt="">
-		</div>
-		<div class="fullsection full3" pageNum="3">
-			<img class="fullImg" src="${url}/img/cody_main3.png/" alt="">
-		</div>
-		<div class="fullsection full4" pageNum="4">
-			<img class="fullImg" src="${url}/img/cody_main4.png/" alt="">
-		</div>
-		<div class="fullsection full5" pageNum="5">
-			<img class="fullImg" src="${url}/img/cody_main5.png/" alt="">
-		</div>
-		<div class="fullsection full6" pageNum="6">
-			<img class="fullImg" src="${url}/img/cody_maingif2.gif/" alt="">
-		</div>
 		<div class="fullsection full7" pageNum="7">
-			<img class="fullImg" src="${url}/img/cody_mainLast.png/" alt="">
+			<img class="fullImg" src="${url}/img/thankyou.png/" alt="">
 		</div>
-		-->
 	</div>
 </body>
 

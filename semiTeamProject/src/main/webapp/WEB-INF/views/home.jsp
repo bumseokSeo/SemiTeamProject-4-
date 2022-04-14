@@ -34,6 +34,9 @@ body {
 }
 
 #weather span:first-child {
+	animation: blink-effect 1s step-end infinite;
+}
+#weather span:nth-child(2n) {
 	display: block;
 	font-size: 50px;
 }
@@ -94,20 +97,24 @@ body {
 }
 
 @keyframes blink-effect { 50% {opacity: 0;}}
+/*
 .blink {
 	animation: blink-effect 1s step-end infinite;
-	/* animation-name: blink-effect; animation-duration: 1s; animation-iteration-count:infinite; animation-timing-function:step-end; */
 	text-align: center;
 	position: absolute;
 	top: 140px;
 	left: 50%;
 	transform: translate(-50%, 0);
 }
+*/
+
+
 </style>
 
-<p class="blink">Click Me ↓</p>
+
 <div id="weather" class="rotate-center" onmouseenter="return mouseenter"
 	ondblclick="dbmouse()">
+	<span>Click Me ↓</span>
 	<span></span> <span></span>
 </div>
 <div class="submenu">
@@ -119,7 +126,7 @@ body {
 		<div class="submenu-a submenu-a-cody"><a id="main_codylink" href="">코디추천</a></div>
 	</c:if>
 	<c:if test="${logId=='master'}">
-		<div class="submenu-a submenu-a-cody"><a href="${url}/master/master_cody">코디관리</a></div>
+		<div class="submenu-a submenu-a-cody"><a href="${url}/master/master_modify_cody">코디관리</a></div>
 	</c:if>
 
 	<c:if test="${logId != 'master' }">
@@ -133,7 +140,7 @@ body {
 
 <script>
      function onGeoOk(position) {
-      const API_KEY = "f5c60c534d9d9d62379dd9a1123c1983";
+      const API_KEY = "34f03c607cbd5ac6878b951a96d17bef";
        const lat = position.coords.latitude;
        const lon = position.coords.longitude;
        
@@ -141,10 +148,10 @@ body {
        fetch(url)
          .then((response) => response.json())
          .then((data) => {
-           const weather = document.querySelector("#weather span:first-child");
+           const weather = document.querySelector("#weather span:nth-child(2n)");
            const city = document.querySelector("#weather span:last-child");
-           city.innerText = data.name;
-           weather.innerHTML = data.weather[0].main +'/'+ data.main.temp;
+           //city.innerText = data.name;
+           weather.innerHTML = data.weather[0].description +'/'+ data.main.temp;
            
            // 날씨에 따른 배경화면 변경
    			let weatherinfo = data.weather[0].main;

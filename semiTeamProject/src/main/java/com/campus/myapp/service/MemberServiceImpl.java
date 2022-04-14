@@ -49,11 +49,7 @@ public class MemberServiceImpl implements MemberService {
 		return dao.memberDelete(userid);
 	}
 
-	@Override
-	public List<MemberVO> memberListAll() {
-		// TODO Auto-generated method stub
-		return dao.memberListAll();
-	}
+	
 
 	@Override
 	public int memberDeleteOk(String userid) {
@@ -78,6 +74,17 @@ public class MemberServiceImpl implements MemberService {
 		// TODO Auto-generated method stub
 		return dao.resetPwdOk(vo);
 	}
+
+	@Override
+	public List<MemberVO> memberListAll(MemberVO vo) {
+		// TODO Auto-generated method stub
+		return dao.memberListAll(vo);
+	}
+
+	
+	
+
+	
 
 	
 

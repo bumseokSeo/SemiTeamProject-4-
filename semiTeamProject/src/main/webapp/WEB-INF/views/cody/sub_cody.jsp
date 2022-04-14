@@ -1,19 +1,22 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <script>
 $(function(){
 	// 이미지 클릭시 이미지 모달
-		$(".imgC").click(function(){
+		$(".Cimg").click(function(){
 			$(".modal").show();
 			// 이미지 가져오기
-			var imgSrc = $(this).children("img").attr("src");
-			var imgAlt = $(this).children("img").attr("alt");
+			var imgSrc = $(this).attr("src");
+			var imgAlt = $(this).attr("alt");
 			$(".modalBox img").attr("src", imgSrc);
 			$(".modalBox img").attr("alt", imgAlt);
 			
 			// 이미지 텍스트 가져오기
-			var imgTit =  $(this).children("p").text();
-			$(".modalBox p").text(imgTit);
+			var imgTit =  $(this).next("p").text();
+			//$(".modalBox p").text(imgTit);
+			
+			var imgStyle = $(this).next().next().val();
+			$(".modalBox p").text(imgStyle);
 			
 	   // 이미지에 alt값을 가져와 제목으로
 			//$(".modalBox p").text(imgAlt);
@@ -31,8 +34,30 @@ $(function(){
 	    } else {
 	      $(".modal").hide();
 	    }
-	  });
 	});
+		
+	$(document).ready(function(){
+		//heart 정보 가져오기
+		$.ajax({
+			url: "/heartSelect",
+			type:"get",
+			success: function(result){
+				var idx = "";
+				var num = "";
+				$(result).each(function(){
+					idx = this.cname.indexOf(".");
+					num = this.cname.substring(1,idx);
+					$("#eheart"+num).css("display", "none");
+					$("#fheart"+num).css("display", "block");
+				});
+			},
+			error: function(e){
+				console.log(e.responseText);
+			}
+		});
+	});
+	
+});
 
 
 	//arrow updown
@@ -53,6 +78,48 @@ $(function(){
 	        $('html, body').animate({scrollTop : ($(document).height())}, 600);
 	    });
 	});
+	
+function heartInsert(cname){//emptyheart 클릭
+	var idx = cname.substring(1, cname.indexOf('.'));
+	
+	$.ajax({
+		url: "/heartInsert",
+		data: "cname="+cname,
+		type: "post",
+		success: function(result){
+			if(result>0){
+				$("#eheart"+idx).css("display","none");
+				$("#fheart"+idx).css("display", "block");
+			}
+		},
+		error : function(e){
+			console.log(e.responseText);
+		}		
+	});
+}
+
+function heartDelete(cname){	//fullheart 클릭
+	var idx = cname.substring(1, cname.indexOf('.'));
+	$.ajax({
+		url: "/heartDelete",
+		data: "cname="+cname,
+		type: "post",
+		success: function(result){
+			if(result>0){
+				$("#eheart"+idx).css("display","block");
+				$("#fheart"+idx).css("display", "none");
+			}
+		},
+		error : function(e){
+			console.log(e.responseText);
+		}		
+	});
+}
+
+	// 왼쪽 서브메뉴 fixed고정
+	$(window).scroll(function(){
+		$(".cody-sub").css("margin-top",Math.max(-100,50-$(this).scrollTop()));
+	});
 
 </script>
 <style>
@@ -63,6 +130,11 @@ $(function(){
   font-weight: normal;
   font-style: normal;
 }
+
+ a {color: black;  text-decoration: none;}
+ a:link { text-decoration: none;}
+ a:visited { text-decoration: none;}
+ a:hover { color: black; text-decoration: none;}
 
 html,
 body {
@@ -80,6 +152,7 @@ body {
 }
 
 .main-container {
+  max-width: 1300px;
   width: 1300px;
   height: 100%;
   margin-top: 100px;
@@ -88,10 +161,15 @@ body {
 }
 
 .cody-sub {
+  position: fixed;
+  max-width:430px;
+  top:17%;
+  left:4%;
   float: left;
   width: 28%;
   height: 100%;
-  margin-top: 50px;
+  margin-top: 70px;
+
 }
 
 
@@ -125,6 +203,7 @@ section {
 .imgC p {
   text-align: center;
   color:gray;
+  margin-top: 10px;
 }
 
 .modal {
@@ -170,9 +249,10 @@ section {
 .modalBox p {
 	color: #ffffff;
 	background-color: #000;
-	font-size: 14px;
+	font-size: 18px;
 	padding: 10px;
 }
+
 /* ======================오른쪽 imgList 모달창 끝==================== */
 
 
@@ -217,7 +297,7 @@ section {
   display: inline-block;
   border-radius: 3px;
   margin-left: 5px;
-  margin-right: 5px
+  margin-right: 5px;
 }
 
 #shape {
@@ -255,6 +335,7 @@ section {
 /* ===============왼쪽 리스트 시작================= */
 
 .cody-sub-style-list {
+  margin-top:10px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -346,7 +427,7 @@ section {
   cursor: pointer;   
   z-index: 10;  
   font-size: 20px;
-  color: black;     
+  color: #4d4d4d;     
   display: none;
   right: 24px;
 }
@@ -360,6 +441,20 @@ section {
   bottom: 50px;
 }
 
+
+.emptyheart{
+	margin-top:3px;
+	width:24px !important;
+	height:25px !important;
+	float:right !important;
+}
+.fullheart{
+	display:none;
+	margin-top:3px;
+	width:22px !important;
+	height:22px !important;
+	float:right !important;
+}
 /* ===============arrow updown 끝================= */
 
 
@@ -395,47 +490,56 @@ section {
 						</div>
 					</svg>
 				</div>
+				<!--Next button -->
+				<div class="svg-wrapper">
+					<svg height="40" width="150" xmlns="http://www.w3.org/2000/svg">
+						<rect id="shape" height="40" width="150" />
+						<div id="text">
+							<a href="${url}/codyHeartList"><span class="spot"></span>MY PICK</a>
+						</div>
+					</svg>
+				</div>
 			</div>
 
 	
 				<div class="cody-sub-style-list">
 					<a href="${url}/codyStyleList?style=casual" class="list" target="blank">
-						<img src="${url}/img/cody_main2.png"  alt="" class="list-img" >
+						<img src="${url}/img/codyimg/casualimg.jpg"  alt="" class="list-img" >
 						<div class="list-description">
 							<h3>Casual</h3>
 							<span>캐주얼룩</span>
 						</div>
 					</a>
 					<a href="${url}/codyStyleList?style=modern" class="list" target="blank">
-						<img src="${url}/img/cody_main3.png" alt="" class="list-img">
+						<img src="${url}/img/codyimg/modernimg.jpg" alt="" class="list-img">
 						<div class="list-description">
 							<h3>Modern</h3>
 							<span>모던룩</span>
 						</div>
 					</a>
 					<a href="${url}/codyStyleList?style=office" class="list" target="blank">
-						<img src="${url}/img/cody_main4.png" alt="" class="list-img">
+						<img src="${url}/img/codyimg/officeimg.jpg" alt="" class="list-img">
 						<div class="list-description">
 							<h3>Office</h3>
 							<span>오피스룩</span>
 						</div>
 					</a>
 					<a href="${url}/codyStyleList?style=street" class="list" target="blank">
-						<img src="${url}/img/cody_main2.png" alt="" class="list-img">
+						<img src="${url}/img/codyimg/streetimg.jpg" alt="" class="list-img">
 						<div class="list-description">
 							<h3>Street</h3>
 							<span>스트릿룩</span>
 						</div>
 					</a>
 					<a href="${url}/codyStyleList?style=walk" class="list" target="blank">
-						<img src="${url}/img/cody_main2.png" alt="" class="list-img">
+						<img src="${url}/img/codyimg/walkimg.jpg" alt="" class="list-img">
 						<div class="list-description">
 							<h3>Walk</h3>
 							<span>산책룩</span>
 						</div>
 					</a>
 					<a href="${url}/codyStyleList?style=special" class="list" target="blank">
-						<img src="${url}/img/cody_main2.png" alt="" class="list-img">
+						<img src="${url}/img/codyimg/specialimg.jpg" alt="" class="list-img">
 						<div class="list-description">
 							<h3>Special</h3>
 							<span>스페셜룩<br/>(파티 or 바캉스)</span>
@@ -446,30 +550,60 @@ section {
 
   <section>
   	<div class="imgList">
-  		<c:forEach var="i" begin="1" end="${len}">
-	  		<div class="imgList-row">
-	  		<c:forEach var="j" begin="${3*i-3}" end="${3*i-1}">
-				<div class="imgC">
-					<c:if test="${vo[j]!=null}">
-		    			<img src="${url}/img/codyimg/codyupload/${vo[j].cname}" alt="모달할 이미지">
-		    			<p>${vo[j].info}</p>
-		    		</c:if>
-		    		<c:if test="${vo[j]==null}">	<!-- 자리 채울 이미지 -->
-		    			<img src="${url}/img/codyimg/none.jpg">
-	    			</c:if>
-	    		</div>
-	    	</c:forEach>
-	  		</div>
-  		</c:forEach>
+  		<c:if test="${vo!=null}">
+	  		<c:forEach var="i" begin="1" end="${len}">
+		  		<div class="imgList-row">
+			  		<c:forEach var="j" begin="${3*i-3}" end="${3*i-1}">
+						<div class="imgC">
+							<c:if test="${vo[j]!=null}">
+					    		<img src="${url}/img/codyimg/codyupload/${vo[j].cname}" alt="모달할 이미지" class="Cimg">
+					    		<p>${vo[j].info}
+					    		<c:set var="idx" value="${fn:indexOf(vo[j].cname,'.')}"/>
+								<a href="javascript:heartInsert('${vo[j].cname}');"><img src="${url}/img/codyimg/heart1.png" class="emptyheart" id="eheart${fn:substring(vo[j].cname,1,idx)}"/></a>
+								<a href="javascript:heartDelete('${vo[j].cname}');"><img src="${url}/img/codyimg/heart2.png" class="fullheart" id="fheart${fn:substring(vo[j].cname,1,idx)}"/></a>
+					    		</p>
+					    		<input type="hidden" id = ".styleVal" value="${vo[j].style}"/>
+					    	</c:if>
+					    	<c:if test="${vo[j]==null}">	<!-- 자리 채울 이미지 -->
+					    		<img src="${url}/img/codyimg/none.png">
+				    		</c:if>
+				    	</div>
+			    	</c:forEach>
+			  	</div>
+	  		</c:forEach>
+  		</c:if>
+  		<c:if test="${hVO!=null}">
+  		  	<c:forEach var="i" begin="1" end="${hlen}">
+		  		<div class="imgList-row">
+			  		<c:forEach var="j" begin="${3*i-3}" end="${3*i-1}">
+						<div class="imgC">
+							<c:if test="${hVO[j]!=null}">
+					    		<img src="${url}/img/codyimg/codyupload/${hVO[j].cname}" alt="모달할 이미지" class="Cimg">
+					    		<p>
+					    		<c:set var="idx" value="${fn:indexOf(hVO[j].cname,'.')}"/>
+								<a href="javascript:heartInsert('${hVO[j].cname}');"><img src="${url}/img/codyimg/heart1.png" class="emptyheart" id="eheart${fn:substring(hVO[j].cname,1,idx)}"/></a>
+								<a href="javascript:heartDelete('${hVO[j].cname}');"><img src="${url}/img/codyimg/heart2.png" class="fullheart" id="fheart${fn:substring(hVO[j].cname,1,idx)}"/></a>
+					    		</p>
+					    	</c:if>
+					    	<c:if test="${hVO[j]==null}">	<!-- 자리 채울 이미지 -->
+					    		<img src="${url}/img/codyimg/none.png">
+				    		</c:if>
+				    	</div>
+			    	</c:forEach>
+			  	</div>
+	  		</c:forEach>
+  		</c:if>
   	</div>
   </section>
-
+	
 	<!-- 팝업 될 곳 -->
 	<div class="modal">
 		<button>&times;</button>
 		<div class="modalBox">
 			<img src="" alt="">
-			<p></p>
+			<c:if test="${hVO==null}">
+				<p></p>
+			</c:if>
 		</div>
 	</div>
 	

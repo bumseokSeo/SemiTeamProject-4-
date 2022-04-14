@@ -59,4 +59,28 @@ public class FoodServiceImpl implements FoodService {
 		return dao.getEqualEvent(event);
 	}
 
+	@Override
+	public List<FoodVO> getEqualWeather(String todayWeather) {
+		
+		return dao.getEqualEvent(todayWeather);
+	}
+
+	@Override
+	public List<FoodVO> getEqualSeason(String season) {
+		
+		return dao.getEqualSeason(season);
+	}
+
+	@Override
+	public List<FoodVO> getEqualTemp(int temp) {
+		
+		return dao.getEqualTemp(temp);
+	}
+
+	@Override
+	public List<FoodVO> getPriorityN(String priorityN) {
+		
+		return dao.getPriorityN(priorityN);
+	}
+
 }

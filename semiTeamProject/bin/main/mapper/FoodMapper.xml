@@ -4,7 +4,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-  <mapper namespace = "com.campus.myapp.dao.FoodDAO">
+ <mapper namespace = "com.campus.myapp.dao.FoodDAO">
   
   	<select id="checkFilename" resultType="int">
   		select count(foodimg) from food where foodimg=#{param1} 
@@ -48,5 +48,26 @@
   		select fname, season, temp, weather, foodimg, fcategory, priority, event from food where event=#{param1}
   	
   	</select>
-
-  </mapper>
+  	
+  	<select id="getEqualWeather" resultType="com.campus.myapp.vo.FoodVO">
+  		select fname, season, temp, weather, foodimg, fcategory, priority, event from food where weather=#{param1}
+  	
+  	</select>
+  	
+  	<select id="getEqualSeason" resultType="com.campus.myapp.vo.FoodVO">
+  		select fname, season, temp, weather, foodimg, fcategory, priority, event from food where season=#{param1}
+  	
+  	</select>
+  	
+  	<select id="getEqualTemp" resultType="com.campus.myapp.vo.FoodVO">
+  		select fname, season, temp, weather, foodimg, fcategory, priority, event from food where temp=#{param1}
+  	</select>
+  	
+  	<select id="getPriorityN" resultType="com.campus.myapp.vo.FoodVO">
+  		select fname, season, temp, weather, foodimg, fcategory, priority, event from food where priority=#{param1}
+  	
+  	</select>
+  	
+  	
+  	
+ </mapper>

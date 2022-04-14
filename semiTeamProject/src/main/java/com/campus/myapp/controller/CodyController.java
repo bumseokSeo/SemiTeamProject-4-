@@ -19,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.campus.myapp.service.CodyService;
 import com.campus.myapp.vo.CodyVO;
+import com.campus.myapp.vo.HeartVO;
 
 @Controller
 public class CodyController {
@@ -30,28 +31,49 @@ public class CodyController {
 	@GetMapping("/cody/main_cody")
 	public ModelAndView codyPage(int temp, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
-		String sex = (String)session.getAttribute("logSex");
-		//db
-		
-		List<CodyVO> vo = service.codyRecommend(temp, sex);	//임시로 설정
-		Collections.shuffle(vo);//리스트 랜덤 정렬
+		String sex = (String) session.getAttribute("logSex");
+		//
+
+		List<CodyVO> vo = service.codyRecommend(temp, sex); // 임시로 설정
+		Collections.shuffle(vo);// 리스트 랜덤 정렬
 		List<CodyVO> cvo = new ArrayList<CodyVO>();
-		
-		for(int i=0; i<5; i++) {
+
+		for (int i = 0; i < 5; i++) {
 			cvo.add(vo.get(i));
 		}
-		
+
 		mav.addObject("vo", cvo);
-		
+
 		//
 		mav.setViewName("cody/main_cody");
 		return mav;
 	}
 
-	// 코디 관리자 페이지
-	@GetMapping("/master/master_cody")
-	public String masterPage() {
-		return "master/master_cody";
+	// 코디 관리자 페이지(수정)
+	@GetMapping("/master/master_modify_cody")
+	public ModelAndView masterModify() {
+		ModelAndView mav = new ModelAndView();
+		List<CodyVO> allVO = service.codyListAll();
+		mav.addObject("vo", allVO);
+		if (allVO.size() % 3 == 0) {
+			mav.addObject("len", allVO.size() / 3);
+		} else {
+			mav.addObject("len", allVO.size() / 3 + 1);
+		}
+		mav.setViewName("master/master_modify_cody");
+		return mav;
+	}
+
+	// 코디 관리자 페이지(수정폼)
+	@GetMapping("/master/master_modify_form")
+	public String modifyForm() {
+		return "master/master_modify_form";
+	}
+
+	// 코디 관리자 페이지(추가)
+	@GetMapping("/master/master_add_cody")
+	public String masterAdd() {
+		return "master/master_add_cody";
 	}
 
 	// cname 중복확인
@@ -60,7 +82,7 @@ public class CodyController {
 	public Integer userpwdOk(String cname) {
 		return service.cnameCheck(cname);
 	}
-	
+
 	// codyInsert
 	@PostMapping("/codyInsert")
 	@ResponseBody
@@ -86,51 +108,91 @@ public class CodyController {
 
 		return service.codyInsert(vo);
 	}
-	
-	//서브페이지(전체선택)
+
+	// 서브페이지(전체선택)
 	@GetMapping("/codyListAll")
 	public ModelAndView codyListAll(CodyVO vo) {
 		ModelAndView mav = new ModelAndView();
 		List<CodyVO> allVO = service.codyListAll();
 		mav.addObject("vo", allVO);
-		if(allVO.size()%3==0) {
-			mav.addObject("len", allVO.size()/3);
-		}else {
-			mav.addObject("len", allVO.size()/3+1);			
+		if (allVO.size() % 3 == 0) {
+			mav.addObject("len", allVO.size() / 3);
+		} else {
+			mav.addObject("len", allVO.size() / 3 + 1);
 		}
 		mav.setViewName("cody/sub_cody");
 		return mav;
 	}
-	
-	//서브페이지(성별)
+
+	// 서브페이지(성별)
 	@GetMapping("/codyGenderList")
 	public ModelAndView codyGenderList(CodyVO vo, String sex) {
 		ModelAndView mav = new ModelAndView();
 		List<CodyVO> genderVO = service.codyGenderList(sex);
 		mav.addObject("vo", genderVO);
-		if(genderVO.size()%3==0) {
-			mav.addObject("len", genderVO.size()/3);
-		}else {
-			mav.addObject("len", genderVO.size()/3+1);			
+		if (genderVO.size() % 3 == 0) {
+			mav.addObject("len", genderVO.size() / 3);
+		} else {
+			mav.addObject("len", genderVO.size() / 3 + 1);
 		}
 		mav.setViewName("cody/sub_cody");
 		return mav;
 	}
-	
-	//서브페이지(스타일)
+
+	// 서브페이지(좋아요)
+	@GetMapping("/codyHeartList")
+	public ModelAndView codyGenderList(HttpSession session) {
+		ModelAndView mav = new ModelAndView();
+		String userid = (String)session.getAttribute("logId");
+		List<HeartVO> heartVO = service.codyHeartList(userid);
+		mav.addObject("hVO", heartVO);
+		if (heartVO.size() % 3 == 0) {
+			mav.addObject("hlen", heartVO.size() / 3);
+		} else {
+			mav.addObject("hlen", heartVO.size() / 3 + 1);
+		}
+		mav.setViewName("cody/sub_cody");
+		return mav;
+	}
+
+	// 서브페이지(스타일)
 	@GetMapping("/codyStyleList")
 	public ModelAndView codyStyleList(CodyVO vo, String style, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
-		String sex = (String)session.getAttribute("logSex");
+		String sex = (String) session.getAttribute("logSex");
 		List<CodyVO> styleVO = service.codyStyleList(style, sex);
 		mav.addObject("vo", styleVO);
-		if(styleVO.size()%3==0) {
-			mav.addObject("len", styleVO.size()/3);
-		}else {
-			mav.addObject("len", styleVO.size()/3+1);			
+		if (styleVO.size() % 3 == 0) {
+			mav.addObject("len", styleVO.size() / 3);
+		} else {
+			mav.addObject("len", styleVO.size() / 3 + 1);
 		}
 		mav.setViewName("cody/sub_cody");
 		return mav;
 	}
-	
+
+	// 좋아요 추가
+	@PostMapping("/heartInsert")
+	@ResponseBody
+	public int heartInsert(String cname, HttpSession session) {
+		String userid = (String) session.getAttribute("logId");
+		return service.heartInsert(userid, cname, "Y");
+	}
+
+	// 좋아요 추가
+	@PostMapping("/heartDelete")
+	@ResponseBody
+	public int heartDelete(String cname, HttpSession session) {
+		String userid = (String) session.getAttribute("logId");
+		return service.heartDelete(userid, cname);
+	}
+
+	// 좋아요 검색
+	@GetMapping("/heartSelect")
+	@ResponseBody
+	public List<HeartVO> heartSelect(HttpSession session) {
+		String userid = (String) session.getAttribute("logId");
+		return service.heartSelect(userid);
+	}
+
 }

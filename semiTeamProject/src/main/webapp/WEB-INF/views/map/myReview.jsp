@@ -53,7 +53,7 @@
 	.reviewul{
 		overflow:hidden;
 		width:100%;
-		height:50px;
+		height:60px;
 		text-align:center;
 		
 		
@@ -63,13 +63,17 @@
 		padding-top: 10px;
 		float: left;
 		width:18%;
-	}/*
-	.reviewul>li:nth-child(5n+3) {
-		width: 25%;
+		
 	}
-	.reviewul>li:nth-child(5n+4) {
-		width: 15%;
-	}*/
+	.reviewul>li:nth-child(6n+2) {
+		
+	}
+	
+	.reviewul>li:nth-child(6n+1) {
+		white-space:nowrap; /*줄 안바꿈*/
+      	overflow : hidden; /*넘친 내용 숨기기 */
+      	text-overflow : ellipsis/* */
+	}
 	.reviewul>li:last-of-type {
 		
 		width: 9%;
@@ -87,16 +91,32 @@ $(function(){
 			url:url,
 			data:params,
 			success:function(result){
+				
 				var $result = $(result);
 				var tag = "";
 				
 				$result.each(function(index, vo){
 					tag += "<form method='post' id='memberform'>";
 					tag +="<ul class='reviewul'>";
-					tag +="<li>"+vo.placeid+"</li><li>"+vo.content+"</li><li>"+vo.star+"</li>";
-					tag +="<li>"+vo.writedate+"</li><li>"+vo.reviewimg+"</li>";
+					tag +="<li>"+vo.placename+"</li><li>"+vo.content+"</li><li><i class='fa fa-star' style='color: red;'></i>"
+					+vo.star+
+					"</li>";
+					if(vo.modifydate=='' || vo.modifydate==null){
+						tag +="<li>"+vo.writedate+"</li>";
+					}
+					if(vo.modifydate!='' && vo.modifydate!=null){
+						tag +="<li>"+vo.modifydate+"</li>";
+					}
+					
+					if(vo.reviewimg=='' || vo.reviewimg==null){
+						tag +="<li>없음</li>";
+					}
+					if(vo.reviewimg!='' && vo.reviewimg!=null){
+						tag +="<li>"+vo.reviewimg+"</li>";
+					}
+					
 						
-					tag +="<li><input type='button' value='회원탈퇴' title='"+vo.userid+"'class='btn btn-danger' id='delbtn'></input></li></ul></form>";
+					tag +="<li><input type='button' value='리뷰삭제' title='"+vo.reviewno+"'class='btn btn-danger' id='delbtn'></input></li></ul></form>";
 				});
 				$("#d1").html(tag);
 			},
@@ -106,15 +126,16 @@ $(function(){
 		});
 	}
 	
-	$(document).on('click','#memberform input[value=회원탈퇴]',function(){
+	$(document).on('click','#memberform input[value=리뷰삭제]',function(){
 		
-		if(confirm('탈퇴처리 시키겠습니까?')){
-			var params = "userid="+$(this).attr("title");
+		if(confirm('삭제하겠습니까?')){
+			var params = "reviewno="+$(this).attr("title");
 			$.ajax({
-				url:'${url}/member/memberDeleteOk',
+				url:'${url}/map/myreviewDeleteOk',
 				data:params,
+				
 				success:function(result){
-					memberListAll();
+					myReviewListAll();
 				},
 				error:function(e){
 					console.log(e.resopnseText);
@@ -135,6 +156,7 @@ $(function(){
 			<li>별점</li>
 			<li>작성일</li>
 			<li>이미지</li>
+			<li></li>
 		</ul>
     	<div id="d1">
     	</div>

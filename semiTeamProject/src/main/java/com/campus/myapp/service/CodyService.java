@@ -3,6 +3,7 @@ package com.campus.myapp.service;
 import java.util.List;
 
 import com.campus.myapp.vo.CodyVO;
+import com.campus.myapp.vo.HeartVO;
 
 public interface CodyService {
 	//코디 추천 이미지 리스트 가져오기
@@ -18,4 +19,13 @@ public interface CodyService {
 	public List<CodyVO> codyGenderList(String sex);
 	//코디 리스트(style)
 	public List<CodyVO> codyStyleList(String style, String sex);
+	//코디 리스트(heart)
+	public List<HeartVO> codyHeartList(String userid);
+	
+	//좋아요 추가
+	public int heartInsert(String userid, String cname, String heartinfo);
+	//좋아요 삭제
+	public int heartDelete(String userid, String cname);
+	//좋아요 검색
+	public List<HeartVO> heartSelect(String userid);
 }

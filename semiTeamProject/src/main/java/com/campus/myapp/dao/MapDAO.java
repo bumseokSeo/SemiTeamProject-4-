@@ -16,6 +16,9 @@ public interface MapDAO {
 	//나의 리뷰 정보 전부 출력
 	public List<ReviewVO> myReviewListAll(String userid);
 	
+	//나의 리뷰 삭제
+	public int myreviewDeleteOk(int reviewno);
+	
 	
 	
 	

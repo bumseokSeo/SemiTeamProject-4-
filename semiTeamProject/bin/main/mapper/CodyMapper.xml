@@ -18,15 +18,29 @@
 	</insert>
 	
 	<select id="codyListAll" resultType="com.campus.myapp.vo.CodyVO">
-		select cname, temp, weather, sex, style, info from cody
+		select cname, temp, weather, sex, style, info from cody order by length(cname), cname;
 	</select>
 	
 	<select id="codyGenderList" resultType="com.campus.myapp.vo.CodyVO">
-		select cname, temp, weather, sex, style, info from cody where sex=#{param1}
+		select cname, temp, weather, sex, style, info from cody where sex=#{param1} order by length(cname), cname;
+	</select>
+	<select id="codyHeartList" resultType="com.campus.myapp.vo.HeartVO">
+		select cname, heartinfo from heart where userid=#{param1} order by length(cname), cname;
+	</select>
+	<select id="codyStyleList" resultType="com.campus.myapp.vo.CodyVO">
+		select cname, temp, weather, sex, style, info from cody where style=#{param1} and sex=#{param2} order by length(cname), cname;
 	</select>
 	
-	<select id="codyStyleList" resultType="com.campus.myapp.vo.CodyVO">
-		select cname, temp, weather, sex, style, info from cody where style=#{param1} and sex=#{param2}
+	<insert id="heartInsert">
+		insert into heart(userid, cname, heartinfo) values(#{param1}, #{param2}, #{param3})
+	</insert>
+	
+	<delete id="heartDelete">
+		delete from heart where userid=#{param1} and cname=#{param2}
+	</delete>
+	
+	<select id="heartSelect" resultType="com.campus.myapp.vo.HeartVO">
+		select userid, cname, heartinfo from heart where userid=#{param1}
 	</select>
 	
 </mapper>
