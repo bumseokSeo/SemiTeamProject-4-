@@ -74,7 +74,14 @@ public class CodyController {
 		return mav;
 	}
 
-	// 코디 관리자 페이지(추가)
+	// 코디 수정
+	@PostMapping("/codyUpdate")
+	@ResponseBody
+	public int codyUpdate(CodyVO vo) {
+		return service.codyUpdate(vo);
+	}
+
+	// 코디 추가 페이지
 	@GetMapping("/master/master_add_cody")
 	public String masterAdd() {
 		return "master/master_add_cody";
@@ -87,7 +94,7 @@ public class CodyController {
 		return service.cnameCheck(cname);
 	}
 
-	// codyInsert
+	// 코디 추가
 	@PostMapping("/codyInsert")
 	@ResponseBody
 	public int codyInsert(CodyVO vo, HttpServletRequest request, MultipartHttpServletRequest mr) {
@@ -111,6 +118,29 @@ public class CodyController {
 		}
 
 		return service.codyInsert(vo);
+	}
+
+	// 코디 삭제
+	@GetMapping("/codyDelete")
+	public String codyDelte(String cname, HttpServletRequest request) {
+		System.out.println("컨트롤러 실행");
+		// 파일 삭제
+		String path = request.getSession().getServletContext().getRealPath("/img/codyimg/codyupload");
+		System.out.println(path);
+
+		File file = new File(path, cname);
+
+		// 실제 파일 업로드
+		try {
+			file.delete();
+			service.codyDelete(cname);
+			System.out.println("파일 삭제 성공");
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("파일 삭제 실패");
+		}
+		
+		return "/master/master_modify_cody"; 
 	}
 
 	// 서브페이지(전체선택)
@@ -147,7 +177,7 @@ public class CodyController {
 	@GetMapping("/codyHeartList")
 	public ModelAndView codyGenderList(HttpSession session) {
 		ModelAndView mav = new ModelAndView();
-		String userid = (String)session.getAttribute("logId");
+		String userid = (String) session.getAttribute("logId");
 		List<HeartVO> heartVO = service.codyHeartList(userid);
 		mav.addObject("hVO", heartVO);
 		if (heartVO.size() % 3 == 0) {

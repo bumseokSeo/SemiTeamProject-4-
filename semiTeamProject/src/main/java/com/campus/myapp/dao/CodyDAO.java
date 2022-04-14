@@ -22,6 +22,8 @@ public interface CodyDAO {
 	public List<CodyVO> codySelect(String cname);
 	//코디 수정
 	public int codyUpdate(CodyVO vo);
+	//코디 삭제
+	public int codyDelete(String cname);
 	
 	//코디 리스트(all)
 	public List<CodyVO> codyListAll();

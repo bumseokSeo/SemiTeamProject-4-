@@ -19,6 +19,11 @@
 	    $("#BottomButton").click(function() {
 	        $('html, body').animate({scrollTop : ($(document).height())}, 600);
 	    });
+	    $(".cDelete").click(function(){
+	    	if(!confirm("코디를 삭제하시겠습니까?")){
+	    		return false;
+	    	}
+	    });
 	});
 </script>
 
@@ -157,8 +162,8 @@ h1 {
 							<c:if test="${vo[j]!=null}">
 				    			<img src="${url}/img/codyimg/codyupload/${vo[j].cname}" alt="모달할 이미지" class="Cimg">
 				    			<p>
-				    				<a href="${url}/master/master_modify_form?cname=${vo[j].cname}" class="modify">수정</a> /  
-                 					<a href="javascript:void(0);">삭제</a>
+				    				<a href="${url}/master/master_modify_form?cname=${vo[j].cname}">수정</a> /  
+                 					<a href="${url}/codyDelete?cname=${vo[j].cname}" class="cDelete">삭제</a>
                  				</p>
 				    		</c:if>
 				    		<c:if test="${vo[j]==null}">	<!-- 자리 채울 이미지 -->

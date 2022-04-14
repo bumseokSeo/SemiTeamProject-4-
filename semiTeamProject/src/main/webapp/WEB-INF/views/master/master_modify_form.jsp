@@ -73,10 +73,6 @@ $(function() {
    $("#codyFrm").submit(function() {
       event.preventDefault();
       
-      var idx = file.lastIndexOf("\\")+1;
-      $("#cname").val(file.substring(idx));
-      console.log($("#cname").val());
-      
       if ($("#temp").val() == '') {
          alert("온도를 입력하세요.");
          $("#temp").focus();
@@ -125,7 +121,7 @@ $(function() {
 </script>
    <div id="d1">
       <h1>코디 관리자 수정폼</h1>
-      <form method="post" action="/codyInsert" id="codyFrm" enctype="multipart/form-data">
+      <form method="post" action="/codyUpdate" id="codyFrm" enctype="multipart/form-data">
          <img src="${url}/img/codyimg/codyupload/${vo[0].cname}" id="codyImg"/>
             <div class="addimage">
                <input type="hidden" name="cname" value="${vo[0].cname}" id="cname"/>

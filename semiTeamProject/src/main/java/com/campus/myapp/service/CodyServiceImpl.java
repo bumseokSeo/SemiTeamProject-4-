@@ -40,6 +40,12 @@ public class CodyServiceImpl implements CodyService {
 	public int codyUpdate(CodyVO vo) {
 		return dao.codyUpdate(vo);
 	}
+	//코디 삭제
+	@Override
+	public int codyDelete(String cname) {
+		return dao.codyDelete(cname);
+	}
+	
 	//전체
 	@Override
 	public List<CodyVO> codyListAll() {
@@ -75,4 +81,5 @@ public class CodyServiceImpl implements CodyService {
 	public List<HeartVO> heartSelect(String userid) {
 		return dao.heartSelect(userid);
 	}
+
 }
