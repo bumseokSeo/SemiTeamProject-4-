@@ -29,7 +29,8 @@ h1 {
   height: 100%;
   margin:0 auto;
   position: relative;
-  background-color: gray;
+  margin-bottom:50px;
+  overflow:auto;
 }
 
 .menu-category {
@@ -37,25 +38,35 @@ h1 {
   width: 10%;
   display: flex;
   flex-direction: column;
-  font-size: 24px;
+  font-size: 22px;
   font-weight: 800;
   margin-top: 8px;
   margin-right:30px;
+}
+
+.menu-category>a:last-child{
+	color: #5584AC;
 }
 
 .menu-category>a {
   margin: 16px;
 }
 
+.menu-category>a:hover{
+	color: #5584AC;
+	transition-duration:300ms;
+	
+}
+
 #formdiv{
-	width:1170px;
+	width:90%;
 	height:100%;
 	margin:0 auto;
 	margin-left:30px;
 }
 
 #codyFrm {
-	width: 70%;
+	width: 65%;
 	float: left;
 	border: 1px solid gray;
 	padding: 50px;
@@ -137,7 +148,6 @@ $(function() {
 			},
 			error:function(e){
 				console.log(e.responseText);
-				alert("중복 확인 에러!?");
 			}
 		});
 		
@@ -146,7 +156,13 @@ $(function() {
 			$("#temp").focus();
 			return false;
 		}
-
+		
+		var reg= /[1-8]{1}/;
+		if(!reg.test($("#temp").val())){
+			alert("온도는 1~8 사이의 숫자 1개만 입력해주세요.\n28도 이상 : 8\n  23~27도 : 7\n  20~22도 : 6\n  17~19도 : 5\n  12~16도 : 4\n    9~10도 : 3\n     5~8도 : 2\n  4도 이하 : 1");
+			return false;
+		}
+			
 		if ($("#weather").val() == '선택') {
 			$("#weather").val('');
 		}
@@ -198,7 +214,7 @@ function setImage(input, preview) {
 };
 </script>
 
-	<h1>코디 추가페이지</h1>
+	<h1>Manager Page</h1><hr/>
 	<div class="main-container">
 		<div class="menu-category">
         	<a href="${url}/master/master_modify_cody"> 코디수정 </a>

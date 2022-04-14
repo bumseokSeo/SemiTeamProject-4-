@@ -63,6 +63,20 @@ public class CodyController {
 		mav.setViewName("master/master_modify_cody");
 		return mav;
 	}
+	// 코디 관리자 페이지(성별)
+	@GetMapping("/master/masterGenderList")
+	public ModelAndView masterGenderList(String sex) {
+		ModelAndView mav = new ModelAndView();
+		List<CodyVO> genderVO = service.codyGenderList(sex);
+		mav.addObject("vo", genderVO);
+		if (genderVO.size() % 3 == 0) {
+			mav.addObject("len", genderVO.size() / 3);
+		} else {
+			mav.addObject("len", genderVO.size() / 3 + 1);
+		}
+		mav.setViewName("master/master_modify_cody");
+		return mav;
+	}
 
 	// 코디 관리자 페이지(수정폼)
 	@GetMapping("/master/master_modify_form")
@@ -140,7 +154,7 @@ public class CodyController {
 			System.out.println("파일 삭제 실패");
 		}
 		
-		return "/master/master_modify_cody"; 
+		return "redirect:/master/master_modify_cody"; 
 	}
 
 	// 서브페이지(전체선택)

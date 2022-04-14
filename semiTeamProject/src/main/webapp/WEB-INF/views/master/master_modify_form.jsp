@@ -45,7 +45,7 @@ body,ul,li{
 textarea {
    resize: none;
 }
-#resetbtn{
+#canclebtn{
    width:160px;
    margin-left:85px;
    margin-right:200px;
@@ -70,6 +70,19 @@ textarea {
 <script>
 $(function() {
    
+	$("#submitbtn").click(function(){
+		if(!confirm("수정하시겠습니까?")){
+			return false;
+		}
+	});
+	
+	$("#canclebtn").click(function(){
+		if(!confirm("이전페이지로 이동합니다.")){
+			return false;
+		}
+		history.back();
+	});
+	
    $("#codyFrm").submit(function() {
       event.preventDefault();
       
@@ -163,7 +176,7 @@ $(function() {
                  <textarea class="form-control" rows="2" name="info" id="info">${vo[0].info}</textarea>
               </li>
          </ul>
-         <input type="reset" value="취소" id="resetbtn" class="btn btn-danger"/>
+         <input type="button" value="취소" id="canclebtn" class="btn btn-danger"/>
          <input type="submit" value="수정" id="submitbtn" class="btn btn-secondary"/>
       </form>
    </div>
