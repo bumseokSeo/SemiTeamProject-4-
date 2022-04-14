@@ -1,24 +1,78 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <style>
+@import url('https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css');
+
+*{
+  box-sizing: border-box;
+
+}
 body,ul,li{
+	font-family: 'NanumSquare',san-serif;
 	padding:0;
 	margin:0;
 	list-style-type: none;
 }
 
 /*폼 css*/
-#d1 {
-	width: 800px;
-	margin: 0 auto;
-}	
+
+ a {color: black;  text-decoration: none;}
+ a:link { text-decoration: none;}
+ a:visited { text-decoration: none;}
+ a:hover { color: black; text-decoration: none;}
+ 
+h1 {
+  margin-bottom: 50px;
+}
+
+.main-container {
+  width: 1300px;
+  height: 100%;
+  margin:0 auto;
+  position: relative;
+  margin-bottom:50px;
+  overflow:auto;
+}
+
+.menu-category {
+  float: left;
+  width: 10%;
+  display: flex;
+  flex-direction: column;
+  font-size: 22px;
+  font-weight: 800;
+  margin-top: 8px;
+  margin-right:30px;
+}
+
+.menu-category>a:last-child{
+	color: #5584AC;
+}
+
+.menu-category>a {
+  margin: 16px;
+}
+
+.menu-category>a:hover{
+	color: #5584AC;
+	transition-duration:300ms;
+	
+}
+
+#formdiv{
+	width:90%;
+	height:100%;
+	margin:0 auto;
+	margin-left:30px;
+}
 
 #codyFrm {
-	width: 800px;
+	width: 65%;
 	float: left;
 	border: 1px solid gray;
 	padding: 50px;
 	margin-top: 30px;
 	margin-bottom:20px;
+	margin:0 auto;
 }
 
 #codyFrm>input[type=text] {
@@ -56,6 +110,7 @@ textarea {
 #submitbtn{
 	width:160px;
 }
+
 </style>
 
 <script>
@@ -93,7 +148,6 @@ $(function() {
 			},
 			error:function(e){
 				console.log(e.responseText);
-				alert("중복 확인 에러!?");
 			}
 		});
 		
@@ -102,7 +156,13 @@ $(function() {
 			$("#temp").focus();
 			return false;
 		}
-
+		
+		var reg= /[1-8]{1}/;
+		if(!reg.test($("#temp").val())){
+			alert("온도는 1~8 사이의 숫자 1개만 입력해주세요.\n28도 이상 : 8\n  23~27도 : 7\n  20~22도 : 6\n  17~19도 : 5\n  12~16도 : 4\n    9~10도 : 3\n     5~8도 : 2\n  4도 이하 : 1");
+			return false;
+		}
+			
 		if ($("#weather").val() == '선택') {
 			$("#weather").val('');
 		}
@@ -153,56 +213,63 @@ function setImage(input, preview) {
 	}
 };
 </script>
-	<div id="d1">
-		<h1>코디 추가페이지</h1>
-		<form method="post" action="/codyInsert" id="codyFrm" enctype="multipart/form-data">
-			<img src="" id="preview"/>
-			<ul>
-				<li>이미지 추가</li>
-				<li>
-					<input type="file" name="filename" id ="file"/>
-					<input type="hidden" name="cname" value="" id="cname"/>
-					<a href="javascript:document.getElementById('file').click();"><img src="${url}/img/plus_icon.png"/ id="plus"></a>
-				</li>
-				<li>온도</li>
-				<li><input type="text" class="form-control" name="temp" id="temp"></li>
-				<li>날씨</li>
-				<li>
-					<select class="form-control" name="weather" id="weather">
-							<option>선택</option>
-					    	<option value="clear">맑음</option>
-					    	<option value="rain">비</option>
-					    	<option value="snow">눈</option>
-					</select>
-				</li>
-				<li><label for="sex">성별</label></li>
-				<li>
-					<select class="form-control" name="sex" id="sex">
-							<option>선택</option>
-					    	<option value="m">남성</option>
-					    	<option value="f">여성</option>
-					</select>
-				</li>
-				<li>스타일</li>
-				<li>
-					<select class="form-control" name="style" id="style">
-					    	<option>선택</option>
-					    	<option value="casual">캐주얼룩</option>
-					    	<option value="modern">모던룩</option>
-					    	<option value="street">스트릿룩</option>
-					    	<option value="office ">오피스룩</option>
-					    	<option value="walk">산책룩</option>
-					    	<option value="special">스페셜룩</option>
-					</select>
-				</li>
-				<li><label for="info">상세설명</label></li>
-				<li>
-  					<textarea class="form-control" rows="2" name="info" id="info"></textarea>
-  				</li>
-			</ul>
-			<input type="reset" value="취소" id="resetbtn" class="btn btn-danger"/>
-			<input type="submit" value="등록" id="submitbtn" class="btn btn-secondary"/>
-		</form>
+
+	<h1>Manager Page</h1><hr/>
+	<div class="main-container">
+		<div class="menu-category">
+        	<a href="${url}/master/master_modify_cody"> 코디수정 </a>
+       	 	<a href="${url}/master/master_add_cody"> 코디추가 </a>
+     	</div>
+     	<div id="formdiv">
+			<form method="post" action="/codyInsert" id="codyFrm" enctype="multipart/form-data">
+				<img src="" id="preview"/>
+				<ul>
+					<li>이미지 추가</li>
+					<li>
+						<input type="file" name="filename" id ="file"/>
+						<input type="hidden" name="cname" value="" id="cname"/>
+						<a href="javascript:document.getElementById('file').click();"><img src="${url}/img/plus_icon.png"/ id="plus"></a>
+					</li>
+					<li>온도</li>
+					<li><input type="text" class="form-control" name="temp" id="temp"></li>
+					<li>날씨</li>
+					<li>
+						<select class="form-control" name="weather" id="weather">
+								<option>선택</option>
+						    	<option value="clear">맑음</option>
+						    	<option value="rain">비</option>
+						    	<option value="snow">눈</option>
+						</select>
+					</li>
+					<li><label for="sex">성별</label></li>
+					<li>
+						<select class="form-control" name="sex" id="sex">
+								<option>선택</option>
+						    	<option value="m">남성</option>
+						    	<option value="f">여성</option>
+						</select>
+					</li>
+					<li>스타일</li>
+					<li>
+						<select class="form-control" name="style" id="style">
+						    	<option>선택</option>
+						    	<option value="casual">캐주얼룩</option>
+						    	<option value="modern">모던룩</option>
+						    	<option value="street">스트릿룩</option>
+						    	<option value="office ">오피스룩</option>
+						    	<option value="walk">산책룩</option>
+						    	<option value="special">스페셜룩</option>
+						</select>
+					</li>
+					<li><label for="info">상세설명</label></li>
+					<li>
+	  					<textarea class="form-control" rows="2" name="info" id="info"></textarea>
+	  				</li>
+				</ul>
+				<input type="reset" value="취소" id="resetbtn" class="btn btn-danger"/>
+				<input type="submit" value="등록" id="submitbtn" class="btn btn-secondary"/>
+			</form>
+		</div>
 	</div>
 </body>
 </html>
