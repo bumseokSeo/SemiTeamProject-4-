@@ -13,10 +13,17 @@ import com.campus.myapp.vo.HeartVO;
 public interface CodyDAO {
 	//코디 추천 이미지 리스트 가져오기
 	public List<CodyVO> codyRecommend(int temp, String sex);
+	
 	//코디 추가
 	public int codyInsert(CodyVO vo);
 	//cname 중복확인
 	public Integer cnameCheck(String cname);
+	//코디 선택
+	public List<CodyVO> codySelect(String cname);
+	//코디 수정
+	public int codyUpdate(CodyVO vo);
+	//코디 삭제
+	public int codyDelete(String cname);
 	
 	//코디 리스트(all)
 	public List<CodyVO> codyListAll();
@@ -33,5 +40,6 @@ public interface CodyDAO {
 	public int heartDelete(String userid, String cname);
 	//좋아요 검색
 	public List<HeartVO> heartSelect(String userid);
+	
 	
 }

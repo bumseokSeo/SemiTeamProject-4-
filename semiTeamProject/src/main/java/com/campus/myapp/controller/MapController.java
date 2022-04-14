@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.campus.myapp.service.MapService;
 import com.campus.myapp.service.ReviewService;
 import com.campus.myapp.vo.ReviewVO;
+import com.campus.myapp.vo.StoreVO;
 
 @RestController
 @RequestMapping("/map/")
@@ -24,12 +26,11 @@ public class MapController {
 	MapService service;
 	
 	@GetMapping("main_map")
-	public ModelAndView Main_map() {
+	public ModelAndView Main_map(String fname) {
 		//DB에서 음식메뉴 가져오기 ==> 서비스 
-		ModelAndView mav = new ModelAndView();
-		//String fname = service.getfname();
-		//mav.addObject("menu",fname);
-		mav.addObject("placeid","p1");
+		ModelAndView mav = new ModelAndView();		 
+		mav.addObject("menu", fname);
+		mav.addObject("placeid","id");
 		mav.setViewName("map/map");
 		return mav;
 	}
@@ -51,5 +52,20 @@ public class MapController {
 	@GetMapping("myreviewDeleteOk")
 	public int myreviewDeleteOk(int reviewno) {
 		return service.myreviewDeleteOk(reviewno);
+	}
+	
+	//가게정보 
+	@PostMapping("addplace")
+	public int addplace(@RequestBody StoreVO[] places) {
+		int n=0;
+		try {
+			for(StoreVO vo:places) {
+				n+=service.addplace(vo);
+			}
+		}catch(Exception e) {
+			
+		}
+			//System.out.println(vo);
+		return n; 
 	}
 }

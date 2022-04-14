@@ -19,10 +19,13 @@
 	    $("#BottomButton").click(function() {
 	        $('html, body').animate({scrollTop : ($(document).height())}, 600);
 	    });
+	    $(".cDelete").click(function(){
+	    	if(!confirm("코디를 삭제하시겠습니까?")){
+	    		return false;
+	    	}
+	    });
 	});
-
 </script>
-
 
 <style>
 @import url('https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css');
@@ -37,14 +40,30 @@
  a:visited { text-decoration: none;}
  a:hover { color: black; text-decoration: none;}
 
-body {
+body,ul,li {
   font-family: 'NanumSquare',san-serif;
   margin: 0;
   padding: 0;
+  list-style-type: none;
 }
 
 h1 {
-  margin-bottom: 25px;
+  margin-bottom: 50px;
+}
+ul{
+	width:450px;
+	margin:0 auto;
+}
+li{
+	float:left;
+	width:150px;
+	text-align: center;
+	font-size:22px;
+	font-weight: bold;
+}
+li:hover{
+	color: #95D1CC;
+	transition-duration:300ms;
 }
 
 .main-container {
@@ -59,9 +78,12 @@ h1 {
   width: 10%;
   display: flex;
   flex-direction: column;
-  font-size: 24px;
+  font-size: 22px;
   font-weight: 800;
   margin-top: 8px;
+}
+.menu-category>a:first-child{
+	color: #5584AC;
 }
 
 .img-container {
@@ -71,21 +93,26 @@ h1 {
 
 }
 
-
 .menu-category>a {
   margin: 16px;
 }
 
+.menu-category>a:hover{
+	color: #95D1CC;
+	transition-duration:300ms;
+}
 
 .img-category {
   display: flex;
   justify-content: center;
   font-weight: 800;
+  background-color: pink;
 }
 
-.img-category-link {
-  margin-left:140px;
-  font-size: 24px;
+.img-category a{
+	text-align:center;
+	font-size: 22px;
+	margin-left:50px;
 }
 
 .imgC>img {
@@ -129,7 +156,14 @@ h1 {
 
 </style>
 
-      <h1>코디 수정페이지</h1><hr/>
+      <h1>Manager Page</h1><hr/>
+      <ul>
+      	<a href="${url}/master/master_modify_cody"><li>ALL</li></a>
+      	<a href="${url}/master/masterGenderList?sex=m"><li>MEN</li></a>
+      	<a href="${url}/master/masterGenderList?sex=f"><li>WOMEN</li></a>
+      </ul>
+      <br/>
+      <!--  
         <div class="img-category">
         <a href="#">
           <div class="img-category-link all">ALL</div>
@@ -141,12 +175,13 @@ h1 {
           <div class="img-category-link women">WOMEN</div>
         </a>
         </div>
+        -->
    <div class="main-container">
 
       <div class="menu-category">
         <a href="${url}/master/master_modify_cody"> 코디수정 </a>
         <a href="${url}/master/master_add_cody"> 코디추가 </a>
-      </div>
+      </div><hr/>
 
       <div class="img-container">
 
@@ -158,13 +193,13 @@ h1 {
 						<div class="imgC">
 							<c:if test="${vo[j]!=null}">
 				    			<img src="${url}/img/codyimg/codyupload/${vo[j].cname}" alt="모달할 이미지" class="Cimg">
-				    		
-				    				<p><a href="${url}/master/master_modify_form">수정</a> /  
-                 					<a href="#">삭제</a></p>
-                 				
+				    			<p>
+				    				<a href="${url}/master/master_modify_form?cname=${vo[j].cname}">수정</a> /  
+                 					<a href="${url}/codyDelete?cname=${vo[j].cname}" class="cDelete">삭제</a>
+                 				</p>
 				    		</c:if>
 				    		<c:if test="${vo[j]==null}">	<!-- 자리 채울 이미지 -->
-				    		<img src="${url}/img/codyimg/none.jpg">
+				    			<img src="${url}/img/codyimg/none.png">
 			    			</c:if>
 			    		</div>
 		    		</c:forEach>
