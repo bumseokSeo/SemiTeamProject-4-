@@ -65,5 +65,4 @@ public class ReviewVO {
 	public void setPlacename(String placename) {
 		this.placename = placename;
 	}
-    
 }
