@@ -123,8 +123,6 @@ $(function(){
 		
 		
 		var userid = document.getElementById("userid");
-		
-		console.log(userid);
 		if(document.getElementById("userid").value==""){
 			alert("아이디를 입력해주세요");
 			userid.focus();
@@ -240,6 +238,11 @@ $(function(){
 					    	<option value="school">입학했던 초등학교 이름은?</option>
 					    	<option value="travel">가장 기억에 남는 여행지는?</option>
 					    	<option value="born">내가 태어난 장소는?</option>
+					    	<option value="motto">나의 좌우명은?</option>
+					    	<option value="treasure">나의 보물1호는?</option>
+					    	<option value="book">인상 깊게 읽은 책 제목은?</option>
+					    	<option value="character">내가 좋아하는 캐릭터는?</option>
+					    	<option value="friend">유년시절 가장 생각나는 친구 이름은?</option>
 					</select>
 				</li>
 				<li>답변</li>
