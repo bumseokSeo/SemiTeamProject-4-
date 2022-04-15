@@ -45,7 +45,7 @@
   	</update>
   	
   	<select id="getEqualEvent" resultType="com.campus.myapp.vo.FoodVO">
-  		select fname, season, temp, weather, foodimg, fcategory, priority, event from food where event=#{param1}
+  		select fname, season, temp, weather, foodimg, fcategory, priority, event from food where event=cast(#{param1} as date)
   	
   	</select>
   	

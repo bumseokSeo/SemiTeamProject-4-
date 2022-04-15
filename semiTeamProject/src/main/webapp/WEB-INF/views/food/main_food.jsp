@@ -15,7 +15,6 @@
 		
 		background: url(${url}/img/foodBackground.png);
 		background-size: cover;
-		
 	}
 	
     #weather{
@@ -23,6 +22,37 @@
         justify-content: center;
         margin-top: 200px;
     }
+    #desc{
+		box-sizing: border-box;
+		position: relative;
+		width: 350px;
+		height:150px;
+		border-radius: 20px;
+		font-size: 20px;
+		margin-left: 25px;
+		background: rgba(247, 242, 208, 0.5);
+		justify-content: center; 
+		align-items: center;
+		border-left: 1px solid rgba(255, 255, 255, 0.5);
+		box-shadow: inset 13px 14px 15px rgba(0,0,0,0.05),
+		15px 15px 20px rgba(0,0,0,0.05),
+		15px 20px 20px rgba(0,0,0,0.05),
+		inset -15px -12px 20px rgba(0,0,0,0.05); 
+		letter-spacing: 2px;
+		opacity: 0.8;
+		color: rgb(41, 41, 39);
+		transition : transform 0.5s;
+	}
+	#desc:hover{
+		transform: scale(1.2);
+		transition : transform 0.5s;
+	}
+
+	#content{
+		padding: 20px;
+		text-align: center;
+		font-weight: 500;
+	}
     .weatherIcon{
         width: 200px;
         height: 200px;
@@ -30,11 +60,11 @@
         border-radius: 10px;
         margin: 0 50px;
 		opacity: 0.8;
-		transition : transform 0.5s;
+		
     }
     .weatherIcon:hover{
-       transform: scale(1.2);
-       transition : transform 0.5s;
+       
+       
     }
 	#info{
 		margin-top: 20px;
@@ -177,6 +207,12 @@
 
 	<h1 class="animate__animated animate__swing">오늘 음식 어때?</h1>
 	<div id="weather">
+		<div id="desc">
+			<div id="content">
+			오늘 음식을 추천해 드려요<br>추천 음식을 클릭하면 <br/>
+				가까운 음식점을 <br/>볼 수 있어요
+			</div>
+		</div>
 		<img class ="weatherIcon" src="" >
 		<div id="info"></div>
 		

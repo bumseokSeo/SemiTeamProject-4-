@@ -54,6 +54,8 @@ public class FoodController {
 	@ResponseBody
 	public List<FoodVO> foodRecommend(String weather, String temp){
 
+		System.out.println(weather);
+		System.out.println(temp);
 		//음식 추천
 		//우선 순위 있는 음식에서 2개
 		
@@ -69,9 +71,10 @@ public class FoodController {
 		//1. 오늘 날짜와 일치하는 이벤트 날짜 있는지 확인 -- 0개, 1개, 2개 이상...(여러개 있다면 이중 1개 선택해서 출력 리스트에 추가)
 		//오늘 날짜
 		LocalDate now = LocalDate.now();
-		
+		System.out.println(now.toString());
 		//오늘 날짜와 일치하는 이벤트 있는 음식 저장
 		List<FoodVO> event = service.getEqualEvent(now.toString());
+		
 		
 		if(event.size()>=2) {
 			//1개 선택하기
@@ -88,7 +91,7 @@ public class FoodController {
 		
 		//2. 오늘 날씨와 일치하는 음식 있는지 확인
 		//오늘 날씨
-		System.out.println(weather);
+		//System.out.println(weather);
 		
 		String todayWeather = "";
 		
