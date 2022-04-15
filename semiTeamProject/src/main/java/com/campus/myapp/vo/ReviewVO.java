@@ -12,7 +12,8 @@ public class ReviewVO {
     private String place_name;
     private String searchword;
 
-    
+
+  
     public String getId() {
 		return id;
 	}

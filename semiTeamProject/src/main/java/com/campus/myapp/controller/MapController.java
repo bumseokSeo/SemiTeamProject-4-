@@ -26,20 +26,21 @@ public class MapController {
    MapService service;
    @Inject
    ReviewService rvservice;
-   
+
+
    @GetMapping("main_map")
-   public ModelAndView Main_map(String fname, String id) {
-	      //DB에서 음식메뉴 가져오기 ==> 서비스 
-	      ModelAndView mav = new ModelAndView();      
-	      if(id!=null && !id.trim().equals("")) {
-	        List<ReviewVO> list = rvservice.reviewList(id);
-	        mav.addObject("list",list);
-	      }
-	      mav.addObject("menu", fname);
-	      mav.addObject("placeid","id");
-	      mav.setViewName("map/map");
-	      return mav;
-   }
+public ModelAndView Main_map(String fname, String id) {
+    //DB에서 음식메뉴 가져오기 ==> 서비스 
+    ModelAndView mav = new ModelAndView();      
+    if(id!=null && !id.trim().equals("")) {
+      List<ReviewVO> list = rvservice.reviewList(id);
+      mav.addObject("list",list);
+    }
+    mav.addObject("menu", fname);
+    mav.addObject("placeid","id");
+    mav.setViewName("map/map");
+    return mav;
+ }
    
    //나의 리뷰페이지로 이동
    @GetMapping("myReview")

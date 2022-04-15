@@ -150,7 +150,7 @@
                   class="nav_name">내가 쓴 리뷰 목록</span>
                </a>
             </div>
-            <a href="/" class="nav__link"> <ion-icon name="log-out-outline"
+            <a href="home" class="nav__link"> <ion-icon name="log-out-outline"
                   class="nav__icon"></ion-icon> <span class="nav_name">메인으로</span>
             </a>
          </div>

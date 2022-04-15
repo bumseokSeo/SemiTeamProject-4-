@@ -12,7 +12,7 @@ public interface ReviewDAO {
     //´ñ±Ûµî·Ï
     public int reviewWrite(ReviewVO vo);
     //´ñ±Û¸ñ·Ï
-    public List<ReviewVO> reviewList(String placeid);
+    public List<ReviewVO> reviewList(String id);
     //´ñ±Û¼öÁ¤
     public int reviewEdit(ReviewVO vo);
     //´ñ±Û»èÁ¦
