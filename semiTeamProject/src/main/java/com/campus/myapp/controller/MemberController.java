@@ -280,7 +280,6 @@ public class MemberController {
 			e.printStackTrace();
 			//레코드 추가 실패
 			fileDelete(path, vo.getProfile());
-			
 			String msg = "<script>alert('프로필 수정에 실패하였습니다'); history.back();</script>";
 
 			entity = new ResponseEntity<String>(msg,headers,HttpStatus.BAD_REQUEST);

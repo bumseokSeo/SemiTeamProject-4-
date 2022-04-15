@@ -10,6 +10,7 @@ public class ReviewVO {
     private String writedate;
     private String modifydate;
     private String place_name;
+    private String searchword;
 
     
     public String getId() {
@@ -65,6 +66,12 @@ public class ReviewVO {
 	}
 	public void setPlace_name(String place_name) {
 		this.place_name = place_name;
+	}
+	public String getSearchword() {
+		return searchword;
+	}
+	public void setSearchword(String searchword) {
+		this.searchword = searchword;
 	}
 	
 }
