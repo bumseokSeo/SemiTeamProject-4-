@@ -126,7 +126,7 @@ public class FoodController {
 			season = "winter";
 		}
 		
-		if(season.equals("")) {
+		if(!season.equals("")) {
 			foods.addAll(service.getEqualSeason(season));		
 		}
 		
@@ -146,6 +146,7 @@ public class FoodController {
 		}
 		
 		
+		
 		//event에서 선택된 것과 중복되는 데이터 삭제
 		if(list.size()>0) {
 			foods.removeIf(FoodVO->FoodVO.getFname().equals(list.get(0).getFname()));
@@ -154,9 +155,14 @@ public class FoodController {
 		// 2,3,4추가후 객체 중복 제거
 		//fname으로 객체 제거 
 		
+		for(FoodVO fvo: foods) {
+			System.out.println(fvo.getFname());
+		}
+		
 		List<FoodVO> f = new ArrayList<FoodVO>(foods);
 		
 		//2,3,4, 담는 리스트에 추가 <- (1번이 0개이면 2개 추출, 1개 이상이면 1개 추출)
+		
 		
 		if(f.size()>0) {
 			
@@ -164,12 +170,17 @@ public class FoodController {
 			list.add(f.get(0));
 			cnt++;
 			
-			if(cnt==0 && f.size()>1) {
+			if(cnt==1 && f.size()>1) {
 				list.add(f.get(1));
 				cnt++;
 			}
 		}
+		
+		for(FoodVO fvo: list) {
+			System.out.println(fvo.getFname()+ "+");
+		}
 			
+		
 		//우선 순위 없는 음식 가져오기
 		//priorty==N인 음식 리스트 가져오기 그중 무작위 3개 또는 4개 또는 5개
 		List<FoodVO> priorityN = service.getPriorityN("N");
@@ -181,10 +192,12 @@ public class FoodController {
 			i++;
 			cnt++;
 		}
+		/*
 			
 		for(FoodVO fvo: list) {
 			System.out.println(fvo.getFname());
 		}
+		*/
 			
 		return list;
 		

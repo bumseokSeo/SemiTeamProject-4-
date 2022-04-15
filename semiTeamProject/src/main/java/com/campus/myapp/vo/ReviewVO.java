@@ -10,7 +10,9 @@ public class ReviewVO {
     private String writedate;
     private String modifydate;
     private String place_name;
+    private String searchword;
 
+<<<<<<< HEAD
     public String getid() {
         return id;
     }
@@ -18,6 +20,16 @@ public class ReviewVO {
         this.id = id;
     }
     public String getUserid() {
+=======
+    
+    public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public String getUserid() {
+>>>>>>> c224dea221d82e53a9ad298162a5d8ee6d0dc57c
         return userid;
     }
     public void setUserid(String userid) {
@@ -64,6 +76,12 @@ public class ReviewVO {
 	}
 	public void setPlace_name(String place_name) {
 		this.place_name = place_name;
+	}
+	public String getSearchword() {
+		return searchword;
+	}
+	public void setSearchword(String searchword) {
+		this.searchword = searchword;
 	}
 	
 }

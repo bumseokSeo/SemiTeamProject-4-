@@ -6,23 +6,33 @@
 <script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> 
     
 <style>
+
+	  .container{
+			 width: 1300px;
+	  		 height: 100%;
+	  }
 	
+	  h1 {
+           margin-bottom: 50px;
+      }
 	  
 	   #foodForm{
-	      width: 800px;
+	   	   width : 90%;
+	   	   height : 100%;
 	       margin: 0 auto;
 	   }
 	   
 	   #adminForm{
-	       width: 800px;
+	       width: 65%;
 	       border: 1px solid gray;
 		   padding: 50px;
 		   margin-top: 30px;
 		   margin-bottom:20px;
+		   margin: 0 auto;
 	   }
-	   #foodNameFixed{
+	  /*  #foodNameFixed{
 	       display: none;
-	   }
+	   } */
 	   #deleteDate{
 	       text-decoration: none;
 	       color: black;
@@ -35,6 +45,11 @@
 	       text-align: center;
 	       font-weight: bold;
 	   }
+	   #eventYes{
+	   	   color: blue;
+	   	   display : none;
+	   }
+	 
 	   #priorityForm{
 	       display: none;
 	   }
@@ -61,7 +76,8 @@
 	   #photoDelete{
 	   		display: none;
 	   }
-	 
+	   
+	   
 
 </style>
 <script>
@@ -170,6 +186,7 @@
             			
             			//월일만 보이게 하기
             			
+            			$("#eventYes").css('display', 'inline-block');
             			$("#eventSelected").html(event.substr(idx+1));
                         $("#eventSelected").css('display', 'inline-block');
                         $("#deleteDate").css('display', 'inline-block');
@@ -178,9 +195,11 @@
             		
             		 //날짜 선택한 뒤 날짜 삭제 버튼 클릭
 		            $("#deleteDate").click(function(){
+		            	$("#eventYes").css('display', 'none');
 		                $("#eventSelected").html('');
 		                $("#eventSelected").css('display', 'none');
 		                $("#deleteDate").css('display', 'none');
+		                
 		
 		              //이벤트 없음으로 되돌리기
 		                $("#event option:eq(0)").prop("selected", true);
@@ -221,17 +240,22 @@
         //취소 버튼 클릭시 초기화
         $("#cancel").click(function(){
         	
+        	//수정할 음식 입력 검색란 보이게 하기
         	$(".searchForm").css('visibility','visible');
             $("#searchFood").val('');
+            
+            //텍스트 입력란은 공백으로 초기화
             $("#fname").val('');
             $("#fname").attr("readonly", false);
             $("#fcategory").val('');
+            //선택란은 기본값으로 변경
             $(".form-select option:eq(0)").prop("selected", true);
             $("#weather option:eq(0)").prop("selected", true);
             $(".form-check").attr("checked", false);
             $("#add").css('visibility', 'visible');
             $("#modify").css('visibility', 'visible');
             
+            $("#eventYes").css('display', 'none');
             $("#eventSelected").html('');
             $("#eventSelected").css('display', 'none');
             $("#deleteDate").css('display', 'none');
@@ -314,10 +338,7 @@
         	});
         	
         	$("#photoDelete").click(function(){
-    			$("#foodPhoto").attr("src", "");
-    			$("#photoDelete").css("display", "none");
-    			$("#foodimg").val('');
-    			$("#fnameCheck").html('');
+    			photoDelete();
     		});
  	
         });
@@ -407,6 +428,7 @@
              }
 
             if(event == 'no'){
+             $("#eventYes").css('display', 'none');
              $("#eventSelected").html('');
              $("#eventSelected").css('display', 'none');
              $("#deleteDate").css('display', 'none');
@@ -461,7 +483,8 @@
             	console.log(idx);
             			
             	//월일만 보이게 하기
-            			
+            	
+            	$("#eventYes").css('display', 'inline-block');
             	$("#eventSelected").html(eventDate.substr(idx+1));
                 $("#eventSelected").css('display', 'inline-block');
                 $("#deleteDate").css('display', 'inline-block');
@@ -471,6 +494,7 @@
 
             //날짜 선택한 뒤 날짜 삭제 버튼 클릭
             $("#deleteDate").click(function(){
+            	$("#eventYes").css('display', 'none');
                 $("#eventSelected").html('');
                 $("#eventSelected").css('display', 'none');
                 $("#deleteDate").css('display', 'none');
@@ -490,41 +514,40 @@
 
 </script>
 
-<div class="container">
-        
+	<h1>음식 관리 페이지</h1>
+	<hr/>
+	<div class="container">
         <div id="foodForm">
-        <h1>음식 관리 페이지</h1>
+        
         	<form method="post" id="adminForm" name="adminForm" enctype="multipart/form-data">
 	            <div class="row g-3 searchForm">
 	                <!--수정할 음식 이름 검색-->
-	                <div class="col-sm-6 m-3">
+	                <div class="col-lg-7 m-3">
 	                    <input type="text" class="form-control" id="searchFood" placeholder="수정할 음식 이름을 입력하세요" name="searchFood">
 	                </div>
-	                <div class="col-sm-4">
+	                <div class="col-lg-4">
 	                    <input type="button" class="btn btn-secondary mb-3" id="searchButton" value="검색" > 
 	                </div>
                 </div>
 
                 <!--음식 이름 작성 (Not Null)-->
                 <div class="row m-2">
-                    <label for="fname" class="col-sm-2 col-form-label ">음식이름</label>
-                    <div class="col-sm-5">
+                    <label for="fname" class="col-lg-3 col-form-label ">음식이름</label>
+                    <div class="col-lg-8">
                       <input type="text" class="form-control " id="fname" name="fname" placeholder="음식이름">
                     </div>
-                    <span class="col-sm-2" id="foodNamechk"></span>
-                    <input class = "col-sm-3" type="text" name="foodNameFixed" id="foodNameFixed" value="">
                 </div>
                 <!--음식 종류 작성 (Not Null)-->
                 <div class="row m-2">
-                    <label for="fcategory" class="col-sm-2 col-form-label ">음식종류</label>
-                    <div class="col-sm-5">
+                    <label for="fcategory" class="col-lg-3 col-form-label ">음식종류</label>
+                    <div class="col-lg-8">
                       <input type="text" class="form-control " id="fcategory" name="fcategory" placeholder="음식종류">
                     </div>
                 </div>
                 <!--계절 선택 (Not Null)-->
                 <div class="row m-2">
-                    <label for="season" class="col-sm-2 col-form-label">계절</label>
-                    <div class="col-sm-5">
+                    <label for="season" class="col-lg-3 col-form-label">계절</label>
+                    <div class="col-lg-8">
                         <select class="form-select col-auto" id="season" name="season">
                             <option selected value="allseason">계절 무관</option>
                             <option value="spring">봄</option>
@@ -536,8 +559,8 @@
                 </div>
                 <!--온도 선택 (Not Null)-->
                 <div class="row m-2">
-                    <label for="temp" class="col-sm-2 col-form-label">온도</label>
-                    <div class="col-sm-5">
+                    <label for="temp" class="col-lg-3 col-form-label">온도</label>
+                    <div class="col-lg-8">
                         <select class="form-select col-auto" id="temp" name="temp">
                             <option selected value="0">상관 없음</option>
                             <option value="1">25도 이상일 때 추천</option>
@@ -547,8 +570,8 @@
                 </div>
                 <!--날씨 선택-->
                 <div class="row m-2">
-                    <label for="weather" class="col-sm-2 col-form-label">날씨</label>
-                    <div class="col-sm-5">
+                    <label for="weather" class="col-lg-3 col-form-label">날씨</label>
+                    <div class="col-lg-8">
                         <select class="form-select col-auto" id="weather" name="weather">
                             <option selected value="allweather">상관 없음</option>
                             <option value="clear">맑음</option>
@@ -559,26 +582,27 @@
                 </div>
                 <!--이벤트 선택 (있으면 모달로 날짜 입력 받기)-->
                 <div class="row m-2" id="eventForm">
-                    <label for="event" class="col-sm-2 col-form-label">이벤트</label>
-                    <div class="col-sm-5">
+                    <label for="event" class="col-lg-3 col-form-label">이벤트</label>
+                    <div class="col-lg-8">
                         <select class="form-select col-auto" id="event" name="event">
                             <option selected value="no">상관 없음</option>
                             <option value="">있음</option> 
                         </select>
                     </div>
-                    <span class="col-sm-3" class="day" id="eventSelected"></span>
-                    <a class="col-sm-2 day" id="deleteDate">삭제</a>
+                    <div class="col-lg-3" id="eventYes">날짜</div>
+                    <span class="col-lg-3" class="day" id="eventSelected"></span>
+                    <a class="col-lg-2 day" id="deleteDate">삭제</a>
                 </div>
                 <!--우선순위 (Not Null)-->
                 <div class="row m-2"  id="priorityForm">
-                    <label class="col-sm-2 col-form-label">우선순위</label>
-                    <div class="form-check col-sm-3">
+                    <label class="col-lg-3 col-form-label">우선순위</label>
+                    <div class="form-check col-lg-3">
                         <input class="form-check-input m-2" type="radio" id="priorityYes" name="priority" value='Y'>
                         <label class="form-check-label" for="priorityYes">
                             Y
                         </label> 
                     </div>
-                    <div class="form-check col-sm-3">
+                    <div class="form-check col-lg-3">
                         <input class="form-check-input m-2" type="radio" id="priorityNo" name="priority" checked="checked" value='N'>
                         <label class="form-check-label" for="priorityNo">
                             N
@@ -587,8 +611,8 @@
                 </div>
                 <!--음식 사진 파일 업로드 (Not Null)-->
                 <div class="row m-2">
-                    <label class="col-sm-2 col-form-label" for="foodimg">음식 사진</label>
-                    <input type="file" class="col-sm-5" id="foodimg" name="filename" >
+                    <label class="col-lg-3 col-form-label" for="foodimg">음식 사진</label>
+                    <input type="file" class="col-lg-8" id="foodimg" name="filename" >
                    
 	               <button type="button"  class="btn-close"  aria-label="Close" id="photoDelete"></button>
 	               <span id="fnameCheck"></span>

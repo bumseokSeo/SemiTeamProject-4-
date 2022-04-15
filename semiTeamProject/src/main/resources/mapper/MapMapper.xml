@@ -4,6 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.campus.myapp.dao.MapDAO">
+<<<<<<< HEAD
 
     <insert id="addplace">
         insert into store (place_name, phone, road_address_name, address_name, id)
@@ -19,4 +20,21 @@
     <delete id="myreviewDeleteOk">
         delete from review where reviewno=#{param1}
     </delete>
+=======
+	
+	<insert id="addplace">
+		insert into store (place_name, phone, road_address_name, address_name, id)
+		values(#{place_name}, #{phone}, #{road_address_name}, #{address_name}, #{id})
+	</insert>
+	
+	<select id="myReviewListAll" resultType="com.campus.myapp.vo.ReviewVO">
+		select r.star, date_format(r.writedate,' %y-%m-%d') writedate, date_format(r.modifydate,' %y-%m-%d') modifydate, r.content, r.reviewimg, s.place_name, r.reviewno 
+		from review r join store s on r.id=s.id
+		where r.userid=#{param1} order by reviewno desc
+	</select>
+	
+	<delete id="myreviewDeleteOk">
+		delete from review where reviewno=#{param1}
+	</delete>
+>>>>>>> c224dea221d82e53a9ad298162a5d8ee6d0dc57c
 </mapper>
