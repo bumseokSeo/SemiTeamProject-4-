@@ -1,7 +1,7 @@
 package com.campus.myapp.vo;
 
 public class ReviewVO {
-    private String placeid;
+    private String id;
     private String userid;
     private int reviewno;
     private double star;
@@ -11,11 +11,11 @@ public class ReviewVO {
     private String modifydate;
     private String place_name;
 
-    public String getPlaceid() {
-        return placeid;
+    public String getid() {
+        return id;
     }
-    public void setPlaceid(String placeid) {
-        this.placeid = placeid;
+    public void setid(String id) {
+        this.id = id;
     }
     public String getUserid() {
         return userid;

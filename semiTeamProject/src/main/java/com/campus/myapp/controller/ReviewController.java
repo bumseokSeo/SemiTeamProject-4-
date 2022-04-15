@@ -32,9 +32,9 @@ public class ReviewController {
 
 	//댓글목록
 	@GetMapping("/review/list")
-	public List<ReviewVO> list(String placeid) {
-		System.out.println(placeid);
-		return service.reviewList(placeid);
+	public List<ReviewVO> list(String id) {
+		System.out.println(id);
+		return service.reviewList(id);
 	}
 	//댓글수정
 	@PostMapping("/review/editOk")
@@ -49,17 +49,17 @@ public class ReviewController {
 	}
 
 	// 리뷰등록
-	@PostMapping("review/writeOk")
-	public ResponseEntity<String> reviewWriteOk(ReviewVO vo, HttpServletRequest request) {
-
+	@PostMapping("/review/writeOk")
+	public ResponseEntity<String> reviewWriteOk(ReviewVO vo, String pid, HttpServletRequest request) {
+		
 		vo.setUserid((String)request.getSession().getAttribute("logId"));// 글쓴이 
-
+		vo.setid(pid);
 		ResponseEntity<String> entity = null;
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(new MediaType("text", "html", Charset.forName("UTF-8")));
 
 		String path = request.getSession().getServletContext().getRealPath("/img/reviewimg"); // 파일 업로드를 위한 업로드 위치의 절대 주소
-		System.out.println("path-->"+path);
+		System.out.println("id-->"+vo.getid()+", >>>pid="+pid);
 
 		try {
 			// 파일업로드를 처리하기 위해서는 request객체에서 multipart객체로 형변환하여야 한다.
@@ -121,7 +121,7 @@ public class ReviewController {
 			// DB등록
 			service.reviewWrite(vo);
 			// 레코드 추가 성공
-			String msg = "<script>alert('리뷰가 등록되었습니다.');location.href='/map/main_map';</script>";
+			String msg = "<script>alert('리뷰가 등록되었습니다.');location.href='/map/main_map?id="+pid+"';</script>";
 			entity = new ResponseEntity<String>(msg, headers, HttpStatus.OK);
 		}catch(Exception e) {
 			e.printStackTrace();
