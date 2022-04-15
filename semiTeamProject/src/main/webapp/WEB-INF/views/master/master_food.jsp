@@ -30,12 +30,9 @@
 		   margin-bottom:20px;
 		   margin: 0 auto;
 	   }
-	  /*  #foodNameFixed{
-	       display: none;
-	   } */
 	   #deleteDate{
 	       text-decoration: none;
-	       color: black;
+	       color: midnightblue;
 	   }
 	   #deleteDate:hover{
 	       color: gray;
@@ -52,6 +49,11 @@
 	 
 	   #priorityForm{
 	       display: none;
+	   }
+	   #foodPhoto{
+	   		width : 80%;
+	   		height : 50%;
+	   		margin: 0 auto;
 	   }
 	   #cancel{
 	       margin:0 50px;
@@ -76,6 +78,13 @@
 	   #photoDelete{
 	   		display: none;
 	   }
+	   #foodimgCheck{
+	   	color : coral;
+	   }
+	   #foodimgName{
+	   	color : darkblue;
+	   }
+	   
 	   
 	   
 
@@ -115,8 +124,26 @@
 			$("#foodPhoto").attr("src", "");
 			$("#photoDelete").css("display", "none");
 			$("#foodimg").val('');
-			$("#fnameCheck").html('');
+			$("#foodimgCheck").html('');
+			///////////////////////////////////////////////
+			$("#foodPhoto").css('display', 'none');
+			$("#foodimgName").text("");
+			
+    	
     	}
+    	
+    	//수정할 음식 검색란에 focus
+    	$("#searchFood").focus(function(){
+    		$("#add").css('visibility', 'hidden');
+    		$("#foodimgCheck").css('display', 'none');
+    		$("#foodPhoto").css('display','none');
+    	});
+    	
+    	//음식 이름에 focus
+    	$("#fname").focus(function(){
+    		$("#add").css('visibility', 'visible');
+    	});
+    	
        
         //검색 버튼 클릭시 
         $("#searchButton").click(function(){
@@ -220,11 +247,13 @@
             		//음식 사진 가져오기
             		$("#foodPhoto").attr("src", "/img/foodimg/upload/"+result.foodimg);
             		$("#photoDelete").css("display", "inline-block");
-            		
+            		$("#foodPhoto").css("display", "block");
+            		///////////////////////////////////////////////////////
+            		$("#foodimgName").text("저장되어 있는 이미지 파일 : " + result.foodimg);
             		
             		$("#photoDelete").click(function(){
-            			$("#foodPhoto").attr("src", "");
-            			$("#photoDelete").css("display", "none");
+            			photoDelete();
+            			
             		});
             		
             	},
@@ -307,6 +336,8 @@
         //파일 이름 중복 확인
         $("#foodimg").change(function(){
         	
+        	
+        	
         	var file = $("#foodimg").val();
         	console.log(file);
         	
@@ -316,6 +347,7 @@
         	
         	imagePreview(this, "#foodPhoto");
         	$("#photoDelete").css("display", "inline-block");
+        	$("#foodPhoto").css('display', 'block');
         	
         	$.ajax({
         		url : '/fileNameCheck',
@@ -324,12 +356,12 @@
         		
         	 	success : function(result){
         	 		
-        	 		if(result>0){
-        	 			$("#fnameCheck").html("동일한 이름의 이미지 파일이 있습니다. 다른 이름의 사진 파일을 업로드 하세요");
+        	 		if(parseInt(result)>0){
+        	 			$("#foodimgCheck").html("동일한 이름의 이미지 파일이 있습니다.<br/> 다른 이름의 사진 파일을 업로드 하세요").show();
         	 			$("#foodimg").val('');
         	 			return false;		
         	 		}else{
-        	 			$("#fnameCheck").html("업로드 가능한 이미지 입니다.");
+        	 			$("#foodimgCheck").html("업로드 가능한 이미지 입니다.");
         	 		}
         	 	},
         	 	error : function(error){
@@ -346,16 +378,26 @@
         //수정 버튼 클릭 시
         $("#modify").click(function(){
         	
+        	if($("#fname").val()==''){
+        		alert('수정할 음식을 검색하세요');
+        		$("#searchFood").focus();
+        		return false;
+        	}
+        	
         	if($("#fcategory").val()==''){
                 alert("음식 종류를 입력하세요. (ex.한식, 양식, 중식, 일식, 디저트..)");
                 $("#fcategory").focus();
                 return false;
             }
  
-            if($("#foodimg").val()=='' && $("#foodPhoto").src == ''){
+            
+            if($("#foodimg").val()=='' || $("#foodPhoto").attr("src") == ''){
                 alert("음식 이미지 파일을 선택해 업로드 하세요.");
                 return false;
             }
+            
+            alert($("#foodimg").val());
+            alert($("#foodPhoto").attr("src"));
             
         	//수정 버튼 클릭 시 submit
         	 $("#adminForm").attr("action", "foodModify");
@@ -522,32 +564,32 @@
         	<form method="post" id="adminForm" name="adminForm" enctype="multipart/form-data">
 	            <div class="row g-3 searchForm">
 	                <!--수정할 음식 이름 검색-->
-	                <div class="col-lg-7 m-3">
+	                <div class="col-lg-7 m-3 my-2">
 	                    <input type="text" class="form-control" id="searchFood" placeholder="수정할 음식 이름을 입력하세요" name="searchFood">
 	                </div>
-	                <div class="col-lg-4">
+	                <div class="col-lg-4 my-2">
 	                    <input type="button" class="btn btn-secondary mb-3" id="searchButton" value="검색" > 
 	                </div>
                 </div>
 
                 <!--음식 이름 작성 (Not Null)-->
-                <div class="row m-2">
-                    <label for="fname" class="col-lg-3 col-form-label ">음식이름</label>
-                    <div class="col-lg-8">
+                <div class="row m-2 ">
+                    <label for="fname" class="col-lg-3 col-form-label my-2">음식이름</label>
+                    <div class="col-lg-8 my-2">
                       <input type="text" class="form-control " id="fname" name="fname" placeholder="음식이름">
                     </div>
                 </div>
                 <!--음식 종류 작성 (Not Null)-->
                 <div class="row m-2">
-                    <label for="fcategory" class="col-lg-3 col-form-label ">음식종류</label>
-                    <div class="col-lg-8">
+                    <label for="fcategory" class="col-lg-3 col-form-label my-2">음식종류</label>
+                    <div class="col-lg-8 my-2">
                       <input type="text" class="form-control " id="fcategory" name="fcategory" placeholder="음식종류">
                     </div>
                 </div>
                 <!--계절 선택 (Not Null)-->
                 <div class="row m-2">
-                    <label for="season" class="col-lg-3 col-form-label">계절</label>
-                    <div class="col-lg-8">
+                    <label for="season" class="col-lg-3 col-form-label my-2">계절</label>
+                    <div class="col-lg-8 my-2">
                         <select class="form-select col-auto" id="season" name="season">
                             <option selected value="allseason">계절 무관</option>
                             <option value="spring">봄</option>
@@ -559,8 +601,8 @@
                 </div>
                 <!--온도 선택 (Not Null)-->
                 <div class="row m-2">
-                    <label for="temp" class="col-lg-3 col-form-label">온도</label>
-                    <div class="col-lg-8">
+                    <label for="temp" class="col-lg-3 col-form-label my-2">온도</label>
+                    <div class="col-lg-8 my-2">
                         <select class="form-select col-auto" id="temp" name="temp">
                             <option selected value="0">상관 없음</option>
                             <option value="1">25도 이상일 때 추천</option>
@@ -570,8 +612,8 @@
                 </div>
                 <!--날씨 선택-->
                 <div class="row m-2">
-                    <label for="weather" class="col-lg-3 col-form-label">날씨</label>
-                    <div class="col-lg-8">
+                    <label for="weather" class="col-lg-3 col-form-label my-2">날씨</label>
+                    <div class="col-lg-8 my-2">
                         <select class="form-select col-auto" id="weather" name="weather">
                             <option selected value="allweather">상관 없음</option>
                             <option value="clear">맑음</option>
@@ -582,16 +624,16 @@
                 </div>
                 <!--이벤트 선택 (있으면 모달로 날짜 입력 받기)-->
                 <div class="row m-2" id="eventForm">
-                    <label for="event" class="col-lg-3 col-form-label">이벤트</label>
-                    <div class="col-lg-8">
+                    <label for="event" class="col-lg-3 col-form-label my-2">이벤트</label>
+                    <div class="col-lg-8 my-2">
                         <select class="form-select col-auto" id="event" name="event">
                             <option selected value="no">상관 없음</option>
                             <option value="">있음</option> 
                         </select>
                     </div>
-                    <div class="col-lg-3" id="eventYes">날짜</div>
-                    <span class="col-lg-3" class="day" id="eventSelected"></span>
-                    <a class="col-lg-2 day" id="deleteDate">삭제</a>
+                    <div class="col-lg-3 my-2" id="eventYes">날짜</div>
+                    <span class="col-lg-3 my-2" class="day" id="eventSelected"></span>
+                    <a class="col-lg-2 day my-2" id="deleteDate">삭제</a>
                 </div>
                 <!--우선순위 (Not Null)-->
                 <div class="row m-2"  id="priorityForm">
@@ -611,12 +653,13 @@
                 </div>
                 <!--음식 사진 파일 업로드 (Not Null)-->
                 <div class="row m-2">
-                    <label class="col-lg-3 col-form-label" for="foodimg">음식 사진</label>
-                    <input type="file" class="col-lg-8" id="foodimg" name="filename" >
+                    <label class="col-lg-3 col-form-label my-2" for="foodimg">음식 사진</label>
+                    <input type="file" class="col-lg-8 my-2" id="foodimg" name="filename" >
                    
-	               <button type="button"  class="btn-close"  aria-label="Close" id="photoDelete"></button>
-	               <span id="fnameCheck"></span>
-	               <img id="foodPhoto"/>
+	               <button type="button"  class="btn-close my-2"  aria-label="Close" id="photoDelete"></button>
+	               <span id="foodimgName" class="my-2 "></span>
+	               <span id="foodimgCheck" class="my-2"></span>
+	               <img id="foodPhoto" class="my-2"/>
                     
                 </div>
                 

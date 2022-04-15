@@ -5,7 +5,6 @@
 
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <style>
-
 	ul, li{
 		list-style-type: none;
 		margin: 0;
@@ -47,7 +46,6 @@
 		transform: scale(1.2);
 		transition : transform 0.5s;
 	}
-
 	#content{
 		padding: 20px;
 		text-align: center;
@@ -129,7 +127,6 @@
 		
 		
 		const API_KEY = "34f03c607cbd5ac6878b951a96d17bef";
-
 		const lat = position.coords.latitude;
 		const lon = position.coords.longitude;
 		const url = "https://api.openweathermap.org/data/2.5/weather?lat="+lat+"&lon="+lon+"&lang=kr&appid="+API_KEY+"&units=metric";
@@ -137,16 +134,12 @@
 		fetch(url)
 		.then(response => response.json())
 		.then(data => {
-
 			var line = "<div>기온 : <span  id='tempInfo'>"+ data.main.temp + "</span></div><br/>";
                 line += "<div>날씨 : <span  id='weatherInfo'>" + data.weather[0].description + "</span></div><br/>";
 			var info = document.querySelector("#info");
-
 			info.innerHTML = line;
-
 			var weatherIcon = data.weather[0].icon;
 			var weatherIconUrl = "http://openweathermap.org/img/wn/"+weatherIcon+"@2x.png"
-
 			var icon = document.querySelector(".weatherIcon");
 			icon.src = weatherIconUrl;
 			
@@ -200,7 +193,6 @@
 		alert('위치를 찾을 수 없습니다. ')
 	}
 	
-
 	navigator.geolocation.getCurrentPosition(onGeoOk,onGeoError);
 	
 </script>
