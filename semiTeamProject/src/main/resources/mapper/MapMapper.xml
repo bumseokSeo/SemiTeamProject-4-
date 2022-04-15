@@ -12,7 +12,7 @@
 	
 	<select id="myReviewListAll" resultType="com.campus.myapp.vo.ReviewVO">
 		select r.star, date_format(r.writedate,' %y-%m-%d') writedate, date_format(r.modifydate,' %y-%m-%d') modifydate, r.content, r.reviewimg, s.place_name, r.reviewno 
-		from review r join store s on r.placeid=s.id
+		from review r join store s on r.id=s.id
 		where r.userid=#{param1} order by reviewno desc
 	</select>
 	
