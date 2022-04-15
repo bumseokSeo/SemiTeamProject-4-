@@ -32,6 +32,10 @@
    }
    
    /*전체적인틀*//*전체적인틀*//*전체적인틀*//*전체적인틀*//*전체적인틀*//*전체적인틀*//*전체적인틀*/
+	#otherMasterPage{
+		
+	}
+	
 	#master{
 		border: 1px solid gray;
 		width:1500px;
@@ -60,6 +64,7 @@
 		padding:20px;
 		padding-left: 120px;
 	}
+	
 	#reviewlst{
 		position:relative;
 		border: 1px solid gray;
@@ -287,7 +292,7 @@ $(function(){
 
 </script>
 <h1>관리자 페이지</h1>
-<div>
+<div id="otherMasterPage">
 	<a href="${url}/master/master_modify_cody">코디 관리 바로가기</a>
 	<a href="/master/master_food">음식 관리 바로가기</a>
 </div>
