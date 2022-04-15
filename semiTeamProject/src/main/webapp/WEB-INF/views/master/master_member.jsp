@@ -33,7 +33,9 @@
    
    /*전체적인틀*//*전체적인틀*//*전체적인틀*//*전체적인틀*//*전체적인틀*//*전체적인틀*//*전체적인틀*/
 	#otherMasterPage{
-		
+		width:1500px;
+		margin: 0 auto;
+		font-size: 1.5em;
 	}
 	
 	#master{
@@ -118,6 +120,7 @@
 	}
 	.reviewul>li:last-of-type {
 		width:9%;
+		padding-top: 20px;
 	}
 	
 	
@@ -293,7 +296,7 @@ $(function(){
 </script>
 <h1>관리자 페이지</h1>
 <div id="otherMasterPage">
-	<a href="${url}/master/master_modify_cody">코디 관리 바로가기</a>
+	<a href="${url}/master/master_modify_cody">코디 관리 바로가기</a>/
 	<a href="/master/master_food">음식 관리 바로가기</a>
 </div>
 <div id="master">
