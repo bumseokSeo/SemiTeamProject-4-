@@ -10,17 +10,16 @@
 
 <!-- CSS -->
 <link rel="stylesheet" href="${url }/css/map_style.css">
-   
+
 <!-- 아이콘용 -->
 <link rel="stylesheet"
    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-   
+
 
 <style>
 #top {
    display: none;
 }
-
 </style>
 <!-- 카카오 api 라이브러리  -->
 <!-- services와 clusterer, drawing 라이브러리 불러오기 -->
@@ -28,91 +27,106 @@
    src="//dapi.kakao.com/v2/maps/sdk.js?appkey=096ec0036610b77d5b4e1aa8571cbb1e&libraries=services,clusterer,drawing"></script>
 
 <!-- bootstrap -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
-  <script>
-   
-   
-   // 댓글----------------------------------------------------------
-   $(function(){
-      // 댓글 목록을 가져오는 함수
-      function reviewListAll(){ // 현재 글의 댓글을 모두 가져오기
-         
-         var params = "placeid=${id}"; // 32번 글인경우: no=32
-         var url = "/review/list?"+params;
-         
-         $.ajax({
-            type:'get',
-            url:url,
-            // data:params,
-            success:function(result){
-               
-               var $result = $(result); // vo, vo, vo, vo...
-               
-               /*<tbody>
-                     <c:forEach var="vo" items="${list }">
-                     <tr style="text-align:center;">
-                        <td style="width:15%;" class="rounded">${vo.reviewimg }</td>
-                        <td style="width:40%;text-overflow:ellipsis;">${vo.star}<br> ${vo.content }</td>
-                        <td style="width:20%;">${vo.userid }</td>
-                        <td style="width:20%;">${vo.writedate}</td>
-                     </tr>
-                     </c:forEach>
+<link rel="stylesheet"
+   href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+<script
+   src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+<script
+   src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script
+   src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+   function reviewListAll(id) { // 현재 글의 댓글을 모두 가져오기      
+      var params = "placeid=" + id; // 32번 글인경우: no=32
+      var url = "/review/list?" + params;
 
-                  </tbody>
-               */
-               var tag = "<table><tbody>";
-               
-               $result.each(function(idx, vo){
-                  tag+='<tr style="text-align:center;">'
-                  tag += '<td style="width:15%;border-bottom:1px solid #ddd" class="rounded">'+vo.reviewimg+'</td>';
-                  tag += '<td style="width:40%;text-overflow:ellipsis;;border-bottom:1px solid #ddd">'+'<i class="fa fa-star" style="color: red;"></i>'+vo.star+'<br>'+vo.content+'</td>';
-                  tag += '<td style="width:20%;border-bottom:1px solid #ddd">'+vo.userid+'</td>';
-                  tag += '<td style="width:20%;border-bottom:1px solid #ddd">'+vo.writedate+'</td>';
-                  
-                  
-                  tag +="</tr>"; // vo의 개수만큼 순환
-               });
-               
-               tag += "</tbody></table>";
-               
-               $("#reviewListBody").html(tag);
-               
-            }, error:function(e){
-               console.log(e.responseText);
-            }
-         })
-      }
-      
+      $
+            .ajax({
+               type : 'get',
+               url : url,
+               // data:params,
+               success : function(result) {
+
+                  var $result = $(result); // vo, vo, vo, vo...
+
+                  /*<tbody>
+                        <c:forEach var="vo" items="${list }">
+                        <tr style="text-align:center;">
+                           <td style="width:15%;" class="rounded">${vo.reviewimg }</td>
+                           <td style="width:40%;text-overflow:ellipsis;">${vo.star}<br> ${vo.content }</td>
+                           <td style="width:20%;">${vo.userid }</td>
+                           <td style="width:20%;">${vo.writedate}</td>
+                        </tr>
+                        </c:forEach>
+
+                     </tbody>
+                   */
+                  var tag = "<table><tbody>";
+
+                  $result
+                        .each(function(idx, vo) {
+                           tag += '<tr style="text-align:center;">'
+                           tag += '<td style="width:5px height:30px;border-bottom:1px solid #ddd" class="rounded">'
+                                 + vo.reviewimg + '</td>';
+                           tag += '<td style="width:40%;text-overflow:ellipsis;;border-bottom:1px solid #ddd">'
+                                 + '<i class="fa fa-star" style="color: red;"></i>'
+                                 + vo.star
+                                 + '<br>'
+                                 + vo.content
+                                 + '</td>';
+                           tag += '<td style="width:20%;border-bottom:1px solid #ddd">'
+                                 + vo.userid + '</td>';
+                           tag += '<td style="width:20%;border-bottom:1px solid #ddd">'
+                                 + vo.writedate + '</td>';
+
+                           tag += "</tr>"; // vo의 개수만큼 순환
+                        });
+
+                  tag += "</tbody></table>";
+
+                  $("#reviewListBody").html(tag);
+
+               },
+               error : function(e) {
+                  console.log(e.responseText);
+               }
+            })
+   }
+   // 댓글----------------------------------------------------------
+   $(function() {
+      // 댓글 목록을 가져오는 함수
+
+      //reviewListAll(1);
+
       // 리뷰등록
-      $("#evaluation444").submit(function(){
-         
+      $("#evaluation444").submit(function() {
+
          event.preventDefault(); // form 기본이벤트 제거
-         if($("#content").val()==''){
+         if ($("#content").val() == '') {
             alert("리뷰 입력 후 등록하세요.");
             return;
-         }else{ // 리뷰을 입력한 경우
+         } else { // 리뷰을 입력한 경우
+            //var id = "100839945";
             var params = $("#evaluation444").serialize(); // form에 있는 데이터가 담김
-         
+
             $.ajax({
-               url:'/review/writeOk',
-               data: params,
-               type:'POST',
-               success: function(r){
+               url : '/review/writeOk',
+               data : params + "&id=" + id,
+               type : 'POST',
+               success : function(r) {
                   //alert(r);
                   $("content").val("");
                   // 에러가 안난다면 => 댓글목록이 refresh되어야 한다. 
-                  reviewListAll();
-               }, error:function(e){
+                  reviewListAll(r.id);
+               },
+               error : function(e) {
                   console.log(e.responseText);
                }
             });
          }
       });
       // 현재글의 댓글
-      reviewListAll();
+      //reviewListAll();
    });
 </script>
 <title>map메인화면</title>
@@ -130,15 +144,14 @@
             <div class="nav__list">
                <a href="#" class="nav__link active"> <ion-icon
                      name="home-outline" class="nav__icon"></ion-icon> <span
-                  class="nav_name"  onclick="toggleDiv()">리뷰 작성하기</span>
+                  class="nav_name" onclick="toggleDiv()">리뷰 작성하기</span>
                </a> <a href="myReview" class="nav__link"> <ion-icon
                      name="chatbubbles-outline" class="nav__icon"></ion-icon> <span
                   class="nav_name">내가 쓴 리뷰 목록</span>
                </a>
             </div>
-            <a href="#" class="nav__link"> <ion-icon name="log-out-outline"
-                  class="nav__icon"></ion-icon> <span class="nav_name">이 페이지
-                  나가기</span>
+            <a href="/" class="nav__link"> <ion-icon name="log-out-outline"
+                  class="nav__icon"></ion-icon> <span class="nav_name">메인으로</span>
             </a>
          </div>
       </nav>
@@ -160,57 +173,67 @@
          <div id="pagination"></div>
       </div>
       <div id="review"
-         style="margin: 2px; overflow:auto; border: solid #20B2AA; float: left; display: block; width: 450px; height: 100%; position: relative; background-color: white; z-index: 1;">
+         style="margin: 2px; overflow: auto; border: solid #20B2AA; float: left; display: none; width: 450px; height: 100%; position: relative; background-color: white; z-index: 1;">
 
          <hr />
          <div id="reviewcomment">
-            <h5 
-               style="height: 23px; font-size: 20px; line-height: 24px; text-align: center; margin:10px;">리뷰작성</h5>
+            
+            <h5   style="height: 23px; font-size: 20px; line-height: 24px; text-align: center; margin: 10px;">리뷰작성</h5>
             <div class="evaluation">
-               <form id="evaluation" method="post" enctype="multipart/form-data" action="/review/writeOk">
+               <form id="evaluation" method="post" enctype="multipart/form-data"
+                  action="/review/writeOk">
+                  <input type="text" name="pid" id="pid">
                   <fieldset>
                      <input type="radio" name="star" value="5" id="rate1"><label
-                        for="rate1">⭐</label> <input type="radio" name="star"
-                        value="4" id="rate2"><label for="rate2">⭐</label> <input
+                        for="rate1">⭐</label> <input type="radio" name="star" value="4"
+                        id="rate2"><label for="rate2">⭐</label> <input
                         type="radio" name="star" value="3" id="rate3"><label
-                        for="rate3">⭐</label> <input type="radio" name="star"
-                        value="2" id="rate4"><label for="rate4">⭐</label> <input
+                        for="rate3">⭐</label> <input type="radio" name="star" value="2"
+                        id="rate4"><label for="rate4">⭐</label> <input
                         type="radio" name="star" value="1" id="rate5"><label
                         for="rate5">⭐</label>
                   </fieldset>
-               
-               <div style="text-align: center;">
-                     <textarea name="content" id='content'  class="form-control"
-                        style="width: 100%; height: 80px;"></textarea>
-                     <input type="file" name="file" id="file" value="사진 업로드" style="margin:3px"/>
-                     <input type="submit" value="리뷰 등록" class="btn btn-info" style="margin:5px;" />
-                     <input type="hidden" value="id" name="placeid"/>
-                  
-               </div>
-               </form>
-               <div class="container" >
-               
-               <table class="table" id="reviewList">
-                  <caption class="blind">리뷰 목록으로 별점, 이미지, 내용, 작성자, 작성일자
-                     정보를 제공</caption>
 
-                  <thead>
-                     <tr style="text-align:center;">
-                        <th style="width:15%;">이미지</th>
-                        <th style="width:40%;">내용</th>
-                        <th style="width:20%;">작성자</th>
-                        <th style="width:20%;">작성일</th>
-                     </tr>
-                  </thead>
-                  
-               </table>
-               <div id="reviewListBody">
+                  <div style="text-align: center;">
+                     <textarea name="content" id='content' class="form-control"
+                        style="width: 100%; height: 80px;"></textarea>
+                     <input type="file" name="file" id="file" value="사진 업로드"
+                        style="margin: 3px" /> <input type="submit" value="리뷰 등록"
+                        class="btn btn-info" style="margin: 5px;" /> <input
+                        type="hidden" value="id" name="id" />
+
+                  </div>
+               </form>
+               <div class="container">
+
+                  <table class="table" id="reviewList">
+                     <caption class="blind">리뷰 목록으로 별점, 이미지, 내용, 작성자, 작성일자
+                        정보를 제공</caption>
+
+                     <thead>
+                        <tr style="text-align: center;">
+                           <th style="width: 15%;">이미지</th>
+                           <th style="width: 40%;">내용</th>
+                           <th style="width: 20%;">작성자</th>
+                           <th style="width: 20%;">작성일</th>
+                        </tr>
+                        <c:forEach var="vo" items="${list }">
+                           <td style="width: 15%;"><img
+                              src='/img/reviewimg/${vo.reviewimg }/' style="width:60px; height:60px"></td>
+                           <td style="width: 40%;"><i class="fa fa-star" style="color: red;"></i>${vo.star}<br>${vo.content}</td>
+                           <td style="width: 20%;">${vo.userid }</td>
+                           <td style="width: 20%;">${vo.writedate }</td>
+                           </tr>
+                        </c:forEach>
+                     </thead>
+
+                  </table>
+                  <div id="reviewListBody"></div>
                </div>
             </div>
          </div>
       </div>
    </div>
-</div>
    <script>
       // 마커를 담을 배열입니다
       var markers = [];
@@ -235,7 +258,7 @@
       });
       // 키워드로 장소를 검색합니다
       searchPlaces();
-   
+
       // 키워드 검색을 요청하는 함수입니다
       function searchPlaces() {
          navigator.geolocation.getCurrentPosition(function(position) {
@@ -311,17 +334,37 @@
          menuEl.scrollTop = 0;
          // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
          map.setBounds(bounds);
+         addplaces(places);
       }
       // 검색결과 항목을 Element로 반환하는 함수입니다
       // 음식점 이름 클릭시 마커로 이동하는것도 좋을듯?
       // 마커 클릭시 마커 모양 변화 주기?
+
+      function addplaces(places) {
+
+         $.ajax({
+            type : 'post',
+            url : '/map/addplace',
+            contentType : 'application/json; charset=UTF-8',
+            data : JSON.stringify(places),
+            success : function(res) {
+            },
+            error : function(e) {
+               alert(e.responseText);
+            }
+         });
+      }
       function getListItem(index, places) {
          var el = document.createElement('li'), itemStr = '<span class="markerbg marker_'
                + (index + 1)
                + '"></span>'
                + '<div class="info">'
-               + '   <h5>' + places.place_name + '</h5>'  //음식점과 마커 링크 하기               
-               + '<div> 4.3 | ' + '<input type="button" value="리뷰" onclick="toggleDiv()">'+ "123"+ "건" + '</input>' + '</div>';   //DB에서 별점평균, 리뷰 수 가져오기 + 별모양 css 만들기 
+               + '   <h5>'
+               + places.place_name
+               + '</h5>' //음식점과 마커 링크 하기               
+               + '<div> 4.3 | '
+               + '<input type="button" value="리뷰" onclick="toggleDiv('
+               + places.id + ')">' + "123" + "건" + '</input>' + '</div>'; //DB에서 별점평균, 리뷰 수 가져오기 + 별모양 css 만들기 
          if (places.road_address_name) {
             itemStr += '    <span>' + places.road_address_name + '</span>'
                   + '   <span class="jibun gray">' + places.address_name
@@ -334,18 +377,20 @@
          el.innerHTML = itemStr;
          el.className = 'item';
          return el;
-      }   
-      
-      function toggleDiv() {
-           const div = document.getElementById('review');
-           
-           if(div.style.display === 'block')  {
-             div.style.display = 'none';
-           }else {
-             div.style.display = 'block';
-           }
-         }       
-      
+      }
+
+      function toggleDiv(id) {
+         const div = document.getElementById('review');
+         $('#pid').val(id);
+         if (div.style.display === 'block') {
+            div.style.display = 'none';
+         } else {
+            div.style.display = 'block';
+            reviewListAll(id);
+         }
+
+      }
+
       // 마커를 생성하고 지도 위에 마커를 표시하는 함수입니다
       function addMarker(position, idx, title) {
          var imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png', // 마커 이미지 url, 스프라이트 이미지를 씁니다

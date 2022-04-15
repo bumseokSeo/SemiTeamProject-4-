@@ -2,16 +2,16 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace = "com.campus.myapp.dao.ReviewDAO">
     <insert id="reviewWrite">
-        insert into review (reviewno, userid, content, star, reviewimg, placeid) values(#{reviewno}, #{userid}, #{content}, #{star}, #{reviewimg}, #{placeid})
+        insert into review (reviewno, userid, content, star, reviewimg, id) values(#{reviewno}, #{userid}, #{content}, #{star}, #{reviewimg}, #{id})
     </insert>
     <select id="reviewList" resultType="com.campus.myapp.vo.ReviewVO">
         select reviewno, userid, content, writedate, star, reviewimg from review
-        where placeid=#{param1}
+        where id=#{param1}
         order by reviewno desc
     </select>
-    	<select id="getFileName" resultType="com.campus.myapp.vo.ReviewVO">
-		select reviewimg from review where reviewno=${param1}
-	</select>
+        <select id="getFileName" resultType="com.campus.myapp.vo.ReviewVO">
+        select reviewimg from review where reviewno=${param1}
+    </select>
     <update id="reviewEdit">
         update review set reviewimg=#{reviewimg}, content=#{content} where reviewno=${reviewno} and userid=#{userid}
     </update>
