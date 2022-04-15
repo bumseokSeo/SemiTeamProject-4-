@@ -123,6 +123,8 @@ function heartDelete(cname){	//fullheart 클릭
 
 </script>
 <style>
+
+
 @font-face {
   font-family: "ROKAFSansBold";
   src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts2201-3@1.0/ROKAFSansBold.woff")
@@ -164,7 +166,7 @@ body {
   position: fixed;
   max-width:430px;
   top:17%;
-  left:4%;
+  left:5%;
   float: left;
   width: 28%;
   height: 100%;
@@ -456,11 +458,57 @@ section {
 	float:right !important;
 }
 /* ===============arrow updown 끝================= */
+@media all and (min-width:2000px) {
+.main-container {
+  max-width: 1600px;
+  width: 1700px;
+  height: 100%;
+  margin:0 auto;
+  margin-top: 80px;
+  position: relative;
+}
+
+.cody-sub {
+  position: fixed;
+  max-width:430px;
+  top: 18%;
+  left:15%;
+  float: left;
+  width: 28%;
+  height: 100%;
 
 
-</style>    
-	<div class="main-container">
+}
+
+section {
+  float: right;
+  width: 70%;
+  height: 100%;
+}
+
+.imgC>img {
+  width: 300px;
+  height: 300px; 
+}
+
+.list {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 150px;
+  height: 150px;
+  margin: 7px;
+  background-color: white;
+  border-radius: 3px;
+}
+
+}
+/* ---------------------------------- */
+
+</style>  
     <h1 class="animate__animated animate__swing">Cody List</h1>
+	<div class="main-container">
 		<div class="cody-sub">
 			<div class="cody-sub-container">
 				<!--start button -->
@@ -616,6 +664,7 @@ section {
 <a id="BottomButton" class="ScrollButton">
 	<i class="fa-solid fa-arrow-down"></i>
 </a>
+</div>
 </body>
 </html>
 
