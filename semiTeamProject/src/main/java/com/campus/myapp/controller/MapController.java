@@ -53,6 +53,16 @@ public class MapController {
    public int myreviewDeleteOk(int reviewno) {
       return service.myreviewDeleteOk(reviewno);
    }
+   //리뷰 정보 전부 출력
+ 	@RequestMapping("reviewListAll")
+ 	public List<ReviewVO> memberListAll(ReviewVO vo) {
+ 		return service.reviewListAll(vo);
+ 	}
+ 	//리뷰 삭제
+ 	@GetMapping("reviewDeleteOk")
+ 	public int reviewDeleteOk(int reviewno) {
+ 		return service.myreviewDeleteOk(reviewno);
+ 	}
    
    //가게정보 
    @PostMapping("addplace")

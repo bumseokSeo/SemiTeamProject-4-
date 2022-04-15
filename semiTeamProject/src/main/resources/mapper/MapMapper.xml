@@ -19,4 +19,15 @@
 	<delete id="myreviewDeleteOk">
 		delete from review where reviewno=#{param1}
 	</delete>
+	
+	<select id="reviewListAll" resultType="com.campus.myapp.vo.ReviewVO">
+		select reviewno, userid, date_format(writedate,' %y-%m-%d') writedate, date_format(modifydate,' %y-%m-%d') modifydate, star, content, id
+		from review 
+		<if	test='searchword != null'>
+			where userid like '%${searchword}%'
+		</if>
+		 order by writedate desc
+	</select>
+	
+	
 </mapper>

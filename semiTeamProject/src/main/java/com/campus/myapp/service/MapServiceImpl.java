@@ -31,4 +31,10 @@ public class MapServiceImpl implements MapService {
 	public int addplace(StoreVO vo) {
 		return dao.addplace(vo);
 	}
+
+	@Override
+	public List<ReviewVO> reviewListAll(ReviewVO vo) {
+		// TODO Auto-generated method stub
+		return dao.reviewListAll(vo);
+	}
 }

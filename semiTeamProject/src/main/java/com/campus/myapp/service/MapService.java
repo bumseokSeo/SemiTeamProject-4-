@@ -8,5 +8,7 @@ import com.campus.myapp.vo.StoreVO;
 public interface MapService {
 	public List<ReviewVO> myReviewListAll(String userid);
 	public int myreviewDeleteOk(int reviewno);	
-	public int addplace(StoreVO vo);	
+	public int addplace(StoreVO vo);
+	public List<ReviewVO> reviewListAll(ReviewVO vo);
+	
 }

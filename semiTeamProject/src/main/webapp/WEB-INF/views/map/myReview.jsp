@@ -144,9 +144,7 @@ $(function(){
 				$result.each(function(index, vo){
 					tag += "<form method='post' id='memberform'>";
 					tag +="<ul class='reviewul'>";
-					tag +="<li>"+vo.place_name+"</li><li>"+vo.content+"</li><li><i class='fa fa-star' style='color: red;'></i>"
-					+vo.star+
-					"</li>";
+					tag +="<li>"+vo.place_name+"</li><li>"+vo.content+"</li><li><i class='fa fa-star' style='color: red;'></i>"+vo.star+"</li>";
 					if(vo.modifydate=='' || vo.modifydate==null){
 						tag +="<li>"+vo.writedate+"</li>";
 					}

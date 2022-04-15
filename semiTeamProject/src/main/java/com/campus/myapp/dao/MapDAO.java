@@ -22,4 +22,9 @@ public interface MapDAO {
 
 	//가게정보 등록
 	public int addplace(StoreVO vo);	
+	
+	//리뷰정보 전부출력
+	public List<ReviewVO> reviewListAll(ReviewVO vo);
+	
+	
 }
