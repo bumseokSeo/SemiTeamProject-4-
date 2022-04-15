@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.campus.myapp.service.MapService;
-
+import com.campus.myapp.service.ReviewService;
 import com.campus.myapp.vo.ReviewVO;
 import com.campus.myapp.vo.StoreVO;
 

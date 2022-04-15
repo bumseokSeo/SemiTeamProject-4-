@@ -53,13 +53,13 @@ public class ReviewController {
 	public ResponseEntity<String> reviewWriteOk(ReviewVO vo, String pid, HttpServletRequest request) {
 		
 		vo.setUserid((String)request.getSession().getAttribute("logId"));// 글쓴이 
-		vo.setid(pid);
+		vo.setId(pid);
 		ResponseEntity<String> entity = null;
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(new MediaType("text", "html", Charset.forName("UTF-8")));
 
 		String path = request.getSession().getServletContext().getRealPath("/img/reviewimg"); // 파일 업로드를 위한 업로드 위치의 절대 주소
-		System.out.println("id-->"+vo.getid()+", >>>pid="+pid);
+		System.out.println("id-->"+vo.getId()+", >>>pid="+pid);
 
 		try {
 			// 파일업로드를 처리하기 위해서는 request객체에서 multipart객체로 형변환하여야 한다.

@@ -12,16 +12,8 @@ public class ReviewVO {
     private String place_name;
     private String searchword;
 
-<<<<<<< HEAD
-    public String getid() {
-        return id;
-    }
-    public void setid(String id) {
-        this.id = id;
-    }
-    public String getUserid() {
-=======
-    
+
+  
     public String getId() {
 		return id;
 	}
@@ -29,7 +21,6 @@ public class ReviewVO {
 		this.id = id;
 	}
 	public String getUserid() {
->>>>>>> c224dea221d82e53a9ad298162a5d8ee6d0dc57c
         return userid;
     }
     public void setUserid(String userid) {
