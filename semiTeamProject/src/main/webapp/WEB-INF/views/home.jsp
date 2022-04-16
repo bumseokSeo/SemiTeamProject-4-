@@ -229,6 +229,61 @@ h1:after {
 	bottom: -68%;
 	left: 48%;
 }
+
+#section0 span {
+  position: absolute;
+  bottom: 32%;
+  left: 50%;
+  width: 30px;
+  height: 30px;
+  margin-left: -12px;
+  border-left: 4px solid black;
+  border-bottom: 4px solid black;
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  -webkit-animation: sdb05 1.5s infinite;
+  animation: sdb05 1.5s infinite;
+}
+
+#section0 p {
+  position: absolute;
+  bottom: 20%;
+  left: 50%;
+  font-size: 24px;
+  margin-left: -12px;
+  transform: translate(-48px, -30px);
+
+}
+
+
+@-webkit-keyframes sdb05 {
+  0% {
+    -webkit-transform: rotate(-45deg) translate(0, 0);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: rotate(-45deg) translate(-20px, 20px);
+    opacity: 0;
+  }
+}
+
+@keyframes sdb05 {
+  0% {
+    transform: rotate(-45deg) translate(0, 0);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(-45deg) translate(-20px, 20px);
+    opacity: 0;
+  }
+}
+
 </style>
 
 <div class="submenu">
@@ -249,7 +304,6 @@ h1:after {
 		<a href="${url}/master/master_food">음식관리</a>
 	</c:if>
 
-
 </div>
 <div class="container">
 	<div id="fullpage">
@@ -261,10 +315,10 @@ h1:after {
 				onmouseenter="return mouseenter" ondblclick="dbmouse()">
 				<span>Click Me ↓</span> <span></span> <span></span>
 			</div>
-
-
-			<img id="scrollimg" src="${url}/img/scroll-bar.png"
-				alt="scroll icon png">
+			<section id="section0" class="demo">
+			  <span></span>
+			  <p>Scroll Down</p>
+			</section>
 		</div>
 
 		<div class="fullsection full2" pageNum="2">
