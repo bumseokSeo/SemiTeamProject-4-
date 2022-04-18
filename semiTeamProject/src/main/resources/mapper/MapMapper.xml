@@ -28,6 +28,16 @@
 		</if>
 		 order by writedate desc
 	</select>
+	<select id="getStore" resultType="com.campus.myapp.vo.StoreVO">
+		select * from store where id=#{param1}
+	</select>
+		
+    <select id="avgstar" resultType="com.campus.myapp.vo.StoreVO">
+		select id,count(id) as 리뷰갯수 , round(avg(star),2) as 평균별점 from review group by id;
+	</select>
 	
+	<select id="reviewcnt" resultType="com.campus.myapp.vo.StoreVO">
+		select id,count(id) as reviewcnt from review where id=#{param1};		
+	</select>
 	
 </mapper>

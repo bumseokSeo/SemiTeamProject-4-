@@ -12,7 +12,6 @@ import com.campus.myapp.vo.StoreVO;
 @Mapper
 @Repository
 public interface MapDAO {
-
 	
 	//나의 리뷰 정보 전부 출력
 	public List<ReviewVO> myReviewListAll(String userid);
@@ -25,6 +24,11 @@ public interface MapDAO {
 	
 	//리뷰정보 전부출력
 	public List<ReviewVO> reviewListAll(ReviewVO vo);
+
+	public StoreVO getStore(String id);
+
+	//리뷰 평점
+	public double avgstar(StoreVO id);
 	
-	
+	public int reviewcnt(StoreVO id);
 }

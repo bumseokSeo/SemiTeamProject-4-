@@ -119,9 +119,6 @@ body {
 </div>
 <div class="submenu">
 
-	<a href="${url}/map/map.jsp">지도확인</a>
-	<a href="/map/main_map">지도</a>
-
 	<c:if test="${logId!='master'}">
 		<div class="submenu-a submenu-a-cody"><a id="main_codylink" href="">코디추천</a></div>
 	</c:if>

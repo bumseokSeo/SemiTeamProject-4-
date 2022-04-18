@@ -4,14 +4,13 @@ package com.campus.myapp.controller;
 import java.util.List;
 
 import javax.inject.Inject;
-
+import javax.servlet.http.HttpSession;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import org.springframework.web.servlet.ModelAndView;
 
 import com.campus.myapp.service.MapService;
@@ -29,7 +28,7 @@ public class MapController {
 
 
    @GetMapping("main_map")
-public ModelAndView Main_map(String fname, String id) {
+public ModelAndView Main_map(String fname, String id, HttpSession session) {
     //DB에서 음식메뉴 가져오기 ==> 서비스 
     ModelAndView mav = new ModelAndView();      
     if(id!=null && !id.trim().equals("")) {
@@ -37,6 +36,7 @@ public ModelAndView Main_map(String fname, String id) {
       mav.addObject("list",list);
     }
     mav.addObject("menu", fname);
+    session.setAttribute("menu",fname);
     mav.addObject("placeid","id");
     mav.setViewName("map/map");
     return mav;
@@ -85,4 +85,16 @@ public ModelAndView Main_map(String fname, String id) {
          //System.out.println(vo);
       return n; 
    }
+
+   //가게 별점
+   @RequestMapping("avgstar")
+   public double avgstar(StoreVO id) {
+		   return service.staravg(id);
+   }
+   
+   @RequestMapping("reviewcnt")
+   public int reviewcnt(StoreVO reviewcnt) {
+	   return service.reviewcnt(reviewcnt);
+   }
 }
+

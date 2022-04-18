@@ -6,8 +6,26 @@ public class StoreVO {
     private String road_address_name;
     private String address_name;    
     private String id;
+    private double avgstar;
+    private int reviewcnt;
     
-    public String getId() {
+    public double getAvgstar() {
+		return avgstar;
+	}
+
+	public void setAvgstar(double avgstar) {
+		this.avgstar = avgstar;
+	}
+
+	public int getReviewcnt() {
+		return reviewcnt;
+	}
+
+	public void setReviewcnt(int reviewcnt) {
+		this.reviewcnt = reviewcnt;
+	}
+
+	public String getId() {
 		return id;
 	}
 

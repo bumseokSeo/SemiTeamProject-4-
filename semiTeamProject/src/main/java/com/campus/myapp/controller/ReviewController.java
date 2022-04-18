@@ -1,10 +1,10 @@
 package com.campus.myapp.controller;
 
 import java.io.File;
-
 import java.nio.charset.Charset;
+import java.util.HashMap;
 import java.util.List;
-
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -16,26 +16,31 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.campus.myapp.service.MapService;
 import com.campus.myapp.service.ReviewService;
 import com.campus.myapp.vo.ReviewVO;
+import com.campus.myapp.vo.StoreVO;
 
 @RestController
 public class ReviewController {
    @Inject
    ReviewService service;
-   //
-
+   
+   @Inject
+   MapService mapservice;
    //댓글목록
    @GetMapping("/review/list")
-   public List<ReviewVO> list(String id) {
-      System.out.println(id);
-      return service.reviewList(id);
+   public Map<String, Object> list(String id) {
+      StoreVO store= mapservice.getStore(id);
+      List<ReviewVO> reviewList= service.reviewList(id);
+     Map<String,Object> map=new HashMap<>();
+     map.put("store", store);
+     map.put("reviews", reviewList);
+     return map;
    }
    //댓글수정
    @PostMapping("/review/editOk")
@@ -122,7 +127,9 @@ public class ReviewController {
          // DB등록
          service.reviewWrite(vo);
          // 레코드 추가 성공
-         String msg = "<script>alert('리뷰가 등록되었습니다.');location.href='/map/main_map?id="+pid+"';</script>";
+         HttpSession session=request.getSession();
+         String fname=(String)session.getAttribute("menu");
+       String msg = "<script>alert('리뷰가 등록되었습니다.');location.href='/map/main_map?id="+pid+"&fname="+fname+"';</script>";
          entity = new ResponseEntity<String>(msg, headers, HttpStatus.OK);
       }catch(Exception e) {
          e.printStackTrace();
