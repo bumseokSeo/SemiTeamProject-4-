@@ -127,7 +127,6 @@
 					<ion-icon name="menu-outline" class="nav__toggle" id="nav-toggle"></ion-icon>
 					<a href="#" class="nav__logo"></a>
 				</div>
-
 				<div class="nav__list">
 					<a href="#" class="nav__link active"> <ion-icon
 							name="home-outline" class="nav__icon"></ion-icon> <span
@@ -144,8 +143,19 @@
 			</div>
 		</nav>
 	</div>
-
-	<div class="map_wrap" style="position: relative;">
+            <div class="nav__list">
+               <a href="#" class="nav__link active"> <ion-icon
+                     name="home-outline" class="nav__icon"></ion-icon> <span
+                  class="nav_name" onclick="toggleDiv()">리뷰 작성하기</span>
+               </a> <a href="myReview" class="nav__link"> <ion-icon
+                     name="chatbubbles-outline" class="nav__icon"></ion-icon> <span
+                  class="nav_name">내가 쓴 리뷰 목록</span>
+               </a>
+            </div>
+            <a href="/" class="nav__link"> <ion-icon name="log-out-outline"
+                  class="nav__icon"></ion-icon> <span class="nav_name">메인으로</span>
+            </a>
+   	<div class="map_wrap" style="position: relative;">
 		<div style="z-index: 9">
 			<form class="searching" onsubmit="searchPlaces(); return false;">
 				<input type="text" name="query" placeholder="우리집 주변의 ${menu}"
@@ -159,9 +169,7 @@
 			<ul id="placesList"></ul>
 			<div id="pagination"></div>
 		</div>
-		<div id="review"
-			style="margin: 2px; overflow: auto; border: solid #20B2AA; float: left; display: none; width: 450px; height: 100%; position: relative; background-color: white; z-index: 1;">
-			<div>ddd</div>
+		<div id="review"style="margin: 2px; overflow: auto; border: solid #20B2AA; float: left; display: none; width: 450px; height: 100%; position: relative; background-color: white; z-index: 1;">
 			<hr />
 			<div id="reviewcomment">
 				<h5 style="height: 23px; font-size: 20px; line-height: 24px; text-align: center; margin: 10px;">리뷰작성</h5>
@@ -222,8 +230,7 @@
 			</div>
 		</div>
 	</div>
-	<script>
-    var reviewcnt =   
+	<script>       
 	// 마커를 담을 배열입니다
       var markers = [];
       var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
@@ -260,12 +267,20 @@
             };
             // 마커와 인포윈도우를 표시합니다        
             var keyword = document.getElementById('keyword').value;
+            
             // 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
             if(keyword==null || keyword==''){
+
                ps.keywordSearch('${menu}', placesSearchCB, locPosition);
             }
             if(keyword!=null && keyword!=''){
                ps.keywordSearch( keyword, placesSearchCB); 
+
+            	ps.keywordSearch('${menu}', placesSearchCB, locPosition);
+            }
+            if(keyword!=null && keyword!=''){
+            	ps.keywordSearch( keyword, placesSearchCB);
+
             }
             
          });
@@ -273,8 +288,6 @@
       // 장소검색이 완료됐을 때 호출되는 콜백함수 입니다
       function placesSearchCB(data, status, pagination) {
          if (status === kakao.maps.services.Status.OK) {
-            // 정상적으로 검색이 완료됐으면
-            // 검색 목록과 마커를 표출합니다
             displayPlaces(data);
             // 페이지 번호를 표출합니다
             displayPagination(pagination);

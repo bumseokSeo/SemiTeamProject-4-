@@ -34,9 +34,9 @@ html, body {
 }
 /*코디 이미지*/
 .codyImg {
-	width:40%;
-	height:70%;
-	margin-top:50px;
+	width: 40%;
+	height: 70%;
+	margin-top: 50px;
 }
 
 .img7 {
@@ -73,129 +73,127 @@ ul, li {
 }
 /*=========오른쪽하단 페이징표시 끝======= */
 
-
 /*========= 왼쪽 fixed 메뉴 시작 ======= */
+a {
+	color: black;
+	text-decoration: none;
+}
 
- a {color: black;  text-decoration: none;}
- a:link { text-decoration: none;}
- a:visited { text-decoration: none;}
- a:hover { color: #87909B; text-decoration: none;}
+a:link {
+	text-decoration: none;
+}
 
+a:visited {
+	text-decoration: none;
+}
 
- .sidenav {
-  position: fixed;
-  width: 230px;
-  top: 10%;
-  left: 0;
-  z-index: 100000;
-  
+a:hover {
+	color: #87909B;
+	text-decoration: none;
+}
+
+.sidenav {
+	position: fixed;
+	width: 180px;
+	top: 10%;
+	left: 0;
+	z-index: 100000;
 }
 
 .sidenav .main-buttons {
-  list-style-type: none;
-  margin: 64px 0;
-  padding: 0;
-  color: #534439;
+	list-style-type: none;
+	margin: 64px 0;
+	padding: 0;
+	color: #534439;
 }
 
 .sidenav .main-buttons li {
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  font-family: "ROKAFSansBold";
-  font-size: 16px;
-  font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	font-size: 16px;
+	font-weight: 600;
 }
 
-.sidenav .main-buttons > li {
-  padding: 16px 52px;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
+.sidenav .main-buttons>li {
+	padding: 16px 52px;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
 }
 
-
- .sidenav .main-buttons > li:hover,
- .sidenav .main-buttons > li:active,
-  .sidenav .main-buttons > li:focus {
-  cursor: pointer;
-  color : #69727C;
-  text-shadow: #FFF 2px 2px 0px, #9C9C9C 4px 4px 0px;
+.sidenav .main-buttons>li:hover, 
+.sidenav .main-buttons>li:active,
+.sidenav .main-buttons>li:focus {
+	background-color: #f29544;
+	cursor: pointer;
 }
 
-.sidenav .main-buttons > li:hover .hidden {
-  opacity: 1;
-  visibility: visible;
+.sidenav .main-buttons>li:hover .hidden {
+	opacity: 1;
+	visibility: visible;
 }
 
-.sidenav .main-buttons > li:hover .hidden, 
-.sidenav .main-buttons > li:active .hidden, 
-.sidenav .main-buttons > li:focus .hidden {
-  width: 190px;
+.sidenav .main-buttons>li:hover .hidden,
+.sidenav .main-buttons>li:active .hidden,
+.sidenav .main-buttons>li:focus .hidden {
+	width: 140px;
 }
 
-/* 
- .hidden {
-  width: 0;
-  height: 600px;
-  padding: 64px 0;
-  position: absolute;
-  top: 0;
-  right: 0;
-  overflow: hidden;
-  list-style-type: none;
-  background-color: #ffffffb2;
-  -moz-transition: 0.3s;
-  -o-transition: 0.3s;
-  -webkit-transition: 0.3s;
-  transition: 0.3s;
-} 
-*/
+.hidden {
+	width: 0;
+	padding: 64px 0;
+	position: absolute;
+	top: 210px;
+	left: 40px;
+	overflow: hidden;
+	list-style-type: none;
+	-moz-transition: 0.3s;
+	-o-transition: 0.3s;
+	-webkit-transition: 0.3s;
+	transition: 0.3s;
+}
 
+/*
 .hidden {
   position: absolute;
   opacity: 0;
   visibility: hidden;
   list-style-type: none;
-  top: 280px;
-  right: 0;
+  top: 278px;
+  left: 40px;
 }
+*/
 
 .hidden li {
-  padding: 14px 17px;
+	padding: 16px 24px;
 }
 
 .hidden li:hover, 
 .hidden li:active, 
 .hidden li:focus {
-  text-shadow: 1px 0px 1px #CCCCCC, 0px 1px 1px #EEEEEE,
-    2px 1px 1px #CCCCCC, 1px 2px 1px #EEEEEE,
-    3px 2px 1px #CCCCCC, 2px 3px 1px #EEEEEE,
-    4px 3px 1px #CCCCCC, 3px 4px 1px #EEEEEE,
-    5px 4px 1px #CCCCCC, 4px 5px 1px #EEEEEE,
-    6px 5px 1px #CCCCCC, 5px 6px 1px #EEEEEE, 7px 6px 1px #CCCCCC;
-  color: #87909B;
+	background-color: #f29544;
 }
 /*========= 왼쪽 fixed 메뉴 끝 ======= */
 </style>
 </head>
 <body>
-    <nav class="sidenav">
-      <ul class="main-buttons">
-        <li><a href="${url}/codyListAll">ALL</a></li>
-        <li><a href="${url}/codyGenderList?sex=m">MEN</a></li>
-        <li><a href="${url}/codyGenderList?sex=f">WOMEN</a></li>
-        <li>STYLE
-          <ul class="hidden">
-            <li><a href="${url}/codyStyleList?style=casual">Casual</a></li>
-            <li><a href="${url}/codyStyleList?style=modern">Modern</a></li>
-            <li><a href="${url}/codyStyleList?style=office">Office</a></li>
-            <li><a href="${url}/codyStyleList?style=street">Street</a></li>
-            <li><a href="${url}/codyStyleList?style=walk">Walk</a></li>
-            <li><a href="${url}/codyStyleList?style=special">Special</a></li>
-          </ul>
-        </li>
-      </ul>
-    </nav>
+	<nav class="sidenav">
+		<ul class="main-buttons">
+			<li><a href="${url}/codyListAll">ALL</a></li>
+			<li><a href="${url}/codyGenderList?sex=m">MEN</a></li>
+			<li><a href="${url}/codyGenderList?sex=f">WOMEN</a></li>
+			<li>STYLE
+				<ul class="hidden">
+					<li><a href="${url}/codyStyleList?style=casual">Casual</a></li>
+					<li><a href="${url}/codyStyleList?style=modern">Modern</a></li>
+					<li><a href="${url}/codyStyleList?style=office">Office</a></li>
+					<li><a href="${url}/codyStyleList?style=street">Street</a></li>
+					<li><a href="${url}/codyStyleList?style=walk">Walk</a></li>
+					<li><a href="${url}/codyStyleList?style=special">Special</a></li>
+				</ul>
+			</li>
+		</ul>
+	</nav>
 	<div id="fullpage">
 		<div class="quick">
 			<ul></ul>
@@ -203,13 +201,15 @@ ul, li {
 		<div class="fullsection full1" pageNum="1">
 			<img class="fullImg" src="${url}/img/cody_maingif.gif/" alt="">
 		</div>
-	
+
 		<c:forEach var="vo" items="${vo}" varStatus="status" end="4">
-			<div class="fullsection full${status.index+2}" pageNum="${status.index+2}">
-				<img class="codyImg" src="${url}/img/codyimg/codyupload/${vo.cname}" alt="">
+			<div class="fullsection full${status.index+2}"
+				pageNum="${status.index+2}">
+				<img class="codyImg" src="${url}/img/codyimg/codyupload/${vo.cname}"
+					alt="">
 			</div>
 		</c:forEach>
-		
+
 		<div class="fullsection full7" pageNum="7">
 			<img class="fullImg" src="${url}/img/thankyou.png/" alt="">
 		</div>
