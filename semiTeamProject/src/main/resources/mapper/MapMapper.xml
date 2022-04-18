@@ -28,6 +28,8 @@
 		</if>
 		 order by writedate desc
 	</select>
-	
+	<select id="getStore" resultType="com.campus.myapp.vo.StoreVO">
+		select * from store where id=#{param1}
+	</select>
 	
 </mapper>

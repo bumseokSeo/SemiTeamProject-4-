@@ -38,4 +38,16 @@ public class ReviewServiceImpl implements ReviewService{
 		return dao.getFileName(reviewno);
 	}
 
+	@Override
+	public double staravg(ReviewVO id) {
+		// TODO Auto-generated method stub
+		return dao.staravg(id);
+	}
+
+	@Override
+	public int reviewcnt(ReviewVO id) {
+		// TODO Auto-generated method stub
+		return dao.reviewcnt(id);
+	}
+
 }

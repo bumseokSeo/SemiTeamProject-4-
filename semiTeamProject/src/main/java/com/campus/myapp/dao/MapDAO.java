@@ -25,6 +25,8 @@ public interface MapDAO {
 	
 	//리뷰정보 전부출력
 	public List<ReviewVO> reviewListAll(ReviewVO vo);
+
+	public StoreVO getStore(String id);
 	
 	
 }

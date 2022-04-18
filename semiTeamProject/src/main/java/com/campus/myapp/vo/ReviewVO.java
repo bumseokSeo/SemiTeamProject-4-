@@ -11,6 +11,8 @@ public class ReviewVO {
     private String modifydate;
     private String place_name;
     private String searchword;
+    private double avgstar;
+    private int reviewcnt;
 
 
   
@@ -73,6 +75,18 @@ public class ReviewVO {
 	}
 	public void setSearchword(String searchword) {
 		this.searchword = searchword;
+	}
+	public int getReviewcnt() {
+		return reviewcnt;
+	}
+	public void setReviewcnt(int reviewcnt) {
+		this.reviewcnt = reviewcnt;
+	}
+	public double getAvgstar() {
+		return avgstar;
+	}
+	public void setAvgstar(double avgstar) {
+		this.avgstar = avgstar;
 	}
 	
 }
