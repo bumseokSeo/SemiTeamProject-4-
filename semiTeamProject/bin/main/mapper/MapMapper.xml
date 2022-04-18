@@ -31,6 +31,7 @@
 	<select id="getStore" resultType="com.campus.myapp.vo.StoreVO">
 		select * from store where id=#{param1}
 	</select>
+
 		
     <select id="reviewCntSelectAll" resultType="com.campus.myapp.vo.ReviewVO">
 		select id,count(id) as reviewcnt, round(avg(star),2) as avgstar from review where id=#{param1};

@@ -52,9 +52,26 @@
 
                   $result
                         .each(function(idx, vo) {
+            	  // alert(result.store.place_name);
+				  var $result = $(result.reviews); // vo, vo, vo, vo...
+				  var store =result.store;
+                  var tag = "<table><tbody>";
+				  var tag2 = "<div style='background-color:#FFEFD5; text-overflow: ellipsis;overflow: hidden;white-space: nowrap;text-align:center; margin:10px;border-radius: 15px;'>";
+				  	  tag2 += "<div><strong style='font-size:2em;'>"+store.place_name+"</strong></div>";
+				  	  tag2 += "<div>전화번호 : "+ store.phone+"<br/>";
+				  	  tag2 += "도로명 주소 : "+ store.road_address_name+"<br/>";
+				  	  tag2 += "주소 : "+ store.address_name+"<br/></div>";
+				  	  tag2 +="</div>";
+                  $result.each(function(idx, vo) {
                            tag += '<tr style="text-align:center;">'
-                           tag += '<td style="width:5px height:30px;border-bottom:1px solid #ddd" class="rounded">'
-                                 + vo.reviewimg + '</td>';
+                           
+                        	tag += '<td style="width:15%5px height:30px;border-bottom:1px solid #ddd" class="rounded">'
+                            if(vo.reviewimg !=null){   
+                        		tag+='<img src="/img/reviewimg/'+vo.reviewimg+'" style="width: 60px; height: 60px">';
+                            }else{
+                            	tag+='<img src="/img/reviewimg/dish.png" style="width: 60px; height: 60px;"/>';
+                            }
+                        	tag += '</td>';
                            tag += '<td style="width:40%;text-overflow:ellipsis;;border-bottom:1px solid #ddd">'
                                  + '<i class="fa fa-star" style="color: red;"></i>'
                                  + vo.star
@@ -70,7 +87,7 @@
                         });
 
                   tag += "</tbody></table>";
-					//$('#storeBody').html(tag2);
+					$('#storeBody').html(tag2);
                   $("#reviewListBody").html(tag);
 
                },
@@ -78,6 +95,8 @@
                   console.log(e.responseText);
                }
             })
+            
+            
    }
    // 댓글----------------------------------------------------------
    $(function() {
@@ -127,6 +146,7 @@
 					<ion-icon name="menu-outline" class="nav__toggle" id="nav-toggle"></ion-icon>
 					<a href="#" class="nav__logo"></a>
 				</div>
+
 				<div class="nav__list">
 					<a href="#" class="nav__link active"> <ion-icon
 							name="home-outline" class="nav__icon"></ion-icon> <span
@@ -144,20 +164,25 @@
 		</nav>
 	</div>
    	<div class="map_wrap" style="position: relative;">
+
+	<div class="map_wrap" style="position: relative;">
 		<div style="z-index: 9">
 			<form class="searching" onsubmit="searchPlaces(); return false;">
-				<input type="text" name="query" placeholder="우리집 주변의 ${menu}"
+				<input type="text" name="query" placeholder="지역명 + 음식을 검색하세요" style="font-style:italic;" 
 					id="keyword">
 				<button class="search-btn">검색</button>
 			</form>
 		</div>
-		<div id="map" style="width: 100%; height: 100%; position: fixed; left: 0; top: 0; margin: 0 auto; z-index: 1"></div>
+		<div id="map"
+			style="width: 100%; height: 100%; position: fixed; left: 0; top: 0; margin: 0 auto; z-index: 1"></div>
 		<div id="menu_wrap" class="bg_white">
 			<div class="option"></div>
 			<ul id="placesList"></ul>
 			<div id="pagination"></div>
 		</div>
-		<div id="review"style="margin: 2px; overflow: auto; border: solid #20B2AA; float: left; display: none; width: 450px; height: 100%; position: relative; background-color: white; z-index: 1;">
+		<div id="review"
+			style="margin: 2px; overflow: auto; border: solid #20B2AA; float: left; display: none; width: 450px; height: 100%; position: relative; background-color: white; z-index: 1;">
+			<div  id="storeBody">aaa</div>
 			<hr />
 			<div id="reviewcomment">
 				<h5 style="height: 23px; font-size: 20px; line-height: 24px; text-align: center; margin: 10px;">리뷰작성</h5>
@@ -200,9 +225,8 @@
 									<th style="width: 20%;">작성일</th>
 								</tr>
 								<%-- <c:forEach var="vo" items="${list }">
-									<td style="width: 15%;"><img
-										src='/img/reviewimg/${vo.reviewimg }/'
-										style="width: 60px; height: 60px"></td>
+									<td style="width: 15%;">
+									<img src='/img/reviewimg/${vo.reviewimg }/'style="width: 60px; height: 60px"></td>
 									<td style="width: 40%;"><i class="fa fa-star"
 										style="color: red;"></i>${vo.star}<br>${vo.content}</td>
 									<td style="width: 20%;">${vo.userid }</td>
@@ -218,8 +242,8 @@
 			</div>
 		</div>
 	</div>
-	<script>       
-	// 마커를 담을 배열입니다
+	<script>
+      // 마커를 담을 배열입니다
       var markers = [];
       var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
       mapOption = {
@@ -228,7 +252,7 @@
       // 지도의 확대 레벨
       };
       // 지도를 생성합니다    
-      var map = new kakao.maps.Map(mapContainer, mapOption);           
+      var map = new kakao.maps.Map(mapContainer, mapOption);
       // 장소 검색 객체를 생성합니다
       var ps = new kakao.maps.services.Places();
       var searchOption = {
@@ -255,20 +279,12 @@
             };
             // 마커와 인포윈도우를 표시합니다        
             var keyword = document.getElementById('keyword').value;
-            
             // 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
             if(keyword==null || keyword==''){
-
                ps.keywordSearch('${menu}', placesSearchCB, locPosition);
             }
             if(keyword!=null && keyword!=''){
                ps.keywordSearch( keyword, placesSearchCB); 
-
-            	ps.keywordSearch('${menu}', placesSearchCB, locPosition);
-            }
-            if(keyword!=null && keyword!=''){
-            	ps.keywordSearch( keyword, placesSearchCB);
-
             }
             
          });
@@ -276,6 +292,8 @@
       // 장소검색이 완료됐을 때 호출되는 콜백함수 입니다
       function placesSearchCB(data, status, pagination) {
          if (status === kakao.maps.services.Status.OK) {
+            // 정상적으로 검색이 완료됐으면
+            // 검색 목록과 마커를 표출합니다
             displayPlaces(data);
             // 페이지 번호를 표출합니다
             displayPagination(pagination);
@@ -350,8 +368,15 @@
             }
          });
       }
-     
       function getListItem(index, places) {
+    	 /* $.ajax({
+    	
+    		  }).then(function(result){
+    			  	alert(result.score)
+    			  })
+    		  
+    	  */
+      
          var el = document.createElement('li'), itemStr = '<span class="markerbg marker_'
                + (index + 1)
                + '"></span>'
@@ -360,11 +385,11 @@
                + '   <h5>'
                + places.place_name
                + '</h5>' //음식점과 마커 링크 하기  
-               
-               + ""
                + '<div>'
+               + '</h5>' //음식점과 마커 링크 하기               
+               + '<div> 리뷰 | '+"******"+' | '
                + '<input type="hidden" value="리뷰" onclick="toggleDiv('
-               + places.id + ')">'+ '</input>' + '</div>'; //DB에서 별점평균, 리뷰 수 가져오기 + 별모양 css 만들기 
+               + places.id + ')">' + "******" + "건" + '</input>' + '</div>'; //DB에서 별점평균, 리뷰 수 가져오기 + 별모양 css 만들기 
          if (places.road_address_name) {
             itemStr += '    <span>' + places.road_address_name + '</span>'
                   + '   <span class="jibun gray">' + places.address_name

@@ -11,6 +11,7 @@ public interface MapService {
 	public int myreviewDeleteOk(int reviewno);	
 	public int addplace(StoreVO vo);
 	public List<ReviewVO> reviewListAll(ReviewVO vo);
+
 	public StoreVO getStore(String id);
 	public List<ReviewVO> reviewCntSelectAll(String id);
 	
