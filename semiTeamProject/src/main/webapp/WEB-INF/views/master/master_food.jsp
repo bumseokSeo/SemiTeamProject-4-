@@ -24,6 +24,10 @@
           text-decoration: none;
           color: gray;
       }
+      a:hover{
+      	text-decoration: none;
+      	color:black;
+      }
 	   #foodForm{
 	   	   width : 90%;
 	   	   height : 100%;
@@ -116,6 +120,7 @@
         margin-top:20px;
         text-align: center;
         height : 60px;
+        font-size: 20px;
         
        }
       #foodCategory ul{
@@ -141,6 +146,7 @@
        }
        .foodName{
            font-weight: bold;
+           font-size:17px;
        }
        .foodPicture{
            width:150px !important;
@@ -201,16 +207,27 @@
     	//수정할 음식 검색란에 focus
     	$("#searchFood").focus(function(){
     		$("#add").css('visibility', 'hidden');
-    		//$("#foodimgCheck").css('display', 'none');
-    		$("#foodPhoto").css('display','none');
+    		
+    		if( $("#foodPhoto").attr("src") != ''){
+    			$("#foodPhoto").css('display','block');
+    		}else{
+    			$("#foodPhoto").css('display','none');
+    		}
+    		
     		$("#photoDelete").css('display', 'none');
     	});
     	
     	//음식 이름에 focus
     	$("#fname").focus(function(){
     		$("#add").css('visibility', 'visible');
-    	});
-    	
+    		
+    		if($("#fname").attr("readonly")){
+    			$("#add").css('visibility', 'hidden');
+    			$("#modify").css('visibility', 'visible');
+    			$(".searchForm").css('visibility', 'visible');
+    			
+    		}
+    	});    	
        
         //검색 버튼 클릭시 
         $("#searchButton").click(function(){
@@ -220,7 +237,7 @@
                 $("#searchFood").focus();
                 return false;
             }
-          	//음식이름은 기본키여서 수정 불가////////////////////////////////
+          	//음식이름은 기본키여서 수정 불가
             $("#fname").attr("readonly", true);
             //수정할 음식을 검색했기 때문에 추가 버튼은 안보이게
             $("#add").css('visibility', 'hidden');
@@ -312,8 +329,7 @@
             		///////////////////////////////////////////////////////
             		$("#foodimgName").text("저장되어 있는 이미지 파일 : " + result.foodimg);
             		
-					/////////////////////////////////////////////////////////////// 
-                   
+            		/* imagePreview(this, "#foodPhoto"); */
             		
             		$("#photoDelete").click(function(){
             			photoDelete();
@@ -348,7 +364,7 @@
             $("#add").css('visibility', 'visible');
             $("#modify").css('visibility', 'visible');
             
-            eventDelete();//////////////////////////////////////////////////
+            eventDelete();//
 
           //이벤트 없음으로 되돌리기
             $("#event option:eq(0)").prop("selected", true);
@@ -384,6 +400,7 @@
                 alert("음식 이미지 파일을 선택해 업로드 하세요.");
                 return false;
             }
+          
             
             //추가 버튼 클릭시 submit
             $("#adminForm").attr("action", "foodAdd");
@@ -391,6 +408,17 @@
             $("#adminForm").submit();
             
         });
+        
+        
+      //음식 추가시 검색창, 수정 버튼 안보이게 처리
+  		 $("#fname").focus(function(){
+  			 
+  		     if($("#searchFood").val()==''){
+  		     	$("#modify").css('visibility', 'hidden');
+  		     	$(".searchForm").css('visibility','hidden');
+  		     }
+  		     
+  		 });
        
         //파일 변경
         $("#foodimg").change(function(){
@@ -405,7 +433,6 @@
     		});
  	
         });
-       
         
         //수정 버튼 클릭 시
         $("#modify").click(function(){
@@ -429,18 +456,8 @@
         	 $("#adminForm").attr("action", "foodModify");
              
              $("#adminForm").submit();
-             
-             
         });
        
-		//음식 추가시 검색창, 수정 버튼 안보이게 처리
-		 $("#fname").focus(function(){
-		     
-		     $(".searchForm").css('visibility','hidden');
-		     $("#modify").css('visibility', 'hidden');
-		     
-		 });
-		
 		
         //우선 순위 라디오 버튼은 select에서 모두 첫번째 항목일때  N 체크 
         //select에서 선택한 항목이 한개라도 첫번째가 아니면 저절로 Y 체크
@@ -497,7 +514,7 @@
              }
 
             if(event == 'no'){
-                eventDelete();///////////////////////////////////////////
+                eventDelete();//
                 flagEvent = false;
             }
             priorityChange();
@@ -560,7 +577,7 @@
 
             //날짜 선택한 뒤 날짜 삭제 버튼 클릭
             $("#deleteDate").click(function(){
-                eventDelete(); ////////////////////////////////
+                eventDelete(); /////
 
               //이벤트 없음으로 되돌리기
                 $("#event option:eq(0)").prop("selected", true);
@@ -576,10 +593,11 @@
         
         
 
-        //음식 리스트 클릭시 음식 모달창 ////////////////
+        //음식 리스트 클릭시 음식 모달창 //
         $("#foodList").click(function(){
             //////ajax 구현//전체 음식 가져오기
             $("#total").click();
+            
             $("#modalFood").modal('show');
             
         });
@@ -588,7 +606,7 @@
         $(".foodType").click(function(){
                 
             var type = $(this).text();
-
+            
             $.ajax({
                 url: '/showfoods',
                 data : 'foodType=' + type,
@@ -597,8 +615,6 @@
                 success: function(result){
                     var tag = "";
                     var $result = $(result);
-                    var cnt=0;
-                    var length = $result.length;
                    
                     $result.each(function(idx,vo){
 	                        tag+= "<li class='eachFood'>";
