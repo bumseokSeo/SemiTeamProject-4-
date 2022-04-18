@@ -301,7 +301,7 @@ h1:after {
    <a href="${url}/map/map.jsp">지도확인</a> <a href="/map/main_map">지도</a>
 
    <c:if test="${logId!='master'}">
-      <a id="main_codylink" href="${url}/cody/main_cody">코디추천</a>
+      <a class="main_codylink" href="${url}/cody/main_cody">코디추천</a>
    </c:if>
    <c:if test="${logId=='master'}">
       <a href="${url}/master/master_modify_cody">코디관리</a>
@@ -333,17 +333,15 @@ h1:after {
 
       <div class="fullsection full2" pageNum="2">
          <div class="container">
-            <a id="main_codylink" href="${url}/cody/main_cody"><div class="one-half left">
-               
-
-
-            </div></a>
-            <a href="${url}/food/main_food"><div class="one-half right">
+            <a class="main_codylink" href="${url}/cody/main_cody" >
+            <div class="one-half left"></div>
+            </a>
             
-
-            </div></a>
+            <a href="${url}/food/main_food">
+            <div class="one-half right"></div>
+            </a>
+            
          </div>
-
       </div>
    </div>
 </div>
@@ -407,7 +405,7 @@ function onGeoOk(position) {
       }else if(temp>28){
          temp = 8;            
       }
-      $("#main_codylink").attr("href","/cody/main_cody?temp="+temp);//cody_href
+      $(".main_codylink").attr("href","/cody/main_cody?temp="+temp);//cody_href
     });
 }
 

@@ -198,7 +198,7 @@ section {
 .imgList-row {
   display: flex;
   justify-content: space-around;
-  margin-top: 60px;
+  margin: 20px 0 40px 0;
 }
 
 .imgC p {
@@ -318,9 +318,9 @@ section {
 
 #text a {
   color: #9c9c9c;
-  text-decoration: none;
-  font-weight: 100;
   font-size: 1.1em;
+  font-weight: 100;
+  text-decoration: none;
 }
 
 
@@ -501,9 +501,18 @@ section {
   background-color: white;
   border-radius: 3px;
 }
-
 }
 /* ---------------------------------- */
+
+.liststyle {
+	display: inline-block;
+	width: 100%;
+	text-align: center;
+	color: #9c9c9c;
+  	font-size: 22px;
+  	font-weight: 700;
+}
+
 
 </style>  
     <h1 class="animate__animated animate__swing">Cody List</h1>
@@ -548,9 +557,8 @@ section {
             </div>
          </div>
 
-   
             <div class="cody-sub-style-list">
-            
+            	<span class="liststyle">Style</span>
                <a href="${url}/codyStyleList?style=casual" class="list" target="blank">
                   <img src="${url}/img/codyimg/casualimg.jpg"  alt="" class="list-img" >
                   <div class="list-description">
