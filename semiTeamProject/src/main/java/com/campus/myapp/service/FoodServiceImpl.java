@@ -83,4 +83,22 @@ public class FoodServiceImpl implements FoodService {
 		return dao.getPriorityN(priorityN);
 	}
 
+	@Override
+	public List<FoodVO> getCategoryFood(String foodType) {
+		
+		return dao.getCategoryFood(foodType);
+	}
+
+	@Override
+	public List<FoodVO> getAllFood() {
+		
+		return dao.getAllFood();
+	}
+
+	@Override
+	public List<FoodVO> getEtcFood() {
+		
+		return dao.getEtcFood();
+	}
+
 }

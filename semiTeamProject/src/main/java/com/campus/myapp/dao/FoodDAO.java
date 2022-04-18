@@ -44,5 +44,14 @@ public interface FoodDAO {
 	//우선순위 N인 음식 가져오기
 	public List<FoodVO> getPriorityN(String priorityN);
 	
+	//음식 카테고리에 해당 하는 음식 정보 가져오기
+	public List<FoodVO> getCategoryFood(String foodType);
+	
+	//전체 음식 가져오기
+	public List<FoodVO> getAllFood();
+	
+	//기타 음식 가져오기
+	public List<FoodVO> getEtcFood();
+	
 
 }

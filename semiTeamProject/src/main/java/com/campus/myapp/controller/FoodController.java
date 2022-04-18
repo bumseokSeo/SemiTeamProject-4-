@@ -211,14 +211,6 @@ public class FoodController {
 		return mav;
 	}
 	
-	//파일 이름 중복 확인
-	@PostMapping("/fileNameCheck")
-	@ResponseBody
-	public int fileNameCheck(@RequestParam("fileName") String fileName) {
-		
-		return service.checkFilename(fileName);
-	}
-	
 	//음식 추가
 	@PostMapping("/master/foodAdd")
 	public ResponseEntity<String> foodAddOk(FoodVO vo, HttpServletRequest request){
@@ -263,20 +255,50 @@ public class FoodController {
 				
 				MultipartFile file = mr.getFile("filename");
 				
-				String fileName = file.getOriginalFilename();
-				System.out.println(fileName);
+				String orgFileName = file.getOriginalFilename();
+				System.out.println(orgFileName);
 				
-				File f = new File(path, fileName);
-				
-				//파일 업로드
-				try {
-					file.transferTo(f);
-					System.out.println("파일 업로드");
-					vo.setFoodimg(fileName);
+				/////////////////////////////////////////////////////
+				//rename
+				if(orgFileName != null && !orgFileName.equals("")) {
 					
-				}catch(Exception ee) {
+					File f = new File(path, orgFileName);
+					
+					//파일이 존재하는지 확인
+					if(f.exists()) {
+						
+						for(int num=1; ; num++) {
+							
+							int point = orgFileName.lastIndexOf(".");
+							
+							String fileName = orgFileName.substring(0,point);
+							
+							String ext = orgFileName.substring(point+1);
+							
+							f = new File(path, fileName + "(" + num + ")."+ ext);
+							
+							if(!f.exists()) {
+								orgFileName = f.getName();
+								break;
+									
+							}
+						}
+						
+					}//파일 존재 확인 완료
+					
+					//파일 업로드
+					try {
+						file.transferTo(f);
+						System.out.println("파일 업로드");
+						vo.setFoodimg(orgFileName);
+						
+					}catch(Exception ee) {
+						
+					}
 					
 				}
+				
+				
 				//DB에 추가
 				service.foodInsert(vo);
 				
@@ -302,6 +324,22 @@ public class FoodController {
 		
 		return service.getFoodData(searchFood);
 		
+	}
+
+	@PostMapping("/showfoods")
+	@ResponseBody
+	public List<FoodVO> showFoods(@RequestParam("foodType") String type) {
+		
+		List<FoodVO> foods = new ArrayList<FoodVO>();
+		
+		if(type.equals("전체")) {
+			foods = service.getAllFood();
+		}else if(type.equals("기타")){
+			foods = service.getEtcFood();
+		}else {
+			foods = service.getCategoryFood(type);
+		}
+		return foods;
 	}
 	
 	
@@ -336,28 +374,58 @@ public class FoodController {
 				 //새로 받은 이미지 파일 올리기
 				 MultipartHttpServletRequest mr = (MultipartHttpServletRequest)request;
 				 
-				 MultipartFile file = mr.getFile("filename");
+				 MultipartFile newfile = mr.getFile("filename");
 				 
-				 String fileName = file.getOriginalFilename();
 				 
-				 System.out.println(fileName);
-				 
-				 File f = new File(path, fileName);
-				 
-				///파일넣기	 
-				 try {
-					 file.transferTo(f);
-					 System.out.println("파일 업로드");
+				 ////////////////////////////////////////////////////////////////////////
+				 if(newfile != null) { //새로 업로드 된 파일 있을 경우
 					 
-					 if(file!=null &&!file.isEmpty()) {
-						 //첨부했다면
-						 deleteFile(path, priorFile);
-					 }
-				 
-					 vo.setFoodimg(fileName);
-				 }catch(Exception ex) {
+					 String fileName = newfile.getOriginalFilename();
 					 
-				 }
+					 if(fileName != null && !fileName.equals("")) {
+						 
+						 File f = new File(path, fileName);
+						 
+						 if(f.exists()) { //같은 이름의 파일이 있을 경우
+							 
+							 for(int num=1;;num++) {
+								 
+								 int point = fileName.lastIndexOf(".");
+								 
+								 String fileNameExt = fileName.substring(0,point);
+								 String ext = fileName.substring(point+1);
+								 
+								 f = new File(path, fileNameExt +"(" + num +")." + ext);
+								 
+								 if(!f.exists()) {
+									 fileName = f.getName();
+									 break;
+									 
+								 }
+								 
+							 }//for
+						 }///if 같은 이름의 파일
+						 
+						///파일넣기	 
+						 try {
+							 newfile.transferTo(f);
+							 System.out.println("파일 업로드");
+							 
+							 if(!newfile.isEmpty()) {
+								 //첨부했다면
+								 deleteFile(path, priorFile);
+							 }
+						 
+							 vo.setFoodimg(fileName);
+						 }catch(Exception ex) {}
+						 
+						 
+					 }//if
+					  
+				 }//if
+				 
+				 
+				
 				 //DB 업데이트
 				 
 				 service.foodUpdate(vo);
