@@ -68,6 +68,18 @@
   	
   	</select>
   	
+  	<select id="getCategoryFood" resultType="com.campus.myapp.vo.FoodVO">
+  		select fname, foodimg, fcategory from food where fcategory = #{param1}
+  	
+  	</select>
+  	
+  	<select id="getAllFood" resultType="com.campus.myapp.vo.FoodVO">
+  		select fname, foodimg, fcategory from food
+  	</select>
+  	
+  	<select id="getEtcFood" resultType="com.campus.myapp.vo.FoodVO">
+  		select fname, foodimg, fcategory from food where fcategory!="일식" and fcategory!="한식" and fcategory!="중식" and fcategory!="디저트";
+  	</select>
   	
   	
  </mapper>

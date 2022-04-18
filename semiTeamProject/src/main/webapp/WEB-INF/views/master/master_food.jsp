@@ -3,19 +3,27 @@
     
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-<script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> 
+<script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     
 <style>
 
+	    ul, li{
+	        list-style-type: none;
+	        margin: 0;
+	        padding: 0;
+	
+	    }
 	  .container{
 			 width: 1300px;
 	  		 height: 100%;
 	  }
-	
 	  h1 {
            margin-bottom: 50px;
       }
-	  
+      a{
+          text-decoration: none;
+          color: gray;
+      }
 	   #foodForm{
 	   	   width : 90%;
 	   	   height : 100%;
@@ -78,16 +86,70 @@
 	   #photoDelete{
 	   		display: none;
 	   }
-	   #foodimgCheck{
-	   	color : coral;
-	   }
 	   #foodimgName{
-	   	color : darkblue;
+	   	color : gray;
 	   }
+	  
+       #modalFood{
+           justify-content: center;
+           align-items: center;
+           overflow-y: auto;
+           
+       }
+       #modalFood .modal-dialog{
+           overflow-y: initial !important;
+          
+       }
+       #modalFood .modal-title{
+           margin: 10px 30px;
+       }
+       #modalFood .modal-body{
+           overflow-y: auto;
+           height: 100%;
+           margin-bottom:30px;
+       }
+       #foodList{
+           font-size: 25px;
+       }
+       #foodCategory{
+        width: 100%;
+        margin-top:20px;
+        text-align: center;
+        height : 60px;
+        
+       }
+      #foodCategory ul{
+            text-align: center;
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content:space-around;
+            width: 100%;
+       }
+       
+       #foodAll{
+       		margin: 20px;
+       }
+       
+       #foods{
+       		background: yellow;
+       }
+       .eachFood{
+       	 width: 25%;
+           float: left;
+           text-align: center;
+           margin-bottom: 30px;       
+       }
+       .foodName{
+           font-weight: bold;
+       }
+       .foodPicture{
+           width:150px !important;
+            border-radius: 20px;
+            object-fit:cover;
+           height: 150px;
+            max-width: 100%;
+       }
 	   
-	   
-	   
-
 </style>
 <script>
     $(function(){
@@ -124,19 +186,24 @@
 			$("#foodPhoto").attr("src", "");
 			$("#photoDelete").css("display", "none");
 			$("#foodimg").val('');
-			$("#foodimgCheck").html('');
-			///////////////////////////////////////////////
 			$("#foodPhoto").css('display', 'none');
 			$("#foodimgName").text("");
-			
-    	
+			   	
     	}
-    	
+
+        function eventDelete(){
+            $("#eventYes").css('display', 'none');
+            $("#eventSelected").html('');
+            $("#eventSelected").css('display', 'none');
+            $("#deleteDate").css('display', 'none');
+        }   
+
     	//수정할 음식 검색란에 focus
     	$("#searchFood").focus(function(){
     		$("#add").css('visibility', 'hidden');
-    		$("#foodimgCheck").css('display', 'none');
+    		//$("#foodimgCheck").css('display', 'none');
     		$("#foodPhoto").css('display','none');
+    		$("#photoDelete").css('display', 'none');
     	});
     	
     	//음식 이름에 focus
@@ -153,16 +220,14 @@
                 $("#searchFood").focus();
                 return false;
             }
-          	//음식이름은 기본키여서 수정 불가
+          	//음식이름은 기본키여서 수정 불가////////////////////////////////
             $("#fname").attr("readonly", true);
             //수정할 음식을 검색했기 때문에 추가 버튼은 안보이게
             $("#add").css('visibility', 'hidden');
            
-            
             //검색 버튼 클릭하면 음식 정보 가져오기
             var searchFood = $("#searchFood").val();
             
-           
             $.ajax({
             	url : "/getFoodData",
             	data : "searchFood=" + searchFood,
@@ -222,10 +287,7 @@
             		
             		 //날짜 선택한 뒤 날짜 삭제 버튼 클릭
 		            $("#deleteDate").click(function(){
-		            	$("#eventYes").css('display', 'none');
-		                $("#eventSelected").html('');
-		                $("#eventSelected").css('display', 'none');
-		                $("#deleteDate").css('display', 'none');
+		            	eventDelete();////////////////////////////
 		                
 		
 		              //이벤트 없음으로 되돌리기
@@ -239,7 +301,6 @@
 		               console.log($("#event option:eq(1)").val());           
 		            })
 		            
-                   
 		            //우선순위 반영
             		priorityChange();
             		
@@ -250,6 +311,9 @@
             		$("#foodPhoto").css("display", "block");
             		///////////////////////////////////////////////////////
             		$("#foodimgName").text("저장되어 있는 이미지 파일 : " + result.foodimg);
+            		
+					/////////////////////////////////////////////////////////////// 
+                   
             		
             		$("#photoDelete").click(function(){
             			photoDelete();
@@ -284,10 +348,7 @@
             $("#add").css('visibility', 'visible');
             $("#modify").css('visibility', 'visible');
             
-            $("#eventYes").css('display', 'none');
-            $("#eventSelected").html('');
-            $("#eventSelected").css('display', 'none');
-            $("#deleteDate").css('display', 'none');
+            eventDelete();//////////////////////////////////////////////////
 
           //이벤트 없음으로 되돌리기
             $("#event option:eq(0)").prop("selected", true);
@@ -314,13 +375,11 @@
                 $("#fname").focus();
                 return false;
             }
-             
             if($("#fcategory").val()==''){
                 alert("음식 종류를 입력하세요. (ex.한식, 양식, 중식, 일식, 디저트..)");
                 $("#fcategory").focus();
                 return false;
             }
-
             if($("#foodimg").val()==''){
                 alert("음식 이미지 파일을 선택해 업로드 하세요.");
                 return false;
@@ -333,47 +392,20 @@
             
         });
        
-        //파일 이름 중복 확인
+        //파일 변경
         $("#foodimg").change(function(){
         	
-        	
-        	
-        	var file = $("#foodimg").val();
-        	console.log(file);
-        	
-        	var fileName = file.substring(file.lastIndexOf("\\")+1);
-        	console.log(fileName);
-        	
-        	
+        	//이미지 미리보기
         	imagePreview(this, "#foodPhoto");
         	$("#photoDelete").css("display", "inline-block");
         	$("#foodPhoto").css('display', 'block');
-        	
-        	$.ajax({
-        		url : '/fileNameCheck',
-        		data : "fileName=" + fileName,
-        		method : "post",
-        		
-        	 	success : function(result){
-        	 		
-        	 		if(parseInt(result)>0){
-        	 			$("#foodimgCheck").html("동일한 이름의 이미지 파일이 있습니다.<br/> 다른 이름의 사진 파일을 업로드 하세요").show();
-        	 			$("#foodimg").val('');
-        	 			return false;		
-        	 		}else{
-        	 			$("#foodimgCheck").html("업로드 가능한 이미지 입니다.");
-        	 		}
-        	 	},
-        	 	error : function(error){
-        	 		console.log(error.responseText);	 		
-        	 	}	
-        	});
         	
         	$("#photoDelete").click(function(){
     			photoDelete();
     		});
  	
         });
+       
         
         //수정 버튼 클릭 시
         $("#modify").click(function(){
@@ -383,26 +415,21 @@
         		$("#searchFood").focus();
         		return false;
         	}
-        	
         	if($("#fcategory").val()==''){
                 alert("음식 종류를 입력하세요. (ex.한식, 양식, 중식, 일식, 디저트..)");
                 $("#fcategory").focus();
                 return false;
             }
- 
-            
-            if($("#foodimg").val()=='' || $("#foodPhoto").attr("src") == ''){
+            if($("#foodimg").val()=='' && $("#foodPhoto").attr("src") == ''){
                 alert("음식 이미지 파일을 선택해 업로드 하세요.");
                 return false;
             }
-            
-            alert($("#foodimg").val());
-            alert($("#foodPhoto").attr("src"));
             
         	//수정 버튼 클릭 시 submit
         	 $("#adminForm").attr("action", "foodModify");
              
              $("#adminForm").submit();
+             
              
         });
        
@@ -464,17 +491,14 @@
             if(event != 'no'){
                  $("#priorityYes").prop("checked", true);
                  //모달창 띄우기
-                 $(".modal").modal('show');
+                 $("#modalEvent").modal('show');//////////////////////////모달 열리는지 확인/////////
                  $("#eventDate").val('');   
                  flagEvent = true;
              }
 
             if(event == 'no'){
-             $("#eventYes").css('display', 'none');
-             $("#eventSelected").html('');
-             $("#eventSelected").css('display', 'none');
-             $("#deleteDate").css('display', 'none');
-             flagEvent = false;
+                eventDelete();///////////////////////////////////////////
+                flagEvent = false;
             }
             priorityChange();
 
@@ -488,7 +512,7 @@
 
         // X 버튼 클릭하면 모달 닫히게
         $(".btn-close").click(function(){
-            $(".modal").modal('hide');
+            $("#modalEvent").modal('hide');///////////////////////////모달 닫히는지 확인//////////////
             //이벤트 상관 없음으로 변경
             $("#event option:eq(0)").prop("selected", true);
             $("#eventDate").val('');
@@ -512,7 +536,7 @@
             });
             //날짜 입력 값 있으면 모달창 내리기
             if(eventDate !=''){
-                $(".modal").modal('hide');
+                $("#modalEvent").modal('hide'); ////모달 닫히는지 확인//////////////////////////////
                 
             	//이벤트 있음의 value에 이벤트 날짜 넣기
                 $("#event option:eq(1)").val(eventDate);
@@ -536,10 +560,7 @@
 
             //날짜 선택한 뒤 날짜 삭제 버튼 클릭
             $("#deleteDate").click(function(){
-            	$("#eventYes").css('display', 'none');
-                $("#eventSelected").html('');
-                $("#eventSelected").css('display', 'none');
-                $("#deleteDate").css('display', 'none');
+                eventDelete(); ////////////////////////////////
 
               //이벤트 없음으로 되돌리기
                 $("#event option:eq(0)").prop("selected", true);
@@ -552,13 +573,94 @@
                console.log($("#event option:eq(1)").val());           
             })
         });
+        
+        
+
+        //음식 리스트 클릭시 음식 모달창 ////////////////
+        $("#foodList").click(function(){
+            //////ajax 구현//전체 음식 가져오기
+            $("#total").click();
+            $("#modalFood").modal('show');
+            
+        });
+
+        ////음식 리스트에 음식 카테고리에 해당하는 음식 보이게 하기
+        $(".foodType").click(function(){
+                
+            var type = $(this).text();
+
+            $.ajax({
+                url: '/showfoods',
+                data : 'foodType=' + type,
+                method: 'post',
+                
+                success: function(result){
+                    var tag = "";
+                    var $result = $(result);
+                    var cnt=0;
+                    var length = $result.length;
+                   
+                    $result.each(function(idx,vo){
+	                        tag+= "<li class='eachFood'>";
+	                        tag += "<span class='foodName'>" + vo.fname+ "</span><br/>";
+	                        tag += "<img class='foodPicture img-fluid' src='/img/foodimg/upload/" + vo.foodimg + "'><br/>";////////////////
+	                        tag += "<span class='foodCate'>" + vo.fcategory + "</span></li>";
+                    
+                        $("#foods").html(tag);
+                    });
+                },
+                error: function(error){
+                    console.log(error.responseText);
+                }
+            });
+        });
+        
+        $("#foodClose").click(function(){
+            $("#modalFood").modal('hide');
+
+        });
     });
 
 </script>
-
 	<h1>음식 관리 페이지</h1>
 	<hr/>
+	
 	<div class="container">
+		<div class="side">
+			<a href="#" id="foodList">음식 리스트</a>
+			<!-- 음식 리스트 나오는 모달 뜨게 하기 -->
+		</div>
+        <div class="modal fade" data-backdrop = "static" data-keyboard="false" id="modalFood">
+            <div class="modal-dialog modal-lg modal-dialog-scrollable " >
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">음식 리스트</h5><hr/>
+                        <!-- <h5 class="modal-title"></h5><hr/> -->
+                        <button type="button"  class="btn-close"  aria-label="Close" id="foodClose"></button> 
+                    </div>
+                    <div id="foodCategory">
+                        <ul>
+                            <li><a href="#" class="foodType" id="total">전체</a></li>
+                            <li><a href="#" class="foodType">한식</a></li>
+                            <li><a href="#" class="foodType">일식</a></li>    
+                            <li><a href="#" class="foodType">중식</a></li>   
+                            <li><a href="#" class="foodType">디저트</a></li>    
+                            <li><a href="#" class="foodType">기타</a></li>    
+
+                        </ul>
+                    </div>
+                    <div class="modal-body" >
+                        <div id="foodAll">
+                            <ul id="foods">
+                                
+                            </ul>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    
         <div id="foodForm">
         
         	<form method="post" id="adminForm" name="adminForm" enctype="multipart/form-data">
@@ -655,21 +757,19 @@
                 <div class="row m-2">
                     <label class="col-lg-3 col-form-label my-2" for="foodimg">음식 사진</label>
                     <input type="file" class="col-lg-8 my-2" id="foodimg" name="filename" >
-                   
 	               <button type="button"  class="btn-close my-2"  aria-label="Close" id="photoDelete"></button>
 	               <span id="foodimgName" class="my-2 "></span>
-	               <span id="foodimgCheck" class="my-2"></span>
 	               <img id="foodPhoto" class="my-2"/>
                     
                 </div>
                 
-                <div class="m-2">
-                    <input type="button" class="btn btn-secondary mb-3" id="cancel" value="취소">
-                    <input type="button" class="btn btn-secondary mb-3" id="add" value="추가">
-                    <input type="button" class="btn btn-secondary mb-3" id="modify" value="수정">
+                <div class="m-2" id="buttons">
+                    <input type="button" class="btn btn-secondary mb-3 " id="cancel" value="취소">
+                    <input type="button" class="btn btn-secondary mb-3 " id="add" value="추가">
+                    <input type="button" class="btn btn-secondary mb-3 " id="modify" value="수정">
                 </div>
                 <!--날짜 입력 받는 모달창-->
-                <div class="modal fade" data-backdrop = "static" data-keyboard="false">
+                <div class="modal fade" data-backdrop = "static" data-keyboard="false" id="modalEvent">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -684,9 +784,7 @@
                         </div>
                     </div>
                 </div>
-
            </form>
-
         </div>
     </div>
     
