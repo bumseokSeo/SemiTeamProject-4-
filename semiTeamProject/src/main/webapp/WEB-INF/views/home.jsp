@@ -327,7 +327,6 @@ h1:after {
 				</div>
 				<div class="one-half right">
 					<a href="${url}/food/main_food"><h1>오늘 음식 어때?</h1></a>
-
 				</div>
 			</div>
 
