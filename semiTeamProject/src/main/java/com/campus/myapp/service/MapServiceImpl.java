@@ -37,10 +37,20 @@ public class MapServiceImpl implements MapService {
 		// TODO Auto-generated method stub
 		return dao.reviewListAll(vo);
 	}
-
 	@Override
 	public StoreVO getStore(String id) {
 		// TODO Auto-generated method stub
 		return dao.getStore(id);
+	}
+	
+	@Override
+	public double avgstar(StoreVO id) {
+		// TODO Auto-generated method stub
+		return dao.avgstar(id);
+	}
+
+	@Override
+	public int reviewcnt(StoreVO id) {
+		return dao.reviewcnt(id);
 	}
 }

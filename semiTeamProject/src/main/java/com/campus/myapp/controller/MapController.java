@@ -85,4 +85,16 @@ public ModelAndView Main_map(String fname, String id, HttpSession session) {
          //System.out.println(vo);
       return n; 
    }
+
+   //가게 별점
+   @RequestMapping("avgstar")
+   public double avgstar(StoreVO id) {
+		   return service.avgstar(id);
+   }
+   
+   @RequestMapping("reviewcnt")
+   public int reviewcnt(StoreVO reviewcnt) {
+	   return service.reviewcnt(reviewcnt);
+   }
 }
+

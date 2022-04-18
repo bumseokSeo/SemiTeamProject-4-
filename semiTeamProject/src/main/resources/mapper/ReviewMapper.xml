@@ -18,6 +18,7 @@
     <delete id="reviewDel">
         delete from review where reviewno=#{param1} and userid=#{param2}
     </delete>
+
     <select id="avgstar" resultType="com.campus.myapp.vo.ReviewVO">
 		select avg(star) from review group by id=#{param1}
 	</select>
