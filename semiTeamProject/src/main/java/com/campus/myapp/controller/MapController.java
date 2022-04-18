@@ -35,6 +35,7 @@ public ModelAndView Main_map(String fname, String id, HttpSession session) {
       List<ReviewVO> list = rvservice.reviewList(id);
       mav.addObject("list",list);
     }
+    mav.addObject("lst", service.reviewCntSelectAll(id));
     mav.addObject("menu", fname);
     session.setAttribute("menu",fname);
     mav.addObject("placeid","id");
@@ -84,17 +85,6 @@ public ModelAndView Main_map(String fname, String id, HttpSession session) {
       }
          //System.out.println(vo);
       return n; 
-   }
-
-   //가게 별점
-   @RequestMapping("avgstar")
-   public double avgstar(StoreVO id) {
-		   return service.avgstar(id);
-   }
-   
-   @RequestMapping("reviewcnt")
-   public int reviewcnt(StoreVO reviewcnt) {
-	   return service.reviewcnt(reviewcnt);
    }
 }
 

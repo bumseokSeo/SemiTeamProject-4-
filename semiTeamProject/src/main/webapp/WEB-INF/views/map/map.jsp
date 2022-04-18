@@ -46,9 +46,9 @@
                // data:params,
                success : function(result) {
             	 
-            	   alert(result.store.place_name);
-				                  var $result = $(result.reviews); // vo, vo, vo, vo...
-                  var tag = "<table><tbody>";
+					//alert(result.store.place_name);
+					var $result = $(result.reviews); // vo, vo, vo, vo...
+					var tag = "<table><tbody>";
 
                   $result
                         .each(function(idx, vo) {
@@ -143,18 +143,6 @@
 			</div>
 		</nav>
 	</div>
-            <div class="nav__list">
-               <a href="#" class="nav__link active"> <ion-icon
-                     name="home-outline" class="nav__icon"></ion-icon> <span
-                  class="nav_name" onclick="toggleDiv()">리뷰 작성하기</span>
-               </a> <a href="myReview" class="nav__link"> <ion-icon
-                     name="chatbubbles-outline" class="nav__icon"></ion-icon> <span
-                  class="nav_name">내가 쓴 리뷰 목록</span>
-               </a>
-            </div>
-            <a href="/" class="nav__link"> <ion-icon name="log-out-outline"
-                  class="nav__icon"></ion-icon> <span class="nav_name">메인으로</span>
-            </a>
    	<div class="map_wrap" style="position: relative;">
 		<div style="z-index: 9">
 			<form class="searching" onsubmit="searchPlaces(); return false;">
@@ -371,7 +359,9 @@
                + places.id + ')">'
                + '   <h5>'
                + places.place_name
-               + '</h5>' //음식점과 마커 링크 하기               
+               + '</h5>' //음식점과 마커 링크 하기  
+               
+               + ""
                + '<div>'
                + '<input type="hidden" value="리뷰" onclick="toggleDiv('
                + places.id + ')">'+ '</input>' + '</div>'; //DB에서 별점평균, 리뷰 수 가져오기 + 별모양 css 만들기 

@@ -28,7 +28,8 @@ public interface MapDAO {
 	public StoreVO getStore(String id);
 
 	//¸®ºä ÆòÁ¡
-	public double avgstar(StoreVO id);
 	
-	public int reviewcnt(StoreVO id);
+	
+	//¸®ºäÆò±Õ,ÃÑ °¹¼ö ±¸ÇÔ
+	public List<ReviewVO> reviewCntSelectAll(String id);
 }
