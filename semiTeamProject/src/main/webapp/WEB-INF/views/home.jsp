@@ -289,7 +289,7 @@ h1:after {
 <div class="submenu">
 
 	<c:if test="${logId!='master'}">
-		<a id="main_codylink" href="${url}/cody/main_cody">코디추천</a>
+		<a class="main_codylink" href="${url}/cody/main_cody">코디추천</a>
 	</c:if>
 	<c:if test="${logId=='master'}">
 		<a href="${url}/master/master_modify_cody">코디관리</a>
@@ -322,11 +322,11 @@ h1:after {
 		<div class="fullsection full2" pageNum="2">
 			<div class="container">
 				<div class="one-half left">
-					<a href="#"><h1>오늘 코디 어때?</h1></a>
+					<a class="main_codylink" href="${url}/cody/main_cody"><h1>오늘 코디 어때?</h1></a>
 
 				</div>
 				<div class="one-half right">
-					<h1>오늘 음식 어때?</h1>
+					<a href="${url}/food/main_food"><h1>오늘 음식 어때?</h1></a>
 
 				</div>
 			</div>
@@ -394,7 +394,7 @@ function onGeoOk(position) {
       }else if(temp>28){
          temp = 8;            
       }
-      $("#main_codylink").attr("href","/cody/main_cody?temp="+temp);//cody_href
+      $(".main_codylink").attr("href","/cody/main_cody?temp="+temp);//cody_href
     });
 }
 

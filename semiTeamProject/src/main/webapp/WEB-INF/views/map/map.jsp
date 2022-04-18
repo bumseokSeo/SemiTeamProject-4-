@@ -306,7 +306,10 @@
          }
       }
       // 검색 결과 목록과 마커를 표출하는 함수입니다
+      //var placesList;
       function displayPlaces(places) {
+    	  
+      //placesList = places;
          var listEl = document.getElementById('placesList'), menuEl = document
                .getElementById('menu_wrap'), fragment = document
                .createDocumentFragment(), bounds = new kakao.maps.LatLngBounds(), listStr = '';
@@ -368,40 +371,64 @@
             }
          });
       }
-      function getListItem(index, places) {
-    	 /* $.ajax({
-    	
-    		  }).then(function(result){
-    			  	alert(result.score)
-    			  })
-    		  
-    	  */
       
-         var el = document.createElement('li'), itemStr = '<span class="markerbg marker_'
-               + (index + 1)
-               + '"></span>'
-               + '<div class="info"  onclick="toggleDiv('
-               + places.id + ')">'
-               + '   <h5>'
-               + places.place_name
-               + '</h5>' //음식점과 마커 링크 하기  
-               + '<div>'
-               + '</h5>' //음식점과 마커 링크 하기               
-               + '<div> 리뷰 | '+"******"+' | '
-               + '<input type="hidden" value="리뷰" onclick="toggleDiv('
-               + places.id + ')">' + "******" + "건" + '</input>' + '</div>'; //DB에서 별점평균, 리뷰 수 가져오기 + 별모양 css 만들기 
-         if (places.road_address_name) {
-            itemStr += '    <span>' + places.road_address_name + '</span>'
-                  + '   <span class="jibun gray">' + places.address_name
-                  + '</span>';
-         } else {
-            itemStr += '    <span>' + places.address_name + '</span>';
-         }
-         itemStr += '  <span class="tel">' + places.phone + '</span>'
-               + '</div>';
-         el.innerHTML = itemStr;
-         el.className = 'item';
-         return el;
+      
+      
+  
+      function getListItem(index, places) {
+    	  
+    
+    	  var urll = "${url}/map/reviewCntAvg";
+    	  var params = "id="+places.id;
+    	  var el;
+    	  $.ajax({
+    		  url:urll,
+     		 data:params,
+     		 type : "POST",
+     		 async:false, //동기식으로 전환
+     		 success:function(result){
+	  			  el = document.createElement('li'), itemStr = '<span class="markerbg marker_'
+	  	               + (index + 1)
+	  	               + '"></span>'
+	  	               + '<div class="info"  onclick="toggleDiv('
+	  	               + places.id + ')">'
+	  	               + '   <h5>'
+	  	               + places.place_name
+	  	               + '</h5>' //음식점과 마커 링크 하기  
+	  	               + '<div>'
+	  	               + '</h5>' //음식점과 마커 링크 하기               
+	  	               + '<div> 리뷰 | '+result.avgstar+"<i class='fa fa-star' style='color:red;'></i>"+' | '
+	  	               + '<input type="hidden" value="리뷰" onclick="toggleDiv('
+	  	               + places.id + ')">' ;
+	  	               if(result.reviewcnt>0){
+	  	            	 itemStr += result.reviewcnt +"건"
+	  	            	}
+	  	               if(result.reviewcnt==0){
+	  	            	 itemStr+="등록된 리뷰가 없습니다."
+	  	               }
+	  	               
+	  	               
+	  	             itemStr += '</input>' + '</div>'; //DB에서 별점평균, 리뷰 수 가져오기 + 별모양 css 만들기 
+	  	         if (places.road_address_name) {
+	  	            itemStr += '    <span>' + places.road_address_name + '</span>'
+	  	                  + '   <span class="jibun gray">' + places.address_name
+	  	                  + '</span>';
+	  	         } else {
+	  	            itemStr += '    <span>' + places.address_name + '</span>';
+	  	         }
+	  	         itemStr += '  <span class="tel">' + places.phone + '</span>' + '</div>';
+	  	         el.innerHTML = itemStr;
+	  	         el.className = 'item';
+     		 },
+     		 error:function(error){
+ 					console.log(error.responseText);
+ 			 }
+ 			
+    	  });
+    		   
+		return el;
+
+         
       }
 
       function toggleDiv(id) {

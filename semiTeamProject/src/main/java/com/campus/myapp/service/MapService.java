@@ -13,7 +13,7 @@ public interface MapService {
 	public List<ReviewVO> reviewListAll(ReviewVO vo);
 
 	public StoreVO getStore(String id);
-	public List<ReviewVO> reviewCntSelectAll(String id);
+	public ReviewVO reviewCntSelectAll(String id);
 	
 	
 }

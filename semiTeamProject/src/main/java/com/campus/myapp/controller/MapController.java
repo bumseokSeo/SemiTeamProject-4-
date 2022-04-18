@@ -35,7 +35,7 @@ public ModelAndView Main_map(String fname, String id, HttpSession session) {
       List<ReviewVO> list = rvservice.reviewList(id);
       mav.addObject("list",list);
     }
-    mav.addObject("lst", service.reviewCntSelectAll(id));
+    
     mav.addObject("menu", fname);
     session.setAttribute("menu",fname);
     mav.addObject("placeid","id");
@@ -85,6 +85,12 @@ public ModelAndView Main_map(String fname, String id, HttpSession session) {
       }
          //System.out.println(vo);
       return n; 
+   }
+   
+   @PostMapping("reviewCntAvg")
+   public ReviewVO reviewCntAvg(String id) {
+	   System.out.println(id);
+	   return service.reviewCntSelectAll(id);
    }
 }
 

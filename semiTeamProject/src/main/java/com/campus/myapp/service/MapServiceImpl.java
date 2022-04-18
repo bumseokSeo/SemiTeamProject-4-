@@ -42,12 +42,14 @@ public class MapServiceImpl implements MapService {
 		// TODO Auto-generated method stub
 		return dao.getStore(id);
 	}
-	
-	
 
 	@Override
-	public List<ReviewVO> reviewCntSelectAll(String id) {
+	public ReviewVO reviewCntSelectAll(String id) {
 		// TODO Auto-generated method stub
 		return dao.reviewCntSelectAll(id);
 	}
+	
+	
+
+	
 }

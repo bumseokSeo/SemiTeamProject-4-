@@ -31,5 +31,5 @@ public interface MapDAO {
 	
 	
 	//¸®ºäÆò±Õ,ÃÑ °¹¼ö ±¸ÇÔ
-	public List<ReviewVO> reviewCntSelectAll(String id);
+	public ReviewVO reviewCntSelectAll(String id);
 }
