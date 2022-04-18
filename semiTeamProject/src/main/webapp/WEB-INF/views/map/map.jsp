@@ -271,15 +271,21 @@
             };
             // 마커와 인포윈도우를 표시합니다        
             var keyword = document.getElementById('keyword').value;
+            
             // 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
-            ps.keywordSearch('${menu}', placesSearchCB, locPosition);
+            if(keyword==null || keyword==''){
+            	ps.keywordSearch('${menu}', placesSearchCB, locPosition);
+            }
+            if(keyword!=null && keyword!=''){
+            	ps.keywordSearch( keyword, placesSearchCB);
+
+            }
+            
          });
       }
       // 장소검색이 완료됐을 때 호출되는 콜백함수 입니다
       function placesSearchCB(data, status, pagination) {
          if (status === kakao.maps.services.Status.OK) {
-            // 정상적으로 검색이 완료됐으면
-            // 검색 목록과 마커를 표출합니다
             displayPlaces(data);
             // 페이지 번호를 표출합니다
             displayPagination(pagination);
