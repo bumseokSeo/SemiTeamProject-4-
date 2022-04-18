@@ -89,7 +89,7 @@ public ModelAndView Main_map(String fname, String id, HttpSession session) {
    //가게 별점
    @RequestMapping("avgstar")
    public double avgstar(StoreVO id) {
-		   return service.staravg(id);
+		   return service.avgstar(id);
    }
    
    @RequestMapping("reviewcnt")

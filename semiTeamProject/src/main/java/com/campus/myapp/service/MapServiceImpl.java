@@ -45,7 +45,7 @@ public class MapServiceImpl implements MapService {
 	}
 	
 	@Override
-	public double staravg(StoreVO id) {
+	public double avgstar(StoreVO id) {
 		// TODO Auto-generated method stub
 		return dao.avgstar(id);
 	}
