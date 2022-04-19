@@ -298,8 +298,6 @@ h1:after {
 
 <div class="submenu">
 
-   <a href="${url}/map/map.jsp">지도확인</a> <a href="/map/main_map">지도</a>
-
    <c:if test="${logId!='master'}">
       <a class="main_codylink" href="${url}/cody/main_cody">코디추천</a>
    </c:if>
