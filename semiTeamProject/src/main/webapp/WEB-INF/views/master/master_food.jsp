@@ -28,19 +28,21 @@
       	text-decoration: none;
       	color:black;
       }
+      input[type=button] { 
+  			background: rgb(108, 109, 105);
+  			border: none;
+		}
 	   #foodForm{
-	   	   width : 90%;
+	   	   width : 100%;
 	   	   height : 100%;
-	       margin: 0 auto;
+	   	   margin: 30px 0px;
 	   }
 	   
 	   #adminForm{
 	       width: 65%;
 	       border: 1px solid gray;
 		   padding: 50px;
-		   margin-top: 30px;
-		   margin-bottom:20px;
-		   margin: 0 auto;
+           margin: auto;
 	   }
 	   #deleteDate{
 	       text-decoration: none;
@@ -67,16 +69,18 @@
 	   		height : 50%;
 	   		margin: 0 auto;
 	   }
-	   #cancel{
-	       margin:0 50px;
-	       width: 70px;
+	   #buttons input[type=button]{
+	  		width: 70px;
+	  		margin: 20px;
 	   }
-	   #add{
-	       margin-right:50px;
-	       width: 70px;
-	   }
-	   #modify{
-	       width: 70px;
+	   
+	   #foodList{
+	   	  width: 120px;
+	   	  height: 50px;
+	   	  margin-bottom: 30px;
+	   	  margin-left: 20px;
+	   	  border: none;
+	   	 
 	   }
 	   #alertDate{
 	       display: none;
@@ -111,9 +115,6 @@
            overflow-y: auto;
            height: 100%;
            margin-bottom:30px;
-       }
-       #foodList{
-           font-size: 25px;
        }
        #foodCategory{
         width: 100%;
@@ -155,6 +156,10 @@
            height: 150px;
            max-width: 100%;
        }
+       #otherPageLink{
+		text-align: center;
+		font-size: 20px;
+	}
 	   
 </style>
 <script>
@@ -644,13 +649,14 @@
 
 </script>
 	<h1>음식 관리 페이지</h1>
+	
+	<div id="otherPageLink">
+		<a href="${url}/master/master_modify_cody">코디 관리 바로가기</a>&nbsp/
+		<a href="/member/masterPage">회원 관리 바로가기</a>
+	</div>
 	<hr/>
 	
 	<div class="container">
-		<div class="side">
-			<a href="#" id="foodList">음식 리스트</a>
-			<!-- 음식 리스트 나오는 모달 뜨게 하기 -->
-		</div>
         <div class="modal fade" data-backdrop = "static" data-keyboard="false" id="modalFood">
             <div class="modal-dialog modal-lg modal-dialog-scrollable " >
                 <div class="modal-content">
@@ -667,7 +673,6 @@
                             <li><a href="#" class="foodType">중식</a></li>   
                             <li><a href="#" class="foodType">디저트</a></li>    
                             <li><a href="#" class="foodType">기타</a></li>    
-
                         </ul>
                     </div>
                     <div class="modal-body" >
@@ -676,7 +681,6 @@
                                 
                             </ul>
                         </div>
-                        
                     </div>
                 </div>
             </div>
@@ -685,12 +689,14 @@
         <div id="foodForm">
         
         	<form method="post" id="adminForm" name="adminForm" enctype="multipart/form-data">
-	            <div class="row g-3 searchForm">
+        		<input type="button" class="btn btn-secondary" id="foodList" value="음식전체보기">
+	            <div class="row m-2 searchForm">
 	                <!--수정할 음식 이름 검색-->
-	                <div class="col-lg-7 m-3 my-2">
+	                <label for="fname" class="col-lg-3 col-form-label my-2">음식 검색</label>
+	                <div class="col-lg-8 my-2">
 	                    <input type="text" class="form-control" id="searchFood" placeholder="수정할 음식 이름을 입력하세요" name="searchFood">
 	                </div>
-	                <div class="col-lg-4 my-2">
+	                <div class="col-lg-1 my-2">
 	                    <input type="button" class="btn btn-secondary mb-3" id="searchButton" value="검색" > 
 	                </div>
                 </div>
@@ -784,10 +790,12 @@
                     
                 </div>
                 
-                <div id="buttons">
-                    <input type="button" class="btn btn-secondary mb-3 " id="cancel" value="취소">
-                    <input type="button" class="btn btn-secondary mb-3 " id="add" value="추가">
-                    <input type="button" class="btn btn-secondary mb-3 " id="modify" value="수정">
+                <div class="row" id="buttons">
+                	<div class="col-lg-12 text-center"> 
+                		<input type="button" class="btn btn-secondary mb-2" id="cancel" value="취소">
+	                    <input type="button" class="btn btn-secondary mb-2" id="add" value="추가">
+	                    <input type="button" class="btn btn-secondary mb-2" id="modify" value="수정">
+                	</div>
                 </div>
                 <!--날짜 입력 받는 모달창-->
                 <div class="modal fade" data-backdrop = "static" data-keyboard="false" id="modalEvent">
