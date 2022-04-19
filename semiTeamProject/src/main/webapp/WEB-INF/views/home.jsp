@@ -295,12 +295,7 @@ h1:after {
 }
 
 </style>
-
-<<<<<<< HEAD
-<div class="submenu">   
-=======
 <div class="submenu">
->>>>>>> branch 'main' of https://github.com/bumseokSeo/SemiTeamProject-4-.git
    <c:if test="${logId!='master'}">
       <a class="main_codylink" href="${url}/cody/main_cody">코디추천</a>
    </c:if>
