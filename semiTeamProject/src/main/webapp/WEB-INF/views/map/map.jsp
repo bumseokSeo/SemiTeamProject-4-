@@ -63,7 +63,7 @@
                 	 
                            tag += '<tr style="text-align:center;">'
                            
-                        	tag += '<td style="width:15%5px height:30px;border-bottom:1px solid #ddd" class="rounded">'
+                        	tag += '<td style="width:15% height:30px;border-bottom:1px solid #ddd" class="rounded">'
                             if(vo.reviewimg !=null){   
                         		tag+='<img src="/img/reviewimg/'+vo.reviewimg+'" style="width: 60px; height: 60px">';
                             }else{
@@ -83,7 +83,7 @@
                            tag += '<td style="width:15%;border-bottom:1px solid #ddd">'
                                  + vo.writedate + '</td>';
                            if(logId==vo.userid){
-                          	   tag+='<td><input type="button" id="btnEdit'+idx+'" value="수정" data-no="'+vo.reviewno+'"  data-id="'+store.id+'"  data-tog="off" class="btn btn-success btn-sm" id="Editbtn" onclick="Editbtn('+idx+')"/></td>';
+                          	   tag+='<td style="width:15%;border-bottom:1px solid #ddd"><input type="button" id="btnEdit'+idx+'" value="수정" data-no="'+vo.reviewno+'"  data-id="'+store.id+'"  data-tog="off" class="btn btn-success btn-sm" id="Editbtn" onclick="Editbtn('+idx+')"/></td>';
                              }
                            tag += "</tr>"; // vo의 개수만큼 순환
                            
@@ -234,7 +234,7 @@
 			<div id="pagination"></div>
 		</div>			
 		<div id="review"
-			style="margin: 2px; overflow: auto; border: solid #20B2AA; float: left; display: none; width: 450px; height: 100%; position: relative; background-color: white; z-index: 1;">
+			style="margin: 2px; overflow: auto; border: solid #20B2AA; float: left; display: none; width: 550px; height: 100%; position: relative; background-color: white; z-index: 1;">
 			<div  id="storeBody"></div>
 			<hr />
 			<div id="reviewcomment">
@@ -243,7 +243,7 @@
 					<form id="evaluation" method="post" enctype="multipart/form-data"
 						action="/review/writeOk">
 						<input type="hidden" name="pid" id="pid">
-						<fieldset>
+						<fieldset style="margin-left:55px">
 							<input type="radio" name="star" value="5" id="rate1"><label
 								for="rate1">⭐</label> <input type="radio" name="star" value="4"
 								id="rate2"><label for="rate2">⭐</label> <input
@@ -272,10 +272,11 @@
 
 							<thead>
 								<tr style="text-align: center;">
-									<th style="width: 15%;">이미지</th>
+									<th style="width: 17%;">이미지</th>
 									<th style="width: 40%;">내용</th>
-									<th style="width: 20%;">닉네임</th>
-									<th style="width: 20%;">작성일</th>
+									<th style="width: 15%;">닉네임</th>
+									<th style="width: 15%;">작성일</th>
+									<th></th>
 								</tr>
 								<%-- <c:forEach var="vo" items="${list }">
 									<td style="width: 15%;">
