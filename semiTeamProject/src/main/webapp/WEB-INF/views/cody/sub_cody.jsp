@@ -558,7 +558,8 @@ section {
          </div>
 
             <div class="cody-sub-style-list">
-            	<span class="liststyle">Style</span>
+            	<span class="liststyle">Style
+            	<i class="fa-solid fa-caret-down"></i></span>
                <a href="${url}/codyStyleList?style=casual" class="list" target="blank">
                   <img src="${url}/img/codyimg/casualimg.jpg"  alt="" class="list-img" >
                   <div class="list-description">
