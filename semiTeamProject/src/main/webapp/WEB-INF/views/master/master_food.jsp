@@ -6,6 +6,22 @@
 <script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     
 <style>
+		@font-face {
+		   font-family: 'Cafe24Simplehae';
+		   src:
+		      url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Cafe24Simplehae.woff')
+		      format('woff');
+		   font-weight: normal;
+		   font-style: normal;
+		}
+
+		body {
+			background: url(${url}/img/mainbackG.png) center center no-repeat;
+			background-size: cover;
+			background-attachment: fixed;
+			font-family: 'Cafe24Simplehae';
+			
+		}
 
        ul, li{
            list-style-type: none;
@@ -28,6 +44,32 @@
          text-decoration: none;
          color:black;
       }
+	 #managerMenu{
+		  width:452px;;
+		  overflow:auto;
+		 margin:0 auto;
+	 }
+	 #managerMenu li{
+	 	 float:left;
+		 width:150px;
+		 text-align: center;
+		 height:40px;
+		 line-height: 40px;
+		 font-size: 24px;
+		 margin-bottom: 8px;
+		 font-weight: bold;
+		 color : black;
+		  
+	  }
+	  #managerMenu li a{
+	  
+	  	color : black;
+	  }
+	 #managerMenu li a:hover {
+		   color: #5584AC;
+		}
+     
+      
       input[type=button] { 
            background: rgb(108, 109, 105);
            border: none;
@@ -648,12 +690,13 @@
     });
 
 </script>
-   <h1>음식 관리 페이지</h1>
+   <h1>음식 관리 페이지</h1><hr/>
    
-   <div id="otherPageLink">
-      <a href="${url}/master/master_modify_cody">코디 관리 바로가기</a>&nbsp/
-      <a href="/member/masterPage">회원 관리 바로가기</a>
-   </div>
+   <ul id="managerMenu">
+         <li><a href="${url}/member/masterPage">회원관리</a></li>
+         <li><a href="${url}/master/master_modify_cody">코디관리</a></li>
+         <li><a href="${url}/master/master_food">음식관리</a></li>
+   </ul><br/>
    <hr/>
    
    <div class="container">

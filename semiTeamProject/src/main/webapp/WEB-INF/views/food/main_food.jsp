@@ -56,7 +56,7 @@
     .weatherIcon{
         width: 200px;
         height: 200px;
-        background-color: rgb(218, 217, 217);
+        background-color: rgb(240, 239, 239);
         border-radius: 10px;
         margin: 0 50px;
 		opacity: 0.8;
@@ -65,7 +65,6 @@
     #icon{
 		position: absolute;
 		top: 25%;
-		/*left: 10%;*/
 		left:-25%;
 		z-index: 10;
 	}
