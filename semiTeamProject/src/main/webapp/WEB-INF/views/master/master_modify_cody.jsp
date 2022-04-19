@@ -113,6 +113,12 @@ li:hover{
 .menu-category>a:first-child{
 	color: #5584AC;
 }
+.menu-category:hover {
+	
+}
+.menu-category-sub {
+
+}
 
 .img-container {
   float: right;
@@ -212,15 +218,17 @@ li:hover{
    <div class="main-container">
 
       <div class="menu-category">
-          
+      
+     
+        <!--  
         <a href="${url}/master/master_modify_cody"> 코디수정 </a>
         <a href="${url}/master/master_add_cody"> 코디추가 
-        <ul>      	
+        <ul class="menu-category-sub">      	
         <a href="${url}/master/master_modify_cody"><li>ALL</li></a>
       	<a href="${url}/master/masterGenderList?sex=m"><li>MEN</li></a>
       	<a href="${url}/master/masterGenderList?sex=f"><li>WOMEN</li></a>
       	</ul>
-      	</a>
+      	</a>-->  
       	<br/>
 
       </div><hr/>
