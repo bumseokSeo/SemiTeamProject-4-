@@ -487,7 +487,21 @@
          while (el.hasChildNodes()) {
             el.removeChild(el.lastChild);
          }
-      }            
+      }
+      // review 유효성 검사
+      $(function(){
+         $("#evaluation").submit(function(){
+            if($("#content").val()==''){
+               alert("리뷰를 입력하세요.");
+               return false;
+            }
+            
+            if(!$("input[name=star]:checked").val()){
+                alert("최소 1개 이상의 별점을 입력해주세요.");
+                return false;
+              } 
+         });
+      });
    </script>
 
 	<!-- IONICONS -->
