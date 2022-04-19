@@ -45,7 +45,7 @@
       margin-bottom: 50px;
    }
    a:hover {
-   		text-decoration: underline;
+   		text-decoration: none;
    }
    
    /*전체적인틀*//*전체적인틀*//*전체적인틀*//*전체적인틀*//*전체적인틀*//*전체적인틀*//*전체적인틀*/
@@ -60,8 +60,7 @@
 	}
 	
 	#master{
-		width:1500px;
-		height:1100px;
+		width:1150px;
 		padding:49px;
 		overflow:hidden;
 		margin: 0 auto;
@@ -157,7 +156,38 @@
 		height: 40px;
 		line-height: 40px;	
    }
+.sidenav {
+   position:relative;
+   float:left;
+   width: 10%;
+   height:100%;
 
+}
+
+.sidenav .mainnav {
+   display:flex;
+   flex-direction: column;
+   list-style-type: none;
+   margin: 32px 0;
+   color: #534439;
+}
+
+.sidenav .mainnav li {
+  letter-spacing: 1px;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.sidenav .mainnav>li {
+  padding: 16px 0px;
+}
+
+.sidenav .mainnav>li:hover, 
+.sidenav .mainnav>li:active,
+.sidenav .mainnav>li:focus {
+  cursor: pointer;
+  color: #95D1CC;
+}
 	
 </style>
 <script>
@@ -171,14 +201,22 @@ function delreviewOk(reviewno){
 }
 
 </script>
-<h1>리뷰관리 페이지</h1><hr/>
+<h1>Manager Page</h1><hr/>
 <div id="otherMasterPage">
-	<a href="${url}/master/master_modify_cody">코디 관리</a>
+	<a href="/member/masterPage">회원 관리</a>
+	<a href="/master/master_modify_cody">코디 관리</a>
 	<a href="/master/master_food">음식 관리</a>
-	<a href="/member/masterPage">유저 관리</a>
 </div>
+
+<nav class="sidenav">
+	<ul class="mainnav"> 
+		<a href="${url}//member/masterPage"><li>계정 관리</li></a>
+	    <a href="${url}/map/master_review"><li>리뷰 관리</li></a>
+	</ul>
+</nav>
+
 <div id="master">
-	
+
    <div id="reviewsearch">
    		 <form method="get" action="${url}/map/master_review" id="searchFrm2">
          	<img alt="" src="${url}/img/search.png" class="searchIcon" >

@@ -39,13 +39,12 @@
 		color: black;
 	}
 	h1{
-      margin-right:100px;
       font-size: 40px;
       text-align: center;
       margin-bottom: 50px;
    }
    a:hover {
-   		text-decoration: underline;
+   		text-decoration: none;
    }
    
    /*전체적인틀*//*전체적인틀*//*전체적인틀*//*전체적인틀*//*전체적인틀*//*전체적인틀*//*전체적인틀*/
@@ -59,10 +58,14 @@
 		font-size: 1.5em;	
 		font-weight: 700;
 	}
-	
+	#otherMasterPage a:hover {
+	   color: #5584AC;
+	}
+	#otherMasterPage a:nth-child(1){
+		color: #5584AC;
+	}
 	#master{
 		width:1150px;
-		height:1100px;
 		padding:49px;
 		overflow:hidden;
 		margin: 0 auto;
@@ -84,6 +87,7 @@
 		/*top:-120px;*/
 		border: 1px solid #bdbdbd;
  	    border-radius: 5px;	
+ 	    margin-bottom:30px;
 	}
 	#search{
 		width:1000px;
@@ -111,8 +115,6 @@
 		font-weight: 600;
 	}
 	
-	
-	
 	.memberul>li{
 		padding-top: 10px;
 		float: left;
@@ -132,8 +134,6 @@
 		padding-left: 10px;
 		width: 16%;
 	}
-	
-	
 	
 	#searchword{
 		width:300px;
@@ -164,6 +164,38 @@
 	line-height: 40px;
    }
 
+.sidenav {
+   position:relative;
+   float:left;
+   width: 10%;
+   height:100%;
+
+}
+
+.sidenav .mainnav {
+   display:flex;
+   flex-direction: column;
+   list-style-type: none;
+   margin: 32px 0;
+   color: #534439;
+}
+
+.sidenav .mainnav li {
+  letter-spacing: 1px;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.sidenav .mainnav>li {
+  padding: 16px 0px;
+}
+
+.sidenav .mainnav>li:hover, 
+.sidenav .mainnav>li:active,
+.sidenav .mainnav>li:focus {
+  cursor: pointer;
+  color: #95D1CC;
+}
 	
 </style>
 <script>
@@ -175,12 +207,20 @@ function delMemberOk(userid){
 }
 
 </script>
-<h1>관리자 페이지</h1><hr/>
+<h1>Manager Page</h1><hr/>
 <div id="otherMasterPage">
-	<a href="${url}/master/master_modify_cody">코디 관리</a>
+	<a href="/member/masterPage">회원 관리</a>
+	<a href="/master/master_modify_cody">코디 관리</a>
 	<a href="/master/master_food">음식 관리</a>
-	<a href="/map/master_review">리뷰 관리</a>
 </div>
+
+<nav class="sidenav">
+	<ul class="mainnav"> 
+		<a href="${url}/member/masterPage"><li>계정 관리</li></a>
+	    <a href="${url}/map/master_review"><li>리뷰 관리</li></a>
+	</ul>
+</nav>
+
 <div id="master">
 	<div id="search">
       <form method="get" action="${url}/member/masterPage" id="searchFrm">

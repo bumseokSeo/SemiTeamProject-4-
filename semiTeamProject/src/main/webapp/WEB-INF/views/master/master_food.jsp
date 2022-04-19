@@ -112,7 +112,6 @@
 	
       #foodForm{
             width : 100%;
-            height : 100%;
       }
       
       #adminForm{
@@ -125,6 +124,7 @@
 	    -webkit-box-shadow: 10px 10px 5px 0px rgba(189,189,189,1);
 	   -moz-box-shadow: 10px 10px 5px 0px rgba(189,189,189,1);
 	   box-shadow: 10px 10px 5px 0px rgba(189,189,189,1);
+	   margin-bottom:30px;
       }
       #deleteDate{
           text-decoration: none;
@@ -243,9 +243,25 @@
       font-size: 20px;
    }
    
-label {
-	font-weight: 700;
-}
+	label {
+		font-weight: 700;
+	}
+	#otherMasterPage{
+		position: relative;
+		display: flex;
+		justify-content: space-around;
+		width:1150px;
+		margin: 0 auto;
+		margin-top: 30px;
+		font-size: 1.5em;	
+		font-weight: 700;
+	}
+	#otherMasterPage a:hover {
+	   color: #5584AC;
+	}
+	#otherMasterPage a:nth-child(3){
+		color: #5584AC;
+	}
       
 </style>
 <script>
@@ -734,13 +750,13 @@ label {
     });
 
 </script>
-   <h1>음식 관리 페이지</h1><hr/>
+   <h1>Manager Page</h1><hr/>
 
-
-   <ul id="managerMenu">
-      <a href="/member/masterPage"><li>회원 관리</li></a>
-      <a href="${url}/master/master_modify_cody"><li>코디 관리</li></a>
-   </ul>
+	<div id="otherMasterPage">
+		<a href="/member/masterPage">회원 관리</a>
+		<a href="/master/master_modify_cody">코디 관리</a>
+		<a href="/master/master_food">음식 관리</a>
+	</div><br/>
    
    <div class="container">
         <div class="modal fade" data-backdrop = "static" data-keyboard="false" id="modalFood">

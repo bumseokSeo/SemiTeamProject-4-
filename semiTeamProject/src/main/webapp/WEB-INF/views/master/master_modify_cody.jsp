@@ -86,21 +86,6 @@ li:hover{
   position: relative;
 }
 
-#managerMenu{
-	width: 600px;
-	display: flex;
-	justify-content: space-around;
-}
-#managerMenu li{
-   height:40px;
-   line-height: 40px;
-   font-size: 24px;
-   margin-bottom: 8px;
-}
-#managerMenu li:hover {
-   color: #5584AC;
-}
-
 .sidenav {
    position:relative;
    float:left;
@@ -233,15 +218,31 @@ li:hover{
 #BottomButton {
   bottom: 50px;
 }
-
+#otherMasterPage{
+		position: relative;
+		display: flex;
+		justify-content: space-around;
+		width:1150px;
+		margin: 0 auto;
+		margin-top: 30px;
+		font-size: 1.5em;	
+		font-weight: 700;
+}
+#otherMasterPage a:hover {
+   color: #5584AC;
+}
+#otherMasterPage a:nth-child(2){
+	color: #5584AC;
+}
 
 </style>
 
       <h1>Manager Page</h1><hr/>
-      <ul id="managerMenu">
-         <a href="${url}/member/masterPage"><li>회원 관리</li></a>
-         <a href="${url}/master/master_food"><li>음식 관리</li></a>
-      </ul>
+	<div id="otherMasterPage">
+		<a href="/member/masterPage">회원 관리</a>
+		<a href="/master/master_modify_cody">코디 관리</a>
+		<a href="/master/master_food">음식 관리</a>
+	</div>
       <!--  
       <ul>
       	<a href="${url}/master/master_modify_cody"><li>ALL</li></a>
