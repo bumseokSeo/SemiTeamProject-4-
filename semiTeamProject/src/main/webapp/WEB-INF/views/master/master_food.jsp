@@ -737,22 +737,12 @@ label {
 
 </script>
    <h1>음식 관리 페이지</h1><hr/>
-<<<<<<< HEAD
-   
-   <ul id="managerMenu">
-         <li><a href="${url}/member/masterPage">회원관리</a></li>
-         <li><a href="${url}/master/master_modify_cody">코디관리</a></li>
-         <li><a href="${url}/master/master_food">음식관리</a></li>
-   </ul><br/>
-   <hr/>
+
 
    <ul id="managerMenu">
       <a href="/member/masterPage"><li>회원 관리</li></a>
       <a href="${url}/master/master_modify_cody"><li>코디 관리</li></a>
    </ul>
-   
- 
-
    
    <div class="container">
         <div class="modal fade" data-backdrop = "static" data-keyboard="false" id="modalFood">
