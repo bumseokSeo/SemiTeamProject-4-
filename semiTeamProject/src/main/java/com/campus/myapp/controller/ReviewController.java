@@ -16,9 +16,11 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.campus.myapp.service.MapService;
 import com.campus.myapp.service.ReviewService;
@@ -143,4 +145,36 @@ public class ReviewController {
       }
       return entity;
    }
+  
+   // 리뷰 수정 폼
+   @GetMapping("reviewEdit")
+	public ModelAndView reviewEdit(int reviewno) {
+		ModelAndView mav = new ModelAndView();
+		
+		mav.addObject("vo", service.reviewSelect(reviewno));
+		mav.setViewName("review/reviewEdit");
+		
+		return mav;		
+	}
+	
+	// 글 수정 (DB)
+	@PostMapping("reviewEditOk")
+	@ResponseBody
+	public int reviewEditOk(ReviewVO vo, HttpSession session) {
+		
+		vo.setUserid((String)session.getAttribute("logId"));
+		
+		try {
+			
+			int result = service.reviewUpdate(vo);
+			return result;
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+			// 수정실패
+			return -1;
+		}
+	}
+	
+	
 }

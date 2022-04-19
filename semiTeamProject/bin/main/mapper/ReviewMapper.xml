@@ -12,7 +12,7 @@
         <select id="getFileName" resultType="com.campus.myapp.vo.ReviewVO">
         select reviewimg from review where reviewno=${param1}
     </select>
-    <update id="reviewEdit">
+    <update id="reviewUpdate" >
         update review set reviewimg=#{reviewimg}, content=#{content} where reviewno=${reviewno} and userid=#{userid}
     </update>
     <delete id="reviewDel">
@@ -27,4 +27,8 @@
 		select count reviewno from review where id=#{param1}
 	</select>
 	
+	<select id="reviewSelect" resultType="com.campus.myapp.vo.ReviewVO">
+    	select reviewno, content, username, writedate
+    	from review where reviewno=#{param1}    	
+    </select>
 </mapper>

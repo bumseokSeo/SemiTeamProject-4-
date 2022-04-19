@@ -50,4 +50,19 @@ public class ReviewServiceImpl implements ReviewService{
 		return dao.reviewcnt(id);
 	}
 
+	@Override
+	public ReviewVO reviewSelect(int reviewno) {
+		// TODO Auto-generated method stub
+		return dao.reviewSelect(reviewno);
+	}
+
+	@Override
+	public int reviewUpdate(ReviewVO vo) {
+		// TODO Auto-generated method stub
+		return dao.reviewUpdate(vo);
+	}
+
+
+	
+
 }
