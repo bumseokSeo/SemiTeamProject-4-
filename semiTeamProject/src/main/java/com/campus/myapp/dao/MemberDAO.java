@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
 import com.campus.myapp.vo.MemberVO;
+import com.campus.myapp.vo.Paging15VO;
 @Mapper
 @Repository
 public interface MemberDAO {
@@ -27,8 +28,11 @@ public interface MemberDAO {
 	//회원탈퇴
 	public int memberDelete(String userid);
 	
-	//맴버정보 전부 출력
-	public List<MemberVO> memberListAll(MemberVO vo);
+	//총 레코드 수 구하기
+	public int totalRecord(Paging15VO pvo);
+	
+	//모든 맴버 구하기
+	public List<MemberVO> memberListAll(Paging15VO pVO);
 	
 	//회원관리-탈퇴
 	public int memberDeleteOk(String userid);

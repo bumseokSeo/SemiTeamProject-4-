@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.campus.myapp.dao.MemberDAO;
 import com.campus.myapp.vo.MemberVO;
+import com.campus.myapp.vo.Paging15VO;
 
 @Service
 public class MemberServiceImpl implements MemberService {
@@ -76,10 +77,18 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public List<MemberVO> memberListAll(MemberVO vo) {
+	public int totalRecord(Paging15VO pvo) {
 		// TODO Auto-generated method stub
-		return dao.memberListAll(vo);
+		return dao.totalRecord(pvo);
 	}
+
+	@Override
+	public List<MemberVO> memberListAll(Paging15VO pVO) {
+		// TODO Auto-generated method stub
+		return dao.memberListAll(pVO);
+	}
+
+	
 
 	
 	

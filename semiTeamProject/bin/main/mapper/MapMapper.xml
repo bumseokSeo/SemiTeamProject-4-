@@ -26,7 +26,7 @@
 		<if	test='searchword != null'>
 			where userid like '%${searchword}%'
 		</if>
-		 order by writedate desc
+		 order by writedate desc limit ${onePageRecord} offset ${offsetIndex}
 	</select>
 	<select id="getStore" resultType="com.campus.myapp.vo.StoreVO">
 		select * from store where id=#{param1}
@@ -36,6 +36,17 @@
     <select id="reviewCntSelectAll" resultType="com.campus.myapp.vo.ReviewVO">
 		select id,count(id) as reviewcnt, round(avg(star),2) as avgstar from review where id=#{param1};
 	</select>
+	
+	<select id="totalRecord" resultType="int">
+		select count(reviewno) cnt from review
+		<if	test='searchword != null'>
+			where userid like '%${searchword}%'
+		</if>
+	</select>
+	
+	<delete id="reviewDeleteOk">
+		delete from review where reviewno=#{param1}
+	</delete>
 	
 
 </mapper>

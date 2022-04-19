@@ -26,12 +26,22 @@
 	<delete id="memberDelete">
 		delete from member where userid=#{param1}
 	</delete>
+	
+	<select id="totalRecord" resultType="int">
+		select count(userid) cnt from member
+		<if	test='searchword != null'>
+			where userid like '%${searchword}%'
+		</if>
+	</select>
+	
 	<select id="memberListAll" resultType="com.campus.myapp.vo.MemberVO">
 		select userid,username,email,sex from member where userid not in ("master")
 		<if	test='searchword != null'>
 			and userid like '%${searchword}%'
 		</if>
+		order by userid desc limit ${onePageRecord} offset ${offsetIndex}
 	</select>
+	
 	<delete id="memberDeleteOk">
 		delete from member where userid=#{param1}
 	</delete>

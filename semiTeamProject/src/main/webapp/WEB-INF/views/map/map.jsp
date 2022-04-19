@@ -189,7 +189,7 @@
 
 						<div style="text-align: center;">
 							<textarea name="content" id='content' class="form-control"
-								style="width: 100%; height: 80px;"></textarea>
+								style="width: 100%; height: 80px;" maxlength="60" placeholder="리뷰는 최대 60글자까지 가능합니다."></textarea>
 							<input type="file" name="file" id="file" value="사진 업로드"
 								style="margin: 3px" /> <input type="submit" value="리뷰 등록"
 								class="btn btn-info" style="margin: 5px;" /> <input

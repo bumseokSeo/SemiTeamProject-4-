@@ -47,17 +47,19 @@
 		margin: 0 auto;
 		margin-bottom: 100px;
 	}
-	#memberlst{
+	
+	
+	
+	#reviewlst{
 		position:relative;
 		border: 1px solid gray;
 		width:670px;
-		margin-right:60px;
 		float:left;
-		height:900px;
+		height:920px;
 		overflow:auto;
-		/*top:-120px;*/
+		
 	}
-	#search{
+	#reviewsearch{
 		width:670px;
 		height:80px;
 		position:relative;
@@ -65,45 +67,37 @@
 		border : 1px solid gray;
 		padding:20px;
 		padding-left: 120px;
+		
 	}
-	
-	
-	
 	/*ul li*//*ul li*//*ul li*//*ul li*//*ul li*//*ul li*//*ul li*//*ul li*//*ul li*//*ul li*//*ul li*//*ul li*//*ul li*//*ul li*//*ul li*//*ul li*/
 	
-	.memberul{
+	
+	.reviewul{
 		overflow:hidden;
 		width:100%;
-		height:50px;
+		height:80px;
 		text-align:center;
 		border-bottom: 1px solid black;
 	}
-	
-	
-	
-	.memberul>li{
-		padding-top: 10px;
+	.reviewul>li{
+		padding-top: 30px;
 		float: left;
-		width:19%;
-		overflow : hidden;
+		width:15%;
+		
 	}
-	.memberul>li:nth-child(5n+3) {
+	.reviewul>li:nth-child(5n+5) {
 		width: 25%;
-		white-space:nowrap; /*줄 안바꿈*/
-      	overflow : hidden; /*넘친 내용 숨기기 */
-      	text-overflow : ellipsis;/* */
+		padding:3px;
+		overflow: hidden;
+		text-overflow : ellipsis;/* 넘친내용...*/
+      	
       	
 	}
-	
-	.memberul>li:last-of-type {
-		padding-top: 4px;
-		padding-left: 10px;
-		width: 16%;
+	.reviewul>li:last-of-type {
+		width:9%;
+		padding-top: 20px;
 	}
-	
-	
-	
-	
+
 	
 	#searchword{
 		width:300px;
@@ -112,17 +106,16 @@
 		margin-left: 20px;
 		margin-right: 20px;
 	}
-	
 	.searchIcon{
 		width:40px;
 		height:40px;
 		float:left;
 		
 	}
-	#searchBtn{
+	
+	#searchBtn2{
 		float:left;
 	}
-	
 	.paging>li{
       float:left;
       padding-right : 30px;
@@ -134,51 +127,58 @@
 	
 </style>
 <script>
-function delMemberOk(userid){
-	if(confirm('해당 회원을 탈퇴시키겠습니까?')){
-		location.href='/member/memberDeleteOk?userid='+userid;
-	}	
+
+function delreviewOk(reviewno){
+	if(confirm('해당 리뷰를 삭제하시겠습니까?')){
+		location.href='/map/reviewDeleteOk?reviewno='+reviewno;
+	}
 	return false;
+			
 }
 
 </script>
-<h1>관리자 페이지</h1>
+<h1>리뷰관리 페이지</h1>
 <div id="otherMasterPage">
 	<a href="${url}/master/master_modify_cody">코디 관리 바로가기</a>/
 	<a href="/master/master_food">음식 관리 바로가기</a>/
-	<a href="/map/master_review">리뷰 관리 바로가기</a>
+	<a href="/member/masterPage">유저 관리 바로가기</a>
 </div>
 <div id="master">
-	<div id="search">
-      <form method="get" action="${url}/member/masterPage" id="searchFrm">
-         <img alt="" src="${url}/img/search.png" class="searchIcon" >
-         <input type="text" name="searchword" id="searchword" placeholder="아이디로 검색" class="form-control form-control-lg"/>
-         <input type="submit" value="검색" class="btn btn-info" id="searchBtn">
-      </form>
-   </div>
+	
+   <div id="reviewsearch">
+   		 <form method="get" action="${url}/map/master_review" id="searchFrm2">
+         	<img alt="" src="${url}/img/search.png" class="searchIcon" >
+         	<input type="text" name="searchword" id="searchword" placeholder="아이디로 검색" class="form-control form-control-lg"/>
+         	<input type="submit" value="검색" class="btn btn-info" id="searchBtn2">
+         </form>
    
-    <div id="memberlst">
-    	<ul class="memberul">
-    		<li>아이디</li>
-			<li>닉네임</li>
-			<li>이메일</li>
-			<li>성별</li>
+   </div>
+    
+    
+    <div id="reviewlst">
+    	<ul class="reviewul">
+    		<li>가게 id</li>
+			<li>유저 id</li>
+			<li>작성일</li>
+			<li>별점</li>
+			<li style="padding-top: 30px;">글내용</li>
 			<li></li>
 		</ul>
-    	<div id="d1">
+    	<div id="d2">
     		<c:forEach var="vo" items="${list}">
-	         		<ul class='memberul'>
+	         		<ul class='reviewul'>
 		            
+			            <li>${vo.id}</li>
 			            <li>${vo.userid}</li>
-			            <li>${vo.username}</li>
-			            <li>${vo.email}</li>
-			            <c:if test="${vo.sex=='f' }">
-			            	<li>여성</li>
+			            <c:if test="${vo.modifydate=='' || vo.modifydate==null}">
+			            	<li>${vo.writedate}</li>
 			            </c:if>
-			            <c:if test="${vo.sex=='m' }">
-			            	<li>남성</li>
+			            <c:if test="${vo.modifydate!='' && vo.modifydate!=null}">
+			            	<li>${vo.modifydate}</li>
 			            </c:if>
-			            <li><input type='button' onclick='delMemberOk("${vo.userid}")' value='회원탈퇴' class='btn btn-danger delbtn'/></li>
+			            <li>${vo.star}</li>
+			            <li>${vo.content}</li>
+			            <li><input type='button' onclick='delreviewOk("${vo.reviewno}")' value='리뷰삭제' class='btn btn-danger delbtn'/></li>
 			            
 	         		</ul>
         	</c:forEach>
@@ -189,7 +189,7 @@ function delMemberOk(userid){
 			         <li>prev</li>
 			      </c:if>
 			      <c:if test="${pVO.pageNum>1}">
-			         <li><a href="${url}/member/masterPage?pageNum=${pVO.pageNum-1}<c:if test='${pVO.searchword!=null}'>&searchword=${pVO.searchword}</c:if>">prev</a></li>
+			         <li><a href="${url}/map/master_review?pageNum=${pVO.pageNum-1}<c:if test='${pVO.searchword!=null}'>&searchword=${pVO.searchword}</c:if>">prev</a></li>
 			      </c:if>
 			      
 			      <!-- 페이지 번호          1   ~5, 6  ~10, 11   ~15      -->
@@ -197,10 +197,10 @@ function delMemberOk(userid){
 			         <!-- 총 페이지수보다 출력할 페이지 번호가 작을 때 -->
 			         <c:if test="${p<=pVO.totalPage}">
 			            <c:if test="${p==pVO.pageNum}">
-			               <li><a style="color:red;" href="${url}/member/masterPage?pageNum=${p}<c:if test='${pVO.searchword!=null}'>&searchword=${pVO.searchword}</c:if>">${p}
+			               <li><a style="color:red;" href="${url}/map/master_review?pageNum=${p}<c:if test='${pVO.searchword!=null}'>&searchword=${pVO.searchword}</c:if>">${p}
 			            </c:if>
 			            <c:if test="${p!=pVO.pageNum }">
-			               <li><a href="${url}/member/masterPage?pageNum=${p}<c:if test='${pVO.searchword!=null}'>&searchword=${pVO.searchword}</c:if>">${p}
+			               <li><a href="${url}/map/master_review?pageNum=${p}<c:if test='${pVO.searchword!=null}'>&searchword=${pVO.searchword}</c:if>">${p}
 			            </c:if>
 			           </a></li>
 			         </c:if>
@@ -210,14 +210,13 @@ function delMemberOk(userid){
 			         <li>next</li>
 			      </c:if>
 			      <c:if test="${pVO.pageNum<pVO.totalPage}">
-			         <li><a href="${url}/member/masterPage?pageNum=${pVO.pageNum+1}<c:if test='${pVO.searchword!=null}'>&searchword=${pVO.searchword}</c:if>">next</a></li>
+			         <li><a href="${url}/map/master_review?pageNum=${pVO.pageNum+1}<c:if test='${pVO.searchword!=null}'>&searchword=${pVO.searchword}</c:if>">next</a></li>
 			      </c:if>
    
    			</ul>
     	</div>
+    
     </div>
-    
-    
     
 </div>
 

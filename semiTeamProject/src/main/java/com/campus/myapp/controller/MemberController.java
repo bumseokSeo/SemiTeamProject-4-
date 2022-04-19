@@ -22,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.campus.myapp.service.MemberService;
 import com.campus.myapp.vo.MemberVO;
+import com.campus.myapp.vo.Paging15VO;
 @RestController
 @RequestMapping("/member/")
 public class MemberController {
@@ -311,22 +312,31 @@ public class MemberController {
 		return mav;
 	}
 	@GetMapping("masterPage")
-	public ModelAndView masterPage() {
+	public ModelAndView masterPage(Paging15VO pVO) {
 		ModelAndView mav = new ModelAndView();
+		pVO.setTotalRecord(service.totalRecord(pVO));//총 레코드 수 도출
+		
+		
+		mav.addObject("list",service.memberListAll(pVO));
+		mav.addObject("pVO",pVO);
 		mav.setViewName("master/master_member");
 		return mav;
 	}
 	
-	//회원 정보 전부 출력
-	@RequestMapping("memberListAll")
-	public List<MemberVO> memberListAll(MemberVO vo) {
-		return service.memberListAll(vo);
-	}
+	
+	
 	
 	//회원탈퇴시키기
 	@GetMapping("memberDeleteOk")
-	public int memberDeleteOk(String userid) {
-		return service.memberDeleteOk(userid);
+	public ModelAndView memberDeleteOk(String userid) {
+		ModelAndView mav = new ModelAndView();
+		service.memberDeleteOk(userid);
+		
+		mav.setViewName("redirect:masterPage");
+		return mav;
+		
+		
+		
 	}
 	
 }

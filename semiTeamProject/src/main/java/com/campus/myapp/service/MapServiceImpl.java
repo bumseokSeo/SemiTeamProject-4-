@@ -7,6 +7,8 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.campus.myapp.dao.MapDAO;
+import com.campus.myapp.vo.Paging10VO;
+import com.campus.myapp.vo.Paging15VO;
 import com.campus.myapp.vo.ReviewVO;
 import com.campus.myapp.vo.StoreVO;
 
@@ -32,11 +34,7 @@ public class MapServiceImpl implements MapService {
 		return dao.addplace(vo);
 	}
 
-	@Override
-	public List<ReviewVO> reviewListAll(ReviewVO vo) {
-		// TODO Auto-generated method stub
-		return dao.reviewListAll(vo);
-	}
+	
 	@Override
 	public StoreVO getStore(String id) {
 		// TODO Auto-generated method stub
@@ -47,6 +45,24 @@ public class MapServiceImpl implements MapService {
 	public ReviewVO reviewCntSelectAll(String id) {
 		// TODO Auto-generated method stub
 		return dao.reviewCntSelectAll(id);
+	}
+
+	@Override
+	public int totalRecord(Paging10VO pvo) {
+		// TODO Auto-generated method stub
+		return dao.totalRecord(pvo);
+	}
+
+	@Override
+	public List<ReviewVO> reviewListAll(Paging10VO vo) {
+		// TODO Auto-generated method stub
+		return dao.reviewListAll(vo);
+	}
+
+	@Override
+	public int reviewDeleteOk(int reviewno) {
+		// TODO Auto-generated method stub
+		return dao.reviewDeleteOk(reviewno);
 	}
 	
 	
