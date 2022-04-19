@@ -1,10 +1,29 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <style>
+@font-face {
+   font-family: 'Cafe24Simplehae';
+   src:
+      url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Cafe24Simplehae.woff')
+      format('woff');
+   font-weight: normal;
+   font-style: normal;
+}
+
+* {
+	box-sizing: border-box;
+}
+
 body {
+	background: url(${url}/img/mainbackG.png) center center no-repeat;
+	background-size: cover;
+	background-attachment: fixed;
+	font-family: 'Cafe24Simplehae';
 	margin: 0;
 	padding: 0;
+	font-weight: 700
 }
+
 
 ul, li {
 	margin: 0;
@@ -31,18 +50,24 @@ h1 {
 #findform {
 	padding-top: 100px;
 	padding-left: 100px;
-	border: 1px solid gray;
 	width: 1130px;
 	margin: 0px auto;
 	font-size: 1em;
 	overflow: auto;
 	margin-bottom: 200px;
+    border: 1px solid #bdbdbd;
+    border-radius: 5px;
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(189,189,189,1);
+   -moz-box-shadow: 10px 10px 5px 0px rgba(189,189,189,1);
+   box-shadow: 10px 10px 5px 0px rgba(189,189,189,1);		
+	
 }
 
 #findform li {
 	float: left;
 	width: 20%;
 	margin-bottom: 30px;
+	line-height: 42px;
 }
 
 #findform li:nth-child(2n) {
@@ -63,7 +88,7 @@ h1 {
 
 
 #submitbtn {
-	width: 90%;
+	width: 92%;
 	margin-left: 0px auto;
 	height:70px;
 	margin-bottom: 100px;
