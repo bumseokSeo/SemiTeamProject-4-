@@ -91,7 +91,7 @@
 	   		display: none;
 	   }
 	   #foodimgName{
-	   	color : gray;
+	   		color : gray;
 	   }
 	  
        #modalFood{
@@ -219,8 +219,8 @@
     			$("#foodPhoto").css('display','none');
     			$("#photoDelete").css('display', 'none');
     		}
-    		
     	});
+    	
     	
     	//음식 이름에 focus
     	$("#fname").focus(function(){
@@ -784,7 +784,7 @@
                     
                 </div>
                 
-                <div class="m-2" id="buttons">
+                <div id="buttons">
                     <input type="button" class="btn btn-secondary mb-3 " id="cancel" value="취소">
                     <input type="button" class="btn btn-secondary mb-3 " id="add" value="추가">
                     <input type="button" class="btn btn-secondary mb-3 " id="modify" value="수정">
