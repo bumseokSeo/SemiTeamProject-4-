@@ -4,10 +4,23 @@
 
 *{
   box-sizing: border-box;
-
 }
+@font-face {
+   font-family: 'Cafe24Simplehae';
+   src:
+      url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Cafe24Simplehae.woff')
+      format('woff');
+   font-weight: normal;
+   font-style: normal;
+}
+
+body {
+	background: url(${url}/img/mainbackG.png);
+	background-size: cover;
+	font-family: 'Cafe24Simplehae';
+}
+
 body,ul,li{
-	font-family: 'NanumSquare',san-serif;
 	padding:0;
 	margin:0;
 	list-style-type: none;
@@ -62,15 +75,23 @@ h1 {
 	width:90%;
 	height:100%;
 	margin:0 auto;
+	margin-top: 30px;
 }
 
 #codyFrm {
 	width: 65%;
-	border: 1px solid gray;
+	border: 1px solid #bdbdbd;
+	border-radius: 5px;
 	padding: 50px;
+	margin:0 auto;
 	margin-top: 30px;
 	margin-bottom:20px;
-	margin:0 auto;
+    background-color: rgba( 255, 255, 255, 0.4 );
+    border: 1px solid #bdbdbd;
+    border-radius: 5px;
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(189,189,189,1);
+	-moz-box-shadow: 10px 10px 5px 0px rgba(189,189,189,1);
+	box-shadow: 10px 10px 5px 0px rgba(189,189,189,1);
 }
 
 #codyFrm>input[type=text] {
@@ -80,6 +101,8 @@ h1 {
 	float:left;
 	width:20%;
 	margin-bottom:30px;
+	font-weight: 700;
+	line-height: 30px;
 }
 #codyFrm>ul>li:nth-child(2n){
 	width:80%;
@@ -107,6 +130,10 @@ textarea {
 }
 #submitbtn{
 	width:160px;
+}
+
+#resetbtn, #submitbtn {
+	margin-top: 30px;
 }
 
 </style>

@@ -1,5 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <style>
+
+@font-face {
+   font-family: 'Cafe24Simplehae';
+   src:
+      url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Cafe24Simplehae.woff')
+      format('woff');
+   font-weight: normal;
+   font-style: normal;
+}
+
+body {
+	background: url(${url}/img/mainbackG.png);
+	background-size: cover;
+	font-family: 'Cafe24Simplehae';
+}
+
 body,ul,li{
    padding:0;
    margin:0;
@@ -15,20 +31,30 @@ body,ul,li{
 #codyFrm {
    width: 800px;
    float: left;
-   border: 1px solid gray;
+   border: 1px solid #bdbdbd;
+   border-radius: 5px;
    padding: 50px;
    padding-top: 30px;
    margin-top: 30px;
    margin-bottom:20px;
+-webkit-box-shadow: 10px 10px 5px 0px rgba(189,189,189,1);
+-moz-box-shadow: 10px 10px 5px 0px rgba(189,189,189,1);
+box-shadow: 10px 10px 5px 0px rgba(189,189,189,1);
+   background-color: rgba( 255, 255, 255, 0.4 );
+  
+   
 }
 
 #codyFrm>input[type=text] {
    width: 300px;
+
 }
 #codyFrm>ul>li{
    float:left;
    width:20%;
    margin-bottom:30px;
+   font-weight: 700;
+   line-height: 30px;
 }
 #codyFrm>ul>li:nth-child(2n){
    width:80%;
@@ -49,6 +75,7 @@ textarea {
    width:160px;
    margin-left:85px;
    margin-right:200px;
+   
 }
 #submitbtn{
    width:160px;
@@ -65,6 +92,9 @@ textarea {
    margin-bottom: 15px;
 }
 
+#canclebtn, #submitbtn {
+	margin-top: 30px;
+}
 </style>
 
 <script>
@@ -132,8 +162,8 @@ $(function() {
 });
 
 </script>
+      <h1>코디 관리자 수정폼</h1><hr/>
    <div id="d1">
-      <h1>코디 관리자 수정폼</h1>
       <form method="post" action="/codyUpdate" id="codyFrm" enctype="multipart/form-data">
          <img src="${url}/img/codyimg/codyupload/${vo[0].cname}" id="codyImg"/>
             <div class="addimage">
