@@ -1,9 +1,27 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <style>
+@font-face {
+   font-family: 'Cafe24Simplehae';
+   src:
+      url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Cafe24Simplehae.woff')
+      format('woff');
+   font-weight: normal;
+   font-style: normal;
+}
+
+* {
+	box-sizing: border-box;
+}
+
 body {
+	background: url(${url}/img/mainbackG.png) center center no-repeat;
+	background-size: cover;
+	background-attachment: fixed;
+	font-family: 'Cafe24Simplehae';
 	margin: 0;
 	padding: 0;
+	font-weight: 700
 }
 
 ul, li {
@@ -14,6 +32,7 @@ ul, li {
 li {
 	list-style-type: none;
 	font-size: 1em;
+	line-height: 40px;
 }
 
 a:link, a:visited {
@@ -31,12 +50,17 @@ h1 {
 #findform {
 	padding-top: 100px;
 	padding-left: 100px;
-	border: 1px solid gray;
 	width: 1130px;
 	margin: 0px auto;
 	font-size: 1em;
 	overflow: auto;
 	margin-bottom: 200px;
+    background-color: rgba( 255, 255, 255, 0.4 );
+    border: 1px solid #bdbdbd;
+    border-radius: 5px;
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(189,189,189,1);
+   -moz-box-shadow: 10px 10px 5px 0px rgba(189,189,189,1);
+   box-shadow: 10px 10px 5px 0px rgba(189,189,189,1);	
 }
 
 #findform li {
@@ -58,7 +82,7 @@ h1 {
 	width: 90%;
 }
 #findidbtn {
-	width: 90%;
+	width: 92%;
 	margin-left: 0px auto;
 	height:70px;
 	margin-bottom: 100px;

@@ -64,7 +64,7 @@
 	 #managerMenu{
 		  width:452px;;
 		  overflow:auto;
-		 margin:0 auto;
+		 margin:30px; auto;
 	 }
 	 #managerMenu li{
 	 	 float:left;
@@ -93,7 +93,7 @@
       }
       
 	#managerMenu{
-		margin: 0 auto;
+		margin: 30px auto;
 		width: 600px;
 		display: flex;
 		justify-content: space-around;
@@ -113,20 +113,18 @@
       #foodForm{
             width : 100%;
             height : 100%;
-            margin: 30px 0px;
       }
       
       #adminForm{
           width: 65%;
          padding: 50px;
-           margin: auto;
+           margin: 0 auto;
 	    background-color: rgba( 255, 255, 255, 0.4 );
 	    border: 1px solid #bdbdbd;
 	    border-radius: 5px;
 	    -webkit-box-shadow: 10px 10px 5px 0px rgba(189,189,189,1);
 	   -moz-box-shadow: 10px 10px 5px 0px rgba(189,189,189,1);
 	   box-shadow: 10px 10px 5px 0px rgba(189,189,189,1);
-	   margin-top: 30px;
       }
       #deleteDate{
           text-decoration: none;

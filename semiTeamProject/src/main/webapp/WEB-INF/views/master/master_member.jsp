@@ -2,7 +2,24 @@
     pageEncoding="UTF-8"%>
     
 <style>
+	@font-face {
+	   font-family: 'Cafe24Simplehae';
+	   src:
+	      url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Cafe24Simplehae.woff')
+	      format('woff');
+	   font-weight: normal;
+	   font-style: normal;
+	}
+	
+	* {
+		box-sizing: border-box;
+	}
+	
 	body {
+		background: url(${url}/img/mainbackG.png) center center no-repeat;
+		background-size: cover;
+		background-attachment: fixed;
+		font-family: 'Cafe24Simplehae';
 		margin: 0;
 		padding: 0;
 	}
@@ -14,7 +31,7 @@
 	
 	li {
 		list-style-type: none;
-		font-size: 1em;
+		font-size: 1.1em;
 	}
 	
 	a:link, a:visited {
@@ -33,36 +50,49 @@
    
    /*전체적인틀*//*전체적인틀*//*전체적인틀*//*전체적인틀*//*전체적인틀*//*전체적인틀*//*전체적인틀*/
 	#otherMasterPage{
-		width:1500px;
+		position: relative;
+		display: flex;
+		justify-content: space-around;
+		width:1150px;
 		margin: 0 auto;
-		font-size: 1.5em;
+		margin-top: 30px;
+		font-size: 1.5em;	
+		font-weight: 700;
 	}
 	
 	#master{
-		border: 1px solid gray;
-		width:1500px;
+		width:1150px;
 		height:1100px;
 		padding:49px;
 		overflow:hidden;
 		margin: 0 auto;
+		margin-top: 30px;
 		margin-bottom: 100px;
+	    background-color: rgba( 255, 255, 255, 0.4 );
+	    border: 1px solid #bdbdbd;
+	    border-radius: 5px;
+	    -webkit-box-shadow: 10px 10px 5px 0px rgba(189,189,189,1);
+	   -moz-box-shadow: 10px 10px 5px 0px rgba(189,189,189,1);
+	   box-shadow: 10px 10px 5px 0px rgba(189,189,189,1);		
 	}
 	#memberlst{
 		position:relative;
+		margin: 0 auto;
 		border: 1px solid gray;
 		width:670px;
-		margin-right:60px;
-		float:left;
-		height:900px;
 		overflow:auto;
 		/*top:-120px;*/
+		border: 1px solid #bdbdbd;
+ 	    border-radius: 5px;	
 	}
 	#search{
 		width:670px;
 		height:80px;
 		position:relative;
+		margin: auto;
 		margin-bottom:30px;
-		border : 1px solid gray;
+		border: 1px solid #bdbdbd;
+ 	    border-radius: 5px;		
 		padding:20px;
 		padding-left: 120px;
 	}
@@ -76,7 +106,8 @@
 		width:100%;
 		height:50px;
 		text-align:center;
-		border-bottom: 1px solid black;
+		border-bottom: 1px solid #bdbdbd;
+		font-weight: 600;
 	}
 	
 	
@@ -103,8 +134,6 @@
 	
 	
 	
-	
-	
 	#searchword{
 		width:300px;
 		height:40px;
@@ -124,11 +153,14 @@
 	}
 	
 	.paging>li{
-      float:left;
-      padding-right : 30px;
+	display: inline-block;
+	margin-right: 12px;
+
    }
    .paging{
-   		margin-left: 150px;
+	text-align: center;
+	height: 40px;
+	line-height: 40px;
    }
 
 	
@@ -142,11 +174,11 @@ function delMemberOk(userid){
 }
 
 </script>
-<h1>관리자 페이지</h1>
+<h1>관리자 페이지</h1><hr/>
 <div id="otherMasterPage">
-	<a href="${url}/master/master_modify_cody">코디 관리 바로가기</a>/
-	<a href="/master/master_food">음식 관리 바로가기</a>/
-	<a href="/map/master_review">리뷰 관리 바로가기</a>
+	<a href="${url}/master/master_modify_cody">코디 관리</a>
+	<a href="/master/master_food">음식 관리</a>
+	<a href="/map/master_review">리뷰 관리</a>
 </div>
 <div id="master">
 	<div id="search">

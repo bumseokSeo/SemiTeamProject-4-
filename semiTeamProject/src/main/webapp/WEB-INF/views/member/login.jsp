@@ -84,7 +84,7 @@ h1 {
 	margin-top: 18px;
 }
 #submitbtn {
-	width: 90%;
+	width: 92%;
 	margin-left: 0px auto;
 	height:70px;
 	margin-bottom: 100px;

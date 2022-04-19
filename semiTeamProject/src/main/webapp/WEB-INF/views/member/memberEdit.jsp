@@ -1,9 +1,27 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <style>
+	@font-face {
+	   font-family: 'Cafe24Simplehae';
+	   src:
+	      url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Cafe24Simplehae.woff')
+	      format('woff');
+	   font-weight: normal;
+	   font-style: normal;
+	}
+	
+	* {
+		box-sizing: border-box;
+	}
+	
 	body {
+		background: url(${url}/img/mainbackG.png) center center no-repeat;
+		background-size: cover;
+		background-attachment: fixed;
+		font-family: 'Cafe24Simplehae';
 		margin: 0;
 		padding: 0;
+		font-weight: 700
 	}
 	
 	ul, li {
@@ -36,20 +54,22 @@
 	#memberEdit{
 		padding-top:100px;
 		padding-left:100px;
-		border: 1px solid gray;
 		width:1130px;
 		margin:0px auto;
-		
 		font-size: 1em;
 		overflow:auto;
-		
-	
+		border: 1px solid #bdbdbd;
+  	    border-radius: 5px;
+        -webkit-box-shadow: 10px 10px 5px 0px rgba(189,189,189,1);
+        -moz-box-shadow: 10px 10px 5px 0px rgba(189,189,189,1);
+        box-shadow: 10px 10px 5px 0px rgba(189,189,189,1);		
 	}
 	
 	#memberEdit li{
 		float:left;
 		width:20%;
 		margin-bottom: 30px;
+		line-height: 41px;
 		
 	}
 	#memberEdit li:nth-child(2n){

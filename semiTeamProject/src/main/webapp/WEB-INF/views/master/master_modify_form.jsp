@@ -31,15 +31,15 @@ body,ul,li{
 #codyFrm {
    width: 800px;
    float: left;
-   border: 1px solid #bdbdbd;
-   border-radius: 5px;
    padding: 50px;
    padding-top: 30px;
    margin-top: 30px;
    margin-bottom:20px;
--webkit-box-shadow: 10px 10px 5px 0px rgba(189,189,189,1);
--moz-box-shadow: 10px 10px 5px 0px rgba(189,189,189,1);
-box-shadow: 10px 10px 5px 0px rgba(189,189,189,1);
+   border: 1px solid #bdbdbd;
+   border-radius: 5px;
+   -webkit-box-shadow: 10px 10px 5px 0px rgba(189,189,189,1);
+   -moz-box-shadow: 10px 10px 5px 0px rgba(189,189,189,1);
+   box-shadow: 10px 10px 5px 0px rgba(189,189,189,1);
    background-color: rgba( 255, 255, 255, 0.4 );
   
    

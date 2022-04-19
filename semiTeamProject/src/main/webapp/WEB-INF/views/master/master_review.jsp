@@ -2,8 +2,25 @@
     pageEncoding="UTF-8"%>
     
 <style>
+	@font-face {
+	   font-family: 'Cafe24Simplehae';
+	   src:
+	      url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Cafe24Simplehae.woff')
+	      format('woff');
+	   font-weight: normal;
+	   font-style: normal;
+	}
+	* {
+		box-sizing: border-box;
+	}
+	
 	body {
-		margin: 0;
+		background: url(${url}/img/mainbackG.png) center center no-repeat;
+		background-size: cover;
+		background-attachment: fixed;
+		font-family: 'Cafe24Simplehae';
+		position: relative;
+		margin: 0 auto;
 		padding: 0;
 	}
 	
@@ -33,28 +50,36 @@
    
    /*전체적인틀*//*전체적인틀*//*전체적인틀*//*전체적인틀*//*전체적인틀*//*전체적인틀*//*전체적인틀*/
 	#otherMasterPage{
-		width:1500px;
+	    display: flex;
+	    justify-content: space-around;
+		width:1150px;
 		margin: 0 auto;
-		font-size: 1.5em;
+		margin-top: 30px;
+		font-size: 1.5em;	
+		font-weight: 700;
 	}
 	
 	#master{
-		border: 1px solid gray;
 		width:1500px;
 		height:1100px;
 		padding:49px;
 		overflow:hidden;
 		margin: 0 auto;
+		margin-top: 30px;
 		margin-bottom: 100px;
+	    border: 1px solid #bdbdbd;
+	    border-radius: 5px;
+	    -webkit-box-shadow: 10px 10px 5px 0px rgba(189,189,189,1);
+	   -moz-box-shadow: 10px 10px 5px 0px rgba(189,189,189,1);
+	    box-shadow: 10px 10px 5px 0px rgba(189,189,189,1);			
 	}
-	
-	
+
 	
 	#reviewlst{
-		position:relative;
-		border: 1px solid gray;
+	    border: 1px solid #bdbdbd;
+	    border-radius: 5px;
 		width:670px;
-		float:left;
+		margin: 0 auto;
 		height:920px;
 		overflow:auto;
 		
@@ -62,9 +87,10 @@
 	#reviewsearch{
 		width:670px;
 		height:80px;
-		position:relative;
+		margin: 0 auto;
 		margin-bottom:30px;
-		border : 1px solid gray;
+	    border: 1px solid #bdbdbd;
+	    border-radius: 5px;
 		padding:20px;
 		padding-left: 120px;
 		
@@ -77,7 +103,8 @@
 		width:100%;
 		height:80px;
 		text-align:center;
-		border-bottom: 1px solid black;
+		border-bottom: 1px solid #bdbdbd;
+		font-weight: 600;
 	}
 	.reviewul>li{
 		padding-top: 30px;
@@ -117,11 +144,14 @@
 		float:left;
 	}
 	.paging>li{
-      float:left;
-      padding-right : 30px;
+    	display: inline-block;
+		margin-right: 12px;   	   
+	   
    }
    .paging{
-   		margin-left: 150px;
+	    text-align: center;
+		height: 40px;
+		line-height: 40px;	
    }
 
 	
@@ -137,11 +167,11 @@ function delreviewOk(reviewno){
 }
 
 </script>
-<h1>리뷰관리 페이지</h1>
+<h1>리뷰관리 페이지</h1><hr/>
 <div id="otherMasterPage">
-	<a href="${url}/master/master_modify_cody">코디 관리 바로가기</a>/
-	<a href="/master/master_food">음식 관리 바로가기</a>/
-	<a href="/member/masterPage">유저 관리 바로가기</a>
+	<a href="${url}/master/master_modify_cody">코디 관리</a>
+	<a href="/master/master_food">음식 관리</a>
+	<a href="/member/masterPage">유저 관리</a>
 </div>
 <div id="master">
 	
