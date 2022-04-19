@@ -9,7 +9,7 @@ spring:
   datasource: #바이바티스
     driver-class-name: com.mysql.cj.jdbc.Driver
 
-    url: jdbc:mysql://222.236.33.50/semiproject?characterEncoding=UTF-8
+    url: jdbc:mysql://1.231.238.235/semiproject?characterEncoding=UTF-8
     username: semiproject_id
     password: fullstackteam4
 

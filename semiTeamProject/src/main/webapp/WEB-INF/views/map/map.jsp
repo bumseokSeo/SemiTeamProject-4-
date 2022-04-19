@@ -163,8 +163,6 @@
 			</div>
 		</nav>
 	</div>
-   	<div class="map_wrap" style="position: relative;">
-
 	<div class="map_wrap" style="position: relative;">
 		<div style="z-index: 9">
 			<form class="searching" onsubmit="searchPlaces(); return false;">
@@ -237,6 +235,7 @@
 
 						</table>
 						<div id="reviewListBody"></div>
+						<button class="btn btn-info" style="margin:auto;display:block;" id="reviewhide" onclick=reviewhide()>리뷰 닫기</button>						
 					</div>
 				</div>
 			</div>
@@ -371,13 +370,7 @@
             }
          });
       }
-      
-      
-      
-  
       function getListItem(index, places) {
-    	  
-    
     	  var urll = "${url}/map/reviewCntAvg";
     	  var params = "id="+places.id;
     	  var el;
@@ -398,8 +391,6 @@
 	  	               + '<div>'
 	  	               + '</h5>' //음식점과 마커 링크 하기               
 	  	               + '<div> 리뷰 | '+result.avgstar+"<i class='fa fa-star' style='color:red;'></i>"+' | '
-	  	               + '<input type="hidden" value="리뷰" onclick="toggleDiv('
-	  	               + places.id + ')">' ;
 	  	               if(result.reviewcnt>0){
 	  	            	 itemStr += result.reviewcnt +"건"
 	  	            	}
@@ -407,8 +398,7 @@
 	  	            	 itemStr+="등록된 리뷰가 없습니다."
 	  	               }
 	  	               
-	  	               
-	  	             itemStr += '</input>' + '</div>'; //DB에서 별점평균, 리뷰 수 가져오기 + 별모양 css 만들기 
+	  	             itemStr += '</div>'; //DB에서 별점평균, 리뷰 수 가져오기 + 별모양 css 만들기 
 	  	         if (places.road_address_name) {
 	  	            itemStr += '    <span>' + places.road_address_name + '</span>'
 	  	                  + '   <span class="jibun gray">' + places.address_name
@@ -431,18 +421,18 @@
          
       }
 
-      function toggleDiv(id) {
-    	 // alert(id)
+      function toggleDiv(id) {    	 
          const div = document.getElementById('review');
-         $('#pid').val(id);
-         if (div.style.display === 'block') {
-            div.style.display = 'none';
-         } else {
-            div.style.display = 'block';
-           
-         }
+         $('#pid').val(id);    
+         div.style.display = 'block';  
          reviewListAll(id);
       }
+      
+      function reviewhide(id) {     	 
+          const div = document.getElementById('review');
+          $('#pid').val(id);         
+             div.style.display = 'none';
+       }
 
       // 마커를 생성하고 지도 위에 마커를 표시하는 함수입니다
       function addMarker(position, idx, title) {
