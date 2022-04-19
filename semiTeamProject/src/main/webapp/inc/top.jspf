@@ -72,7 +72,6 @@ h1 {
     text-align: center;
     font-family: "Cafe24Simplehae";
 	font-size: 40px;
-	text-shadow: #9c9c9c 4px 4px 0px, 2px 2px 2px rgba(206, 89, 55, 0);
 }
 .animate__animated.animate__swing {
 		--animate-duration: 1.2s;

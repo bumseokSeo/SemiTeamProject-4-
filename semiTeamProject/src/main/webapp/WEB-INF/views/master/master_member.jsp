@@ -79,24 +79,25 @@
 		position:relative;
 		margin: 0 auto;
 		border: 1px solid gray;
-		width:670px;
+		width:1000px;
 		overflow:auto;
 		/*top:-120px;*/
 		border: 1px solid #bdbdbd;
  	    border-radius: 5px;	
 	}
 	#search{
-		width:670px;
+		width:1000px;
 		height:80px;
 		position:relative;
 		margin: auto;
-		margin-bottom:30px;
-		border: 1px solid #bdbdbd;
  	    border-radius: 5px;		
 		padding:20px;
 		padding-left: 120px;
 	}
-	
+	#searchFrm{
+		margin:0 auto;
+		float:right;
+	}
 	
 	
 	/*ul li*//*ul li*//*ul li*//*ul li*//*ul li*//*ul li*//*ul li*//*ul li*//*ul li*//*ul li*//*ul li*//*ul li*//*ul li*//*ul li*//*ul li*//*ul li*/
@@ -138,7 +139,7 @@
 		width:300px;
 		height:40px;
 		float:left;
-		margin-left: 20px;
+		margin-left: 10px;
 		margin-right: 20px;
 	}
 	

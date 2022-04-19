@@ -78,22 +78,25 @@
 	#reviewlst{
 	    border: 1px solid #bdbdbd;
 	    border-radius: 5px;
-		width:670px;
+		width:1000px;
 		margin: 0 auto;
 		height:920px;
 		overflow:auto;
+		margin-bottom:30px;
 		
 	}
 	#reviewsearch{
-		width:670px;
+		width:1000px;
 		height:80px;
 		margin: 0 auto;
-		margin-bottom:30px;
-	    border: 1px solid #bdbdbd;
 	    border-radius: 5px;
 		padding:20px;
 		padding-left: 120px;
 		
+	}
+	#searchFrm2{
+		margin:0 auto;
+		float:right;
 	}
 	/*ul li*//*ul li*//*ul li*//*ul li*//*ul li*//*ul li*//*ul li*//*ul li*//*ul li*//*ul li*//*ul li*//*ul li*//*ul li*//*ul li*//*ul li*//*ul li*/
 	
@@ -114,8 +117,9 @@
 	}
 	.reviewul>li:nth-child(5n+5) {
 		width: 25%;
-		padding:3px;
+		padding:30px;
 		overflow: hidden;
+		white-space: nowrap;
 		text-overflow : ellipsis;/* 넘친내용...*/
       	
       	
@@ -130,7 +134,7 @@
 		width:300px;
 		height:40px;
 		float:left;
-		margin-left: 20px;
+		margin-left: 10px;
 		margin-right: 20px;
 	}
 	.searchIcon{
