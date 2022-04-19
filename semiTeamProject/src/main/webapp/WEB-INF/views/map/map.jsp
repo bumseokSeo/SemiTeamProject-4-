@@ -72,7 +72,7 @@
                                  + vo.content
                                  + '</td>';
                            tag += '<td style="width:20%;border-bottom:1px solid #ddd">'
-                                 + vo.userid + '</td>';
+                                 + vo.username + '</td>';
                            tag += '<td style="width:20%;border-bottom:1px solid #ddd">'
                                  + vo.writedate + '</td>';
 
@@ -166,8 +166,14 @@
 			<ul id="placesList"></ul>
 			<div id="pagination"></div>
 		</div>
+<<<<<<< HEAD
 		<div id="review" style="margin: 2px; overflow: auto; border: solid #20B2AA; float: left; display: none; width: 450px; height: 100%; position: relative; background-color: white; z-index: 1;">
 			<div  id="storeBody">aaa</div>
+=======
+		<div id="review"
+			style="margin: 2px; overflow: auto; border: solid #20B2AA; float: left; display: none; width: 450px; height: 100%; position: relative; background-color: white; z-index: 1;">
+			<div  id="storeBody"></div>
+>>>>>>> branch 'main' of https://github.com/bumseokSeo/SemiTeamProject-4-.git
 			<hr />
 			<div id="reviewcomment">
 				<h5 style="height: 23px; font-size: 20px; line-height: 24px; text-align: center; margin: 10px;">리뷰작성</h5>
@@ -206,7 +212,7 @@
 								<tr style="text-align: center;">
 									<th style="width: 15%;">이미지</th>
 									<th style="width: 40%;">내용</th>
-									<th style="width: 20%;">작성자</th>
+									<th style="width: 20%;">닉네임</th>
 									<th style="width: 20%;">작성일</th>
 								</tr>
 								<%-- <c:forEach var="vo" items="${list }">
@@ -344,7 +350,6 @@
       // 검색결과 항목을 Element로 반환하는 함수입니다
       // 음식점 이름 클릭시 마커로 이동하는것도 좋을듯?
       // 마커 클릭시 마커 모양 변화 주기?
-
       function addplaces(places) {
 
          $.ajax({

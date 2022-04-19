@@ -5,8 +5,8 @@
         insert into review (reviewno, userid, content, star, reviewimg, id) values(#{reviewno}, #{userid}, #{content}, #{star}, #{reviewimg}, #{id})
     </insert>
     <select id="reviewList" resultType="com.campus.myapp.vo.ReviewVO">
-        select reviewno, userid, content, writedate, star, reviewimg from review
-        where id=#{param1}
+        select r.reviewno, r.userid, r.content, r.writedate, r.star, r.reviewimg, m.username from review r join member m on r.userid=m.userid
+        where r.id=#{param1}
         order by reviewno desc
     </select>
         <select id="getFileName" resultType="com.campus.myapp.vo.ReviewVO">
