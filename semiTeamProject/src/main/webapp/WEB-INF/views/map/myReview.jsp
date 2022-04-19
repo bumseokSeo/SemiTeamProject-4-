@@ -2,7 +2,24 @@
     pageEncoding="UTF-8"%>
     
 <style>
+	@font-face {
+	   font-family: 'Cafe24Simplehae';
+	   src:
+	      url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Cafe24Simplehae.woff')
+	      format('woff');
+	   font-weight: normal;
+	   font-style: normal;
+	}
+	
+	* {
+		box-sizing: border-box;
+	}
+	
 	body {
+		background: url(${url}/img/mainbackG.png) center center no-repeat;
+		background-size: cover;
+		background-attachment: fixed;
+		font-family: 'Cafe24Simplehae';
 		margin: 0;
 		padding: 0;
 	}
@@ -29,13 +46,18 @@
       
    }
 	#myreview{
-		
-		border: 1px solid gray;
 		width:1130px;
 		height:1100px;
 		padding:49px;
 		overflow:hidden;
 		margin: 0 auto;
+	    background-color: rgba( 255, 255, 255, 0.4 );
+	    border: 1px solid #bdbdbd;
+	    border-radius: 5px;
+	    -webkit-box-shadow: 10px 10px 5px 0px rgba(189,189,189,1);
+	   -moz-box-shadow: 10px 10px 5px 0px rgba(189,189,189,1);
+	   box-shadow: 10px 10px 5px 0px rgba(189,189,189,1);		
+	}		
 	}
 	#myreview2{	
 		border: 1px solid gray;
@@ -49,6 +71,7 @@
 		height:60px;
 		text-align:center;
 		border-bottom: 1px solid black;
+		font-weight: 700;
 	}
 	.reviewul>li{
 		padding-top: 20px;
