@@ -28,7 +28,21 @@
 </script>
 
 <style>
-@import url('https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css');
+@font-face {
+   font-family: 'Cafe24Simplehae';
+   src:
+      url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Cafe24Simplehae.woff')
+      format('woff');
+   font-weight: normal;
+   font-style: normal;
+}
+
+body {
+	background: url(${url}/img/mainbackG.png) center center no-repeat;
+	background-size: cover;
+	background-attachment: fixed;
+	font-family: 'Cafe24Simplehae';
+}
 
 *{
   box-sizing: border-box;
@@ -41,7 +55,6 @@
  a:hover { color: black; text-decoration: none;}
 
 body,ul,li {
-  font-family: 'NanumSquare',san-serif;
   margin: 0;
   padding: 0;
   list-style-type: none;
@@ -73,6 +86,21 @@ li:hover{
   position: relative;
 }
 
+#managerMenu{
+   width:452px;
+   overflow:auto;
+}
+#managerMenu li{
+   height:40px;
+   line-height: 40px;
+   font-size: 24px;
+   margin-bottom: 8px;
+}
+#managerMenu li:hover {
+   color: #5584AC;
+}
+
+
 .menu-category {
   float: left;
   width: 10%;
@@ -80,10 +108,16 @@ li:hover{
   flex-direction: column;
   font-size: 22px;
   font-weight: 800;
-  margin-top: 8px;
+  margin-top: 25px;
 }
 .menu-category>a:first-child{
 	color: #5584AC;
+}
+.menu-category:hover {
+	
+}
+.menu-category-sub {
+
 }
 
 .img-container {
@@ -128,6 +162,7 @@ li:hover{
 }
 
 .imgC p {
+  font-size: 18px;
   text-align: end;
   color:gray;
   margin-top: 5px;
@@ -145,11 +180,9 @@ li:hover{
 }
 
 #TopButton {
-
   bottom: 75px;        
 }
 #BottomButton {
-
   bottom: 50px;
 }
 
@@ -157,11 +190,17 @@ li:hover{
 </style>
 
       <h1>Manager Page</h1><hr/>
+      <ul id="managerMenu">
+         <a href="${url}/member/masterPage"><li>회원관리</li></a>
+         <a href="${url}/master/master_modify_cody"><li>코디관리</li></a>
+         <a href="${url}/master/master_food"><li>음식관리</li></a>
+      </ul>
+      <!--  
       <ul>
       	<a href="${url}/master/master_modify_cody"><li>ALL</li></a>
       	<a href="${url}/master/masterGenderList?sex=m"><li>MEN</li></a>
       	<a href="${url}/master/masterGenderList?sex=f"><li>WOMEN</li></a>
-      </ul>
+      </ul>-->
       <br/>
       <!--  
         <div class="img-category">
@@ -179,8 +218,19 @@ li:hover{
    <div class="main-container">
 
       <div class="menu-category">
+      
+     
+        <!--  
         <a href="${url}/master/master_modify_cody"> 코디수정 </a>
-        <a href="${url}/master/master_add_cody"> 코디추가 </a>
+        <a href="${url}/master/master_add_cody"> 코디추가 
+        <ul class="menu-category-sub">      	
+        <a href="${url}/master/master_modify_cody"><li>ALL</li></a>
+      	<a href="${url}/master/masterGenderList?sex=m"><li>MEN</li></a>
+      	<a href="${url}/master/masterGenderList?sex=f"><li>WOMEN</li></a>
+      	</ul>
+      	</a>-->  
+      	<br/>
+
       </div><hr/>
 
       <div class="img-container">

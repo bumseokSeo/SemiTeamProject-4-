@@ -69,8 +69,8 @@ body{
 
 
 h1 {
-	text-align: center;
-	font-family: "ROKAFSansBold";
+    text-align: center;
+    font-family: "Cafe24Simplehae";
 	font-size: 40px;
 	text-shadow: #9c9c9c 4px 4px 0px, 2px 2px 2px rgba(206, 89, 55, 0);
 }
@@ -178,6 +178,8 @@ h1 {
 				<c:if test="${logId == 'master' }">
 					<a href="/member/logout">로그아웃</a> 
 					<a href="/member/masterPage">회원관리</a>
+					<a href="/master/master_modify_cody">코디관리</a>
+       		        <a href="/master/master_food">음식관리</a>
 				</c:if>
 			</div>
 		</div>

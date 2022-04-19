@@ -24,6 +24,7 @@ public interface ReviewDAO {
   	
   	//리뷰 개수
   	public int reviewcnt(ReviewVO id);
-
-
+  	// 글 1개 선택
+  	public ReviewVO reviewSelect(int reviewno);
+  	public int reviewUpdate(ReviewVO vo);
 }

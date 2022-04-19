@@ -35,17 +35,19 @@
 	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+
 <script>
    function reviewListAll(id) { // 현재 글의 댓글을 모두 가져오기      
       var params = "id=" + id; // 32번 글인경우: no=32
+     
       var url = "/review/list?" + params;
-
      	 $.ajax({
                type : 'get',
                url : url,
                // data:params,
-               success : function(result) {                  
-            	  // alert(result.store.place_name);
+               success : function(result) {
+            	 
+            	  
 				  var $result = $(result.reviews); // vo, vo, vo, vo...
 				  var store =result.store;
                   var tag = "<table><tbody>";
@@ -55,10 +57,13 @@
 				  	  tag2 += "도로명 주소 : "+ store.road_address_name+"<br/>";
 				  	  tag2 += "주소 : "+ store.address_name+"<br/></div>";
 				  	  tag2 +="</div>";
+				  	 let logId='${logId}';
                   $result.each(function(idx, vo) {
+                	  
+                	 
                            tag += '<tr style="text-align:center;">'
                            
-                        	tag += '<td style="width:15%5px height:30px;border-bottom:1px solid #ddd" class="rounded">'
+                        	tag += '<td style="width:15% height:30px;border-bottom:1px solid #ddd" class="rounded">'
                             if(vo.reviewimg !=null){   
                         		tag+='<img src="/img/reviewimg/'+vo.reviewimg+'" style="width: 60px; height: 60px">';
                             }else{
@@ -69,14 +74,19 @@
                                  + '<i class="fa fa-star" style="color: red;"></i>'
                                  + vo.star
                                  + '<br>'
-                                 + vo.content
+                                 
+                                 + '<div id="view'+idx+'">'+vo.content+'</div>'
+                                 +'<div id="edit'+idx+'" style="display:none"><textarea id="ta'+idx+'">'+vo.content+'</textarea></div>'
                                  + '</td>';
-                           tag += '<td style="width:20%;border-bottom:1px solid #ddd">'
-                                 + vo.username + '</td>';
-                           tag += '<td style="width:20%;border-bottom:1px solid #ddd">'
+                           tag += '<td style="width:15%;border-bottom:1px solid #ddd">'
+                                 + vo.userid + '</td>';
+                           tag += '<td style="width:15%;border-bottom:1px solid #ddd">'
                                  + vo.writedate + '</td>';
-
+                           if(logId==vo.userid){
+                          	   tag+='<td style="width:15%;border-bottom:1px solid #ddd"><input type="button" id="btnEdit'+idx+'" value="수정" data-no="'+vo.reviewno+'"  data-id="'+store.id+'"  data-tog="off" class="btn btn-success btn-sm" id="Editbtn" onclick="Editbtn('+idx+')"/></td>';
+                             }
                            tag += "</tr>"; // vo의 개수만큼 순환
+                           
                         });
 
                   tag += "</tbody></table>";
@@ -127,6 +137,63 @@
       // 현재글의 댓글
       //reviewListAll();
    });
+   
+   // review 유효성 검사
+	$(function(){
+		$("#evaluation").submit(function(){
+			if($("#content").val()==''){
+				alert("리뷰를 입력하세요.");
+				return false;
+			}
+			
+			if(!$("input[name=star]:checked").val()){
+				 alert("최소 1개 이상의 별점을 입력해주세요.");
+				 return false;
+			  } 
+		});
+	});
+	function Editbtn(i) {     	 
+        //alert("리뷰를 수정하시겠습니까?");
+        
+        var btn=$('#btnEdit'+i);
+        var toggle=btn.attr('data-tog');
+        if(toggle=='off'){
+        	$('#edit'+i).css('display','block');
+            $('#view'+i).css('display','none');
+            btn.attr('data-tog','on')
+        }else{
+          	var no=btn.attr('data-no');
+          	var rid=btn.attr('data-id');
+        	var content=$('#ta'+i).val();
+        	var params = 'reviewno='+no+'&content='+content;
+        	//alert(no+"/"+content)
+        	
+        	//여기서 ajax요청 보내기
+        	 $.ajax({
+               url : '/reviewEditOk',
+               data : params,
+               type : 'POST',
+               success : function(r) {
+                  if(Number(r)>0){
+                  $("content").val("");
+                  reviewListAll(rid);
+                  alert("수정 완료 되었습니다.");
+                  }else{
+                	  alert('수정 처리 실패했습니다.')
+                  }
+                  // 에러가 안난다면 => 댓글목록이 refresh되어야 한다. 
+                  
+               },
+               error : function(e) {
+                  console.log(e.responseText);
+               }
+            });
+      
+        	$('#edit'+i).css('display','none');
+            $('#view'+i).css('display','block');
+            btn.attr('data-tog','off')
+        }
+     }
 </script>
 <title>map메인화면</title>
 </head>
@@ -167,7 +234,7 @@
 			<div id="pagination"></div>
 		</div>			
 		<div id="review"
-			style="margin: 2px; overflow: auto; border: solid #20B2AA; float: left; display: none; width: 450px; height: 100%; position: relative; background-color: white; z-index: 1;">
+			style="margin: 2px; overflow: auto; border: solid #20B2AA; float: left; display: none; width: 550px; height: 100%; position: relative; background-color: white; z-index: 1;">
 			<div  id="storeBody"></div>
 			<hr />
 			<div id="reviewcomment">
@@ -176,7 +243,7 @@
 					<form id="evaluation" method="post" enctype="multipart/form-data"
 						action="/review/writeOk">
 						<input type="hidden" name="pid" id="pid">
-						<fieldset>
+						<fieldset style="margin-left:55px">
 							<input type="radio" name="star" value="5" id="rate1"><label
 								for="rate1">⭐</label> <input type="radio" name="star" value="4"
 								id="rate2"><label for="rate2">⭐</label> <input
@@ -205,10 +272,11 @@
 
 							<thead>
 								<tr style="text-align: center;">
-									<th style="width: 15%;">이미지</th>
+									<th style="width: 17%;">이미지</th>
 									<th style="width: 40%;">내용</th>
-									<th style="width: 20%;">닉네임</th>
-									<th style="width: 20%;">작성일</th>
+									<th style="width: 15%;">닉네임</th>
+									<th style="width: 15%;">작성일</th>
+									<th></th>
 								</tr>
 								<%-- <c:forEach var="vo" items="${list }">
 									<td style="width: 15%;">
@@ -488,20 +556,6 @@
             el.removeChild(el.lastChild);
          }
       }
-      // review 유효성 검사
-      $(function(){
-         $("#evaluation").submit(function(){
-            if($("#content").val()==''){
-               alert("리뷰를 입력하세요.");
-               return false;
-            }
-            
-            if(!$("input[name=star]:checked").val()){
-                alert("최소 1개 이상의 별점을 입력해주세요.");
-                return false;
-              } 
-         });
-      });
    </script>
 
 	<!-- IONICONS -->

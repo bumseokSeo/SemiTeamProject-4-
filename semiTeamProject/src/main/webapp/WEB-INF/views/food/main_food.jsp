@@ -25,7 +25,7 @@
 		box-sizing: border-box;
 		position: relative;
 		width: 350px;
-		height:150px;
+		height: 150px;
 		border-radius: 20px;
 		font-size: 20px;
 		margin-left: 25px;
@@ -50,20 +50,45 @@
 		padding: 20px;
 		text-align: center;
 		font-weight: 500;
+		line-height: 40px;
+		
 	}
     .weatherIcon{
         width: 200px;
         height: 200px;
-        background-color: rgb(218, 217, 217);
+        background-color: rgb(240, 239, 239);
         border-radius: 10px;
         margin: 0 50px;
 		opacity: 0.8;
 		
     }
-    .weatherIcon:hover{
-       
-       
-    }
+    #icon{
+		position: absolute;
+		top: 25%;
+		left:-25%;
+		z-index: 10;
+	}
+
+	#icon>img{
+		width: 200px;
+		
+	}
+
+	#find{
+		position: absolute;
+		left: 80%;
+		top: -20%;
+		
+	}
+
+	#find>img{
+		width: 130px;
+	}
+	#icon>img:hover{
+		transform: scale(1.2);
+		transition : transform 0.5s;
+	}
+    
 	#info{
 		margin-top: 20px;
 		font-size: 22px;
@@ -200,9 +225,15 @@
 	<h1 class="animate__animated animate__swing">오늘 음식 어때?</h1>
 	<div id="weather">
 		<div id="desc">
+			<div id="icon">
+				<img src="${url}/img/foodimg/pizza1.png">
+			</div>
 			<div id="content">
-			오늘 음식을 추천해 드려요<br>추천 음식을 클릭하면 <br/>
-				가까운 음식점을 <br/>볼 수 있어요
+			오늘 음식을 추천해 드려요<br>추천 음식을 클릭해 <br/>
+				가까운 음식점을 보세요
+			</div>
+			<div id="find">
+				<img src="${url}/img/foodimg/find1.png" alt="">
 			</div>
 		</div>
 		<img class ="weatherIcon" src="" >
