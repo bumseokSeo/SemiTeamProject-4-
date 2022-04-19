@@ -165,15 +165,10 @@
 			<div class="option"></div>
 			<ul id="placesList"></ul>
 			<div id="pagination"></div>
-		</div>
-<<<<<<< HEAD
-		<div id="review" style="margin: 2px; overflow: auto; border: solid #20B2AA; float: left; display: none; width: 450px; height: 100%; position: relative; background-color: white; z-index: 1;">
-			<div  id="storeBody">aaa</div>
-=======
+		</div>			
 		<div id="review"
 			style="margin: 2px; overflow: auto; border: solid #20B2AA; float: left; display: none; width: 450px; height: 100%; position: relative; background-color: white; z-index: 1;">
 			<div  id="storeBody"></div>
->>>>>>> branch 'main' of https://github.com/bumseokSeo/SemiTeamProject-4-.git
 			<hr />
 			<div id="reviewcomment">
 				<h5 style="height: 23px; font-size: 20px; line-height: 24px; text-align: center; margin: 10px;">리뷰작성</h5>
