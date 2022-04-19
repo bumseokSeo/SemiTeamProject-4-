@@ -153,8 +153,6 @@ function delreviewOk(reviewno){
          </form>
    
    </div>
-    
-    
     <div id="reviewlst">
     	<ul class="reviewul">
     		<li>가게 id</li>
