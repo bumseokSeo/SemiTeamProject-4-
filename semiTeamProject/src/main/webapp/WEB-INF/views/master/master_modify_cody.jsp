@@ -70,7 +70,7 @@ ul{
 li{
 	float:left;
 	width:150px;
-	text-align: center;
+
 	font-size:22px;
 	font-weight: bold;
 }
@@ -87,8 +87,9 @@ li:hover{
 }
 
 #managerMenu{
-   width:452px;
-   overflow:auto;
+	width: 600px;
+	display: flex;
+	justify-content: space-around;
 }
 #managerMenu li{
    height:40px;
@@ -100,25 +101,73 @@ li:hover{
    color: #5584AC;
 }
 
-
-.menu-category {
-  float: left;
-  width: 10%;
-  display: flex;
-  flex-direction: column;
-  font-size: 22px;
-  font-weight: 800;
-  margin-top: 25px;
-}
-.menu-category>a:first-child{
-	color: #5584AC;
-}
-.menu-category:hover {
-	
-}
-.menu-category-sub {
+.sidenav {
+   position:relative;
+   float:left;
+   width: 10%;
+   height:100%;
 
 }
+
+.sidenav .mainnav {
+   display:flex;
+   flex-direction: column;
+   list-style-type: none;
+   margin: 32px 0;
+   color: #534439;
+}
+
+.sidenav .mainnav li {
+  letter-spacing: 1px;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.sidenav .mainnav>li {
+  padding: 16px 0px;
+}
+
+.sidenav .mainnav>li:hover, 
+.sidenav .mainnav>li:active,
+.sidenav .mainnav>li:focus {
+  cursor: pointer;
+  color: #95D1CC;
+}
+
+.sidenav .mainnav>li:hover .hidden {
+  opacity: 1;
+  visibility: visible;
+}
+
+.sidenav .mainnav>li:hover .hidden,
+.sidenav .mainnav>li:active .hidden,
+.sidenav .mainnav>li:focus .hidden {
+  width: 150px;
+}
+
+.hidden {
+  width: 0;
+  padding: 0;
+  position: absolute;
+  top: 120px;
+  overflow: hidden;
+  list-style-type: none;
+  -moz-transition: 0.3s;
+  -o-transition: 0.3s;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.hidden li {
+  padding: 9px 24px;
+}
+
+.hidden li:hover, 
+.hidden li:active, 
+.hidden li:focus {
+ 
+}
+
 
 .img-container {
   float: right;
@@ -140,10 +189,9 @@ li:hover{
   display: flex;
   justify-content: center;
   font-weight: 800;
-  background-color: pink;
 }
 
-.img-category a{
+.img-category a {
 	text-align:center;
 	font-size: 22px;
 	margin-left:50px;
@@ -191,9 +239,8 @@ li:hover{
 
       <h1>Manager Page</h1><hr/>
       <ul id="managerMenu">
-         <a href="${url}/member/masterPage"><li>회원관리</li></a>
-         <a href="${url}/master/master_modify_cody"><li>코디관리</li></a>
-         <a href="${url}/master/master_food"><li>음식관리</li></a>
+         <a href="${url}/member/masterPage"><li>회원 관리</li></a>
+         <a href="${url}/master/master_food"><li>음식 관리</li></a>
       </ul>
       <!--  
       <ul>
@@ -215,23 +262,22 @@ li:hover{
         </a>
         </div>
         -->
+
+
    <div class="main-container">
-
-      <div class="menu-category">
-      
-     
-        <!--  
-        <a href="${url}/master/master_modify_cody"> 코디수정 </a>
-        <a href="${url}/master/master_add_cody"> 코디추가 
-        <ul class="menu-category-sub">      	
-        <a href="${url}/master/master_modify_cody"><li>ALL</li></a>
-      	<a href="${url}/master/masterGenderList?sex=m"><li>MEN</li></a>
-      	<a href="${url}/master/masterGenderList?sex=f"><li>WOMEN</li></a>
+      <nav class="sidenav">
+      <ul class="mainnav"> 
+        <a href="${url}/master/master_add_cody"><li> 코디추가  </li></a>
+        <a href="${url}/master/master_modify_cody"><li> 코디수정
+        <i class="fa-solid fa-caret-down"></i>
+	        <ul class="hidden">      	
+	        <a href="${url}/master/master_modify_cody"><li>ALL</li></a>
+	      	<a href="${url}/master/masterGenderList?sex=m"><li>MEN</li></a>
+	      	<a href="${url}/master/masterGenderList?sex=f"><li>WOMEN</li></a>
+	      	</ul></li>
+      	</a> 	
       	</ul>
-      	</a>-->  
-      	<br/>
-
-      </div><hr/>
+      </nav>
 
       <div class="img-container">
 

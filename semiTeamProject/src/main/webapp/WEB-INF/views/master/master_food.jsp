@@ -23,6 +23,23 @@
 			
 		}
 
+	@font-face {
+	   font-family: 'Cafe24Simplehae';
+	   src:
+	      url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Cafe24Simplehae.woff')
+	      format('woff');
+	   font-weight: normal;
+	   font-style: normal;
+	}
+	
+	body {
+		background: url(${url}/img/mainbackG.png) center center no-repeat;
+		background-size: cover;
+		background-attachment: fixed;
+		font-family: 'Cafe24Simplehae';
+	}
+
+
        ul, li{
            list-style-type: none;
            margin: 0;
@@ -38,7 +55,7 @@
       }
       a{
           text-decoration: none;
-          color: gray;
+          color: black;
       }
       a:hover{
          text-decoration: none;
@@ -74,6 +91,25 @@
            background: rgb(108, 109, 105);
            border: none;
       }
+      
+	#managerMenu{
+		margin: 0 auto;
+		width: 600px;
+		display: flex;
+		justify-content: space-around;
+		
+	}
+	#managerMenu li{
+	   height:40px;
+	   line-height: 40px;
+	   font-size: 24px;
+	   margin-bottom: 8px;
+		font-weight: 600;
+	}
+	#managerMenu li:hover {
+	   color: #5584AC;
+	} 
+	
       #foodForm{
             width : 100%;
             height : 100%;
@@ -82,9 +118,15 @@
       
       #adminForm{
           width: 65%;
-          border: 1px solid gray;
          padding: 50px;
            margin: auto;
+	    background-color: rgba( 255, 255, 255, 0.4 );
+	    border: 1px solid #bdbdbd;
+	    border-radius: 5px;
+	    -webkit-box-shadow: 10px 10px 5px 0px rgba(189,189,189,1);
+	   -moz-box-shadow: 10px 10px 5px 0px rgba(189,189,189,1);
+	   box-shadow: 10px 10px 5px 0px rgba(189,189,189,1);
+	   margin-top: 30px;
       }
       #deleteDate{
           text-decoration: none;
@@ -173,7 +215,7 @@
             justify-content:space-around;
             width: 100%;
        }
-       
+ 
        #foodAll{
              margin: 20px;
        }
@@ -202,6 +244,10 @@
       text-align: center;
       font-size: 20px;
    }
+   
+label {
+	font-weight: 700;
+}
       
 </style>
 <script>
@@ -691,6 +737,7 @@
 
 </script>
    <h1>음식 관리 페이지</h1><hr/>
+<<<<<<< HEAD
    
    <ul id="managerMenu">
          <li><a href="${url}/member/masterPage">회원관리</a></li>
@@ -698,6 +745,14 @@
          <li><a href="${url}/master/master_food">음식관리</a></li>
    </ul><br/>
    <hr/>
+
+   <ul id="managerMenu">
+      <a href="/member/masterPage"><li>회원 관리</li></a>
+      <a href="${url}/master/master_modify_cody"><li>코디 관리</li></a>
+   </ul>
+   
+ 
+
    
    <div class="container">
         <div class="modal fade" data-backdrop = "static" data-keyboard="false" id="modalFood">

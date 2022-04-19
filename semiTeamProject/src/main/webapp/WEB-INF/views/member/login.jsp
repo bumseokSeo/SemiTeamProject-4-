@@ -1,9 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <style>
+@font-face {
+   font-family: 'Cafe24Simplehae';
+   src:
+      url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Cafe24Simplehae.woff')
+      format('woff');
+   font-weight: normal;
+   font-style: normal;
+}
+
 body {
 	margin: 0;
 	padding: 0;
+	background: url(${url}/img/mainbackG.png) center center no-repeat;
+	background-size: cover;
+	background-attachment: fixed;
+	font-family: 'Cafe24Simplehae';
 }
 ul, li {
 	margin: 0;
@@ -12,6 +25,7 @@ ul, li {
 li {
 	list-style-type: none;
 	font-size: 1em;
+	font-weight: 700;
 }
 a:link, a:visited {
 	text-decoration: none;
@@ -30,18 +44,25 @@ h1 {
 #loginForm {
 	padding-top: 100px;
 	padding-left: 100px;
-	border: 1px solid gray;
 	width: 1130px;
 	margin: 0px auto;
 	font-size: 1em;
 	overflow: auto;
 	margin-bottom: 200px;
+    border: 1px solid #bdbdbd;
+    border-radius: 5px;
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(189,189,189,1);
+    -moz-box-shadow: 10px 10px 5px 0px rgba(189,189,189,1);
+    box-shadow: 10px 10px 5px 0px rgba(189,189,189,1);
+    background-color: rgba( 255, 255, 255, 0.4 );
+  
 }
 
 #loginForm li {
 	float: left;
 	width: 20%;
 	margin-bottom: 30px;
+	line-height: 48px;
 }
 #loginForm li:nth-child(2n) {
 	float: left;
@@ -59,6 +80,9 @@ h1 {
 	width:100%;
 	margin-left: 23px;
 }
+#rememberIdLi>input{
+	margin-top: 18px;
+}
 #submitbtn {
 	width: 90%;
 	margin-left: 0px auto;
@@ -73,6 +97,7 @@ h1 {
 	float: left;
 	width: 50%;
 	text-align: center;
+	font-weight: 700;
 }
 </style>
 <script>
