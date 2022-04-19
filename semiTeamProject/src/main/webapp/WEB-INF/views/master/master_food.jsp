@@ -150,10 +150,10 @@
        }
        .foodPicture{
            width:150px !important;
-            border-radius: 20px;
-            object-fit:cover;
+           border-radius: 20px;
+           object-fit:cover;
            height: 150px;
-            max-width: 100%;
+           max-width: 100%;
        }
 	   
 </style>
@@ -208,13 +208,18 @@
     	$("#searchFood").focus(function(){
     		$("#add").css('visibility', 'hidden');
     		
-    		if( $("#foodPhoto").attr("src") != ''){
-    			$("#foodPhoto").css('display','block');
-    		}else{
+    		if($("#foodPhoto").attr("src") == undefined){
+    			$("#photoDelete").css('display', 'none');
+    			
+    		}else if($("#foodPhoto").attr("src") != ''){
+    			$("#foodPhoto").css('display','block');	
+    			$("#photoDelete").css('display', 'block');
+    		}
+    		else{
     			$("#foodPhoto").css('display','none');
+    			$("#photoDelete").css('display', 'none');
     		}
     		
-    		$("#photoDelete").css('display', 'none');
     	});
     	
     	//음식 이름에 focus
