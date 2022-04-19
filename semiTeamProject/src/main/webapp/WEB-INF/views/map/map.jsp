@@ -160,15 +160,13 @@
 				<button class="search-btn">검색</button>
 			</form>
 		</div>
-		<div id="map"
-			style="width: 100%; height: 100%; position: fixed; left: 0; top: 0; margin: 0 auto; z-index: 1"></div>
+		<div id="map" style="width: 100%; height: 100%; position: fixed; left: 0; top: 0; margin: 0 auto; z-index: 1"></div>
 		<div id="menu_wrap" class="bg_white">
 			<div class="option"></div>
 			<ul id="placesList"></ul>
 			<div id="pagination"></div>
 		</div>
-		<div id="review"
-			style="margin: 2px; overflow: auto; border: solid #20B2AA; float: left; display: none; width: 450px; height: 100%; position: relative; background-color: white; z-index: 1;">
+		<div id="review" style="margin: 2px; overflow: auto; border: solid #20B2AA; float: left; display: none; width: 450px; height: 100%; position: relative; background-color: white; z-index: 1;">
 			<div  id="storeBody">aaa</div>
 			<hr />
 			<div id="reviewcomment">
@@ -223,11 +221,13 @@
 							</thead>
 
 						</table>
-						<div id="reviewListBody"></div>
-						<button class="btn btn-info" style="margin:auto;display:block;" id="reviewhide" onclick=reviewhide()>리뷰 닫기</button>						
+						<div id="reviewListBody"></div>												
 					</div>
 				</div>
 			</div>
+		</div>
+		<div id="exit" style="position:relative;float:left; display:none;z-index:1;">
+			<button class="btn btn-info" style="margin:auto;" id="reviewhide" onclick=reviewhide()>X</button>
 		</div>
 	</div>
 	<script>
@@ -410,15 +410,19 @@
 
       function toggleDiv(id) {    	 
          const div = document.getElementById('review');
+         const divexit = document.getElementById('exit');
          $('#pid').val(id);    
-         div.style.display = 'block';  
-         reviewListAll(id);
+         div.style.display = 'block';
+         divexit.style.display = 'block';
+         reviewListAll(id);         
       }
       
       function reviewhide(id) {     	 
           const div = document.getElementById('review');
+          const divexit = document.getElementById('exit');
           $('#pid').val(id);         
              div.style.display = 'none';
+             divexit.style.display = 'none';
        }
 
       // 마커를 생성하고 지도 위에 마커를 표시하는 함수입니다
@@ -474,8 +478,7 @@
       // 검색결과 목록 또는 마커를 클릭했을 때 호출되는 함수입니다
       // 인포윈도우에 장소명을 표시합니다
       function displayInfowindow(marker, title) {
-         var content = '<div style="padding:5px;z-index:1;">' + title
-               + '</div>';
+         var content = '<div style="padding:5px;z-index:1;">' + title + '</div>';
          infowindow.setContent(content);
          infowindow.open(map, marker);
       }
@@ -484,9 +487,7 @@
          while (el.hasChildNodes()) {
             el.removeChild(el.lastChild);
          }
-      }
-      
-      
+      }            
    </script>
 
 	<!-- IONICONS -->
