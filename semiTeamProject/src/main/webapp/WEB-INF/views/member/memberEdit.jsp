@@ -47,15 +47,25 @@
    }
    
    #delbtn{
+     position: absolute;
+     bottom: 10px;
+     right: 15px;
    	 margin-left: 825px;
    	 width: 115px;
      height:50px;
-   	 font-size:16px;
+   	 font-size:14px;
 	 font-weight: 700;
+	 border: 0;
+	 outline: 0;
+	 background: none;
    }
+    #delbtn:hover {
+    	text-decoration: underline;
+    }
 	
 
 	#memberEdit{
+		position: relative;
 		padding-top:50px;
 		padding-left:100px;
 		width:1130px;
@@ -222,7 +232,7 @@ $(function(){
 	}
 </script>
 	<div id="memberEdit">
-		<button type="button" onclick="delCheck()" class="btn btn-danger" id="delbtn">회원탈퇴</button>
+		<button type="button" onclick="delCheck()"  id="delbtn">회원탈퇴</button>
 		<form method="post" action="${url}/member/memberEditOk" onsubmit="return formcheck()" enctype="multipart/form-data">
 			<h1>마이페이지</h1>
 			<ul>
