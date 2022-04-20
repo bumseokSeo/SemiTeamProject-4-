@@ -48,7 +48,7 @@ h1 {
 }
 
 #findform {
-	padding-top: 100px;
+	padding-top: 60px;
 	padding-left: 100px;
 	width: 1130px;
 	margin: 0px auto;
@@ -60,7 +60,7 @@ h1 {
     -webkit-box-shadow: 10px 10px 5px 0px rgba(189,189,189,1);
    -moz-box-shadow: 10px 10px 5px 0px rgba(189,189,189,1);
    box-shadow: 10px 10px 5px 0px rgba(189,189,189,1);		
-	
+	margin-bottom: 80px;
 }
 
 #findform li {
@@ -132,7 +132,7 @@ h1 {
 		onsubmit="return formcheck()">
 		<h1>비밀번호 변경</h1>
 		<ul>
-			<li>아이디</li>
+			<li>아이디 찾기</li>
 			<li><input class="form-control form-control-lg" type="text" placeholder="아이디" name="userid" id="userid" maxlength="20" disabled="disabled" value="${tempUserId}"></li>
 			<li>새로운 비밀번호</li>
 			<li><input class="form-control form-control-lg" type="password" placeholder="비밀번호" name="userpwd" id="userpwd"></li>

@@ -31,7 +31,7 @@
 	
 	li {
 		list-style-type: none;
-		font-size: 1em;
+		font-size: 18px;
 	}
 	
 	ul a:link, ul a:visited {
@@ -47,22 +47,25 @@
    }
    
    #delbtn{
-   	margin-left: 850px;
+   	 margin-left: 850px;
+     height:40px;
+   	 font-size:16px;
    }
 	
 
 	#memberEdit{
-		padding-top:100px;
+		padding-top:50px;
 		padding-left:100px;
 		width:1130px;
 		margin:0px auto;
-		font-size: 1em;
+		font-size: 18px;
 		overflow:auto;
 		border: 1px solid #bdbdbd;
   	    border-radius: 5px;
         -webkit-box-shadow: 10px 10px 5px 0px rgba(189,189,189,1);
         -moz-box-shadow: 10px 10px 5px 0px rgba(189,189,189,1);
         box-shadow: 10px 10px 5px 0px rgba(189,189,189,1);		
+        margin-bottom:80px;
 	}
 	
 	#memberEdit li{
@@ -87,21 +90,21 @@
 		width:90%;
 	}
 	#preview{
-		width:70%;
-		height:575.67px;
-		overflow: hidden;
+		width:350px;
+		height:350px;
+		margin-left:75px;
 	}
 	
 	
 	#resetbtn{
 		width:300px;
 		margin-left: 32.5px;
-		margin-bottom: 100px;
+		margin-bottom: 30px;
 	}
 	#submitbtn{
 		width:300px;
 		margin-left: 265px;
-		margin-bottom: 100px;
+		margin-bottom: 30px;
 		
 	}
 	
@@ -112,6 +115,13 @@
 		border: 1px solid gray;
 		margin:0px auto;
 		overflow:auto;
+	}
+	/*비밀번호 폰트 깨짐 해결*/
+	#userpwd, #userpwd2{
+		font-family:sans-serif;
+	}
+	#userpwd::placeholder, #userpwd2::placeholder{
+		font-family:Cafe24Simplehae;
 	}
 </style>
 <script>

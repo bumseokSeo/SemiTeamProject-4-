@@ -24,15 +24,11 @@ ul, li {
 }
 li {
 	list-style-type: none;
-	font-size: 1em;
+	font-size: 18px;
 	font-weight: 700;
 }
 a:link, a:visited {
 	text-decoration: none;
-	color: black;
-}
-a:hover{
-	text-decoration: underline;
 	color: black;
 }
 h1 {
@@ -42,11 +38,11 @@ h1 {
 	margin-bottom: 50px;
 }
 #loginForm {
-	padding-top: 100px;
+	padding-top: 60px;
 	padding-left: 100px;
 	width: 1130px;
 	margin: 0px auto;
-	font-size: 1em;
+	font-size: 17px;
 	overflow: auto;
 	margin-bottom: 200px;
     border: 1px solid #bdbdbd;
@@ -55,7 +51,6 @@ h1 {
     -moz-box-shadow: 10px 10px 5px 0px rgba(189,189,189,1);
     box-shadow: 10px 10px 5px 0px rgba(189,189,189,1);
     background-color: rgba( 255, 255, 255, 0.4 );
-  
 }
 
 #loginForm li {
@@ -87,7 +82,7 @@ h1 {
 	width: 92%;
 	margin-left: 0px auto;
 	height:70px;
-	margin-bottom: 100px;
+	margin-bottom: 50px;
 }
 .loginBottom {
 	margin-right: 100px;
@@ -105,6 +100,10 @@ h1 {
 }
 #userpwd::placeholder{
 	font-family:Cafe24Simplehae;
+}
+a:hover{
+	text-decoration: underline;
+	color: black;
 }
 </style>
 <script>

@@ -36,6 +36,10 @@ a:link, a:visited {
 	text-decoration: none;
 	color: black;
 }
+a:hover{
+	text-decoration: underline;
+	color: black;
+}
 h1 {
 	margin-right: 100px;
 	font-size: 40px;
@@ -43,7 +47,7 @@ h1 {
 	margin-bottom: 50px;
 }
 #findform {
-	padding: 100px 0 20px 100px;
+	padding: 60px 0 80px 100px;
 	width: 1130px;
 	margin: 0px auto;
 	font-size: 1em;
@@ -55,6 +59,7 @@ h1 {
     -webkit-box-shadow: 10px 10px 5px 0px rgba(189,189,189,1);
    -moz-box-shadow: 10px 10px 5px 0px rgba(189,189,189,1);
    box-shadow: 10px 10px 5px 0px rgba(189,189,189,1);
+   margin-bottom: 80px;
 }
 #findform li {
 	float: left;
@@ -78,7 +83,7 @@ h1 {
 	width: 92%;
 	margin-left: 0px auto;
 	height:70px;
-	margin-bottom: 100px;
+	margin-bottom: 50px;
 }
 .loginBottom {
 	margin-right: 100px;
@@ -130,7 +135,7 @@ h1 {
 			<li><input class="form-control form-control-lg" type="text"
 				placeholder="이메일" name="email" id="email">
 			</li>
-			<li><label for="sel_ask">질문을 선택하세요</label></li>
+			<li><label for="sel_ask">질문을 선택하세요:</label></li>
 			<li>
 				<select class="form-control form-control-lg" id="ask" name="ask" style="width:90%">
 					    <option value="school">입학했던 초등학교 이름은?</option>
@@ -151,7 +156,7 @@ h1 {
 	</form>
 	<div class="loginBottom">
 		<div>
-			<a href="/member/findId" title="아이디 찾기">아이디</a>
+			<a href="/member/findId" title="아이디 찾기">아이디 찾기</a>
 		</div>
 		<div>
 			<a href="/member/memberForm" title="회원가입">회원가입</a>
