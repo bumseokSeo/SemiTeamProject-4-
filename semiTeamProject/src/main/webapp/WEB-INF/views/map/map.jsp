@@ -265,11 +265,7 @@
 						</div>
 					</form>
 					<div class="container">
-
 						<table class="table" id="reviewList">
-							<caption class="blind">리뷰 목록으로 별점, 이미지, 내용, 작성자, 작성일자
-								정보를 제공</caption>
-
 							<thead>
 								<tr style="text-align: center;">
 									<th style="width: 17%;">이미지</th>
@@ -385,22 +381,22 @@
             // 마커와 검색결과 항목에 mouseover 했을때
             // 해당 장소에 인포윈도우에 장소명을 표시합니다
             // mouseout 했을 때는 인포윈도우를 닫습니다
-            (function(marker, title) {
+            (function(marker, title, id) {
                kakao.maps.event.addListener(marker, 'mouseover',
                      function() {
-                        displayInfowindow(marker, title);
+                        displayInfowindow(marker, title, id);
                      });
                kakao.maps.event.addListener(marker, 'mouseout',
                      function() {
                         infowindow.close();
                      });
                itemEl.onmouseover = function() {
-                  displayInfowindow(marker, title);
+                  displayInfowindow(marker, title, id);
                };
                itemEl.onmouseout = function() {
                   infowindow.close();
                };
-            })(marker, places[i].place_name);
+            })(marker, places[i].place_name, places[i].id);
             fragment.appendChild(itemEl);
          }
          // 검색결과 항목들을 검색결과 목록 Element에 추가합니다
@@ -420,6 +416,7 @@
             url : '/map/addplace',
             contentType : 'application/json; charset=UTF-8',
             data : JSON.stringify(places),
+            async : false,
             success : function(res) {
             },
             error : function(e) {
@@ -444,9 +441,7 @@
 	  	               + places.id + ')">'
 	  	               + '   <h5>'
 	  	               + places.place_name
-	  	               + '</h5>' //음식점과 마커 링크 하기  
-	  	               + '<div>'
-	  	               + '</h5>' //음식점과 마커 링크 하기               
+	  	               + '</h5>' //음식점과 마커 링크 하기	  	                             
 	  	               + '<div> 리뷰 | '+result.avgstar+"<i class='fa fa-star' style='color:red;'></i>"+' | '
 	  	               if(result.reviewcnt>0){
 	  	            	 itemStr += result.reviewcnt +"건"
@@ -545,10 +540,19 @@
       }
       // 검색결과 목록 또는 마커를 클릭했을 때 호출되는 함수입니다
       // 인포윈도우에 장소명을 표시합니다
-      function displayInfowindow(marker, title) {
+      function displayInfowindow(marker, title, id) {
          var content = '<div style="padding:5px;z-index:1;">' + title + '</div>';
          infowindow.setContent(content);
          infowindow.open(map, marker);
+         kakao.maps.event.addListener(marker, 'click', 
+			function toggleDiv(markerid) {      
+				const div = document.getElementById('review');
+				const divexit = document.getElementById('exit');
+				$('#pid').val(id);    
+				div.style.display = 'block';
+				divexit.style.display = 'block';
+				reviewListAll(id);
+			});
       }
       // 검색결과 목록의 자식 Element를 제거하는 함수입니다
       function removeAllChildNods(el) {
