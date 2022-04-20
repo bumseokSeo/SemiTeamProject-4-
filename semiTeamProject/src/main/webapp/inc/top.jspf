@@ -44,7 +44,14 @@
 @import
 	url("https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap");
 	
-	
+@font-face {
+   font-family: 'Cafe24Simplehae';
+   src:
+      url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Cafe24Simplehae.woff')
+      format('woff');
+   font-weight: normal;
+   font-style: normal;
+}	
 
 /*제목 글씨체*/
 @font-face {
@@ -64,7 +71,7 @@
 
 
 body{
-	font-family: 'NanumSquare',san-serif;
+	font-family: "Cafe24Simplehae";
 }
 
 

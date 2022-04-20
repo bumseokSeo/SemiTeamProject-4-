@@ -15,11 +15,10 @@
 		background: url(${url}/img/foodBackground.png);
 		background-size: cover;
 	}
-	
     #weather{
         display: flex;
         justify-content: center;
-        margin-top: 200px;
+        margin-top: 140px;
     }
     #desc{
 		box-sizing: border-box;
@@ -49,7 +48,7 @@
 	#content{
 		padding: 20px;
 		text-align: center;
-		font-weight: 500;
+		font-weight: 600;
 		line-height: 40px;
 		
 	}
@@ -93,12 +92,11 @@
 		margin-top: 20px;
 		font-size: 22px;
 		line-height: 40px;
-		font-family: 'NanumSquare',san-serif;
 	}
 	#foods{
 		display: flex;
 		justify-content: center;
-		margin-top: 150px;	
+		margin-top: 100px;	
 	}
 	#foodList{
 		text-align: center;
@@ -116,10 +114,10 @@
 	}
 	.foodInfo>div{
 		margin-bottom: 5px;	
-		font-family: 'NanumSquare',san-serif;
 	}
 	.foodName{
 		font-weight: 600;
+		font-size:20px;
 	}
 	.foodPhoto{
 		width: 200px;
@@ -141,7 +139,7 @@
 		box-shadow: 5px 5px 5px gray;
 	}
 	.foodDesc{
-		font-size: 17px;
+		font-size: 18px;
 		font-weight : 500;
 	}
 </style>

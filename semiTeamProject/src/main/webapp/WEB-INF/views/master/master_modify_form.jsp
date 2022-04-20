@@ -162,10 +162,10 @@ $(function() {
 });
 
 </script>
-      <h1>코디 관리자 수정폼</h1><hr/>
+      <h1>코디 수정</h1><hr/>
    <div id="d1">
       <form method="post" action="/codyUpdate" id="codyFrm" enctype="multipart/form-data">
-         <img src="${url}/img/codyimg/codyupload/${vo[0].cname}" id="codyImg"/>
+         <img src="${url}/img/codyimg/codyupload/${vo[0].cname}" id="codyImg" title="코디 이미지는 수정할 수 없습니다."/>
             <div class="addimage">
                <input type="hidden" name="cname" value="${vo[0].cname}" id="cname"/>
             </div>
