@@ -99,6 +99,13 @@ h1 {
 	text-align: center;
 	font-weight: 700;
 }
+/*비밀번호 폰트 깨짐 해결*/
+#userpwd{
+	font-family:sans-serif;
+}
+#userpwd::placeholder{
+	font-family:Cafe24Simplehae;
+}
 </style>
 <script>
 	$(function() {
