@@ -458,7 +458,7 @@
 	  	         } else {
 	  	            itemStr += '    <span>' + places.address_name + '</span>';
 	  	         }
-	  	         itemStr += '  <span class="tel">' + places.phone + '</span>' + '</div>';
+	  	         itemStr += '  <span class="tel">' + places.phone + '<a href=https://map.kakao.com/link/map/'+places.id+'>'+" 길찾기"+'</a>'+'</span>' +'</div>';
 	  	         el.innerHTML = itemStr;
 	  	         el.className = 'item';
      		 },
