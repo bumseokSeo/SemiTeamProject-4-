@@ -81,6 +81,7 @@ h1 {
 	margin-left: 0px auto;
 	height:70px;
 	margin-bottom: 50px;
+	font-weight: 700;
 }
 .loginBottom {
 	margin-right: 100px;
