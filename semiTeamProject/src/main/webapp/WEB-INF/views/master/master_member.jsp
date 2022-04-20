@@ -206,6 +206,11 @@
   cursor: pointer;
   color: #5584AC;
 }
+
+.sidenav .mainnav>a:nth-child(1){
+	color: #5584AC;
+}	    
+
 	
 </style>
 <script>

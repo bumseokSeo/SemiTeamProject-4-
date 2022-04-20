@@ -204,6 +204,9 @@
   cursor: pointer;
     color: #5584AC;
 }
+.sidenav .mainnav>a:nth-child(2){
+	color: #5584AC;
+}	    
 
 
 </style>
