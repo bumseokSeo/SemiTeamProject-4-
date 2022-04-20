@@ -35,7 +35,7 @@
 	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
-
+ 
 <script>
    function reviewListAll(id) { // 현재 글의 댓글을 모두 가져오기      
       var params = "id=" + id; // 32번 글인경우: no=32
