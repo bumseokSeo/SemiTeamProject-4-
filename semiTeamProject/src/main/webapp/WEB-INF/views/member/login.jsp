@@ -9,7 +9,6 @@
    font-weight: normal;
    font-style: normal;
 }
-
 body {
 	margin: 0;
 	padding: 0;
@@ -52,7 +51,6 @@ h1 {
     box-shadow: 10px 10px 5px 0px rgba(189,189,189,1);
     background-color: rgba( 255, 255, 255, 0.4 );
 }
-
 #loginForm li {
 	float: left;
 	width: 20%;
@@ -94,6 +92,7 @@ h1 {
 	text-align: center;
 	font-weight: 700;
 }
+
 /*비밀번호 폰트 깨짐 해결*/
 #userpwd{
 	font-family:sans-serif;
@@ -105,22 +104,21 @@ a:hover{
 	text-decoration: underline;
 	color: black;
 }
+
 </style>
+
 <script>
 	$(function() {
 	    cookieCheck();
 	});
 	function formcheck() {
 		var userid = document.getElementById("userid");
-
 		if (userid.value == "") {
 			alert("아이디를 입력해주세요");
 			userid.focus();
 			return false;
 		}
-
 		var userpwd = document.getElementById("userpwd");
-
 		if (userpwd.value == "") {
 			alert("비밀번호를 입력해주세요");
 			userpwd.focus();

@@ -37,6 +37,7 @@
 		text-decoration: none;
 		color: black;
 	}
+	
 	h1{
       margin-right:100px;
       font-size: 40px;
@@ -60,6 +61,7 @@
 	   box-shadow: 10px 10px 5px 0px rgba(189,189,189,1);
 	   margin-bottom:80px;
 	}
+	
 	#memberForm li{
 		float:left;
 		width:20%;
@@ -68,27 +70,27 @@
 		font-weight: 700;
 		
 	}
+	
 	#memberForm li:nth-child(2n){
 		float:left;
 		width:80%;
-		
 	}
 	
 	#memberForm li:last-of-type{
 		float:left;
 		margin:0px;
 		width:100%;
-		
 	}
+	
 	.form-control-lg{
 		width:90%;
 	}
-	
-	
+
 	#resetbtn{
 		width:300px;
 		margin: 30px 0 100px 32.5px;
 	}
+	
 	#submitbtn{
 		width:300px;
 		margin: 30px 0 100px 265px;
@@ -98,12 +100,14 @@
 	#userpwd, #userpwd2{
 		font-family:sans-serif;
 	}
+
 	#userpwd::placeholder, #userpwd2::placeholder{
 		font-family:Cafe24Simplehae;
 	}
+	
 </style>
-<script>
 
+<script>
 $(function(){
 	//아이디 중복검사
 	$("#userid").keyup(function(){

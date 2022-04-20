@@ -31,7 +31,7 @@
        }
      .container{
           width: 1300px;
-            height: 100%;
+          height: 100%;
      }
      h1 {
            margin-bottom: 50px;
@@ -53,16 +53,16 @@
       }
       
       #adminForm{
-          width: 65%;
-          padding: 50px;
-          margin: 0 auto;
-	      background-color: rgba( 255, 255, 255, 0.4 );
-	      border: 1px solid #bdbdbd;
-	      border-radius: 5px;
-	     -webkit-box-shadow: 10px 10px 5px 0px rgba(189,189,189,1);
-	     -moz-box-shadow: 10px 10px 5px 0px rgba(189,189,189,1);
-	      box-shadow: 10px 10px 5px 0px rgba(189,189,189,1);
-	      margin-bottom:30px;
+         width: 68%;
+         padding: 50px;
+         margin: 0 auto;
+         margin-top: 30px;
+	     background-color: rgba( 255, 255, 255, 0.4 );
+	     border: 1px solid #bdbdbd;
+	     border-radius: 5px;
+	    -webkit-box-shadow: 10px 10px 5px 0px rgba(189,189,189,1);
+	    -moz-box-shadow: 10px 10px 5px 0px rgba(189,189,189,1);
+    	 box-shadow: 10px 10px 5px 0px rgba(189,189,189,1);
       }
       #deleteDate{
           text-decoration: none;
@@ -90,8 +90,9 @@
             margin: 0 auto;
       }
       #buttons input[type=button]{
-           width: 70px;
-           margin: 40px;
+			width: 122px;
+  			height: 48px;
+  			margin: 20px 30px 0 30px;
       }
       
       #foodList{
