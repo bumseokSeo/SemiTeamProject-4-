@@ -98,6 +98,10 @@
   			
       }
       
+      #cancel{
+      	background: red;
+      }
+      
       #foodList{
            width: 120px;
            height: 50px;
