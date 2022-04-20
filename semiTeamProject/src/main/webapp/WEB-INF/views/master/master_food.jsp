@@ -47,6 +47,7 @@
       input[type=button] { 
            background: rgb(108, 109, 105);
            border: none;
+           border-radius : 10px;
       }
       #foodForm{
             width : 100%;
@@ -63,6 +64,7 @@
 	    -webkit-box-shadow: 10px 10px 5px 0px rgba(189,189,189,1);
 	    -moz-box-shadow: 10px 10px 5px 0px rgba(189,189,189,1);
     	 box-shadow: 10px 10px 5px 0px rgba(189,189,189,1);
+    	 margin-bottom: 30px;
       }
       #deleteDate{
           text-decoration: none;
@@ -93,6 +95,7 @@
 			width: 122px;
   			height: 48px;
   			margin: 20px 30px 0 30px;
+  			
       }
       
       #foodList{
