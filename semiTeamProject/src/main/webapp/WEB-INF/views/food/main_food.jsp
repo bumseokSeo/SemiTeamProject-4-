@@ -55,11 +55,9 @@
     .weatherIcon{
         width: 200px;
         height: 200px;
-        background-color: rgb(240, 239, 239);
-        border-radius: 10px;
+        background-color: #b1e6fb;
+        border-radius: 50px;
         margin: 0 50px;
-		opacity: 0.8;
-		
     }
     #icon{
 		position: absolute;
@@ -89,7 +87,7 @@
 	}
     
 	#info{
-		margin-top: 20px;
+		margin-top: 35px;
 		font-size: 22px;
 		line-height: 40px;
 	}
