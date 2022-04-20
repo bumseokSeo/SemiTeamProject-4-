@@ -6,23 +6,6 @@
 <script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     
 <style>
-		@font-face {
-		   font-family: 'Cafe24Simplehae';
-		   src:
-		      url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Cafe24Simplehae.woff')
-		      format('woff');
-		   font-weight: normal;
-		   font-style: normal;
-		}
-
-		body {
-			background: url(${url}/img/mainbackG.png) center center no-repeat;
-			background-size: cover;
-			background-attachment: fixed;
-			font-family: 'Cafe24Simplehae';
-			
-		}
-
 	@font-face {
 	   font-family: 'Cafe24Simplehae';
 	   src:
@@ -40,7 +23,7 @@
 	}
 
 
-       ul, li{
+     ul, li{
            list-style-type: none;
            margin: 0;
            padding: 0;
@@ -61,70 +44,25 @@
          text-decoration: none;
          color:black;
       }
-	 #managerMenu{
-		  width:452px;;
-		  overflow:auto;
-		 margin:30px; auto;
-	 }
-	 #managerMenu li{
-	 	 float:left;
-		 width:150px;
-		 text-align: center;
-		 height:40px;
-		 line-height: 40px;
-		 font-size: 24px;
-		 margin-bottom: 8px;
-		 font-weight: bold;
-		 color : black;
-		  
-	  }
-	  #managerMenu li a{
-	  
-	  	color : black;
-	  }
-	 #managerMenu li a:hover {
-		   color: #5584AC;
-		}
-     
-      
       input[type=button] { 
            background: rgb(108, 109, 105);
            border: none;
       }
-      
-	#managerMenu{
-		margin: 30px auto;
-		width: 600px;
-		display: flex;
-		justify-content: space-around;
-		
-	}
-	#managerMenu li{
-	   height:40px;
-	   line-height: 40px;
-	   font-size: 24px;
-	   margin-bottom: 8px;
-		font-weight: 600;
-	}
-	#managerMenu li:hover {
-	   color: #5584AC;
-	} 
-	
       #foodForm{
             width : 100%;
       }
       
       #adminForm{
           width: 65%;
-         padding: 50px;
-           margin: 0 auto;
-	    background-color: rgba( 255, 255, 255, 0.4 );
-	    border: 1px solid #bdbdbd;
-	    border-radius: 5px;
-	    -webkit-box-shadow: 10px 10px 5px 0px rgba(189,189,189,1);
-	   -moz-box-shadow: 10px 10px 5px 0px rgba(189,189,189,1);
-	   box-shadow: 10px 10px 5px 0px rgba(189,189,189,1);
-	   margin-bottom:30px;
+          padding: 50px;
+          margin: 0 auto;
+	      background-color: rgba( 255, 255, 255, 0.4 );
+	      border: 1px solid #bdbdbd;
+	      border-radius: 5px;
+	     -webkit-box-shadow: 10px 10px 5px 0px rgba(189,189,189,1);
+	     -moz-box-shadow: 10px 10px 5px 0px rgba(189,189,189,1);
+	      box-shadow: 10px 10px 5px 0px rgba(189,189,189,1);
+	      margin-bottom:30px;
       }
       #deleteDate{
           text-decoration: none;
@@ -153,7 +91,7 @@
       }
       #buttons input[type=button]{
            width: 70px;
-           margin: 20px;
+           margin: 40px;
       }
       
       #foodList{
@@ -162,13 +100,11 @@
            margin-bottom: 30px;
            margin-left: 20px;
            border: none;
-          
       }
       #alertDate{
           display: none;
           color: blueviolet;
       }
-   
       .day{
           display: none;
       }
@@ -184,11 +120,9 @@
            justify-content: center;
            align-items: center;
            overflow-y: auto;
-           
        }
        #modalFood .modal-dialog{
            overflow-y: initial !important;
-          
        }
        #modalFood .modal-title{
            margin: 10px 30px;
@@ -213,11 +147,9 @@
             justify-content:space-around;
             width: 100%;
        }
- 
        #foodAll{
              margin: 20px;
        }
-       
        #foods{
              background: yellow;
        }
@@ -416,9 +348,8 @@
                   
                    //날짜 선택한 뒤 날짜 삭제 버튼 클릭
                   $("#deleteDate").click(function(){
-                     eventDelete();////////////////////////////
+                     eventDelete();
                       
-      
                     //이벤트 없음으로 되돌리기
                       $("#event option:eq(0)").prop("selected", true);
                       
@@ -438,7 +369,6 @@
                   $("#foodPhoto").attr("src", "/img/foodimg/upload/"+result.foodimg);
                   $("#photoDelete").css("display", "inline-block");
                   $("#foodPhoto").css("display", "block");
-                  ///////////////////////////////////////////////////////
                   $("#foodimgName").text("저장되어 있는 이미지 파일 : " + result.foodimg);
                   
                   /* imagePreview(this, "#foodPhoto"); */
@@ -453,16 +383,14 @@
                   console.log(error.responseText);   
                   
                }
-            
             });
-           
         });
         
         //취소 버튼 클릭시 초기화
         $("#cancel").click(function(){
            
            //수정할 음식 입력 검색란 보이게 하기
-           $(".searchForm").css('visibility','visible');
+            $(".searchForm").css('visibility','visible');
             $("#searchFood").val('');
             
             //텍스트 입력란은 공백으로 초기화
@@ -481,7 +409,7 @@
           //이벤트 없음으로 되돌리기
             $("#event option:eq(0)").prop("selected", true);
             
-            flagSeason = false;
+           flagSeason = false;
            flagTemp = false;
            flagWeather = false;
            flagEvent = false;
@@ -513,15 +441,12 @@
                 return false;
             }
           
-            
             //추가 버튼 클릭시 submit
             $("#adminForm").attr("action", "foodAdd");
             
             $("#adminForm").submit();
             
         });
-        
-        
       //음식 추가시 검색창, 수정 버튼 안보이게 처리
          $("#fname").focus(function(){
             
@@ -620,7 +545,7 @@
             if(event != 'no'){
                  $("#priorityYes").prop("checked", true);
                  //모달창 띄우기
-                 $("#modalEvent").modal('show');//////////////////////////모달 열리는지 확인/////////
+                 $("#modalEvent").modal('show');
                  $("#eventDate").val('');   
                  flagEvent = true;
              }
@@ -641,7 +566,7 @@
 
         // X 버튼 클릭하면 모달 닫히게
         $(".btn-close").click(function(){
-            $("#modalEvent").modal('hide');///////////////////////////모달 닫히는지 확인//////////////
+            $("#modalEvent").modal('hide');
             //이벤트 상관 없음으로 변경
             $("#event option:eq(0)").prop("selected", true);
             $("#eventDate").val('');
@@ -665,7 +590,7 @@
             });
             //날짜 입력 값 있으면 모달창 내리기
             if(eventDate !=''){
-                $("#modalEvent").modal('hide'); ////모달 닫히는지 확인//////////////////////////////
+                $("#modalEvent").modal('hide'); 
                 
                //이벤트 있음의 value에 이벤트 날짜 넣기
                 $("#event option:eq(1)").val(eventDate);
@@ -689,7 +614,7 @@
 
             //날짜 선택한 뒤 날짜 삭제 버튼 클릭
             $("#deleteDate").click(function(){
-                eventDelete(); /////
+                eventDelete(); 
 
               //이벤트 없음으로 되돌리기
                 $("#event option:eq(0)").prop("selected", true);
@@ -702,18 +627,13 @@
                console.log($("#event option:eq(1)").val());           
             })
         });
-        
-        
 
         //음식 리스트 클릭시 음식 모달창 //
         $("#foodList").click(function(){
-            //////ajax 구현//전체 음식 가져오기
             $("#total").click();
             
             $("#modalFood").modal('show');
-            
         });
-
         ////음식 리스트에 음식 카테고리에 해당하는 음식 보이게 하기
         $(".foodType").click(function(){
                 
@@ -789,7 +709,6 @@
         </div>
     
         <div id="foodForm">
-        
            <form method="post" id="adminForm" name="adminForm" enctype="multipart/form-data">
               <input type="button" class="btn btn-secondary" id="foodList" value="음식전체보기">
                <div class="row m-2 searchForm">
@@ -889,7 +808,6 @@
                   <button type="button"  class="btn-close my-2"  aria-label="Close" id="photoDelete"></button>
                   <span id="foodimgName" class="my-2 "></span>
                   <img id="foodPhoto" class="my-2"/>
-                    
                 </div>
                 
                 <div class="row" id="buttons">
@@ -918,8 +836,5 @@
            </form>
         </div>
     </div>
-    
-    
-    
 </body>
 </html>
