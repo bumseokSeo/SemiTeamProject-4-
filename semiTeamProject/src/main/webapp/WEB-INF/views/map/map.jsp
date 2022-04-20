@@ -79,7 +79,7 @@
                                  +'<div id="edit'+idx+'" style="display:none"><textarea id="ta'+idx+'">'+vo.content+'</textarea></div>'
                                  + '</td>';
                            tag += '<td style="width:15%;border-bottom:1px solid #ddd">'
-                                 + vo.userid + '</td>';
+                                 + vo.username + '</td>';
                            tag += '<td style="width:15%;border-bottom:1px solid #ddd">'
                                  + vo.writedate + '</td>';
                            if(logId==vo.userid){
