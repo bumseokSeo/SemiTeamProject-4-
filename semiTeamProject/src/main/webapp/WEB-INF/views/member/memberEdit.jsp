@@ -47,9 +47,11 @@
    }
    
    #delbtn{
-   	 margin-left: 850px;
-     height:40px;
+   	 margin-left: 825px;
+   	 width: 115px;
+     height:50px;
    	 font-size:16px;
+	 font-weight: 700;
    }
 	
 
@@ -97,16 +99,16 @@
 	
 	
 	#resetbtn{
-		width:300px;
-		margin-left: 32.5px;
-		margin-bottom: 30px;
+		width:220px;
+		height:56px;
+		margin: 50px 0 80px 120.5px;
 		font-weight: 700;
 	}
 	#submitbtn{
-		width:300px;
-		margin-left: 265px;
-		margin-bottom: 30px;
-		font-weight: 700;		
+		width:220px;
+		height:56px;		
+		margin: 50px 0 80px 265px;
+		font-weight: 700;	
 	}
 	
 	#review{

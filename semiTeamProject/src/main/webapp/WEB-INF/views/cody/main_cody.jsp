@@ -94,7 +94,7 @@ a:hover {
 
 .sidenav {
    position: fixed;
-   width: 180px;
+   width: 185px;
    top: 10%;
    left: 0;
    z-index: 100000;
@@ -110,7 +110,7 @@ a:hover {
 .sidenav .main-buttons li {
    text-transform: uppercase;
    letter-spacing: 2px;
-   font-size: 16px;
+   font-size: 17px;
    font-weight: 600;
 }
 
@@ -136,14 +136,14 @@ a:hover {
 .sidenav .main-buttons>li:hover .hidden,
 .sidenav .main-buttons>li:active .hidden,
 .sidenav .main-buttons>li:focus .hidden {
-   width: 141px;
+   width: 145px;
 }
 
 .hidden {
    width: 0;
    padding: 64px 0;
    position: absolute;
-   top: 224px;
+   top: 230px;
    left: 40px;
    overflow: hidden;
    list-style-type: none;
