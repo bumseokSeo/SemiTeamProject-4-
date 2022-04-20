@@ -100,12 +100,13 @@
 		width:300px;
 		margin-left: 32.5px;
 		margin-bottom: 30px;
+		font-weight: 700;
 	}
 	#submitbtn{
 		width:300px;
 		margin-left: 265px;
 		margin-bottom: 30px;
-		
+		font-weight: 700;		
 	}
 	
 	#review{

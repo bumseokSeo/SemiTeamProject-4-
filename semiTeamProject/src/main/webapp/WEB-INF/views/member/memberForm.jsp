@@ -87,13 +87,17 @@
 	}
 
 	#resetbtn{
-		width:300px;
-		margin: 30px 0 100px 32.5px;
+		width:220px;
+		height:56px;
+		margin: 50px 0 80px 120.5px;
+		font-weight: 700;
 	}
 	
 	#submitbtn{
-		width:300px;
-		margin: 30px 0 100px 265px;
+		width:220px;
+		height:56px;		
+		margin: 50px 0 80px 265px;
+		font-weight: 700;
 	}
 	
 	/*비밀번호 폰트 깨짐 해결*/
