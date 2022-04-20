@@ -48,7 +48,7 @@ h1 {
 }
 
 #findform {
-	padding-top: 100px;
+	padding-top: 60px;
 	padding-left: 100px;
 	width: 1130px;
 	margin: 0px auto;
@@ -61,6 +61,7 @@ h1 {
     -webkit-box-shadow: 10px 10px 5px 0px rgba(189,189,189,1);
    -moz-box-shadow: 10px 10px 5px 0px rgba(189,189,189,1);
    box-shadow: 10px 10px 5px 0px rgba(189,189,189,1);	
+   margin-bottom:80px;
 }
 
 #findform li {
@@ -85,7 +86,7 @@ h1 {
 	width: 92%;
 	margin-left: 0px auto;
 	height:70px;
-	margin-bottom: 100px;
+	margin-bottom: 50px;
 }
 .loginBottom {
 	margin-right: 100px;
@@ -96,6 +97,7 @@ h1 {
 	width: 50%;
 	text-align: center;
 }
+
 </style>
 <script>
 	function formcheck() {
@@ -126,7 +128,7 @@ h1 {
 			<li><input class="form-control form-control-lg" type="text"
 				placeholder="이메일" name="email" id="email">
 			</li>
-			<li><label for="sel_ask">질문을 선택하세요</label></li>
+			<li><label for="sel_ask">질문을 선택하세요:</label></li>
 			<li>
 				<select class="form-control form-control-lg" id="ask" name="ask" style="width:90%">
 					    <option value="school">입학했던 초등학교 이름은?</option>

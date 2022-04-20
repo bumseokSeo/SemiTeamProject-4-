@@ -39,7 +39,6 @@
 		color: black;
 	}
 	h1{
-      margin-right:100px;
       font-size: 40px;
       text-align: center;
       margin-bottom: 50px;
@@ -47,7 +46,6 @@
    }
 	#myreview{
 		width:1130px;
-		height:1100px;
 		padding:49px;
 		overflow:hidden;
 		margin: 0 auto;
@@ -62,7 +60,6 @@
 	#myreview2{	
 		border: 1px solid gray;
 		width:1030px;
-		height:1000px;
 		overflow:auto;
 	}
 	.reviewul{
@@ -147,6 +144,11 @@
 	font-size: 2rem;
 	padding: .2rem;
 }
+#myreview2 p{
+	text-align: center;
+	font-size:20px;
+	margin-top:16px;
+}
 </style>
 <script>
 $(function(){
@@ -160,7 +162,9 @@ $(function(){
 			url:url,
 			data:params,
 			success:function(result){
-				
+				if(result.length==0){
+					$("#myreview2").append("<br/><p>작성하신 리뷰가 존재하지 않습니다.</p>");
+				}
 				var $result = $(result);
 				var tag = "";
 				

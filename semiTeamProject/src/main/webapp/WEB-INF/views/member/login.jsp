@@ -9,7 +9,6 @@
    font-weight: normal;
    font-style: normal;
 }
-
 body {
 	margin: 0;
 	padding: 0;
@@ -24,15 +23,11 @@ ul, li {
 }
 li {
 	list-style-type: none;
-	font-size: 1em;
+	font-size: 18px;
 	font-weight: 700;
 }
 a:link, a:visited {
 	text-decoration: none;
-	color: black;
-}
-a:hover{
-	text-decoration: underline;
 	color: black;
 }
 h1 {
@@ -42,11 +37,11 @@ h1 {
 	margin-bottom: 50px;
 }
 #loginForm {
-	padding-top: 100px;
+	padding-top: 60px;
 	padding-left: 100px;
 	width: 1130px;
 	margin: 0px auto;
-	font-size: 1em;
+	font-size: 17px;
 	overflow: auto;
 	margin-bottom: 200px;
     border: 1px solid #bdbdbd;
@@ -55,9 +50,7 @@ h1 {
     -moz-box-shadow: 10px 10px 5px 0px rgba(189,189,189,1);
     box-shadow: 10px 10px 5px 0px rgba(189,189,189,1);
     background-color: rgba( 255, 255, 255, 0.4 );
-  
 }
-
 #loginForm li {
 	float: left;
 	width: 20%;
@@ -87,7 +80,7 @@ h1 {
 	width: 92%;
 	margin-left: 0px auto;
 	height:70px;
-	margin-bottom: 100px;
+	margin-bottom: 50px;
 }
 .loginBottom {
 	margin-right: 100px;
@@ -99,22 +92,33 @@ h1 {
 	text-align: center;
 	font-weight: 700;
 }
+
+/*비밀번호 폰트 깨짐 해결*/
+#userpwd{
+	font-family:sans-serif;
+}
+#userpwd::placeholder{
+	font-family:Cafe24Simplehae;
+}
+a:hover{
+	text-decoration: underline;
+	color: black;
+}
+
 </style>
+
 <script>
 	$(function() {
 	    cookieCheck();
 	});
 	function formcheck() {
 		var userid = document.getElementById("userid");
-
 		if (userid.value == "") {
 			alert("아이디를 입력해주세요");
 			userid.focus();
 			return false;
 		}
-
 		var userpwd = document.getElementById("userpwd");
-
 		if (userpwd.value == "") {
 			alert("비밀번호를 입력해주세요");
 			userpwd.focus();

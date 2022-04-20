@@ -75,7 +75,7 @@ li{
 	font-weight: bold;
 }
 li:hover{
-	color: #95D1CC;
+    color: #5584AC;
 	transition-duration:300ms;
 }
 
@@ -84,6 +84,7 @@ li:hover{
   height: 100%;
   margin:0 auto;
   position: relative;
+  left: -78px;
 }
 
 .sidenav {

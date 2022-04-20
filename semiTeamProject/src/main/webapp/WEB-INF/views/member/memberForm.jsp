@@ -37,6 +37,7 @@
 		text-decoration: none;
 		color: black;
 	}
+	
 	h1{
       margin-right:100px;
       font-size: 40px;
@@ -46,7 +47,7 @@
    }
 	
 	#memberForm{
-		padding-top:100px;
+		padding-top:60px;
 		padding-left:100px;
 		width:1130px;
 		margin:0px auto;
@@ -58,7 +59,9 @@
 	    -webkit-box-shadow: 10px 10px 5px 0px rgba(189,189,189,1);
 	   -moz-box-shadow: 10px 10px 5px 0px rgba(189,189,189,1);
 	   box-shadow: 10px 10px 5px 0px rgba(189,189,189,1);
+	   margin-bottom:80px;
 	}
+	
 	#memberForm li{
 		float:left;
 		width:20%;
@@ -67,37 +70,44 @@
 		font-weight: 700;
 		
 	}
+	
 	#memberForm li:nth-child(2n){
 		float:left;
 		width:80%;
-		
 	}
 	
 	#memberForm li:last-of-type{
 		float:left;
 		margin:0px;
 		width:100%;
-		
 	}
+	
 	.form-control-lg{
 		width:90%;
 	}
-	
-	
+
 	#resetbtn{
 		width:300px;
 		margin: 30px 0 100px 32.5px;
 	}
+	
 	#submitbtn{
 		width:300px;
 		margin: 30px 0 100px 265px;
 	}
 	
+	/*비밀번호 폰트 깨짐 해결*/
+	#userpwd, #userpwd2{
+		font-family:sans-serif;
+	}
 
+	#userpwd::placeholder, #userpwd2::placeholder{
+		font-family:Cafe24Simplehae;
+	}
 	
 </style>
-<script>
 
+<script>
 $(function(){
 	//아이디 중복검사
 	$("#userid").keyup(function(){
@@ -242,7 +252,7 @@ $(function(){
 					    	<option value="f">여성</option>
 					</select>
 				</li>
-				<li style="margin-bottom: 10px;"><label for="sel_ask" style="font-size: 0.5em;">질문을 선택하세요<br>(계정 분실시 사용됩니다)</label></li>
+				<li><label for="sel_ask">질문을 선택하세요:</label></li>
 				<li>
 					<select class="form-control form-control-lg" id="ask" name="ask" style="width:90%">
 					    	<option value="school">입학했던 초등학교 이름은?</option>
@@ -254,6 +264,7 @@ $(function(){
 					    	<option value="character">내가 좋아하는 캐릭터는?</option>
 					    	<option value="friend">유년시절 가장 생각나는 친구 이름은?</option>
 					</select>
+					<span>&nbsp;아이디/비밀번호 찾기에 사용되는 질문입니다.</span>
 				</li>
 				<li>답변</li>
 				<li><input class="form-control form-control-lg" type="text" placeholder="" name="answer" id="answer"></li>

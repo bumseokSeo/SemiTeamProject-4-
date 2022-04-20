@@ -58,7 +58,21 @@
 		font-size: 1.5em;	
 		font-weight: 700;
 	}
+	#otherMasterPage a:hover {
+        color: #5584AC;
+	}
+	#otherMasterPage a:nth-child(1){
+		color: #5584AC;
+	}
 	
+.master-container {
+		width:1300px;
+		position: relative;
+		left: -84px;
+		margin: 0 auto;
+		margin-top: 30px;	
+}	
+
 	#master{
 		width:1150px;
 		padding:49px;
@@ -66,11 +80,13 @@
 		margin: 0 auto;
 		margin-top: 30px;
 		margin-bottom: 100px;
+	    background-color: rgba( 255, 255, 255, 0.4 );
 	    border: 1px solid #bdbdbd;
 	    border-radius: 5px;
 	    -webkit-box-shadow: 10px 10px 5px 0px rgba(189,189,189,1);
 	   -moz-box-shadow: 10px 10px 5px 0px rgba(189,189,189,1);
-	    box-shadow: 10px 10px 5px 0px rgba(189,189,189,1);			
+	    box-shadow: 10px 10px 5px 0px rgba(189,189,189,1);	
+	    float: right;		
 	}
 
 	
@@ -79,7 +95,7 @@
 	    border-radius: 5px;
 		width:1000px;
 		margin: 0 auto;
-		height:920px;
+
 		overflow:auto;
 		margin-bottom:30px;
 		
@@ -157,9 +173,8 @@
 		line-height: 40px;	
    }
 .sidenav {
-   position:relative;
-   float:left;
-   width: 10%;
+   position:absolute;
+   left: -5px;
    height:100%;
 
 }
@@ -168,7 +183,7 @@
    display:flex;
    flex-direction: column;
    list-style-type: none;
-   margin: 32px 0;
+   margin: 38px 0;
    color: #534439;
 }
 
@@ -176,19 +191,21 @@
   letter-spacing: 1px;
   font-size: 24px;
   font-weight: 600;
+  margin-bottom: 18px;
 }
 
 .sidenav .mainnav>li {
   padding: 16px 0px;
 }
 
-.sidenav .mainnav>li:hover, 
-.sidenav .mainnav>li:active,
-.sidenav .mainnav>li:focus {
+.sidenav .mainnav>a>li:hover, 
+.sidenav .mainnav>a>li:active,
+.sidenav .mainnav>a>li:focus {
   cursor: pointer;
-  color: #95D1CC;
+    color: #5584AC;
 }
-	
+
+
 </style>
 <script>
 
@@ -208,15 +225,15 @@ function delreviewOk(reviewno){
 	<a href="/master/master_food">음식 관리</a>
 </div>
 
+<div class="master-container">
 <nav class="sidenav">
 	<ul class="mainnav"> 
-		<a href="${url}//member/masterPage"><li>계정 관리</li></a>
+		<a href="${url}/member/masterPage"><li>계정 관리</li></a>
 	    <a href="${url}/map/master_review"><li>리뷰 관리</li></a>
 	</ul>
 </nav>
 
 <div id="master">
-
    <div id="reviewsearch">
    		 <form method="get" action="${url}/map/master_review" id="searchFrm2">
          	<img alt="" src="${url}/img/search.png" class="searchIcon" >
@@ -289,6 +306,6 @@ function delreviewOk(reviewno){
     </div>
     
 </div>
-
+</div>
 </body>
 </html>
