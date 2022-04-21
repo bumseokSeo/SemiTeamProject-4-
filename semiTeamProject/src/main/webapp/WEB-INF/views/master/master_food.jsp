@@ -178,10 +178,11 @@
            height: 150px;
            max-width: 100%;
        }
+       
        #otherPageLink{
-      text-align: center;
-      font-size: 20px;
-   }
+	      text-align: center;
+	      font-size: 20px;
+	   }
    
 	label {
 		font-weight: 700;
@@ -827,7 +828,7 @@
                 </div>
                 <!--날짜 입력 받는 모달창-->
                 <div class="modal fade" data-backdrop = "static" data-keyboard="false" id="modalEvent">
-                    <div class="modal-dialog">
+                    <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title">이벤트 날짜를 입력하세요.</h5>
