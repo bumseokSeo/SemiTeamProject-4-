@@ -409,6 +409,9 @@
             //선택란은 기본값으로 변경
             $(".form-select option:eq(0)").prop("selected", true);
             $("#weather option:eq(0)").prop("selected", true);
+            $("#temp option:eq(0)").prop("selected", true); 
+            $("#event option:eq(0)").prop("selected", true); 
+            $("#season option:eq(0)").prop("selected", true); 
             $(".form-check").attr("checked", false);
             $("#add").css('visibility', 'visible');
             $("#modify").css('visibility', 'visible');
