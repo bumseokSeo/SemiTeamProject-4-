@@ -232,7 +232,8 @@ public class FoodController {
 			
 		}else {		
 			//파일 업로드를 위한 업로드 위치의 절대 주소
-			String path = request.getSession().getServletContext().getRealPath("/img/foodimg/upload");
+			String path = "/img/foodimg/upload";
+			//String path = request.getSession().getServletContext().getRealPath("/img/foodimg/upload");
 			
 			System.out.println(path);
 			
@@ -367,7 +368,8 @@ public class FoodController {
 		 System.out.println(priorFile+"<<<");
 		 
 		 //파일 업로드를 위한 업로드 위치의 절대 주소
-		 String path = request.getSession().getServletContext().getRealPath("/img/foodimg/upload");
+		 String path = "/img/foodimg/upload";
+		 //String path = request.getSession().getServletContext().getRealPath("/img/foodimg/upload");
 		 
 			 
 			 try {

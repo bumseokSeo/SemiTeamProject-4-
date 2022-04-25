@@ -116,7 +116,8 @@ public class CodyController {
 		mr = (MultipartHttpServletRequest) request;
 		MultipartFile file = mr.getFile("filename");
 
-		String path = request.getSession().getServletContext().getRealPath("/img/codyimg/codyupload");
+		//String path = request.getSession().getServletContext().getRealPath("/img/codyimg/codyupload");
+		String path = "/img/codyimg/codyupload";
 		System.out.println(path);
 
 		String filename = file.getOriginalFilename();
@@ -139,7 +140,9 @@ public class CodyController {
 	public String codyDelte(String cname, HttpServletRequest request) {
 		System.out.println("컨트롤러 실행");
 		// 파일 삭제
-		String path = request.getSession().getServletContext().getRealPath("/img/codyimg/codyupload");
+		
+		//String path = request.getSession().getServletContext().getRealPath("/img/codyimg/codyupload");
+		String path = "/img/codyimg/codyupload";
 		System.out.println(path);
 
 		File file = new File(path, cname);
