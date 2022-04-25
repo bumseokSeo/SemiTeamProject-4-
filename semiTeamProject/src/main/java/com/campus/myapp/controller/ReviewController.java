@@ -66,8 +66,8 @@ public class ReviewController {
       HttpHeaders headers = new HttpHeaders();
       headers.setContentType(new MediaType("text", "html", Charset.forName("UTF-8")));
       
-      String path = "/img/reviewimg";
-      //String path = request.getSession().getServletContext().getRealPath("/img/reviewimg"); // 파일 업로드를 위한 업로드 위치의 절대 주소
+      //String path = "/img/reviewimg";
+      String path = request.getSession().getServletContext().getRealPath("/img/reviewimg"); // 파일 업로드를 위한 업로드 위치의 절대 주소
       System.out.println("id-->"+vo.getId()+", >>>pid="+pid);
 
       try {

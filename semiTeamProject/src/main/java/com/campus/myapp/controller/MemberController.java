@@ -223,8 +223,8 @@ public class MemberController {
 		headers.setContentType(new MediaType("text","html",Charset.forName("UTF-8")));
 		
 		//파일 업로드를 위한 업로드 위치의 절대주소
-		String path = "/img/memberimg";
-		//String path = request.getSession().getServletContext().getRealPath("/img/memberimg");
+		//String path = "/img/memberimg";
+		String path = request.getSession().getServletContext().getRealPath("/img/memberimg");
 		System.out.println("path-->"+path);
 		try {
 			//파일업로드를 위한 request객체에서 multipart객체를 구해야 한다
