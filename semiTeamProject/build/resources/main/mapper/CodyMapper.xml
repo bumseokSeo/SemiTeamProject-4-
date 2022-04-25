@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.campus.myapp.dao.CodyDAO">
+	<select id="codyRecommend" resultType="com.campus.myapp.vo.CodyVO">
+		select cname, style, info from cody where temp=#{param1} and sex=#{param2}
+	</select>
+	
+	<select id="cnameCheck" resultType="Integer">
+		select count(cname) cnt from cody where cname=#{param1}
+	</select>
+	
+	<insert id="codyInsert">
+		insert into cody(cname,temp,weather,sex,style,info)
+		values(#{cname}, ${temp}, #{weather}, #{sex}, #{style}, #{info})
+	</insert>
+	
+	<select id="codySelect" resultType="com.campus.myapp.vo.CodyVO">
+		select cname, temp, weather, sex, style, info from cody where cname=#{param1}
+	</select>
+	
+	<update id="codyUpdate">
+		update cody set cname=#{cname}, temp=${temp}, weather=#{weather}, sex=#{sex}, style=#{style}, info=#{info}
+    	where cname=#{cname}
+	</update>
+	
+	<delete id="codyDelete">
+		delete from cody where cname=#{param1}
+	</delete>
+	
+	<select id="codyListAll" resultType="com.campus.myapp.vo.CodyVO">
+		select cname, temp, weather, sex, style, info from cody order by length(cname), cname;
+	</select>
+	
+	<select id="codyGenderList" resultType="com.campus.myapp.vo.CodyVO">
+		select cname, temp, weather, sex, style, info from cody where sex=#{param1} order by length(cname), cname;
+	</select>
+	<select id="codyHeartList" resultType="com.campus.myapp.vo.HeartVO">
+		select cname, heartinfo from heart where userid=#{param1} order by length(cname), cname;
+	</select>
+	<select id="codyStyleList" resultType="com.campus.myapp.vo.CodyVO">
+		select cname, temp, weather, sex, style, info from cody where style=#{param1} and sex=#{param2} order by length(cname), cname;
+	</select>
+	
+	<insert id="heartInsert">
+		insert into heart(userid, cname, heartinfo) values(#{param1}, #{param2}, #{param3})
+	</insert>
+	
+	<delete id="heartDelete">
+		delete from heart where userid=#{param1} and cname=#{param2}
+	</delete>
+	
+	<select id="heartSelect" resultType="com.campus.myapp.vo.HeartVO">
+		select userid, cname, heartinfo from heart where userid=#{param1}
+	</select>
+	
+</mapper>

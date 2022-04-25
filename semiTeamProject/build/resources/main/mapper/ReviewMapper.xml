@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace = "com.campus.myapp.dao.ReviewDAO">
+    <insert id="reviewWrite">
+        insert into review (reviewno, userid, content, star, reviewimg, id) values(#{reviewno}, #{userid}, #{content}, #{star}, #{reviewimg}, #{id})
+    </insert>
+    <select id="reviewList" resultType="com.campus.myapp.vo.ReviewVO">
+        select r.reviewno, r.userid, r.content, r.writedate, r.star, r.reviewimg, m.username from review r join member m on r.userid=m.userid
+        where r.id=#{param1}
+        order by reviewno desc
+    </select>
+        <select id="getFileName" resultType="com.campus.myapp.vo.ReviewVO">
+        select reviewimg from review where reviewno=${param1}
+    </select>
+    <update id="reviewUpdate" >
+        update review set reviewimg=#{reviewimg}, content=#{content} where reviewno=${reviewno} and userid=#{userid}
+    </update>
+    <delete id="reviewDel">
+        delete from review where reviewno=#{param1} and userid=#{param2}
+    </delete>
+
+    <select id="avgstar" resultType="com.campus.myapp.vo.ReviewVO">
+		select avg(star) from review group by id=#{param1}
+	</select>
+	
+	<select id="reviewcnt" resultType="com.campus.myapp.vo.ReviewVO">
+		select count reviewno from review where id=#{param1}
+	</select>
+	
+	<select id="reviewSelect" resultType="com.campus.myapp.vo.ReviewVO">
+    	select reviewno, content, username, writedate
+    	from review where reviewno=#{param1}    	
+    </select>
+</mapper>

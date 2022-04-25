@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <mapper namespace = "com.campus.myapp.dao.FoodDAO">
+  
+  	<select id="checkFilename" resultType="int">
+  		select count(foodimg) from food where foodimg=#{param1} 
+  	
+  	</select>
+  	
+  	<select id="checkFoodName" resultType="int">
+  		select count(fname) from food where fname=#{param1}
+  	
+  	</select>
+  	
+  	<insert id="foodInsert" >
+  		
+  		insert into food(fname, season, temp, weather, foodimg, fcategory, priority, event)
+  		values(#{fname}, #{season}, #{temp}, #{weather}, #{foodimg}, #{fcategory}, #{priority}, #{event})
+  		
+  	</insert>
+
+  	
+  	<select id="getFoodData" resultType="com.campus.myapp.vo.FoodVO">
+  		select fname, season, temp, weather, foodimg, fcategory, priority, event from food where fname=#{param1}
+  	</select>
+  	
+  	<select id="getFileName" resultType="String">
+  		select foodimg from food where fname=#{param1}
+ 
+  	</select>
+  	
+  	<update id="foodUpdate">
+  	
+  		update food set season=#{season}, temp=#{temp}, weather=#{weather}
+  		<if test="foodimg != null and foodimg != ''">
+  		,foodimg=#{foodimg}
+  		</if>
+  		, fcategory=#{fcategory}, priority=#{priority}, event=#{event}
+  		where fname=#{fname}
+  	
+  	</update>
+  	
+  	<select id="getEqualEvent" resultType="com.campus.myapp.vo.FoodVO">
+  		select fname, season, temp, weather, foodimg, fcategory, priority, event from food where event=cast(#{param1} as date)
+  	
+  	</select>
+  	
+  	<select id="getEqualWeather" resultType="com.campus.myapp.vo.FoodVO">
+  		select fname, season, temp, weather, foodimg, fcategory, priority, event from food where weather=#{param1}
+  	
+  	</select>
+  	
+  	<select id="getEqualSeason" resultType="com.campus.myapp.vo.FoodVO">
+  		select fname, season, temp, weather, foodimg, fcategory, priority, event from food where season=#{param1}
+  	
+  	</select>
+  	
+  	<select id="getEqualTemp" resultType="com.campus.myapp.vo.FoodVO">
+  		select fname, season, temp, weather, foodimg, fcategory, priority, event from food where temp=#{param1}
+  	</select>
+  	
+  	<select id="getPriorityN" resultType="com.campus.myapp.vo.FoodVO">
+  		select fname, season, temp, weather, foodimg, fcategory, priority, event from food where priority=#{param1}
+  	
+  	</select>
+  	
+  	<select id="getCategoryFood" resultType="com.campus.myapp.vo.FoodVO">
+  		select fname, foodimg, fcategory from food where fcategory = #{param1}
+  	
+  	</select>
+  	
+  	<select id="getAllFood" resultType="com.campus.myapp.vo.FoodVO">
+  		select fname, foodimg, fcategory from food
+  	</select>
+  	
+  	<select id="getEtcFood" resultType="com.campus.myapp.vo.FoodVO">
+  		select fname, foodimg, fcategory from food where fcategory!="일식" and fcategory!="한식" and fcategory!="중식" and fcategory!="디저트";
+  	</select>
+  	
+  	
+ </mapper>
