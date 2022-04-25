@@ -9,9 +9,9 @@ spring:
   datasource: #바이바티스
     driver-class-name: com.mysql.cj.jdbc.Driver
 
-    url: jdbc:mysql://1.231.238.235/semiproject?characterEncoding=UTF-8
-    username: semiproject_id
-    password: fullstackteam4
+    url: jdbc:mysql://127.0.0.1/campusDB?characterEncoding=UTF-8
+    username: root
+    password: root1234
 
   devtools: #자동실행
     livereload:
