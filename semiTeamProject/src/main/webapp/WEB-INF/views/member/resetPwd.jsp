@@ -93,6 +93,12 @@ h1 {
 	height:70px;
 	margin-bottom: 100px;
 }
+
+/*비밀번호 폰트깨짐 처리*/
+#userpwd, #userpwd2{
+	font-family:sans-serif;
+}
+
 </style>
 <script>
 	function formcheck() {
