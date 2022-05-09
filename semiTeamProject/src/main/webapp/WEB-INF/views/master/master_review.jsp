@@ -230,7 +230,7 @@ function delreviewOk(reviewno){
 
 <div class="master-container">
 <nav class="sidenav">
-	<ul class="mainnav"> 
+	<ul class="mainnav">
 		<a href="${url}/member/masterPage"><li>계정 관리</li></a>
 	    <a href="${url}/map/master_review"><li>리뷰 관리</li></a>
 	</ul>

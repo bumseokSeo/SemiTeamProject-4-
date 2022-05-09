@@ -217,7 +217,7 @@ $(function(){
 			return false;
 		}
 		if(!reg.test(email.value)){
-			alert("이메일을 확인해주세요 입력해주세요");
+			alert("이메일을 확인해주세요.");
 			email.focus();
 			return false;
 		}

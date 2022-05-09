@@ -24,7 +24,7 @@
 <!-- 카카오 api 라이브러리  -->
 <!-- services와 clusterer, drawing 라이브러리 불러오기 -->
 <script type="text/javascript"
-	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=096ec0036610b77d5b4e1aa8571cbb1e&libraries=services,clusterer,drawing"></script>
+	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=58bbdd6479a4489f63754fa32294a690&libraries=services,clusterer,drawing"></script>
 
 <!-- bootstrap -->
 <link rel="stylesheet"
